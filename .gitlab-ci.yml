@@ -1,4 +1,4 @@
-image: maven:3-openjdk-11
+image: maven:3.9.4-openjdk-19
 
 stages:
   - test
@@ -7,7 +7,7 @@ stages:
 test:
   stage: test
   script:
-    - mvn clean test --batch-mode -P headless -DskipUiTests=true
+    - mvn clean test --batch-mode -P -DskipUiTests=true
 
 semantic-release:
   stage: semantic-release
