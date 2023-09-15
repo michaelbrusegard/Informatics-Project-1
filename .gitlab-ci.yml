@@ -1,4 +1,4 @@
-image: maven:3.9.4-openjdk-19
+image: maven:3.9.4-openjdk-17
 
 stages:
   - test
