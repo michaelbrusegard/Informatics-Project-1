@@ -1,15 +1,17 @@
-image: maven:3.8.3-openjdk-17
-
 stages:
   - test
   - semantic-release
 
 test:
+  image: maven:3.8.3-openjdk-17
   stage: test
+  rules:
+    - if: '$CI_COMMIT_MESSAGE  !~ /^chore(release)*/'
   script:
     - mvn clean test --batch-mode -P headless -DskipUiTests=true
 
 semantic-release:
+  image: maven:3-openjdk-11
   stage: semantic-release
 
   rules:
