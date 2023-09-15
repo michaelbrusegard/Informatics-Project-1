@@ -7,7 +7,7 @@ stages:
 test:
   stage: test
   script:
-    - mvn clean test --batch-mode -P -DskipUiTests=true
+    - mvn clean test --batch-mode -P headless -DskipUiTests=true
 
 semantic-release:
   stage: semantic-release
