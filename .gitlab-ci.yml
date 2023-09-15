@@ -1,5 +1,11 @@
 stages:
+  - test
   - semantic-release
+
+test:
+  stage: test
+  script:
+    - mvn clean test --batch-mode -P headless -DskipUiTests=true
 
 semantic-release:
   image: maven:3-openjdk-11
