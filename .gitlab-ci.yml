@@ -1,0 +1,15 @@
+stages:
+  - semantic-release
+
+semantic-release:
+  image: maven:3-openjdk-11
+  stage: semantic-release
+
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main" && $CI_COMMIT_MESSAGE  !~ /^chore(release)*/'
+  script:
+    - export GITLAB_TOKEN=$SEMANTIC_RELEASE_TOKEN
+    - curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+    - apt-get install -y nodejs
+    - npm install @semantic-release/git @semantic-release/gitlab @semantic-release/exec @semantic-release/changelog
+    - npx semantic-release
