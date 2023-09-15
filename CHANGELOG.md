@@ -1,3 +1,10 @@
+## [1.0.1](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.0.0...v1.0.1) (2023-09-15)
+
+
+### Bug Fixes
+
+* **setup:** fixed changelog to version 1.0.0 ([1b0a007](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/1b0a00786c99b943c92dacba10f3ab01c71ff621)), closes [#5](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/issues/5)
+
 # 1.0.0 (2023-09-15)
 
 ### Bug Fixes
