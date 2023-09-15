@@ -1,21 +1,9 @@
 # 1.0.0 (2023-09-15)
 
-
 ### Bug Fixes
 
-* **setup:** :ambulance: updated CHANGELOG.md to reflect changes correctly ([a7dfe2f](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/a7dfe2f44598f55a3e3b0d0ffdf68939c39821cb)), closes [#5](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/issues/5)
-* **setup:** added maven image to the whole ci workflow ([344bbfd](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/344bbfd3640ec9ee5f488c84100314fd524c5bfc)), closes [#1](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/issues/1)
-* **setup:** fixed duplicate changelog entry ([cf256b2](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/cf256b2362d6e4a005968c3a13f1acb656008f7d))
-
-
-### Features
-
-* **setup:** Added javafx template ([4c398d3](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/4c398d342391650b5e0eeab62bc5c8da7a2897c1))
-
-# 1.0.0 (2023-09-15)
-
-### Bug Fixes
-
+- **setup:** :ambulance: updated CHANGELOG.md to reflect changes correctly ([a7dfe2f](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/a7dfe2f44598f55a3e3b0d0ffdf68939c39821cb)), closes [#5](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/issues/5)
+- **setup:** added maven image to the whole ci workflow ([344bbfd](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/344bbfd3640ec9ee5f488c84100314fd524c5bfc)), closes [#1](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/issues/1)
 - **setup:** fixed duplicate changelog entry ([cf256b2](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/cf256b2362d6e4a005968c3a13f1acb656008f7d))
 
 ### Features
