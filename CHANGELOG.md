@@ -1,3 +1,10 @@
+## [1.1.2](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.1.1...v1.1.2) (2023-09-19)
+
+
+### Bug Fixes
+
+* **setup:** made workoutplanner lowercase in devfile.yml ([30adbbf](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/30adbbfd9f54b2239ccea85c3eb25b1da845c57d))
+
 ## [1.1.1](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.1.0...v1.1.1) (2023-09-19)
 
 
