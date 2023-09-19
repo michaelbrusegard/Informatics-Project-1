@@ -1,3 +1,10 @@
+# [1.1.0](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.0.1...v1.1.0) (2023-09-19)
+
+
+### Features
+
+* Added files to access CDE ([b068bb1](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/b068bb10ed42e25fc29b12a8a16fdb0c67663000)), closes [#9](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/issues/9)
+
 ## [1.0.1](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.0.0...v1.0.1) (2023-09-15)
 
 
