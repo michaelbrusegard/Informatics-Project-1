@@ -1,3 +1,10 @@
+## [1.1.3](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.1.2...v1.1.3) (2023-09-19)
+
+
+### Bug Fixes
+
+* **jacoco:** :bug: Fixed jacoco ([9dc6402](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/9dc64020dde4bc4be499460b291c0c8a9da6d307))
+
 ## [1.1.2](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.1.1...v1.1.2) (2023-09-19)
 
 
