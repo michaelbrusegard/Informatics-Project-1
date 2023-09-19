@@ -1,0 +1,45 @@
+schemaVersion: 2.1.0
+metadata:
+  name: WorkoutPlanner
+components:
+  - name: WorkoutPlanner
+    container:
+      image: adrianstoica/it1901:latest
+      memoryLimit: 3Gi
+      endpoints:
+        - exposure: public
+          name: 6080-tcp
+          protocol: http
+          targetPort: 6080
+        - exposure: public
+          name: 3000-tcp
+          protocol: http
+          targetPort: 3000
+        - exposure: public
+          name: 5900-tcp
+          protocol: http
+          targetPort: 5900
+        - exposure: public
+          name: 5901-tcp
+          protocol: http
+          targetPort: 5901
+        - exposure: public
+          name: 8080-tcp
+          protocol: http
+          targetPort: 8080
+commands:
+  - id: vncserver
+    exec:
+      component: WorkoutPlanner
+      commandLine: vncserver -SecurityTypes None :0
+      label: start vnc server
+  - id: screenlock
+    exec:
+      component: WorkoutPlanner
+      commandLine: xset s 0 0
+      label: screen lock disable
+  - id: novnc
+    exec:
+      component: WorkoutPlanner
+      commandLine: /opt/novnc/utils/novnc_proxy --vnc localhost:5900 --listen 6080 &
+      label: start vnc web interface
