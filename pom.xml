@@ -86,15 +86,26 @@
                     </argLine>
                 </configuration>
 	        </plugin>
-
             <plugin>
-                <groupId>org.openjfx</groupId>
-                <artifactId>javafx-maven-plugin</artifactId>
-                <version>0.0.8</version>
-                <!-- Default configuration for running -->
-                <!-- Usage: mvn javafx:run -->
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.10</version> <!-- Use the correct version -->
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
-                    <mainClass>app/ui.App</mainClass>
+                    <reportSets>
+                        <reportSet>
+                            <reports>
+                                <!-- List of report types to generate -->
+                                <report>report</report>
+                            </reports>
+                        </reportSet>
+                    </reportSets>
                 </configuration>
             </plugin>
         </plugins>
