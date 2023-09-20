@@ -9,3 +9,4 @@ org.eclipse.*.prefs
 # Extras
 .DS_Store
 .vscode/
+.idea/
