@@ -1,21 +1,25 @@
 package core;
 
+import javafx.scene.control.TextField;
+
 public class Exercise implements Comparable<Exercise>{
     
     private String name;
     private String muscleGroup;
+    private int sets;
     private int reps;
     private int weight;
 
-    public Exercise(String name, String muscleGroup, int reps, int weight) {
-        this.name = name;
+    public Exercise(TextField exerciseName, String muscleGroup, TextField exerciseSet,TextField exerciseRep, TextField exerciseWeight) {
+        this.name = exerciseName.getText();
         this.muscleGroup = muscleGroup;
-        this.reps = reps;
-        this.weight = weight;
+        this.reps = Integer.parseInt(exerciseRep.getText());
+        this.sets = Integer.parseInt(exerciseSet.getText());
+        this.weight = Integer.parseInt(exerciseWeight.getText());
     }
 
-    public Exercise(String string, String string2) {
-        this.name = string;
+    public Exercise(TextField string, String string2) {
+        this.name = string.getText();
         this.muscleGroup = string2;
     }
 
@@ -60,6 +64,14 @@ public class Exercise implements Comparable<Exercise>{
     @Override
     public String toString() {
         return name+"," + muscleGroup+",";
+    }
+
+    public int getSets() {
+        return sets;
+    }
+
+    public void setSets(int sets) {
+        this.sets = sets;
     }
 
 }

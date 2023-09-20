@@ -1,10 +1,10 @@
 package core;
 
 import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.List;
 
 import java.io.BufferedReader;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -15,7 +15,7 @@ public class ExerciseFileHandler {
 
     public static void write(String str) {
         try {
-            printer = new PrintStream("Exercises.txt");
+            printer = new PrintStream(new FileOutputStream("Exercises.txt", true));
             printer.println(str);
             printer.flush();
         } catch (Exception e) {

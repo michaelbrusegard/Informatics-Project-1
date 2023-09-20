@@ -3,6 +3,7 @@ package core;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.control.TextField;
 
 public class Workout {
     
