@@ -6,9 +6,9 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.HomeController">
    <children>
-      <Button fx:id="newWorkout" layoutX="261.0" layoutY="162.0" mnemonicParsing="false" text="+" textFill="RED">
+      <Button layoutX="261.0" layoutY="162.0" mnemonicParsing="false" text="+" textFill="RED" onAction="#handleNewWorkout">
          <font>
             <Font size="40.0" />
          </font>
