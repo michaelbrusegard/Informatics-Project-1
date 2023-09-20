@@ -1,6 +1,11 @@
 package ui;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 import core.Exercise;
+import core.ExerciseFileHandler;
+import core.Exerciseview;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -9,7 +14,9 @@ import javafx.scene.text.Text;
 
 public class ExerciseViewController {
     @FXML
-    TextField exerciseSet, exerciseRep, exerciseWeight;
+    TextField exerciseSet, exerciseRep, exerciseWeight, newExerciseField;
+
+    Exerciseview exerciseview = new Exerciseview(new ArrayList<>());
 
     @FXML
     Text exerciseName;
@@ -24,14 +31,17 @@ public class ExerciseViewController {
     }
     @FXML
     public void addNewExercise(){
-        TextField newField = new TextField();
-        hBoxName.getChildren().add(newField);
+        this.newExerciseField = new TextField();
+        hBoxName.getChildren().add(newExerciseField);
     }
 
 
     @FXML
-    public void saveExercises(){
-        // ExerciseFileHandler.write((new Exercise(getExerciseName(),null)).toString());
+    public void saveExercises() throws IOException{
+        Exercise exer = new Exercise(this.newExerciseField, "arms");
+        this.exerciseview.addExercise(exer);
+        ExerciseFileHandler.write((exer).toString());
+        System.out.println(ExerciseFileHandler.read());
     }
     // public TextField getExerciseName() {
     //     return ((TextField) exerciseName);
