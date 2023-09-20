@@ -5,3 +5,10 @@ This project is a workout planner app made with maven in javafx. It is a school 
 The goal for the app is to be able to select exercises from a list and add them to a workout. The workout can then be saved and loaded. We want the user to be able to customise sets, rep range and weight.
 
 ## Screenshots
+
+![home](../concepts/home.png)
+![muscle groups](../concepts/muscle-groups.png)
+![exercices](../concepts/exercices.png)
+![exercices 2](../concepts/exercices-2.png)
+![overview](../concepts/overview.png)
+![plans](../concepts/plans.png)
