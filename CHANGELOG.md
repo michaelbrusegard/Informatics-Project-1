@@ -1,3 +1,11 @@
+## [1.1.4](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.1.3...v1.1.4) (2023-09-20)
+
+
+### Bug Fixes
+
+* **setup:** :ambulance: updated references and fixed pom.xml ([c908ada](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/c908ada8b04e1b9b7eea9a65c6ee8ead22678d6f)), closes [#23](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/issues/23)
+* **setup:** added maven-sunfire-plugin argline ([71ad791](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/71ad79193a396ef905ef836524d0deca1fdf59d2)), closes [#23](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/issues/23)
+
 ## [1.1.3](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.1.2...v1.1.3) (2023-09-19)
 
 
