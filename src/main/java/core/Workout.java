@@ -24,7 +24,7 @@ public class Workout {
         String[] items = line.split(",");
         List<Exercise> list = new ArrayList<>();
         for (int i = 0; i < items.length; i += 2) {
-            list.add(new Exercise(items[i], items[i + 1]));
+            // list.add(new Exercise(items[i], items[i + 1]));
         }
         return list;
     }
