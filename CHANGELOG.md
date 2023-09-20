@@ -1,3 +1,10 @@
+## [1.2.1](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.2.0...v1.2.1) (2023-09-20)
+
+
+### Bug Fixes
+
+* **setup:** fixed typo in user story ([d37beb3](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/d37beb3aa5170e47527b0ddb523b0c30a48d233e))
+
 # [1.2.0](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.1.4...v1.2.0) (2023-09-20)
 
 
