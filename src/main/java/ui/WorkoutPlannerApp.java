@@ -11,7 +11,7 @@ import java.io.IOException;
 /**
  * JavaFX App
  */
-public class WorkoutplanApp extends Application {
+public class WorkoutPlannerApp extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
