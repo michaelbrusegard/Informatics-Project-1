@@ -20,13 +20,7 @@ public class Exerciseview {
     public void addExercise(Exercise exercise) {
         getExercises().add(exercise);
         sortList();
-        write();
-    }
-
-    private void write() {
-        for (Exercise exercise : getExercises()) {
-            ExerciseFileHandler.write(exercise);
-        }
+        ExerciseFileHandler.write(exercise);
     }
 
     public List<Exercise> read() throws IOException {

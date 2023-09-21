@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import core.Exercise;
-import core.ExerciseFileHandler;
 import core.Exerciseview;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
