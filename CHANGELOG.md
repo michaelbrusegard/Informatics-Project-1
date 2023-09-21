@@ -1,3 +1,16 @@
+# [1.3.0](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.2.1...v1.3.0) (2023-09-21)
+
+
+### Bug Fixes
+
+* **Add exercise:** textfield overwrites name ([974af8f](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/974af8fa8da7df21351dee929b63cea651699ff0))
+
+
+### Features
+
+* **Exerciseview:** :sparkles: Added controller logic and fxml file for the Exerciseview panel ([ff61bb2](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/ff61bb253023dccf22983c88e44d6b1d816c5f14)), closes [#28](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/issues/28)
+* **fxml file changed:** saveExercise working ([e0fad83](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/e0fad83538043bbbb8e3630bbed95137b53b91b2))
+
 ## [1.2.1](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.2.0...v1.2.1) (2023-09-20)
 
 
