@@ -5,6 +5,11 @@
 maven: 3.8.3
 java: openjdk-17
 javafx: 17.0.8
+junit: 5.10.0
+testfx: 4.0.16-alpha
+spotbugs: 4.7.2.1
+jacoco: 0.8.8
+
 
 ## Contents
 
