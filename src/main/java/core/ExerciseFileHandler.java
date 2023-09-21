@@ -1,10 +1,10 @@
 package core;
 
 import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.List;
 
 import java.io.BufferedReader;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -13,11 +13,11 @@ public class ExerciseFileHandler {
     private static PrintStream printer;
     private static BufferedReader reader;
 
-    public static void write(String str) {
+    public static void write(Exercise exer) {
         try {
-            printer = new PrintStream("Exercises.txt");
-            printer.println(str);
-            printer.flush();
+            printer = new PrintStream(new FileOutputStream("Exercises.txt", true));
+            printer.println((String)(exer.toString()));
+            printer.close();
         } catch (Exception e) {
             //TODO: bør byttes med alert
             e.printStackTrace();
