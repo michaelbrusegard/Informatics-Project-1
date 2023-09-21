@@ -2,20 +2,15 @@
 
 ## Versions
 
-maven: 3.8.3
-java: openjdk-17
-javafx: 17.0.8
-junit: 5.10.0
-testfx: 4.0.16-alpha
-spotbugs: 4.7.2.1
-jacoco: 0.8.8
-
+maven: 3.8.3 \
+java: openjdk-17 \
+javafx: 17.0.8 \
 
 ## Contents
 
 - ./src/main - [source code](./src/main)
 - ./src/test - [test code](./src/test)
-- ./docs - [source code](./docs)
+- ./docs - [assignment documentation](./docs)
 - ./CHANGELOG.md - [changelog](./changelog)
 
 In the root directory, you can find the documentation for the assignments in the `docs` folder and the CHANGELOG.md file. The program is located in the `src` folder, seperated into 'main' and 'test'. The main folder contains the source code, and the test folder contains the test code.
