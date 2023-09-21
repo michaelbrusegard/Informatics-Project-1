@@ -13,11 +13,11 @@ public class ExerciseFileHandler {
     private static PrintStream printer;
     private static BufferedReader reader;
 
-    public static void write(String str) {
+    public static void write(Exercise exer) {
         try {
             printer = new PrintStream(new FileOutputStream("Exercises.txt", true));
-            printer.println(str);
-            printer.flush();
+            printer.println((String)(exer.toString()));
+            printer.close();
         } catch (Exception e) {
             //TODO: bør byttes med alert
             e.printStackTrace();

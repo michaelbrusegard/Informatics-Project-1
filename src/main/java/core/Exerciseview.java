@@ -1,5 +1,6 @@
 package core;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -23,7 +24,13 @@ public class Exerciseview {
     }
 
     private void write() {
-        ExerciseFileHandler.write(this.toString());
+        for (Exercise exercise : getExercises()) {
+            ExerciseFileHandler.write(exercise);
+        }
+    }
+
+    public List<Exercise> read() throws IOException {
+        return ExerciseFileHandler.read();
     }
 
     private void sortList() {

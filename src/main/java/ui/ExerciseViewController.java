@@ -2,11 +2,15 @@ package ui;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import core.Exercise;
 import core.ExerciseFileHandler;
 import core.Exerciseview;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -23,50 +27,65 @@ public class ExerciseViewController {
     Exercise exercise;
 
     @FXML
+    ListView<String> list;
+    @FXML
     HBox hBoxName;
 
     @FXML
     public void setExName(MouseEvent event) {
         exerciseName.setText(((Text) event.getSource()).getText());
     }
+
     @FXML
-    public void addNewExercise(){
+    public void addNewExercise() {
         this.newExerciseField = new TextField();
-        hBoxName.getChildren().add(newExerciseField);
+        hBoxName.getChildren().set(0, newExerciseField);
     }
 
-
     @FXML
-    public void saveExercises() throws IOException{
+    public void saveExercises() throws IOException {
         Exercise exer = new Exercise(this.newExerciseField, "arms");
         this.exerciseview.addExercise(exer);
-        ExerciseFileHandler.write((exer).toString());
-        System.out.println(ExerciseFileHandler.read());
+        loadnewExercises();
     }
-    // public TextField getExerciseName() {
-    //     return ((TextField) exerciseName);
-    // }
 
-    // public TextField getExerciseSet() {
-    //     return exerciseSet;
-    // }
+    @FXML
+    public void init() throws IOException {
+        hBoxName.getChildren().add(new TextField());
+        loadExercises();
+        hBoxName.getChildren().set(0, topfield());
+        list.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+    }
 
-    // public TextField getExerciseRep() {
-    //     return exerciseRep;
-    // }
+    @FXML
+    public void loadExercises() throws IOException {
+        List<Exercise> exercises = this.exerciseview.read();
+        ObservableList<String> items = list.getItems();
+        for (Exercise exercise : exercises) {
+            items.add(exercise.getName());
+        }
 
-    // public TextField getExerciseWeight() {
-    //     return exerciseWeight;
-    // }
+    }
 
-    // public Text getName() {
-    //     return name;
-    // }
-    // public void setName(Text name) {
-    //     this.name = name;
-    // }
-    // public Exercise getExercise() {
-    //     return exercise;
-    // }
+    @FXML
+    public TextField topfield() {
+        ObservableList<String> items = list.getItems();
+        if (items.isEmpty()) {
+            System.out.println(items);
+            return new TextField();
+        }
 
+        System.out.println(items);
+        return (new TextField(items.get(0)));
+    }
+
+    @FXML
+    public void loadnewExercises() throws IOException {
+        List<Exercise> exercises = this.exerciseview.read();
+        ObservableList<String> items = list.getItems();
+        String t = exercises.get(exercises.size() - 1).getName();
+        items.add(t);
+        newExerciseField.setText(t);
+        hBoxName.getChildren().set(0, newExerciseField);
+    }
 }
