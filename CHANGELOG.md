@@ -1,3 +1,10 @@
+## [1.3.1](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.3.0...v1.3.1) (2023-09-26)
+
+
+### Bug Fixes
+
+* :bug: Fixed Spotbugs ([fac848b](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/fac848bb571b5871927757c41ee9b6bafbb4af9d)), closes [#37](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/issues/37)
+
 # [1.3.0](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.2.1...v1.3.0) (2023-09-21)
 
 
