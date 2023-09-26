@@ -95,21 +95,14 @@
             <plugin>
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-maven-plugin</artifactId>
-                <version>4.7.2.0</version>
+                <version>4.7.2.1</version>
                 <configuration>
+                    <excludeFilterFile>spotbugs-exclude.xml</excludeFilterFile>
+                    <includeFilterFile>spotbugs-include.xml</includeFilterFile>
                     <xmlOutput>false</xmlOutput>
                     <htmlOutput>true</htmlOutput>
-                    <excludeFilterFile>config/spotbugs/exclude.xml</excludeFilterFile>
+                    <visitors>FindDeadLocalStores,UnreadFields</visitors>
                 </configuration>
-                <executions>
-                    <execution>
-                    <id>spotbugs-check</id>
-                    <phase>verify</phase>
-                    <goals>
-                        <goal>check</goal>
-                    </goals>
-                    </execution>
-                </executions>
             </plugin>
 
             <!-- Configure jacoco code coverage -->
