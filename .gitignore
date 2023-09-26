@@ -8,5 +8,6 @@ org.eclipse.*.prefs
 
 # Extras
 .DS_Store
-.vscode/
+.vscode/*
 .idea/
+!.vscode/extensions.json
