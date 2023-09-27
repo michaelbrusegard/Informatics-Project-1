@@ -11,3 +11,6 @@ org.eclipse.*.prefs
 .vscode/*
 .idea/
 !.vscode/extensions.json
+
+#intellij
+workout-planner.iml
