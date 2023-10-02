@@ -1,3 +1,11 @@
+# [1.4.0](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.3.1...v1.4.0) (2023-10-02)
+
+
+### Features
+
+* **fxml:** :lipstick: added VBox to home fxml ([c915820](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/c91582008402366a50eb358eb7a2944be1df91ae))
+* **fxml:** :lipstick: updated ExerciseView fxml window to be resizeable ([49c64f4](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/49c64f46b646df6bc76e6177dbb0a5813a8267dc)), closes [#39](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/issues/39)
+
 ## [1.3.1](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.3.0...v1.3.1) (2023-09-26)
 
 
