@@ -17,5 +17,5 @@ In the root directory, you can find the documentation for the assignments in the
 
 ### Link to about the project:
 
-[README](./src/README.md) \
-[USER STORY](./src/USER_STORY.md)
+[README](workoutplanner/README.md) \
+[USER STORY](workoutplanner/USER_STORY.md)
