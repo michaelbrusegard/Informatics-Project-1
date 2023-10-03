@@ -4,9 +4,11 @@
 
     <parent>
         <groupId>it1901</groupId>
-        <artifactId>workout-planner</artifactId>
+        <artifactId>workoutplanner</artifactId>
         <version>1.4.0</version>
     </parent>
+
+    <artifactId>fxutil</artifactId>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

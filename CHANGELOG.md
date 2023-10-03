@@ -1,62 +1,38 @@
 # [1.4.0](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.3.1...v1.4.0) (2023-10-02)
 
-
 ### Features
 
-* **fxml:** :lipstick: added VBox to home fxml ([c915820](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/c91582008402366a50eb358eb7a2944be1df91ae))
-* **fxml:** :lipstick: updated ExerciseView fxml window to be resizeable ([49c64f4](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/49c64f46b646df6bc76e6177dbb0a5813a8267dc)), closes [#39](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/issues/39)
+- **fxml:** :lipstick: added VBox to home fxml ([c915820](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/c91582008402366a50eb358eb7a2944be1df91ae))
+- **fxml:** :lipstick: updated ExerciseView fxml window to be resizeable ([49c64f4](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/49c64f46b646df6bc76e6177dbb0a5813a8267dc)), closes [#39](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/issues/39)
 
 ## [1.3.1](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.3.0...v1.3.1) (2023-09-26)
 
-
 ### Bug Fixes
 
-* :bug: Fixed Spotbugs ([fac848b](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/fac848bb571b5871927757c41ee9b6bafbb4af9d)), closes [#37](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/issues/37)
+- :bug: Fixed Spotbugs ([fac848b](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/fac848bb571b5871927757c41ee9b6bafbb4af9d)), closes [#37](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/issues/37)
 
 # [1.3.0](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.2.1...v1.3.0) (2023-09-21)
 
-
 ### Bug Fixes
 
-* **Add exercise:** textfield overwrites name ([974af8f](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/974af8fa8da7df21351dee929b63cea651699ff0))
-
+- **Add exercise:** textfield overwrites name ([974af8f](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/974af8fa8da7df21351dee929b63cea651699ff0))
 
 ### Features
 
-* **Exerciseview:** :sparkles: Added controller logic and fxml file for the Exerciseview panel ([ff61bb2](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/ff61bb253023dccf22983c88e44d6b1d816c5f14)), closes [#28](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/issues/28)
-* **fxml file changed:** saveExercise working ([e0fad83](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/e0fad83538043bbbb8e3630bbed95137b53b91b2))
+- **Exerciseview:** :sparkles: Added controller logic and fxml file for the Exerciseview panel ([ff61bb2](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/ff61bb253023dccf22983c88e44d6b1d816c5f14)), closes [#28](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/issues/28)
+- **fxml file changed:** saveExercise working ([e0fad83](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/e0fad83538043bbbb8e3630bbed95137b53b91b2))
 
 ## [1.2.1](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.2.0...v1.2.1) (2023-09-20)
 
-
 ### Bug Fixes
 
-* **setup:** fixed typo in user story ([d37beb3](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/d37beb3aa5170e47527b0ddb523b0c30a48d233e))
-
-# [1.2.0](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.1.4...v1.2.0) (2023-09-20)
-
-
-### Bug Fixes
-
-* fixed CHANGELOG.md ([04fdb99](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/04fdb9978d360a62f6268b90c96413056c6daa0a))
-* **fxml:** added back the fx:id to the newWorkout button ([277e08b](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/277e08bd03f809d32868efbeaaf142ac56cc8a02)), closes [#12](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/issues/12)
-* **fxml:** renamed the fxml file in App.java ([6d39b7d](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/6d39b7d00b8d4726408265e39fa541a99c64c110)), closes [#12](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/issues/12)
-* **fxml:** renamed the fxml file in App.java ([9ada7f7](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/9ada7f7bfdf3939105ad7ba3815446c7a9c60b6f)), closes [#12](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/issues/12)
-* **setup:** fixed README.md setup and added versions section ([f19699a](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/f19699a708846a29bcdfe269d763af9c74a2a129)), closes [#16](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/issues/16)
-* **setup:** made workoutplanner lowercase in devfile.yml ([fdcdcb5](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/fdcdcb53469e1ab50658317bbd069beca099b86f))
-
-
-### Features
-
-* **ExerciseView Added:** created the fxml for exercise view ([fa8eb47](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/fa8eb47336bc6bc7f5813f5e218696e23119b8d8))
-* **fxml:** :lipstick: added basic Home.fxml ([bc655e1](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/bc655e1d604058c3d7d26f0c6f65a7ae19576258)), closes [#12](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/issues/12)
-* **fxml:** :lipstick: added basic Home.fxml ([830305a](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/830305a5967c258b45848b0bd4f07227bc919575)), closes [#12](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/issues/12)
-* **ui logic:** worked on HomeController, created empty ExerciseView.fxml and updated pom.xml ([f7bd831](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/f7bd831b5c29bcfe83085ee1b9e5d4cf022f5158)), closes [#12](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/issues/12)
+- **setup:** fixed typo in user story ([d37beb3](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/d37beb3aa5170e47527b0ddb523b0c30a48d233e))
 
 # [1.2.0](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.1.4...v1.2.0) (2023-09-20)
 
 ### Bug Fixes
 
+- fixed CHANGELOG.md ([04fdb99](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/04fdb9978d360a62f6268b90c96413056c6daa0a))
 - **fxml:** added back the fx:id to the newWorkout button ([277e08b](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/277e08bd03f809d32868efbeaaf142ac56cc8a02)), closes [#12](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/issues/12)
 - **fxml:** renamed the fxml file in App.java ([6d39b7d](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/6d39b7d00b8d4726408265e39fa541a99c64c110)), closes [#12](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/issues/12)
 - **fxml:** renamed the fxml file in App.java ([9ada7f7](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/9ada7f7bfdf3939105ad7ba3815446c7a9c60b6f)), closes [#12](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/issues/12)

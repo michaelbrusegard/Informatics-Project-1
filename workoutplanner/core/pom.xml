@@ -6,7 +6,6 @@
         <groupId>it1901</groupId>
         <artifactId>workoutplanner</artifactId>
         <version>1.4.0</version>
-        <packaging>pom</packaging>
     </parent>
 
     <artifactId>core</artifactId>
