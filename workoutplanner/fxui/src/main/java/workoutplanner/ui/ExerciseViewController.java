@@ -42,9 +42,9 @@ public class ExerciseViewController {
 
     @FXML
     public void saveExercises() throws IOException {
-        Exercise exer = new Exercise(this.newExerciseField.getText(), "arms");
-        this.exerciseview.addExercise(exer);
-        loadnewExercises();
+        // Exercise exer = new Exercise(this.newExerciseField.getText(), "arms");
+        // // this.exerciseview.addExercise(exer);
+        // loadnewExercises();
     }
 
     @FXML
@@ -57,11 +57,11 @@ public class ExerciseViewController {
 
     @FXML
     public void loadExercises() throws IOException {
-        List<Exercise> exercises = this.exerciseview.read();
-        ObservableList<String> items = list.getItems();
-        for (Exercise exercise : exercises) {
-            items.add(exercise.getName());
-        }
+        // List<Exercise> exercises = this.exerciseview.read();
+        // ObservableList<String> items = list.getItems();
+        // for (Exercise exercise : exercises) {
+        //     items.add(exercise.getName());
+        // }
 
     }
 
@@ -79,11 +79,11 @@ public class ExerciseViewController {
 
     @FXML
     public void loadnewExercises() throws IOException {
-        List<Exercise> exercises = this.exerciseview.read();
-        ObservableList<String> items = list.getItems();
-        String t = exercises.get(exercises.size() - 1).getName();
-        items.add(t);
-        newExerciseField.setText(t);
-        hBoxName.getChildren().set(0, newExerciseField);
+        // List<Exercise> exercises = this.exerciseview.read();
+        // ObservableList<String> items = list.getItems();
+        // String t = exercises.get(exercises.size() - 1).getName();
+        // items.add(t);
+        // newExerciseField.setText(t);
+        // hBoxName.getChildren().set(0, newExerciseField);
     }
 }

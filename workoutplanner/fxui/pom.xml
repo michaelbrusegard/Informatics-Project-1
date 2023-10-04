@@ -11,17 +11,17 @@
     <artifactId>fxui</artifactId>
 
     <dependencies>
-        <!-- <dependency>
-            <groupId>workoutplanner</groupId>
+        <dependency>
+            <groupId>gr2307.workoutplanner</groupId>
             <artifactId>core</artifactId>
-            <version>0.0.1</version>
+            <version>1.4.0</version>
         </dependency>
 
         <dependency>
-            <groupId>workoutplanner</groupId>
+            <groupId>gr2307.workoutplanner</groupId>
             <artifactId>fxutil</artifactId>
-            <version>0.0.1</version>
-        </dependency> -->
+            <version>1.4.0</version>
+        </dependency>
 
         <!-- javafx -->
         <dependency>

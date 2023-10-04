@@ -1,7 +1,5 @@
 package workoutplanner.core;
 
-import fxutil.doc.UserFileHandler;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,9 +17,9 @@ public class User {
     }
     
 
-    public void write() {
-        UserFileHandler.write(this.toString(),this);
-    }
+    // public void write() {
+    //     UserFileHandler.write(this.toString(),this);
+    // }
 
     @Override
     public String toString() {
