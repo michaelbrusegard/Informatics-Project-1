@@ -3,8 +3,6 @@ package workoutplanner.core;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.scene.control.TextField;
-import workoutplanner.core.Exercise;
 
 public class Workout {
     
@@ -28,7 +26,7 @@ public class Workout {
             return list;
         System.out.println(items.length+ " and "+ list.toString());
         for (int i = 0; i < items.length; i += 2) {
-            list.add(new Exercise(new TextField(items[i]), (items[i + 1])));
+            list.add(new Exercise(items[i], (items[i + 1])));
         }
         return list;
     }

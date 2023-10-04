@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import workoutplanner.core.Exercise;
-import workoutplanner.ui.Exerciseview;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
@@ -43,7 +42,7 @@ public class ExerciseViewController {
 
     @FXML
     public void saveExercises() throws IOException {
-        Exercise exer = new Exercise(this.newExerciseField, "arms");
+        Exercise exer = new Exercise(this.newExerciseField.getText(), "arms");
         this.exerciseview.addExercise(exer);
         loadnewExercises();
     }
