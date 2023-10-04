@@ -5,6 +5,6 @@ module fxutil {
     requires workoutplanner.core;
 
     exports fxutil.doc;
-    opens fxutil to javafx.graphics, javafx.fxml;
+    opens fxutil.doc to javafx.graphics, javafx.fxml;
 
 }

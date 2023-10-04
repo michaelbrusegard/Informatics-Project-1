@@ -1,6 +1,7 @@
 package fxutil.doc;
 
-import gr2307.workoutplanner.core;
+import workoutplanner.core.Exercise;
+import workoutplanner.core.Workout;
 
 import java.io.PrintStream;
 import java.util.List;

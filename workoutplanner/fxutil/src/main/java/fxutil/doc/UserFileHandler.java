@@ -1,7 +1,7 @@
 package fxutil.doc;
 
-import gr2307.workoutplanner.core;
-import gr2307.workoutplanner.core;
+import workoutplanner.core.User;
+import workoutplanner.core.Workout;
 
 import java.io.PrintStream;
 import java.time.LocalDate;
