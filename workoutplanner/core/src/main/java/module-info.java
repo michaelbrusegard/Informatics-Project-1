@@ -1,3 +1,3 @@
-module it1901.workoutplanner.core {
+module gr2307.workoutplanner.core {
     exports workoutplanner.core;
 }
