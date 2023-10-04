@@ -1,7 +1,8 @@
-module gr2307.workoutplanner.ui {
+module workoutplanner.ui {
     requires javafx.base;
     requires javafx.controls;
     requires javafx.fxml;
-    requires gr2307.workoutplanner.core;
+    requires workoutplanner.core;
     requires fxutil;
+    opens workoutplanner.ui to javafx.graphics, javafx.fxml;
 }
