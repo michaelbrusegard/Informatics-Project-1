@@ -1,36 +1,27 @@
+image: maven:3.8.3-openjdk-17
+
+variables:
+  MAVEN_OPTS: "-Djava.awt.headless=true -Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository"
+  MAVEN_CLI_OPTS: "--batch-mode -P headless -DskipUiTests=true"
+
 stages:
-  - build
   - test
-  - semantic-release
+  - build
 
-.before_script:
-  script:
-  - cd workoutplanner
-
-build:
-  extends: .before_script
-  stage: build
-  script:
-    - mvn clean compile
+cache:
+  paths:
+    - .m2/repository
+  key: "$CI_BUILD_REF_NAME"
 
 test:
-  extends: .before_script
-  image: maven:3.8.3-openjdk-17
   stage: test
-  rules:
-    - if: '$CI_COMMIT_MESSAGE  !~ /^chore(release)*/'
   script:
-    - mvn clean test --batch-mode -P headless -DskipUiTests=true
+    - script:
+    - "cd workoutplanner; mvn clean test $MAVEN_CLI_OPTS"
 
-semantic-release:
-  image: maven:3-openjdk-11
-  stage: semantic-release
-
-  rules:
-    - if: '$CI_COMMIT_BRANCH == "main" && $CI_COMMIT_MESSAGE  !~ /^chore(release)*/'
+build:
+  stage: build
+  when: manual
   script:
-    - export GITLAB_TOKEN=$SEMANTIC_RELEASE_TOKEN
-    - curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
-    - apt-get install -y nodejs
-    - npm install @semantic-release/git @semantic-release/gitlab @semantic-release/exec @semantic-release/changelog
-    - npx semantic-release
+    - "cd workoutplanner; mvn clean install $MAVEN_CLI_OPTS"
+
