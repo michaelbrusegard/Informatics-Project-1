@@ -9,8 +9,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="workoutplanner.ui.OverviewController">
    <children>
       <TextField maxWidth="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="226.0" promptText="Input name of workout here" style="-fx-border-color: gray; -fx-border-radius: 20; -fx-background-radius: 20;">
          <opaqueInsets>
@@ -32,7 +31,7 @@
       </TextField>
       <HBox alignment="TOP_CENTER" prefHeight="41.0" prefWidth="600.0" spacing="50.0">
          <children>
-            <Button cancelButton="true" minWidth="-Infinity" mnemonicParsing="false" prefHeight="42.0" prefWidth="90.0" text="Cancel" />
+            <Button cancelButton="true" minWidth="-Infinity" mnemonicParsing="false" onAction="#cancel" prefHeight="42.0" prefWidth="90.0" text="Cancel" />
             <Button alignment="CENTER" defaultButton="true" minWidth="-Infinity" mnemonicParsing="false" prefHeight="42.0" prefWidth="90.0" text="Save">
                <opaqueInsets>
                   <Insets />
