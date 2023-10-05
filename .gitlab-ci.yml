@@ -4,12 +4,12 @@ stages:
   - semantic-release
 
 before_script:
-  - cd workoutplanner
+  - "cd workoutplanner"
 
 build:
   stage: build
   script:
-    - mvn clean compile
+    - "mvn clean compile"
 
 test:
   image: maven:3.8.3-openjdk-17
@@ -17,7 +17,7 @@ test:
   rules:
     - if: '$CI_COMMIT_MESSAGE  !~ /^chore(release)*/'
   script:
-    - mvn clean test --batch-mode -P headless -DskipUiTests=true
+    - "mvn clean test --batch-mode -P headless -DskipUiTests=true"
 
 semantic-release:
   image: maven:3-openjdk-11
