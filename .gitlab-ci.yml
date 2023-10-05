@@ -16,8 +16,9 @@ cache:
 test:
   stage: test
   script:
-    - script:
-    - "cd workoutplanner; mvn clean test $MAVEN_CLI_OPTS"
+    - |
+      cd workoutplanner
+      mvn clean test $MAVEN_CLI_OPTS
 
 build:
   stage: build
