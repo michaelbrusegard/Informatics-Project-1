@@ -10,6 +10,7 @@ import workoutplanner.core.Exercise;
 
 public class ExerciseCell {
     private Exercise exercise;
+    private Group group;
 
     public ExerciseCell(Exercise exercise) {
         this.exercise = exercise;
