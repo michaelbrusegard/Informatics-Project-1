@@ -3,21 +3,15 @@ package workoutplanner.ui;
 import java.util.ArrayList;
 import java.util.List;
 
-import javafx.fxml.FXML;
-import javafx.scene.Group;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import workoutplanner.core.Exercise;
 
 public class OverviewGridHandler {
 
-    private VBox vBox;
     private GridPane grid;
     private List<Exercise> exercises = new ArrayList<>();
 
-    public OverviewGridHandler(VBox vBox, GridPane grid){
-        this.vBox = vBox;
+    public OverviewGridHandler(GridPane grid){
         this.grid = grid;
     }
 

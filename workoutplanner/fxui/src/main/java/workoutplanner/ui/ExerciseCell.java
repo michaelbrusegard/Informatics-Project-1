@@ -1,10 +1,7 @@
 package workoutplanner.ui;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import javafx.scene.Group;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import workoutplanner.core.Exercise;
 
