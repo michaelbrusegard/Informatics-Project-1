@@ -5,16 +5,16 @@ public class Exercise implements Comparable<Exercise>{
     
     private String name;
     private String muscleGroup;
-    private int sets;
-    private int reps;
-    private int weight;
+    private String sets;
+    private String reps;
+    private String weight;
 
     public Exercise(String exerciseName, String muscleGroup, String exerciseSet,String exerciseRep, String exerciseWeight) {
         this.name = exerciseName;
         this.muscleGroup = muscleGroup;
-        this.reps = Integer.parseInt(exerciseRep);
-        this.sets = Integer.parseInt(exerciseSet);
-        this.weight = Integer.parseInt(exerciseWeight);
+        this.reps = exerciseRep;
+        this.sets = exerciseSet;
+        this.weight = exerciseWeight;
     }
 
     public Exercise(String string, String string2) {
@@ -44,19 +44,19 @@ public class Exercise implements Comparable<Exercise>{
         this.muscleGroup = muscleGroup;
     }
 
-    public int getReps() {
+    public String getReps() {
         return reps;
     }
 
-    public void setReps(int reps) {
+    public void setReps(String reps) {
         this.reps = reps;
     }
 
-    public int getWeight() {
+    public String getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(String weight) {
         this.weight = weight;
     }
 
@@ -65,11 +65,11 @@ public class Exercise implements Comparable<Exercise>{
         return name+"," + muscleGroup+",";
     }
 
-    public int getSets() {
+    public String getSets() {
         return sets;
     }
 
-    public void setSets(int sets) {
+    public void setSets(String sets) {
         this.sets = sets;
     }
 
