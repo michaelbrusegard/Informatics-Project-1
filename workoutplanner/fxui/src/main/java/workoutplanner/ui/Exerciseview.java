@@ -1,6 +1,5 @@
 package workoutplanner.ui;
 
-import fxutil.doc.ExerciseFileHandler;
 import workoutplanner.core.Exercise;
 
 import java.io.IOException;
@@ -20,15 +19,15 @@ public class Exerciseview {
         return exercises;
     }
 
-    public void addExercise(Exercise exercise) {
-        getExercises().add(exercise);
-        sortList();
-        ExerciseFileHandler.write(exercise);
-    }
+    // public void addExercise(Exercise exercise) {
+    //     getExercises().add(exercise);
+    //     sortList();
+    //     ExerciseFileHandler.write(exercise);
+    // }
 
-    public List<Exercise> read() throws IOException {
-        return ExerciseFileHandler.read();
-    }
+    // public List<Exercise> read() throws IOException {
+    //     return ExerciseFileHandler.read();
+    // }
 
     private void sortList() {
         Collections.sort(getExercises());

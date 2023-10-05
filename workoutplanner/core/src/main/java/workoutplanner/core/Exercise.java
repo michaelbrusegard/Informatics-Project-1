@@ -1,6 +1,5 @@
 package workoutplanner.core;
 
-import javafx.scene.control.TextField;
 
 public class Exercise implements Comparable<Exercise>{
     
@@ -10,16 +9,16 @@ public class Exercise implements Comparable<Exercise>{
     private int reps;
     private int weight;
 
-    public Exercise(TextField exerciseName, String muscleGroup, TextField exerciseSet,TextField exerciseRep, TextField exerciseWeight) {
-        this.name = exerciseName.getText();
+    public Exercise(String exerciseName, String muscleGroup, String exerciseSet,String exerciseRep, String exerciseWeight) {
+        this.name = exerciseName;
         this.muscleGroup = muscleGroup;
-        this.reps = Integer.parseInt(exerciseRep.getText());
-        this.sets = Integer.parseInt(exerciseSet.getText());
-        this.weight = Integer.parseInt(exerciseWeight.getText());
+        this.reps = Integer.parseInt(exerciseRep);
+        this.sets = Integer.parseInt(exerciseSet);
+        this.weight = Integer.parseInt(exerciseWeight);
     }
 
-    public Exercise(TextField string, String string2) {
-        this.name = string.getText();
+    public Exercise(String string, String string2) {
+        this.name = string;
         this.muscleGroup = string2;
     }
 
