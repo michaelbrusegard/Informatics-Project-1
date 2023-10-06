@@ -5,8 +5,6 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
@@ -45,18 +43,10 @@
             <Insets bottom="50.0" top="25.0" />
          </VBox.margin>
       </HBox>
-      <VBox fx:id="containerBox" alignment="CENTER_LEFT" prefHeight="117.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
-         <children>
-            <ScrollPane prefHeight="200.0" prefWidth="200.0">
-               <content>
-                  <GridPane fx:id="grid" gridLinesVisible="true" minHeight="-Infinity" prefHeight="343.0" prefWidth="600.0">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                  </GridPane>
-               </content>
-            </ScrollPane>
-         </children></VBox>
+      <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pannable="true" prefHeight="195.0" prefWidth="600.0">
+         <padding>
+            <Insets left="50.0" right="25.0" />
+         </padding>
+      </ScrollPane>
    </children>
 </VBox>

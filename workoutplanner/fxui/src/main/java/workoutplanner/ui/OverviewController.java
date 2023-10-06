@@ -1,12 +1,13 @@
 package workoutplanner.ui;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 
 public class OverviewController {
 
     @FXML
-    private VBox containerBox;
+    private ScrollPane scrollPane;
 
     
     @FXML
@@ -16,8 +17,7 @@ public class OverviewController {
 
     @FXML
     public void initialize(){
-        System.out.println(this.containerBox);
-        OverviewGridHandler ogh = new OverviewGridHandler(containerBox);
+        OverviewGridHandler ogh = new OverviewGridHandler(scrollPane);
         ogh.createGrid();
     }
 }
