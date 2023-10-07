@@ -1,21 +1,51 @@
 # Group gr2307 repository
 
+This is the repository for group gr2307 in the course IT1901 at NTNU. The project is an app to create workout plans made with maven in javafx.
+
 ## Versions
 
 maven: 3.8.3 \
 java: openjdk-17 \
-javafx: 17.0.8 \
+javafx: 17.0.8
+
+## Running the app
+
+To run the app first clone the repository:
+
+```bash
+git clone https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307.git
+```
+
+Then navigate to the source code directory of the project:
+
+```bash
+cd workoutplanner
+```
+
+Install dependencies with maven:
+
+```bash
+mvn install
+```
+
+Run the app from the fxui module with maven and javafx:
+
+```bash
+mvn javafx:run -f fxui/pom.xml
+```
 
 ## Contents
 
-- ./src/main - [source code](./src/main)
-- ./src/test - [test code](./src/test)
+- ./workoutplanner - [source code](./workoutplanner)
+  - ./core - [core logic](./workoutplanner/core)
+  - ./fxui - [javafx user interface](./workoutplanner/fxui)
+  - ./fxutil - [javafx utility classes](./workoutplanner/fxutil)
 - ./docs - [assignment documentation](./docs)
 - ./CHANGELOG.md - [changelog](./changelog)
 
-In the root directory, you can find the documentation for the assignments in the `docs` folder and the CHANGELOG.md file. The program is located in the `src` folder, seperated into 'main' and 'test'. The main folder contains the source code, and the test folder contains the test code.
+In the root directory, you can find the documentation for the assignments in the `docs` folder and the CHANGELOG.md file. The app is located in the `workoutplanner` folder, where you can find the source code for the app. The `core` folder contains the core logic for the app, the `fxui` folder contains the javafx user interface and the `fxutil` folder contains utility classes for the javafx user interface.
 
 ### Link to about the project:
 
-[README](workoutplanner/README.md) \
-[USER STORY](workoutplanner/USER_STORY.md)
+- [README](workoutplanner/README.md) - Contains information about the project and concept photos of the app.
+- [USER STORY](workoutplanner/USER_STORY.md) - Contains the user stories for the project.

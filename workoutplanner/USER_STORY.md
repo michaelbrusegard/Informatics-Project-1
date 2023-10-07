@@ -15,4 +15,3 @@ The user needs to be able to make a workout ahead of the workout, where they hav
 - To create a new workout
 - To add exercises to a workout
 - To configure the weight, rep-range and amount of sets for the exercise
-
