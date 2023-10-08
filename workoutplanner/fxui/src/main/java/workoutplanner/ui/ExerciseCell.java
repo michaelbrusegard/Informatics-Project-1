@@ -18,7 +18,7 @@ public class ExerciseCell {
     private void createFXCell() {
         Group cellGroup = new Group();
         Text name = new Text(exercise.getName());
-        Text sets = new Text(exercise.getSets());
+        // Text sets = new Text(exercise.getSets());
         // Text reps = new Text(exercise.getReps());
         // cellGroup.getChildren().addAll(name, sets, reps);
     }

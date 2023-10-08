@@ -1,17 +1,32 @@
 package workoutplanner.core;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Workout {
 
-    private LocalDate date;
+    private Date date;
     private List<Exercise> exercises = new ArrayList<>();
 
-    public Workout(LocalDate date, List<Exercise> exercises) {
+    public Workout() {
+    }
+
+    public void setDate(Date date) {
         this.date = date;
-        this.exercises = exercises;
+    }
+
+    public void addExercise(String name, int sets, int repMin, int repMax, int weight) {
+        Exercise exercise = new Exercise(name, sets, repMin, repMax, weight);
+        exercises.add(exercise);
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public List<Exercise> getExercises() {
+        return exercises;
     }
 
     @Override
@@ -30,13 +45,4 @@ public class Workout {
         }
         return list;
     }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public List<Exercise> getExercises() {
-        return exercises;
-    }
-
 }

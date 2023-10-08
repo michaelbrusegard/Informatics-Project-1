@@ -18,7 +18,7 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <Button fx:id="finishButton" mnemonicParsing="false" onAction="#handleFinishAddingExercises" text="Finished">
+            <Button fx:id="finishButton" mnemonicParsing="false" onAction="#finishAddingExercises" text="Finished">
                <HBox.margin>
                   <Insets left="200.0" />
                </HBox.margin>
