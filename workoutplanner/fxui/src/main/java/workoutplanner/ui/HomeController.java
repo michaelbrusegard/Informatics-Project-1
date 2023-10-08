@@ -22,8 +22,6 @@ public class HomeController {
             Scene scene = new Scene(root);
             Stage stage = (Stage) newWorkout.getScene().getWindow();
             stage.setScene(scene);
-            ExerciseViewController eController = loader.getController();
-            eController.init();
         } catch (IOException e) {
             e.printStackTrace();
         }
