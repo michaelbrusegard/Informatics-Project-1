@@ -94,7 +94,7 @@ public class ExerciseViewController {
                     "Name: " + exerciseName + "\n" +
                     "Sets: " + exerciseSets + "\n" +
                     "Rep-range: " + exerciseRepMin + "-" + exerciseRepMax + "\n" +
-                    "Weight: " + exerciseWeight;
+                    "Weight: " + exerciseWeight + "kg";
 
             UIUtils.showAlert("Exercise Added", alertContent, AlertType.INFORMATION);
 
@@ -117,7 +117,7 @@ public class ExerciseViewController {
     @FXML
     private void finishAddingExercises() throws IOException {
         // Check if the workout object is not null
-        if (workout == null) {
+        if (workout.getExerciseCount() == 0) {
             UIUtils.showAlert("Error", "No exercises added to the workout.", AlertType.ERROR);
             return;
         }
