@@ -28,21 +28,4 @@ public class Workout {
     public List<Exercise> getExercises() {
         return exercises;
     }
-
-    @Override
-    public String toString() {
-        return exercises.toString().replaceAll("[]", "");
-    }
-
-    public static List<Exercise> makeList(String line) {
-        String[] items = line.split(",");
-        List<Exercise> list = new ArrayList<>();
-        if (items.length == 1)
-            return list;
-        System.out.println(items.length + " and " + list.toString());
-        for (int i = 0; i < items.length; i += 2) {
-            // list.add(new Exercise(items[i], (items[i + 1])));
-        }
-        return list;
-    }
 }
