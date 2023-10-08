@@ -11,17 +11,16 @@ import workoutplanner.core.Exercise;
 public class ExerciseCell {
     private Exercise exercise;
 
-    public ExerciseCell(Exercise exercise){
-        this.exercise = exercise;  
+    public ExerciseCell(Exercise exercise) {
+        this.exercise = exercise;
     }
 
-    private void createFXCell(){
+    private void createFXCell() {
         Group cellGroup = new Group();
         Text name = new Text(exercise.getName());
-        Text sets = new Text(exercise.getSets());
-        Text reps = new Text(exercise.getReps());
-        cellGroup.getChildren().addAll(name, sets, reps);
+        // Text sets = new Text(exercise.getSets());
+        // Text reps = new Text(exercise.getReps());
+        // cellGroup.getChildren().addAll(name, sets, reps);
     }
-    
 
 }

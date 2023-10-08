@@ -1,42 +1,31 @@
 package workoutplanner.core;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Workout {
-    
-    private LocalDate date;
+
+    private Date date;
     private List<Exercise> exercises = new ArrayList<>();
 
-    public Workout(LocalDate date, List<Exercise> exercises) {
+    public Workout() {
+    }
+
+    public void setDate(Date date) {
         this.date = date;
-        this.exercises = exercises;
     }
 
-    @Override
-    public String toString() {
-        return exercises.toString().replaceAll("[]", "");
+    public void addExercise(String name, int sets, int repMin, int repMax, int weight) {
+        Exercise exercise = new Exercise(name, sets, repMin, repMax, weight);
+        exercises.add(exercise);
     }
 
-    public static List<Exercise> makeList(String line) {
-        String[] items = line.split(",");
-        List<Exercise> list = new ArrayList<>();
-        if (items.length == 1)
-            return list;
-        System.out.println(items.length+ " and "+ list.toString());
-        for (int i = 0; i < items.length; i += 2) {
-            list.add(new Exercise(items[i], (items[i + 1])));
-        }
-        return list;
-    }
-
-    public LocalDate getDate() {
+    public Date getDate() {
         return date;
     }
 
     public List<Exercise> getExercises() {
         return exercises;
     }
-    
 }

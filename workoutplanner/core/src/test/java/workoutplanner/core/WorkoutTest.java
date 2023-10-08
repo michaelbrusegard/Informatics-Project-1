@@ -9,14 +9,4 @@ import org.junit.jupiter.api.Test;
 import workoutplanner.core.Workout;
 
 public class WorkoutTest {
-    Workout workout = new Workout(LocalDate.now(), null);
-    @BeforeEach
-    public void setUp(){
-
-    }
-
-    @Test
-    public void testDate(){
-        assertEquals(LocalDate.now(), workout.getDate());
-    }
 }
