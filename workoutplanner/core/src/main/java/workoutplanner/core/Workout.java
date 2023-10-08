@@ -25,6 +25,10 @@ public class Workout {
         return date;
     }
 
+    public int getExerciseCount() {
+        return exercises.size();
+    }
+
     public List<Exercise> getExercises() {
         return exercises;
     }
