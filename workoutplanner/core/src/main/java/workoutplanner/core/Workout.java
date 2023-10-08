@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Workout {
-    
+
     private LocalDate date;
     private List<Exercise> exercises = new ArrayList<>();
 
@@ -24,9 +24,9 @@ public class Workout {
         List<Exercise> list = new ArrayList<>();
         if (items.length == 1)
             return list;
-        System.out.println(items.length+ " and "+ list.toString());
+        System.out.println(items.length + " and " + list.toString());
         for (int i = 0; i < items.length; i += 2) {
-            list.add(new Exercise(items[i], (items[i + 1])));
+            // list.add(new Exercise(items[i], (items[i + 1])));
         }
         return list;
     }
@@ -38,5 +38,5 @@ public class Workout {
     public List<Exercise> getExercises() {
         return exercises;
     }
-    
+
 }

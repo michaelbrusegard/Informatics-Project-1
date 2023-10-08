@@ -18,7 +18,7 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <Button mnemonicParsing="false" text="Finished">
+            <Button fx:id="finishButton" mnemonicParsing="false" onAction="#handleFinishAddingExercises" text="Finished">
                <HBox.margin>
                   <Insets left="200.0" />
                </HBox.margin>
@@ -32,12 +32,12 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name: ">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Text>
-                        <Text fx:id="exerciseName" strokeType="OUTSIDE" strokeWidth="0.0">
+                        <Text fx:id="name" strokeType="OUTSIDE" strokeWidth="0.0">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -51,7 +51,7 @@
                               <Font size="18.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="exerciseSet" prefHeight="26.0" prefWidth="87.0" promptText="0" />
+                        <TextField fx:id="sets" prefHeight="26.0" prefWidth="87.0" promptText="0" />
                      </children>
                   </HBox>
                   <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
@@ -61,13 +61,13 @@
                               <Font size="18.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="exerciseRepMin" prefHeight="26.0" prefWidth="87.0" promptText="0" />
+                        <TextField fx:id="repMin" prefHeight="26.0" prefWidth="87.0" promptText="0" />
                         <Text layoutX="67.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="exerciseRepMax" layoutX="199.0" layoutY="10.0" prefHeight="26.0" prefWidth="87.0" promptText="0" />
+                        <TextField fx:id="repMax" layoutX="199.0" layoutY="10.0" prefHeight="26.0" prefWidth="87.0" promptText="0" />
                      </children>
                   </HBox>
                   <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
@@ -77,7 +77,7 @@
                               <Font size="18.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="exerciseWeight" prefHeight="26.0" prefWidth="87.0" promptText="0" />
+                        <TextField fx:id="weight" prefHeight="26.0" prefWidth="87.0" promptText="0" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="kg">
                            <font>
                               <Font size="18.0" />
