@@ -133,9 +133,6 @@ public class ExerciseViewController {
             // Get the controller of the Overview.fxml
             OverviewController overviewController = loader.getController();
 
-            // TODO: Pass the workout object to the OverviewController here (Erlend and
-            // David)
-
             // Pass the workout object to the OverviewController
 
             // Create a new scene and set it on the stage
