@@ -7,8 +7,7 @@ import java.util.List;
 public class Workout {
 
     private Date date;
-    private List<Exercise> exercises = new ArrayList<>();
-
+    private final List<Exercise> exercises = new ArrayList<>();
     public Workout() {
     }
 
