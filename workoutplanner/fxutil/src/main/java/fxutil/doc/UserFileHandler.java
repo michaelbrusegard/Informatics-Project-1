@@ -11,7 +11,7 @@ package fxutil.doc;
 // import java.io.FileReader;
 // import java.io.IOException;
 
-// public class UserFileHandler {
+ public class UserFileHandler {
 
 //     static PrintStream printer;
 //     static BufferedReader reader;
@@ -45,4 +45,4 @@ package fxutil.doc;
 //         User user = new User(name,passwd,workouts);
 //         return user;
 //     }
-// }
+ }

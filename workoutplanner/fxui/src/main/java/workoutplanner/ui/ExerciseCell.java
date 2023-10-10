@@ -10,16 +10,28 @@ public class ExerciseCell {
     private Exercise exercise;
     private Group group;
 
-    public ExerciseCell(Exercise exercise) {
-        this.exercise = exercise;
+    public ExerciseCell(Exercise exercise){
+        this.exercise = exercise;  
+        this.createFXCell();
     }
 
-    private void createFXCell() {
+    private Group createFXCell(){
         Group cellGroup = new Group();
-        Text name = new Text(exercise.getName());
-        // Text sets = new Text(exercise.getSets());
-        // Text reps = new Text(exercise.getReps());
-        // cellGroup.getChildren().addAll(name, sets, reps);
+        Text name = new Text(exercise.getName() + ":");
+        name.setLayoutX(-10.0);
+        name.setFont(new Font("Serif", 18));
+        Text sets = new Text("Sets: " + exercise.getSets());
+        Text reps = new Text("Reps: " + exercise.getRepMin() + "-" + exercise.getRepMax());
+        Text weight = new Text("Weight " + exercise.getWeight());
+        cellGroup.getChildren().addAll(name, sets, reps, weight);
+        for (int index = 1; index < 4; index++) {
+            cellGroup.getChildren().get(index).setLayoutY(index*30);
+            ((Text) cellGroup.getChildren().get(index)).setFont(new Font("Serif", 18));
+        }
+        group = cellGroup;
+        return cellGroup;
     }
-
+    public Group getGroup(){
+        return group;
+    }
 }
