@@ -25,12 +25,10 @@ public class OverviewGridHandler {
 
 
     public void createGrid(){
-        exercises.add(new Exercise("hei", "os", "dsa", "fdsa" ));
-        exercises.add(new Exercise("2", "2", "ds3a", "f3dsa" ));
-        exercises.add(new Exercise("2", "2", "ds3a", "f3dsa" ));
-        exercises.add(new Exercise("2", "2", "ds3a", "f3dsa" ));
-        exercises.add(new Exercise("2", "2", "ds3a", "f3dsa" ));
-        exercises.add(new Exercise("2", "2", "ds3a", "f3dsa" ));
+        Exercise e = new Exercise("e", 3, 8, 12, 60);
+        for (int i = 0; i < 5; i++) {
+            exercises.add(e);
+        }
         GridPane grid = new GridPane();
         System.out.println(grid.getColumnCount());
         System.out.println(grid.getRowCount());

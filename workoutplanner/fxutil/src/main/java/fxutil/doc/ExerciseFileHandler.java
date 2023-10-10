@@ -11,7 +11,7 @@ package fxutil.doc;
 // import java.io.FileReader;
 // import java.io.IOException;
 
-// public class ExerciseFileHandler {
+ public class ExerciseFileHandler {
     
 //     private static PrintStream printer;
 //     private static BufferedReader reader;
@@ -42,4 +42,4 @@ package fxutil.doc;
 //         return Workout.makeList(lines);
 //         }
 
-// }
+ }
