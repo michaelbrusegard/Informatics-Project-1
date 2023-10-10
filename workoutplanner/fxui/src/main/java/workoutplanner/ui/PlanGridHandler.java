@@ -1,17 +1,22 @@
 package workoutplanner.ui;
 
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
+import javafx.stage.Stage;
 import workoutplanner.core.Workout;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -30,7 +35,6 @@ public class PlanGridHandler {
     private void configureGrid() {
         gridPane.setGridLinesVisible(true);
         gridPane.setOnMouseClicked(this::clickNode);
-//        gridPane.setMinWidth(scrollPane.getMinViewportWidth());
         gridPane.setAlignment(Pos.CENTER);
         scrollPane.setFitToWidth(true);
         scrollPane.setFitToHeight(true);
@@ -45,9 +49,19 @@ public class PlanGridHandler {
                 clickedNode = parent;
                 parent = clickedNode.getParent();
             }
-            Integer colIndex = GridPane.getColumnIndex(clickedNode);
-            Integer rowIndex = GridPane.getRowIndex(clickedNode);
+            int colIndex = GridPane.getColumnIndex(clickedNode);
+            int rowIndex = GridPane.getRowIndex(clickedNode);
             System.out.println("Mouse clicked cell: " + colIndex + " And: " + rowIndex);
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Overview.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) clickedNode.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

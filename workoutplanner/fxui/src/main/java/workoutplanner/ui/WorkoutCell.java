@@ -12,4 +12,8 @@ public class WorkoutCell {
     public Text getText() {
         return new Text(workout.getDate().toString());
     }
+
+    public Workout getWorkout() {
+        return workout;
+    }
 }
