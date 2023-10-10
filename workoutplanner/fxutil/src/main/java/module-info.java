@@ -4,7 +4,9 @@ module fxutil {
     requires javafx.fxml;
     requires transitive workoutplanner.core;
     requires com.fasterxml.jackson.databind;
-    // exports fxutil.doc;
-    // opens fxutil.doc to javafx.graphics, javafx.fxml;
+
+    exports workoutplanner.fxutil;
+
+    opens workoutplanner.fxutil to javafx.graphics, javafx.fxml;
 
 }

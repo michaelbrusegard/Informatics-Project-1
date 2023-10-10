@@ -1,7 +1,6 @@
 package workoutplanner.ui;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -18,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import workoutplanner.core.Workout;
+import workoutplanner.fxutil.ExerciseLoader;
 
 public class ExerciseViewController {
     @FXML
@@ -32,11 +32,8 @@ public class ExerciseViewController {
     @FXML
     private Button finishButton;
 
-    // TODO: Load exercise list from file
     // List of exercises
-    List<String> exercisesList = Arrays.asList("Bench Press", "Back Squat", "Pull ups", "Lateral Raise",
-            "Shoulder Press", "Leg Press", "Hip Thrust");
-    private ObservableList<String> exercises = FXCollections.observableArrayList(exercisesList);
+    private ObservableList<String> exercises;
 
     // The Workout object we are creating
     private Workout workout = new Workout();
@@ -44,7 +41,20 @@ public class ExerciseViewController {
     @FXML
     public void initialize() {
         // Update the list view with the exercises
-        list.setItems(exercises);
+        try {
+            // Use ExerciseLoader to load exercises from the JSON file
+            List<String> exercisesList = ExerciseLoader.loadExercisesFromJson();
+
+            // Convert the List to an ObservableList
+            exercises = FXCollections.observableArrayList(exercisesList);
+
+            // Set the loaded exercises to the ListView
+            list.setItems(exercises);
+        } catch (IOException e) {
+            // Handle the exception if the file loading fails
+            e.printStackTrace();
+            // You might want to show an error message or take appropriate action here
+        }
 
         // Update the name text when an exercise is selected in the list view
         name.textProperty().bind(list.getSelectionModel().selectedItemProperty());
