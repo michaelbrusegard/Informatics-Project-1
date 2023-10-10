@@ -129,21 +129,20 @@ public class ExerciseViewController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Overview.fxml"));
             Parent root = loader.load();
 
-            // Get the controller of the Overview.fxml
-            // OverviewController overviewController = loader.getController();
 
-            // TODO: Pass the workout object to the OverviewController here (Erlend and
-            // David)
+            // Get the controller of the Overview.fxml
+            OverviewController overviewController = loader.getController();
+
             // Pass the workout object to the OverviewController
-            // overviewController.setWorkout(workout);
 
             // Create a new scene and set it on the stage
             Scene scene = new Scene(root);
             Stage stage = (Stage) finishButton.getScene().getWindow();
             stage.setScene(scene);
-
+            overviewController.init(workout);
             // Show the stage
             stage.show();
+
         } catch (IOException e) {
             e.printStackTrace();
         }

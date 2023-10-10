@@ -11,23 +11,22 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 import workoutplanner.core.Exercise;
+import workoutplanner.core.Workout;
 
 public class OverviewGridHandler {
-
-
-    private ScrollPane scrollPane;
+    
+private ScrollPane scrollPane;
+    private Workout workout;
     private List<Exercise> exercises = new ArrayList<>();
 
-    public OverviewGridHandler(ScrollPane scrollPane) {
+    public OverviewGridHandler(ScrollPane scrollPane, Workout workout) {
         this.scrollPane = scrollPane;
+        this.workout = workout;
     }
 
-
-
     public void createGrid(){
-        Exercise e = new Exercise("e", 3, 8, 12, 60);
-        for (int i = 0; i < 5; i++) {
-            exercises.add(e);
+        for (Exercise exercise : this.workout.getExercises()) {
+            exercises.add(exercise);
         }
         GridPane grid = new GridPane();
         System.out.println(grid.getColumnCount());
@@ -45,7 +44,6 @@ public class OverviewGridHandler {
             if (i < 2){
                 grid.getColumnConstraints().add(new ColumnConstraints(250, 250, 250, Priority.SOMETIMES, HPos.CENTER, false));
             }
-        // grid.setConstraints(cell.getGroup(), i%2, (int) i/2,1,1,HPos.CENTER,VPos.TOP,Priority.ALWAYS,Priority.ALWAYS);
     }
     }
 
