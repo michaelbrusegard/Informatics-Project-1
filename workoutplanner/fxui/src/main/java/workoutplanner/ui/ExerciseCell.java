@@ -2,6 +2,7 @@ package workoutplanner.ui;
 
 
 import javafx.scene.Group;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import workoutplanner.core.Exercise;
 

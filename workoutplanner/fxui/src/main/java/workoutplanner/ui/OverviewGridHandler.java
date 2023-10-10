@@ -5,13 +5,11 @@ import java.util.List;
 
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
-import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
-import javafx.scene.layout.VBox;
 import workoutplanner.core.Exercise;
 
 public class OverviewGridHandler {
@@ -44,10 +42,10 @@ public class OverviewGridHandler {
             ExerciseCell cell = new ExerciseCell(exercises.get(i));
             grid.add(cell.getGroup(), i%2, (int) i/2);
             if (grid.getRowCount() < i){
-                grid.getRowConstraints().add(new RowConstraints(150, 150,150, Priority.ALWAYS, VPos.TOP, false));
+                grid.getRowConstraints().add(new RowConstraints(150, 150,150, Priority.SOMETIMES, VPos.CENTER, false));
             }
             if (i < 2){
-                grid.getColumnConstraints().add(new ColumnConstraints(250, 250, 250, Priority.ALWAYS, HPos.CENTER, false));
+                grid.getColumnConstraints().add(new ColumnConstraints(250, 250, 250, Priority.SOMETIMES, HPos.CENTER, false));
             }
         // grid.setConstraints(cell.getGroup(), i%2, (int) i/2,1,1,HPos.CENTER,VPos.TOP,Priority.ALWAYS,Priority.ALWAYS);
     }
