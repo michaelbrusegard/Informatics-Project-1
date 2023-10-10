@@ -12,7 +12,7 @@
 
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="workoutplanner.ui.OverviewController">
    <children>
-      <TextField maxWidth="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="226.0" promptText="Input name of workout here" style="-fx-border-color: gray; -fx-border-radius: 20; -fx-background-radius: 20;">
+      <TextField fx:id="inpName" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="226.0" promptText="Input name of workout here" style="-fx-border-color: gray; -fx-border-radius: 20; -fx-background-radius: 20;">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>

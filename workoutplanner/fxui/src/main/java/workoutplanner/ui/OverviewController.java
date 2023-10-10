@@ -8,6 +8,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import workoutplanner.core.Workout;
 
@@ -20,12 +22,16 @@ Workout workout;
     @FXML
     private Button cancelButton, saveButton;
 
+    @FXML
+    private TextField inpName;
+
 
     //Method for when the cancel button is pressed
     @FXML
     public void cancel(){
         try {
             // Load the Home.fxml file
+            this.validateOverview(false, true);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
             Parent root = loader.load();
 
@@ -44,6 +50,7 @@ Workout workout;
     public void save(){
         try {
             // Load the Home.fxml file
+            this.validateOverview(true, false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("PlanView.fxml"));
             Parent root = loader.load();
 
@@ -56,6 +63,23 @@ Workout workout;
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+    private void validateOverview(boolean saved, boolean cancelled){
+        if (inpName.getText().length() == 0){
+            UIUtils.showAlert("Empty inputfield", "Inputfield cannot be empty", AlertType.ERROR);
+            throw new IllegalArgumentException("Empty inputfield");
+        }
+        else if (inpName.getText().length() >= 20){
+            UIUtils.showAlert("Too many characters", "Inputfield shouldn't have more than 20 characters", AlertType.ERROR);
+            throw new IllegalArgumentException("Too many characters");
+
+        }
+        else if (saved){
+            UIUtils.showAlert("Save successful", "Workout saved successfully", AlertType.INFORMATION);
+        }
+        else if (cancelled){
+            UIUtils.showAlert("Cancellation successful", "Workout deleted, bringing you back to home", AlertType.INFORMATION);
         }
     }
 
