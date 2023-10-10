@@ -130,7 +130,7 @@ public class ExerciseViewController {
             Parent root = loader.load();
 
             // Get the controller of the Overview.fxml
-            OverviewController overviewController = loader.getController();
+            // OverviewController overviewController = loader.getController();
 
             // TODO: Pass the workout object to the OverviewController here (Erlend and
             // David)

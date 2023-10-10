@@ -21,10 +21,10 @@ public class User {
     //     UserFileHandler.write(this.toString(),this);
     // }
 
-    @Override
-    public String toString() {
-        return workouts.toString().replaceAll("[]","");
-    }
+//    @Override
+//    public String toString() {
+//        return workouts.toString().replaceAll("]" ,"");
+//    }
 
 
     public String getName() {

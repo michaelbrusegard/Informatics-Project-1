@@ -36,6 +36,12 @@
             <artifactId>jackson-core</artifactId>
             <version>2.15.2</version>
         </dependency>
+        <dependency>
+            <groupId>gr2307.workoutplanner</groupId>
+            <artifactId>core</artifactId>
+            <version>1.4.0</version>
+            <scope>compile</scope>
+        </dependency>
 
     </dependencies>
 
