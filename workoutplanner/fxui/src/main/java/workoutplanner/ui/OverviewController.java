@@ -1,6 +1,8 @@
 package workoutplanner.ui;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -53,11 +55,13 @@ Workout workout;
             this.validateOverview(true, false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("PlanView.fxml"));
             Parent root = loader.load();
+            PlanController planController = loader.getController();
 
             Scene scene = new Scene(root);
             Stage stage = (Stage) cancelButton.getScene().getWindow();
             stage.setScene(scene);
 
+            planController.init(new ArrayList<>(List.of(workout)));
             //show the stage
             stage.show();
 
