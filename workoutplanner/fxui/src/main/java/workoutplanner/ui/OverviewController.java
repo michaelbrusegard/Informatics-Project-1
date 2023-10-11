@@ -4,19 +4,19 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import fxutil.doc.Controller;
+import fxutil.doc.PageLoader;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
-import javafx.stage.Stage;
 import workoutplanner.core.Workout;
 
-public class OverviewController {
-Workout workout;
+public class OverviewController implements Controller {
+    
+    Workout workout;
 
     @FXML
     private ScrollPane scrollPane;
@@ -30,46 +30,19 @@ Workout workout;
 
     //Method for when the cancel button is pressed
     @FXML
-    public void cancel(){
-        try {
-            // Load the Home.fxml file
-            this.validateOverview(false, true);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
-            Parent root = loader.load();
-
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) cancelButton.getScene().getWindow();
-            stage.setScene(scene);
-
-            //show the stage
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void cancel() throws IOException {
+        this.validateOverview(false);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));    
+        PageLoader.pageLoader(loader, cancelButton);
     }
     @FXML
-    public void save(){
-        try {
-            // Load the Home.fxml file
-            this.validateOverview(true, false);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("PlanView.fxml"));
-            Parent root = loader.load();
-            PlanController planController = loader.getController();
-
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) cancelButton.getScene().getWindow();
-            stage.setScene(scene);
-
-            planController.init(new ArrayList<>(List.of(workout)));
-            //show the stage
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void save() throws IOException {
+        this.validateOverview(true);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("PlanView.fxml"));  
+        PlanController planController = (PlanController) PageLoader.pageLoader(loader, cancelButton);
+        planController.init(new ArrayList<>(List.of(workout)));
     }
-    private void validateOverview(boolean saved, boolean cancelled){
+    private void validateOverview(boolean saved){
         if (inpName.getText().length() == 0){
             UIUtils.showAlert("Empty inputfield", "Inputfield cannot be empty", AlertType.ERROR);
             throw new IllegalArgumentException("Empty inputfield");
@@ -77,13 +50,15 @@ Workout workout;
         else if (inpName.getText().length() >= 20){
             UIUtils.showAlert("Too many characters", "Inputfield shouldn't have more than 20 characters", AlertType.ERROR);
             throw new IllegalArgumentException("Too many characters");
-
         }
         else if (saved){
             UIUtils.showAlert("Save successful", "Workout saved successfully", AlertType.INFORMATION);
+            return;
         }
-        else if (cancelled){
-            UIUtils.showAlert("Cancellation successful", "Workout deleted, bringing you back to home", AlertType.INFORMATION);
+        else {
+            UIUtils.showAlert("Cancellation successful", "Workout deleted, bringing you back to home",
+                    AlertType.INFORMATION);
+            return;
         }
     }
 

@@ -5,22 +5,21 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import fxutil.doc.Controller;
+import fxutil.doc.PageLoader;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import workoutplanner.core.Exercise;
 import workoutplanner.core.Workout;
 
-public class ExerciseViewController {
+public class ExerciseViewController implements Controller{
     @FXML
     private TextField sets, repMin, repMax, weight;
 
@@ -122,28 +121,9 @@ public class ExerciseViewController {
             UIUtils.showAlert("Error", "No exercises added to the workout.", AlertType.ERROR);
             return;
         }
-
-        try {
-            // Load the Overview.fxml file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Overview.fxml"));
-            Parent root = loader.load();
-
-
-            // Get the controller of the Overview.fxml
-            OverviewController overviewController = loader.getController();
-
-            // Pass the workout object to the OverviewController
-
-            // Create a new scene and set it on the stage
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) finishButton.getScene().getWindow();
-            stage.setScene(scene);
-            overviewController.init(workout);
-            // Show the stage
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Overview.fxml"));
+        OverviewController overviewController = (OverviewController) PageLoader.pageLoader(loader,
+                finishButton);
+        overviewController.init(workout);
     }
 }

@@ -5,24 +5,24 @@ import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import fxutil.doc.PageLoader;
+
 public class PlanGridHandler {
     private final List<WorkoutCell> workoutCellList = new ArrayList<>();
     private final ScrollPane scrollPane;
     private final GridPane gridPane;
+    private PlanController planController;
 
     public PlanGridHandler(ScrollPane scrollPane) {
         this.scrollPane = scrollPane;
@@ -32,14 +32,20 @@ public class PlanGridHandler {
 
     private void configureGrid() {
         gridPane.setGridLinesVisible(true);
-        gridPane.setOnMouseClicked(this::clickNode);
+        gridPane.setOnMouseClicked(arg0 -> {
+            try {
+                planController.clickNode(arg0);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
         gridPane.setAlignment(Pos.CENTER);
         scrollPane.setFitToWidth(true);
         scrollPane.setFitToHeight(true);
         scrollPane.setContent(gridPane);
     }
 
-    private void clickNode(MouseEvent event) {
+    public void clickNode(MouseEvent event) throws IOException {
         Node clickedNode = event.getPickResult().getIntersectedNode();
         if (clickedNode != gridPane) {
             Node parent = clickedNode.getParent();
@@ -50,22 +56,14 @@ public class PlanGridHandler {
             int colIndex = GridPane.getColumnIndex(clickedNode);
             int rowIndex = GridPane.getRowIndex(clickedNode);
             System.out.println("Mouse clicked cell: " + colIndex + " And: " + rowIndex);
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("Overview.fxml"));
-                Parent root = loader.load();
-                OverviewController overviewController = loader.getController();
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) clickedNode.getScene().getWindow();
-                stage.setScene(scene);
-                int index = colIndex;
-                for (int i = 0; i < rowIndex; i++) {
-                    index +=3;
-                }
-                overviewController.init(workoutCellList.get(index).getWorkout());
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Overview.fxml"));
+            OverviewController overviewController = (OverviewController) PageLoader.pageLoader(loader,
+                clickedNode);
+            int index = colIndex;
+            for (int i = 0; i < rowIndex; i++) {
+                index +=3;
             }
+            overviewController.init(workoutCellList.get(index).getWorkout());
         }
     }
 
@@ -81,7 +79,8 @@ public class PlanGridHandler {
         workoutCellList.add(workoutCell);
     }
 
-    public void createGrid() {
+    public void createGrid(PlanController planController) {
+        this.planController = planController;
         int row = 0;
         int col = 0;
         addRow();
