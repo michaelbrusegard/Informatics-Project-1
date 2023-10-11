@@ -12,7 +12,7 @@ javafx: 17.0.8
 
 To run the app first enter the eclipse che workspace with the following link:
 
-[Open in Eclipse Che](https://che.stud.ntnu.no/#https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307.git/workoutplanner/3100/)
+[Open in Eclipse Che](https://che.stud.ntnu.no/#https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307.git?new)
 
 Then navigate to the source code directory of the project:
 
