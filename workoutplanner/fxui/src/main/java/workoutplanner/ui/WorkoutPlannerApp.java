@@ -16,7 +16,7 @@ public class WorkoutPlannerApp extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("Home.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("PlanView.fxml"));
         Parent parent = fxmlLoader.load();
 
         // Load the icon image
