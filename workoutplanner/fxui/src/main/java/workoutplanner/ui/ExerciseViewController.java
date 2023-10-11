@@ -17,6 +17,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import workoutplanner.core.Exercise;
 import workoutplanner.core.Workout;
 
 public class ExerciseViewController {
@@ -39,7 +40,7 @@ public class ExerciseViewController {
     private ObservableList<String> exercises = FXCollections.observableArrayList(exercisesList);
 
     // The Workout object we are creating
-    private Workout workout = new Workout();
+    private Workout workout = new Workout(new Date());
 
     @FXML
     public void initialize() {
@@ -87,7 +88,7 @@ public class ExerciseViewController {
             }
 
             // Add the exercise to the workout
-            workout.addExercise(exerciseName, exerciseSets, exerciseRepMin, exerciseRepMax, exerciseWeight);
+            workout.addExercise(new Exercise(exerciseName, exerciseSets, exerciseRepMin, exerciseRepMax, exerciseWeight));
 
             // Show an alert with exercise details that have been added to the workout
             String alertContent = "Exercise has been added to the workout with the following details:\n\n" +
@@ -121,8 +122,6 @@ public class ExerciseViewController {
             UIUtils.showAlert("Error", "No exercises added to the workout.", AlertType.ERROR);
             return;
         }
-
-        workout.setDate(new Date());
 
         try {
             // Load the Overview.fxml file

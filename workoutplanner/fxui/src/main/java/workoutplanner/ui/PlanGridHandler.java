@@ -14,6 +14,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 import javafx.stage.Stage;
+import workoutplanner.core.Exercise;
 import workoutplanner.core.Workout;
 
 import java.io.IOException;
@@ -71,10 +72,9 @@ public class PlanGridHandler {
 
     private void exampleWorkouts() {
         for (int j = 0; j < 10; j++) {
-            Workout workout = new Workout();
+            Workout workout = new Workout(new Date());
             for (int i = 0; i < 5; i++) {
-                workout.addExercise("e", 3, 8, 12, 70);
-                workout.setDate(new Date());
+                workout.addExercise(new Exercise("e", 3, 8, 12, 70));
             }
             addWorkoutCell(workout);
         }
