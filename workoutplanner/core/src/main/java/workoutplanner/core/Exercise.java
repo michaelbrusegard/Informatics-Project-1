@@ -2,11 +2,11 @@ package workoutplanner.core;
 
 public class Exercise {
 
-    private String name;
-    private int sets;
-    private int repMin;
-    private int repMax;
-    private int weight;
+    private final String name;
+    private final int sets;
+    private final int repMin;
+    private final int repMax;
+    private final int weight;
 
     public Exercise(String name, int sets, int repMin, int repMax, int weight) {
         this.name = name;
