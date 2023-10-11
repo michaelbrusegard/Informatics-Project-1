@@ -1,10 +1,10 @@
 module fxutil {
+    exports fxutil.doc;
     requires javafx.base;
-    requires javafx.controls;
-    requires javafx.fxml;
-    requires transitive workoutplanner.core;
+    requires transitive javafx.controls;
+    requires transitive javafx.fxml;
+    requires workoutplanner.core;
     requires com.fasterxml.jackson.databind;
-    // exports fxutil.doc;
     // opens fxutil.doc to javafx.graphics, javafx.fxml;
 
 }
