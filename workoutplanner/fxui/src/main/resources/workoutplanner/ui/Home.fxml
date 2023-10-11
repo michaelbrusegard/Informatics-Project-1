@@ -22,7 +22,7 @@
             <Font size="40.0" />
          </font>
       </Button>
-      <Button mnemonicParsing="false" text="All Workouts">
+      <Button fx:id="allWorkouts" mnemonicParsing="false" text="All Workouts" onAction="#handleAllWorkout">
          <VBox.margin>
             <Insets top="30.0" />
          </VBox.margin>

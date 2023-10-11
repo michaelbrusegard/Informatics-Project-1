@@ -14,12 +14,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 import javafx.stage.Stage;
-import workoutplanner.core.Exercise;
-import workoutplanner.core.Workout;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class PlanGridHandler {
@@ -56,27 +53,19 @@ public class PlanGridHandler {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Overview.fxml"));
                 Parent root = loader.load();
+                OverviewController overviewController = loader.getController();
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) clickedNode.getScene().getWindow();
                 stage.setScene(scene);
+                int index = colIndex;
+                for (int i = 0; i < rowIndex; i++) {
+                    index +=3;
+                }
+                overviewController.init(workoutCellList.get(index).getWorkout());
                 stage.show();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
-    }
-
-    private void addWorkoutCell (Workout workout) {
-        workoutCellList.add(new WorkoutCell(workout));
-    }
-
-    private void exampleWorkouts() {
-        for (int j = 0; j < 10; j++) {
-            Workout workout = new Workout(new Date());
-            for (int i = 0; i < 5; i++) {
-                workout.addExercise(new Exercise("e", 3, 8, 12, 70));
-            }
-            addWorkoutCell(workout);
         }
     }
 
@@ -88,12 +77,23 @@ public class PlanGridHandler {
         gridPane.getColumnConstraints().add(new ColumnConstraints(250, 250, 250, Priority.SOMETIMES, HPos.CENTER, false));
     }
 
+    public void addWorkoutCell (WorkoutCell workoutCell) {
+        workoutCellList.add(workoutCell);
+    }
+
     public void createGrid() {
-        exampleWorkouts();
         int row = 0;
         int col = 0;
         addRow();
-        for (int i = 0; i < 3; i++) {
+        int colAmount;
+        if (workoutCellList.size() <= 1) {
+            colAmount = 1;
+        } else if (workoutCellList.size() == 2) {
+            colAmount = 2;
+        }else {
+            colAmount = 3;
+        }
+        for (int i = 0; i < colAmount; i++) {
             addColumn();
         }
         for (WorkoutCell w:workoutCellList) {
