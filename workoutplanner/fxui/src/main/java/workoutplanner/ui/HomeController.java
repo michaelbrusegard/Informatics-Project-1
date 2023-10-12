@@ -9,8 +9,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import fxutil.doc.Controller;
-import fxutil.doc.PageLoader;
+import workoutplanner.fxutil.Controller;
+import workoutplanner.fxutil.PageLoader;
 
 public class HomeController implements Controller {
 

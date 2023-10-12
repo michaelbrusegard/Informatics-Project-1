@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import fxutil.doc.PageLoader;
+import workoutplanner.fxutil.PageLoader;
 
 public class PlanGridHandler {
     private final List<WorkoutCell> workoutCellList = new ArrayList<>();

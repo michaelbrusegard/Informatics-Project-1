@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import fxutil.doc.Controller;
-import fxutil.doc.PageLoader;
+import workoutplanner.fxutil.Controller;
+import workoutplanner.fxutil.PageLoader;
+import workoutplanner.fxutil.UIUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -17,7 +18,7 @@ import workoutplanner.core.Workout;
 
 public class OverviewController implements Controller {
 
-    private Workout workout;
+    Workout workout;
 
     @FXML
     private ScrollPane scrollPane;

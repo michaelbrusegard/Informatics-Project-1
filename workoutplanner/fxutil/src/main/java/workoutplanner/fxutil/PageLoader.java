@@ -1,4 +1,4 @@
-package fxutil.doc;
+package workoutplanner.fxutil;
 
 import java.io.IOException;
 
@@ -7,7 +7,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 
 public class PageLoader {
     public static Controller pageLoader(FXMLLoader loader, Node button) throws IOException {

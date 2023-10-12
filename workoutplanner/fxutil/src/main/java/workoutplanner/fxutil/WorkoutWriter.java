@@ -1,4 +1,4 @@
-package fxutil.doc;
+package workoutplanner.fxutil;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 

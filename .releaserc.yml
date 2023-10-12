@@ -8,7 +8,7 @@ plugins:
   - '@semantic-release/gitlab'
   - - '@semantic-release/git'
     - assets:
-        - pom.xml
+        - workoutplanner/pom.xml
         - CHANGELOG.md
       message: 'chore(release): bump ${nextRelease.version}'
 

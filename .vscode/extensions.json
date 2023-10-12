@@ -7,12 +7,10 @@
     "vscjava.vscode-java-test",
     "redhat.java",
     "yzhang.markdown-all-in-one",
-    "shd101wyy.markdown-preview-enhanced",
     "DavidAnson.vscode-markdownlint",
     "jebbs.plantuml",
     "ms-vscode.live-server",
     "vsls-contrib.codetour",
-    "ritwickdey.liveserver",
     "vivaxy.vscode-conventional-commits"
   ]
 }

@@ -1,3 +1,0 @@
-pull up,arms,
-biceps curl,arms,
-triceps extension,arms,

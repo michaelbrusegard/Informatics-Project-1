@@ -1,4 +1,4 @@
-package fxutil.doc;
+package workoutplanner.fxutil;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -6,7 +6,6 @@ import workoutplanner.core.Workout;
 
 import java.io.File;
 import java.io.IOException;
-
 
 public class WorkoutReader {
     private static final ObjectMapper mapper = new ObjectMapper();
