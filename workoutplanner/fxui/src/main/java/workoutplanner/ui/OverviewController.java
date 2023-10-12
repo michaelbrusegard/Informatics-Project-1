@@ -32,37 +32,40 @@ public class OverviewController implements Controller {
     // Method for when the cancel button is pressed
     @FXML
     public void cancel() throws IOException {
-        this.validateOverview(false);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
-        PageLoader.pageLoader(loader, cancelButton);
+        if (this.validateOverview(false, true)) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
+            PageLoader.pageLoader(loader, cancelButton);
+        }
     }
 
     @FXML
     public void save() throws IOException {
-        this.validateOverview(true);
-        workout.setName(inpName.getText());
-        workout.setDate(new Date());
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("PlanView.fxml"));
-        PlanController planController = (PlanController) PageLoader.pageLoader(loader, cancelButton);
-        planController.init(new ArrayList<>(List.of(workout)));
+        if (this.validateOverview(true, false)) {
+            workout.setName(inpName.getText());
+            workout.setDate(new Date());
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("PlanView.fxml"));
+            PlanController planController = (PlanController) PageLoader.pageLoader(loader, cancelButton);
+            planController.init(new ArrayList<>(List.of(workout)));
+        }
     }
 
-    private void validateOverview(boolean saved) {
-        if (inpName.getText().length() == 0) {
+    private boolean validateOverview(boolean saved, boolean close) {
+        if (inpName.getText().length() == 0 && saved) {
             UIUtils.showAlert("Empty inputfield", "Inputfield cannot be empty", AlertType.ERROR);
-            throw new IllegalArgumentException("Empty inputfield");
+            return false;
         } else if (inpName.getText().length() >= 20) {
             UIUtils.showAlert("Too many characters", "Inputfield shouldn't have more than 20 characters",
                     AlertType.ERROR);
-            throw new IllegalArgumentException("Too many characters");
+            return false;
         } else if (saved) {
             UIUtils.showAlert("Save successful", "Workout saved successfully", AlertType.INFORMATION);
-            return;
-        } else {
+            return false;
+        } else if (close) {
             UIUtils.showAlert("Cancellation successful", "Workout deleted, bringing you back to home",
                     AlertType.INFORMATION);
-            return;
+            return false;
         }
+        return true;
     }
 
     public void init(Workout workout) {

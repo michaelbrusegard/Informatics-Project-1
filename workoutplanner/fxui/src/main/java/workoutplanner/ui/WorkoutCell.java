@@ -15,7 +15,7 @@ public class WorkoutCell {
     }
 
     private Text getName() {
-        Text name = new Text("Name: " + workout.getName().toString());
+        Text name = new Text("Name: " + workout.getName());
         name.setFont(new Font(28));
         return name;
     }

@@ -7,6 +7,8 @@ import javafx.stage.Stage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.io.IOException;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.testfx.api.FxAssert;
@@ -46,7 +48,7 @@ public class ExerciseViewControllerTest extends ApplicationTest {
 
         Assertions.assertNotNull(list);
 
-        Assertions.assertEquals(list.getItems().size(), 7);
+        Assertions.assertEquals(list.getItems().size(), 43);
 
         Text text = (Text) root.lookup("#name");
         clickOn(list.getItems().get(0));
@@ -184,7 +186,33 @@ public class ExerciseViewControllerTest extends ApplicationTest {
     }
     @Test
     public void testFinishedValidationExercise() {
+        clickOn("#finishButton");
+        FxAssert.verifyThat("#alertButton", (button) -> !button.isDisabled());
+        clickOn("#alertButton");
+    }
+
+    @Test
+    public void testsave() throws IOException {
+        ListView<String> list;
+        try {
+            list = (ListView) root.lookup("#list");
+        } catch (Exception e) {
+            throw new UnsupportedOperationException("Could not fint ListView object");
+        }
+        list.getSelectionModel().select("Bench Press");
+        lookup("#sets").queryAs(TextField.class).setText("3");
+        lookup("#repMin").queryAs(TextField.class).setText("5");
+        lookup("#repMax").queryAs(TextField.class).setText("10");
+        lookup("#weight").queryAs(TextField.class).setText("50");
         clickOn("#addExercise");
         FxAssert.verifyThat("#alertButton", (button) -> !button.isDisabled());
+        clickOn("#alertButton");
+        clickOn("#finishButton");
+        // Get the initial scene
+        lookup("#inpName").queryAs(TextField.class).setText("push");
+        // Click on the "newWorkout" button
+        clickOn("#saveButton");
+        FxAssert.verifyThat("#alertButton", (button) -> !button.isDisabled());
+        clickOn("#alertButton");
     }
 }

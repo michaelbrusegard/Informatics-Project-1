@@ -6,7 +6,9 @@ import javafx.scene.control.Button;
 import workoutplanner.core.Workout;
 
 import java.io.IOException;
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import workoutplanner.fxutil.Controller;
@@ -29,7 +31,9 @@ public class HomeController implements Controller {
     private void handleAllWorkout() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("PlanView.fxml"));
         PlanController planController = (PlanController) PageLoader.pageLoader(loader, allWorkouts);
-        planController.init(new ArrayList<>(List.of(new Workout())));
+        Workout workout = new Workout();
+        workout.setDate(Date.from(Instant.now()));
+        planController.init(new ArrayList<>(List.of(workout)));
     }
 
 }
