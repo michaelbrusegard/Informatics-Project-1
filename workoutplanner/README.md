@@ -7,7 +7,6 @@ The goal for the app is to be able to select exercises from a list and add them 
 ## Screenshots
 
 ![home](../concepts/home.png)
-![muscle groups](../concepts/muscle-groups.png)
 ![exercices](../concepts/exercices.png)
 ![exercices 2](../concepts/exercices-2.png)
 ![overview](../concepts/overview.png)

@@ -1,4 +1,4 @@
-## Making a workout (us - 1)
+## Making a workout (us - 1) - working
 
 As an individual, I want to be able to make a workout, where I can choose the exercises and tailor them to my needs.
 
