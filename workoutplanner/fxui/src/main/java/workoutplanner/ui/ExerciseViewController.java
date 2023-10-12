@@ -2,7 +2,6 @@ package workoutplanner.ui;
 
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import fxutil.doc.Controller;
@@ -19,7 +18,7 @@ import javafx.scene.text.Text;
 import workoutplanner.core.Exercise;
 import workoutplanner.core.Workout;
 
-public class ExerciseViewController implements Controller{
+public class ExerciseViewController implements Controller {
     @FXML
     private TextField sets, repMin, repMax, weight;
 
@@ -39,7 +38,7 @@ public class ExerciseViewController implements Controller{
     private ObservableList<String> exercises = FXCollections.observableArrayList(exercisesList);
 
     // The Workout object we are creating
-    private Workout workout = new Workout(new Date());
+    private Workout workout = new Workout();
 
     @FXML
     public void initialize() {
@@ -87,7 +86,8 @@ public class ExerciseViewController implements Controller{
             }
 
             // Add the exercise to the workout
-            workout.addExercise(new Exercise(exerciseName, exerciseSets, exerciseRepMin, exerciseRepMax, exerciseWeight));
+            workout.addExercise(
+                    new Exercise(exerciseName, exerciseSets, exerciseRepMin, exerciseRepMax, exerciseWeight));
 
             // Show an alert with exercise details that have been added to the workout
             String alertContent = "Exercise has been added to the workout with the following details:\n\n" +
