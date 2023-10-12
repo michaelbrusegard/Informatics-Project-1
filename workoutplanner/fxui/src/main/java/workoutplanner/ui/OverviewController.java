@@ -40,6 +40,8 @@ public class OverviewController implements Controller {
     @FXML
     public void save() throws IOException {
         this.validateOverview(true);
+        workout.setName(inpName.getText());
+        workout.setDate(new Date());
         FXMLLoader loader = new FXMLLoader(getClass().getResource("PlanView.fxml"));
         PlanController planController = (PlanController) PageLoader.pageLoader(loader, cancelButton);
         planController.init(new ArrayList<>(List.of(workout)));
@@ -64,7 +66,6 @@ public class OverviewController implements Controller {
     }
 
     public void init(Workout workout) {
-        System.out.println(this.scrollPane);
         this.workout = workout;
         OverviewGridHandler ogh = new OverviewGridHandler(scrollPane, this.workout);
         ogh.createGrid();
