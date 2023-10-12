@@ -1,6 +1,7 @@
 package workoutplanner.core;
 
 import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,8 +30,10 @@ public class Workout {
         return name;
     }
 
-    public Date getDate() {
-        return date;
+    public String getDateAsString() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM dd, yyyy HH:mm");
+        String formattedDate = dateFormat.format(date);
+        return formattedDate;
     }
 
     public int getExerciseCount() {
