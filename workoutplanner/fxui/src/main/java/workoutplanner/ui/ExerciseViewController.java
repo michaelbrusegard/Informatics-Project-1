@@ -126,4 +126,8 @@ public class ExerciseViewController implements Controller{
                 finishButton);
         overviewController.init(workout);
     }
+
+    public Workout getWorkout() {
+        return workout;
+    }
 }

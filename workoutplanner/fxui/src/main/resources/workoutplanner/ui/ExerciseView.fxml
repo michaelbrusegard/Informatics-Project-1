@@ -85,7 +85,7 @@
                         </Text>
                      </children>
                   </HBox>
-                  <Button mnemonicParsing="false" onAction="#addExercise" text="Add Exercise">
+                  <Button fx:id="addExercise" mnemonicParsing="false" onAction="#addExercise" text="Add Exercise">
                      <VBox.margin>
                         <Insets bottom="40.0" />
                      </VBox.margin>

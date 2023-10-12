@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * JavaFX App
@@ -19,8 +20,9 @@ public class WorkoutPlannerApp extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("Home.fxml"));
         Parent parent = fxmlLoader.load();
 
-        // Load the icon image
-        Image icon = new Image("/icon.png");
+        InputStream inputStream = this.getClass().getResourceAsStream("/icon.png");
+
+        Image icon = new Image(inputStream);
 
         // Set the application icon
         stage.getIcons().add(icon);
