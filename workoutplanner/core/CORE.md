@@ -38,4 +38,3 @@ The workout class creates a workout that contains a list of exercises, as well a
 - (`List<Exercise>`) exercises
 
 The date is to see when the workout was created, the name is given in `Overview` to classify, and the list of exercises, are the exercises that shows up in the overview of plans.
-
