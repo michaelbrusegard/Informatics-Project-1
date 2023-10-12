@@ -1,4 +1,4 @@
-package workoutplanner.ui;
+package workoutplanner.fxutil;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;

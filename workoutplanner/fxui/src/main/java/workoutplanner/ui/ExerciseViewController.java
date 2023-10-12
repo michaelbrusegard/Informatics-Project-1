@@ -6,6 +6,7 @@ import java.util.List;
 
 import workoutplanner.fxutil.Controller;
 import workoutplanner.fxutil.PageLoader;
+import workoutplanner.fxutil.UIUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.collections.FXCollections;
