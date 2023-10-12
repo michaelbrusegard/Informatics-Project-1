@@ -1,7 +1,5 @@
 package workoutplanner.ui;
 
-import java.text.SimpleDateFormat;
-
 import javafx.scene.Group;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -21,9 +19,7 @@ public class WorkoutCell {
     }
 
     private Text getDate() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM dd, yyyy hh:mm");
-        String formattedDate = dateFormat.format(workout.getDate());
-        Text date = new Text("Date: " + formattedDate);
+        Text date = new Text("Date: " + workout.getDateAsString());
         date.setLayoutY(28);
         return date;
     }

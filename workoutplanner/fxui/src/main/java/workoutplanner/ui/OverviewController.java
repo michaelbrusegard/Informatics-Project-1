@@ -14,11 +14,17 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import workoutplanner.core.Workout;
 
 public class OverviewController implements Controller {
 
-    Workout workout;
+    private Workout workout;
+
+    @FXML
+    private VBox saveWorkoutNameBox;
 
     @FXML
     private ScrollPane scrollPane;
@@ -54,7 +60,7 @@ public class OverviewController implements Controller {
             UIUtils.showAlert("Empty inputfield", "Inputfield cannot be empty", AlertType.ERROR);
             return false;
         } else if (inpName.getText().length() >= 20) {
-            UIUtils.showAlert("Too many characters", "Inputfield shouldn't have more than 20 characters",
+            UIUtils.showAlert("Error", "Inputfield shouldn't have more than 20 characters",
                     AlertType.ERROR);
             return false;
         } else if (saved) {
@@ -72,5 +78,14 @@ public class OverviewController implements Controller {
         this.workout = workout;
         OverviewGridHandler ogh = new OverviewGridHandler(scrollPane, this.workout);
         ogh.createGrid();
+    }
+
+    public void loadOverviewFromPlan() {
+        saveWorkoutNameBox.getChildren().clear();
+        Text name = new Text(workout.getName());
+        name.setFont(new Font(40));
+        Text date = new Text(workout.getDateAsString());
+        date.setFont(new Font(20));
+        saveWorkoutNameBox.getChildren().addAll(name, date, cancelButton);
     }
 }
