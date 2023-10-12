@@ -1,7 +1,8 @@
 image: maven:3.8.3-openjdk-17
 
 variables:
-  MAVEN_OPTS: "-Djava.awt.headless=true -Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository"
+  MAVEN_OPTS: "-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository"
+
   MAVEN_CLI_OPTS: "--batch-mode -P headless -DskipUiTests=true"
 
 stages:
@@ -17,9 +18,8 @@ cache:
 test:
   stage: test
   script:
-    - |
-      cd workoutplanner
-      mvn clean test $MAVEN_CLI_OPTS
+    - cd workoutplanner
+    - mvn clean test $MAVEN_CLI_OPTS
 
 build:
   stage: build
@@ -39,5 +39,3 @@ semantic-release:
     - apt-get install -y nodejs
     - npm install @semantic-release/git @semantic-release/gitlab @semantic-release/exec @semantic-release/changelog
     - npx semantic-release
-
-

@@ -39,22 +39,16 @@ public class ExerciseViewController implements Controller {
     private Workout workout = new Workout();
 
     @FXML
-    public void initialize() {
+    public void initialize() throws IOException {
         // Update the list view with the exercises
-        try {
-            // Use ExerciseLoader to load exercises from the JSON file
-            List<String> exercisesList = ExerciseLoader.loadExercisesFromJson();
+        // Use ExerciseLoader to load exercises from the JSON file
+        List<String> exercisesList = ExerciseLoader.loadExercisesFromJson();
 
-            // Convert the List to an ObservableList
-            exercises = FXCollections.observableArrayList(exercisesList);
+        // Convert the List to an ObservableList
+        exercises = FXCollections.observableArrayList(exercisesList);
 
-            // Set the loaded exercises to the ListView
-            list.setItems(exercises);
-        } catch (IOException e) {
-            // Handle the exception if the file loading fails
-            e.printStackTrace();
-            // You might want to show an error message or take appropriate action here
-        }
+        // Set the loaded exercises to the ListView
+        list.setItems(exercises);
 
         // Update the name text when an exercise is selected in the list view
         name.textProperty().bind(list.getSelectionModel().selectedItemProperty());
@@ -136,5 +130,9 @@ public class ExerciseViewController implements Controller {
         OverviewController overviewController = (OverviewController) PageLoader.pageLoader(loader,
                 finishButton);
         overviewController.init(workout);
+    }
+
+    public Workout getWorkout() {
+        return workout;
     }
 }
