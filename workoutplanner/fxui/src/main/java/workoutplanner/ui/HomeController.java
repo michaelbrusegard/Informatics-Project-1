@@ -7,13 +7,12 @@ import workoutplanner.core.Workout;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import fxutil.doc.Controller;
 import fxutil.doc.PageLoader;
 
-public class HomeController implements Controller{
+public class HomeController implements Controller {
 
     @FXML
     private Button newWorkout, allWorkouts;
@@ -21,7 +20,8 @@ public class HomeController implements Controller{
     @FXML
     private void handleNewWorkout() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ExerciseView.fxml"));
-        ExerciseViewController exerciseViewController = (ExerciseViewController) PageLoader.pageLoader(loader, newWorkout);
+        ExerciseViewController exerciseViewController = (ExerciseViewController) PageLoader.pageLoader(loader,
+                newWorkout);
         exerciseViewController.initialize();
     }
 
@@ -29,8 +29,7 @@ public class HomeController implements Controller{
     private void handleAllWorkout() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("PlanView.fxml"));
         PlanController planController = (PlanController) PageLoader.pageLoader(loader, allWorkouts);
-        planController.init(new ArrayList<>(List.of(new Workout(new Date()))));
+        planController.init(new ArrayList<>(List.of(new Workout())));
     }
-
 
 }

@@ -10,16 +10,25 @@ public class WorkoutTest {
 
     private Workout workout;
     private Date date;
+    private String name;
 
     @BeforeEach
     public void setUp() {
         date = new Date();
-        workout = new Workout(date);
+        name = "My Workout";
+        workout = new Workout();
+        workout.setDate(date);
+        workout.setName(name);
     }
 
     @Test
     public void testGetDate() {
         assertEquals(date, workout.getDate());
+    }
+
+    @Test
+    public void testGetName() {
+        assertEquals(name, workout.getName());
     }
 
     @Test
