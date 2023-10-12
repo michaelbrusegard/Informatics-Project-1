@@ -1,13 +1,12 @@
 package workoutplanner.core;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class User {
     
-    private String name;
-    private String passwd;
-    private List<Workout> workouts = new ArrayList<>();
+    private final String name;
+    private final String passwd;
+    private final List<Workout> workouts;
 
     public User(String name, String passwd, List<Workout> workouts) {
         //TODO add validation
@@ -15,27 +14,14 @@ public class User {
         this.passwd = passwd;
         this.workouts = workouts;
     }
-    
-
-    // public void write() {
-    //     UserFileHandler.write(this.toString(),this);
-    // }
-
-//    @Override
-//    public String toString() {
-//        return workouts.toString().replaceAll("]" ,"");
-//    }
-
 
     public String getName() {
         return name;
     }
 
-
     public String getPasswd() {
         return passwd;
     }
-
 
     public List<Workout> getWorkouts() {
         return workouts;

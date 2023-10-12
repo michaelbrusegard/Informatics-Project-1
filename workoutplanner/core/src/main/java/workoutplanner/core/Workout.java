@@ -6,18 +6,13 @@ import java.util.List;
 
 public class Workout {
 
-    private Date date;
-    private List<Exercise> exercises = new ArrayList<>();
-
-    public Workout() {
-    }
-
-    public void setDate(Date date) {
+    private final Date date;
+    private final List<Exercise> exercises = new ArrayList<>();
+    public Workout(Date date) {
         this.date = date;
     }
 
-    public void addExercise(String name, int sets, int repMin, int repMax, int weight) {
-        Exercise exercise = new Exercise(name, sets, repMin, repMax, weight);
+    public void addExercise(Exercise exercise) {
         exercises.add(exercise);
     }
 
