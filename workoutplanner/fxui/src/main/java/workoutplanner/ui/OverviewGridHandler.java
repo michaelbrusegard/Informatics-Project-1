@@ -14,8 +14,8 @@ import workoutplanner.core.Exercise;
 import workoutplanner.core.Workout;
 
 public class OverviewGridHandler {
-    
-private ScrollPane scrollPane;
+
+    private ScrollPane scrollPane;
     private Workout workout;
     private List<Exercise> exercises = new ArrayList<>();
 
@@ -24,27 +24,26 @@ private ScrollPane scrollPane;
         this.workout = workout;
     }
 
-    public void createGrid(){
+    public void createGrid() {
         for (Exercise exercise : this.workout.getExercises()) {
             exercises.add(exercise);
         }
         GridPane grid = new GridPane();
-        System.out.println(grid.getColumnCount());
-        System.out.println(grid.getRowCount());
         (this.scrollPane).setContent(grid);
         grid.setGridLinesVisible(true);
         this.scrollPane.setFitToWidth(true);
         this.scrollPane.setFitToHeight(true);
         for (int i = 0; i < exercises.size(); i++) {
             ExerciseCell cell = new ExerciseCell(exercises.get(i));
-            grid.add(cell.getGroup(), i%2, (int) i/2);
-            if (grid.getRowCount() < i){
-                grid.getRowConstraints().add(new RowConstraints(150, 150,150, Priority.SOMETIMES, VPos.CENTER, false));
+            grid.add(cell.getGroup(), i % 2, (int) i / 2);
+            if (grid.getRowCount() < i) {
+                grid.getRowConstraints().add(new RowConstraints(150, 150, 150, Priority.SOMETIMES, VPos.CENTER, false));
             }
-            if (i < 2){
-                grid.getColumnConstraints().add(new ColumnConstraints(250, 250, 250, Priority.SOMETIMES, HPos.CENTER, false));
+            if (i < 2) {
+                grid.getColumnConstraints()
+                        .add(new ColumnConstraints(250, 250, 250, Priority.SOMETIMES, HPos.CENTER, false));
             }
-    }
+        }
     }
 
 }

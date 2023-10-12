@@ -1,7 +1,6 @@
 package workoutplanner.ui;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 
 import workoutplanner.fxutil.Controller;
@@ -37,7 +36,7 @@ public class ExerciseViewController implements Controller {
     private ObservableList<String> exercises;
 
     // The Workout object we are creating
-    private Workout workout = new Workout(new Date());
+    private Workout workout = new Workout();
 
     @FXML
     public void initialize() {

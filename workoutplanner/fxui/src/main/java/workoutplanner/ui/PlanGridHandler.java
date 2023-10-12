@@ -55,7 +55,6 @@ public class PlanGridHandler {
             }
             int colIndex = GridPane.getColumnIndex(clickedNode);
             int rowIndex = GridPane.getRowIndex(clickedNode);
-            System.out.println("Mouse clicked cell: " + colIndex + " And: " + rowIndex);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Overview.fxml"));
             OverviewController overviewController = (OverviewController) PageLoader.pageLoader(loader,
                     clickedNode);
@@ -97,7 +96,7 @@ public class PlanGridHandler {
             addColumn();
         }
         for (WorkoutCell w : workoutCellList) {
-            gridPane.add(w.getText(), col, row);
+            gridPane.add(w.getCellContent(), col, row);
             col++;
             if (col == 3) {
                 col = 0;
