@@ -2,6 +2,7 @@ package workoutplanner.ui;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import fxutil.doc.Controller;
@@ -15,8 +16,8 @@ import javafx.scene.control.Alert.AlertType;
 import workoutplanner.core.Workout;
 
 public class OverviewController implements Controller {
-    
-    Workout workout;
+
+    private Workout workout;
 
     @FXML
     private ScrollPane scrollPane;
@@ -27,45 +28,45 @@ public class OverviewController implements Controller {
     @FXML
     private TextField inpName;
 
-
-    //Method for when the cancel button is pressed
+    // Method for when the cancel button is pressed
     @FXML
     public void cancel() throws IOException {
         this.validateOverview(false);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));    
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
         PageLoader.pageLoader(loader, cancelButton);
     }
+
     @FXML
     public void save() throws IOException {
         this.validateOverview(true);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("PlanView.fxml"));  
+        workout.setName(inpName.getText());
+        workout.setDate(new Date());
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("PlanView.fxml"));
         PlanController planController = (PlanController) PageLoader.pageLoader(loader, cancelButton);
         planController.init(new ArrayList<>(List.of(workout)));
     }
-    private void validateOverview(boolean saved){
-        if (inpName.getText().length() == 0){
+
+    private void validateOverview(boolean saved) {
+        if (inpName.getText().length() == 0) {
             UIUtils.showAlert("Empty inputfield", "Inputfield cannot be empty", AlertType.ERROR);
             throw new IllegalArgumentException("Empty inputfield");
-        }
-        else if (inpName.getText().length() >= 20){
-            UIUtils.showAlert("Too many characters", "Inputfield shouldn't have more than 20 characters", AlertType.ERROR);
+        } else if (inpName.getText().length() >= 20) {
+            UIUtils.showAlert("Too many characters", "Inputfield shouldn't have more than 20 characters",
+                    AlertType.ERROR);
             throw new IllegalArgumentException("Too many characters");
-        }
-        else if (saved){
+        } else if (saved) {
             UIUtils.showAlert("Save successful", "Workout saved successfully", AlertType.INFORMATION);
             return;
-        }
-        else {
+        } else {
             UIUtils.showAlert("Cancellation successful", "Workout deleted, bringing you back to home",
                     AlertType.INFORMATION);
             return;
         }
     }
 
-    public void init(Workout workout){
-        System.out.println(this.scrollPane);
+    public void init(Workout workout) {
         this.workout = workout;
-        OverviewGridHandler ogh = new OverviewGridHandler(scrollPane,this.workout);
+        OverviewGridHandler ogh = new OverviewGridHandler(scrollPane, this.workout);
         ogh.createGrid();
     }
 }

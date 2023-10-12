@@ -55,27 +55,27 @@ public class PlanGridHandler {
             }
             int colIndex = GridPane.getColumnIndex(clickedNode);
             int rowIndex = GridPane.getRowIndex(clickedNode);
-            System.out.println("Mouse clicked cell: " + colIndex + " And: " + rowIndex);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Overview.fxml"));
             OverviewController overviewController = (OverviewController) PageLoader.pageLoader(loader,
-                clickedNode);
+                    clickedNode);
             int index = colIndex;
             for (int i = 0; i < rowIndex; i++) {
-                index +=3;
+                index += 3;
             }
             overviewController.init(workoutCellList.get(index).getWorkout());
         }
     }
 
     private void addRow() {
-        gridPane.getRowConstraints().add(new RowConstraints(150, 150,150, Priority.SOMETIMES, VPos.CENTER, false));
+        gridPane.getRowConstraints().add(new RowConstraints(150, 150, 150, Priority.SOMETIMES, VPos.CENTER, false));
     }
 
     private void addColumn() {
-        gridPane.getColumnConstraints().add(new ColumnConstraints(250, 250, 250, Priority.SOMETIMES, HPos.CENTER, false));
+        gridPane.getColumnConstraints()
+                .add(new ColumnConstraints(250, 250, 250, Priority.SOMETIMES, HPos.CENTER, false));
     }
 
-    public void addWorkoutCell (WorkoutCell workoutCell) {
+    public void addWorkoutCell(WorkoutCell workoutCell) {
         workoutCellList.add(workoutCell);
     }
 
@@ -89,14 +89,14 @@ public class PlanGridHandler {
             colAmount = 1;
         } else if (workoutCellList.size() == 2) {
             colAmount = 2;
-        }else {
+        } else {
             colAmount = 3;
         }
         for (int i = 0; i < colAmount; i++) {
             addColumn();
         }
-        for (WorkoutCell w:workoutCellList) {
-            gridPane.add(w.getText(), col, row);
+        for (WorkoutCell w : workoutCellList) {
+            gridPane.add(w.getCellContent(), col, row);
             col++;
             if (col == 3) {
                 col = 0;
