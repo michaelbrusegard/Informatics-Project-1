@@ -20,30 +20,16 @@ Then navigate to the source code directory of the project:
 cd workoutplanner
 ```
 
-Install dependencies with maven:
+In Eclipse Che, you can go to the 'Endpoints' window and copy the link from port 6080. This will take you to the virtual machine, where you then can see the project after the following commands:
+
+To install the different dependencies, run the tests and ultimatly run the program:
 
 ```bash
 mvn clean install
 ```
 
-This runs all the tests for the different modules and makes sure that the build is successful.
+This runs all the tests for the different modules and makes sure that the build is successful. It also creates the site-folder in the target-folders of the different modules, where if you open target/site/jacoco/index.html, you get to see the codecoverage
 
-Run the app from the fxui module with maven and javafx:
-
-```bash
-cd fxui
-mvn javafx:run
-```
-
-Alternatively you can write:
-
-```bash
-mvn javafx:run -f fxui/pom.xml` 
-```
-
-in the folder `workoutplanner`
-
-In Eclipse Che, you can go to the 'Endpoints' window and copy the link from port 6080. This will take you to the virtual machine, where you the project should already be up and running.
 
 ## Contents
 
