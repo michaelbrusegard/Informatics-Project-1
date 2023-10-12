@@ -63,6 +63,7 @@ public class PlanGridHandler {
                 index += 3;
             }
             overviewController.init(workoutCellList.get(index).getWorkout());
+            overviewController.loadOverviewFromPlan();
         }
     }
 

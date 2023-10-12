@@ -2,6 +2,8 @@ package workoutplanner.core;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
@@ -22,8 +24,10 @@ public class WorkoutTest {
     }
 
     @Test
-    public void testGetDate() {
-        assertEquals(date, workout.getDate());
+    public void testGetDateAsString() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM dd, yyyy HH:mm");
+        String expectedFormattedDate = dateFormat.format(date);
+        assertEquals(expectedFormattedDate, workout.getDateAsString());
     }
 
     @Test
