@@ -1,9 +1,8 @@
 image: maven:3.8.3-openjdk-17
 
 variables:
-  MAVEN_OPTS: "-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository"
-
-  MAVEN_CLI_OPTS: "--batch-mode -P headless -DskipUiTests=true"
+  MAVEN_OPTS: '-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository'
+  MAVEN_CLI_OPTS: '--batch-mode -P headless -DskipUiTests=true'
 
 stages:
   - test
@@ -13,7 +12,7 @@ stages:
 cache:
   paths:
     - .m2/repository
-  key: "$CI_BUILD_REF_NAME"
+  key: '$CI_BUILD_REF_NAME'
 
 test:
   stage: test
@@ -25,17 +24,21 @@ build:
   stage: build
   when: manual
   script:
-    - "cd workoutplanner; mvn clean install $MAVEN_CLI_OPTS"
+    - 'cd workoutplanner; mvn clean install $MAVEN_CLI_OPTS'
 
 semantic-release:
   image: maven:3-openjdk-11
   stage: semantic-release
-
   rules:
     - if: '$CI_COMMIT_BRANCH == "main" && $CI_COMMIT_MESSAGE  !~ /^chore(release)*/'
   script:
     - export GITLAB_TOKEN=$SEMANTIC_RELEASE_TOKEN
-    - curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
-    - apt-get install -y nodejs
+    - sudo apt-get update
+    - sudo apt-get install -y ca-certificates curl gnupg
+    - sudo mkdir -p /etc/apt/keyrings
+    - curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+    - echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_18.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list
+    - sudo apt-get update
+    - sudo apt-get -y install --no-install-recommends nodejs
     - npm install @semantic-release/git @semantic-release/gitlab @semantic-release/exec @semantic-release/changelog
     - npx semantic-release
