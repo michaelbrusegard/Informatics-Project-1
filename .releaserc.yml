@@ -3,8 +3,6 @@ plugins:
   - '@semantic-release/release-notes-generator'
   - - '@semantic-release/changelog'
     - changelogFile: 'CHANGELOG.md'
-  - - '@semantic-release/exec'
-    - verifyReleaseCmd: 'cd workoutplanner && mvn versions:set -DnewVersion="${nextRelease.version}" -DgenerateBackupPoms=false -DprocessAllModules=true'
   - '@semantic-release/gitlab'
   - - '@semantic-release/git'
     - assets:

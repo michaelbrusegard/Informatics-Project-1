@@ -7,6 +7,8 @@ variables:
 stages:
   - test
   - build
+  - set-semantic-version
+  - mvn-update
   - semantic-release
 
 cache:
@@ -26,19 +28,30 @@ build:
   script:
     - 'cd workoutplanner; mvn clean install $MAVEN_CLI_OPTS'
 
-semantic-release:
+set-semantic-version:
+  image: node:latest
+  stage: set-semantic-version
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main" && $CI_COMMIT_MESSAGE  !~ /^chore(release)*/'
+  script:
+    - npm install @semantic-release/git @semantic-release/gitlab @semantic-release/changelog
+    - export RELEASE_VERSION=$(npx semantic-release --dry-run | node -e "console.log(JSON.parse(require('fs').readFileSync(0, 'utf8')).nextRelease.version)")
+
+mvn-update:
   image: maven:3-openjdk-11
+  stage: mvn-update
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main" && $CI_COMMIT_MESSAGE  !~ /^chore(release)*/'
+  script:
+    - cd workoutplanner
+    - mvn versions:set -DnewVersion="$RELEASE_VERSION" -DgenerateBackupPoms=false -DprocessAllModules=true
+
+semantic-release:
+  image: node:latest
   stage: semantic-release
   rules:
     - if: '$CI_COMMIT_BRANCH == "main" && $CI_COMMIT_MESSAGE  !~ /^chore(release)*/'
   script:
     - export GITLAB_TOKEN=$SEMANTIC_RELEASE_TOKEN
-    - sudo apt-get update
-    - sudo apt-get install -y ca-certificates curl gnupg
-    - sudo mkdir -p /etc/apt/keyrings
-    - curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
-    - echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_18.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list
-    - sudo apt-get update
-    - sudo apt-get -y install --no-install-recommends nodejs
-    - npm install @semantic-release/git @semantic-release/gitlab @semantic-release/exec @semantic-release/changelog
+    - npm install @semantic-release/git @semantic-release/gitlab @semantic-release/changelog
     - npx semantic-release
