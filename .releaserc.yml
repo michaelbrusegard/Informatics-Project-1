@@ -3,12 +3,13 @@ plugins:
   - '@semantic-release/release-notes-generator'
   - - '@semantic-release/changelog'
     - changelogFile: 'CHANGELOG.md'
-  - - '@semantic-release/exec'
-    - verifyReleaseCmd: 'mvn versions:set -DnewVersion="${nextRelease.version}" && echo "NEXT_VERSION=${nextRelease.version}" >> build.env'
   - '@semantic-release/gitlab'
   - - '@semantic-release/git'
     - assets:
         - workoutplanner/pom.xml
+        - workoutplanner/core/pom.xml
+        - workoutplanner/fxui/pom.xml
+        - workoutplanner/fxutil/pom.xml
         - CHANGELOG.md
       message: 'chore(release): bump ${nextRelease.version}'
 
