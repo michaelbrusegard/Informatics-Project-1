@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
  * </p>
  *
  * @since 1.4.0
+ * @author Michael Brusegard
  * @version 2.0.0
  */
 public class Controller {

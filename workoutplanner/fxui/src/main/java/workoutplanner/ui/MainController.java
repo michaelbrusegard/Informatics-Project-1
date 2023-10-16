@@ -4,11 +4,15 @@ import java.util.Arrays;
 import java.util.List;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import workoutplanner.core.User;
-import workoutplanner.ui.Controller;
+
+/**
+ *
+ * @since 2.0.0
+ * @author Erlend Løken Sæveraas
+ * @version 2.0.0
+ */
 
 public class MainController {
 
@@ -19,7 +23,7 @@ public class MainController {
   @FXML
   private VBox overview;
   @FXML
-  private VBox workoutsView;
+  private VBox workoutView;
   @FXML
   private HomeController homeController;
   @FXML
@@ -33,7 +37,7 @@ public class MainController {
   private int currentContainer = 0;
   private List<VBox> fxmlContainers;
   private List<String> containerString = Arrays.asList("ExerciseView",
-      "Home", "Overview", "PlansView");
+      "Home", "Overview", "WorkoutView");
   private List<Controller> controllers;
 
   /**
@@ -50,8 +54,9 @@ public class MainController {
     home.setVisible(true);
     exerciseView.setVisible(false);
     overview.setVisible(false);
-    workoutsView.setVisible(false);
-    this.fxmlContainers = Arrays.asList(exerciseView, home, overview, workoutsView);
+    workoutView.setVisible(false);
+    this.fxmlContainers = Arrays.asList(exerciseView, home, overview, workoutView);
+    // TODO: Add the rest of the controllers to the list
     controllers = Arrays.asList(homeController, exerciseViewController, overviewController, workoutViewController);
 
     for (Controller c : controllers) {
@@ -59,7 +64,12 @@ public class MainController {
     }
   }
 
-  public User getRemote() {
+  /**
+   * Returns the user.
+   *
+   * @return the user
+   */
+  public User getUser() {
     return user;
   }
 

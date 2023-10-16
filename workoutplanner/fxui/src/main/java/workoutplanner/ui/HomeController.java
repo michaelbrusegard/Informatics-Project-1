@@ -1,14 +1,7 @@
 package workoutplanner.ui;
 
 import java.io.IOException;
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import workoutplanner.core.Workout;
 
 /**
  * <h1>HomeController.</h1>
@@ -32,7 +25,7 @@ public class HomeController extends Controller {
 
   @FXML
   // Display all workouts when the user clicks the "All Workouts" button
-  private void handleAllWorkout() throws IOException {
+  private void showAllWorkouts() throws IOException {
     getMainController().showFXML("WorkoutView.fxml");
   }
 }
