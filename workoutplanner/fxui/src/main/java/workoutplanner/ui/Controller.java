@@ -23,7 +23,7 @@ public class Controller {
     }
 
     // Set the MainController object a sub-controller is using
-    public void setMainController(MainController mainController) {
-        this.mainController = mainController;
+    public void setMainController(MainController mc) {
+        this.mainController = mc;
     }
 }

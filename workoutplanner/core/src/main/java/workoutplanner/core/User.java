@@ -1,7 +1,7 @@
 package workoutplanner.core;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * <h1>User</h1>
@@ -15,11 +15,11 @@ import java.util.List;
  * @version 2.0.0
  */
 public class User {
-    List<Workout> workouts;
+    Stack<Workout> workouts;
 
     // Constructor with a new list of workouts
     public User() {
-        this.workouts = new ArrayList<Workout>();
+        this.workouts = new Stack<>();
     }
 
     // Add a workout to the list of workouts
@@ -30,6 +30,11 @@ public class User {
     // Remove a workout from the list of workouts
     public void removeWorkout(Workout workout) {
         this.workouts.remove(workout);
+    }
+
+    // Return the latest workout
+    public Workout getLatestWorkout() {
+        return this.workouts.peek();
     }
 
     // Return the list of workouts
