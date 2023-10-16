@@ -13,7 +13,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import workoutplanner.core.Exercise;
 import workoutplanner.core.Workout;
-import workoutplanner.fxutil.Controller;
 import workoutplanner.fxutil.ExerciseLoader;
 import workoutplanner.fxutil.UIUtils;
 
