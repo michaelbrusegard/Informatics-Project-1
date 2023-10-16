@@ -3,7 +3,14 @@ package workoutplanner.ui;
 import javafx.fxml.FXML;
 
 /**
- * Controller class for connecting all controllers together.
+ * <h1>Controller.</h1>
+ * <p>
+ * The Controller class gives access to the MainController object for all
+ * sub-controllers.
+ * </p>
+ *
+ * @since 1.4.0
+ * @version 2.0.0
  */
 public class Controller {
     @FXML
