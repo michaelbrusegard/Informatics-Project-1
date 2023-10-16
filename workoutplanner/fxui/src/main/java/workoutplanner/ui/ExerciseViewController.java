@@ -15,26 +15,21 @@ import workoutplanner.core.Exercise;
 import workoutplanner.core.Workout;
 import workoutplanner.fxutil.Controller;
 import workoutplanner.fxutil.ExerciseLoader;
-import workoutplanner.fxutil.PageLoader;
 import workoutplanner.fxutil.UIUtils;
 
 /**
  * <h1>ExerciseViewController.</h1>
  * <p>
- *   The ExerciseViewController class is responsible for managing
- *   the user interface and user interactions
- *   related to creating and adding exercises to a workout.
+ * The ExerciseViewController class is responsible for managing
+ * the user interface and user interactions
+ * related to creating and adding exercises to a workout.
  * </p>
  *
  * @since 1.0.0
  * @author Michael Brusegard
- * @version 1.4.0
+ * @version 2.0.0
  */
-public class ExerciseViewController implements Controller {
-  /**
-   * Local Workout variable, used to editing the workout that being made.
-   */
-  private final Workout workout = new Workout();
+public class ExerciseViewController extends Controller {
   /**
    * Imported TextField from javaFx,
    * used for acquiring amount of sets for an exercise.
@@ -77,18 +72,18 @@ public class ExerciseViewController implements Controller {
 
   /**
    * Initializes the controller and sets up the user interface elements.
-   *<p>
-   *   This method is called when the controller is initialized
-   *   and is responsible for performing the following tasks:
-   *   1. Load a list of exercises from a JSON file using ExerciseLoader.
-   *   2. Converts the loaded exercise names to an ObservableList.
-   *   3. Sets the loaded exercises to the ListView.
-   *   4. Binds the text property of the 'name' Text element
-   *   to the selected item in the ListView.
-   *</p>
+   * <p>
+   * This method is called when the controller is initialized
+   * and is responsible for performing the following tasks:
+   * 1. Load a list of exercises from a JSON file using ExerciseLoader.
+   * 2. Converts the loaded exercise names to an ObservableList.
+   * 3. Sets the loaded exercises to the ListView.
+   * 4. Binds the text property of the 'name' Text element
+   * to the selected item in the ListView.
+   * </p>
    *
    * @throws IOException If an I/O error occurs while loading exercises
-   *                    from the JSON file.
+   *                     from the JSON file.
    */
   @FXML
   public void initialize() throws IOException {
@@ -98,7 +93,7 @@ public class ExerciseViewController implements Controller {
 
     // Convert the List to an ObservableList
     ObservableList<String> exercises = FXCollections
-            .observableArrayList(exercisesList);
+        .observableArrayList(exercisesList);
 
     // Set the loaded exercises to the ListView
     list.setItems(exercises);
@@ -118,9 +113,9 @@ public class ExerciseViewController implements Controller {
       UIUtils.showAlert("Error", "Please select an exercise.", AlertType.ERROR);
       return;
     } else if (sets.getText().isEmpty()
-            || repMin.getText().isEmpty()
-            || repMax.getText().isEmpty()
-            || weight.getText().isEmpty()) {
+        || repMin.getText().isEmpty()
+        || repMax.getText().isEmpty()
+        || weight.getText().isEmpty()) {
       UIUtils.showAlert("Error", "Please fill in all fields.", AlertType.ERROR);
       return;
     }
@@ -134,38 +129,38 @@ public class ExerciseViewController implements Controller {
       // Check if the user has entered valid values
       if (exerciseRepMin > exerciseRepMax) {
         UIUtils.showAlert("Error",
-                "The minimum amount of reps cannot be greater than "
-                        + "the maximum amount of reps.",
-                AlertType.ERROR);
+            "The minimum amount of reps cannot be greater than "
+                + "the maximum amount of reps.",
+            AlertType.ERROR);
         return;
       } else if (exerciseRepMin < 0
-              || exerciseRepMax == 0
-              || exerciseSets <= 0
-              || exerciseWeight < 0) {
+          || exerciseRepMax == 0
+          || exerciseSets <= 0
+          || exerciseWeight < 0) {
         UIUtils.showAlert("Error",
-                        "You can't do negative reps or weight. "
-                                + "Also you need to have at least one set "
-                                + "and at least one max repetition "
-                                + "in the rep-range.",
-                        AlertType.ERROR);
+            "You can't do negative reps or weight. "
+                + "Also you need to have at least one set "
+                + "and at least one max repetition "
+                + "in the rep-range.",
+            AlertType.ERROR);
         return;
       }
 
       // Add the exercise to the workout
       workout.addExercise(
-                    new Exercise(exerciseName,
-                            exerciseSets,
-                            exerciseRepMin,
-                            exerciseRepMax,
-                            exerciseWeight));
+          new Exercise(exerciseName,
+              exerciseSets,
+              exerciseRepMin,
+              exerciseRepMax,
+              exerciseWeight));
 
       // Show an alert with exercise details that have been added to the workout
       String alertContent = "Exercise has been added to the workout "
-              + "with the following details:\n\n"
-              + "Name: " + exerciseName + "\n"
-              + "Sets: " + exerciseSets + "\n"
-              + "Rep-range: " + exerciseRepMin + "-" + exerciseRepMax + "\n"
-              + "Weight: " + exerciseWeight + "kg";
+          + "with the following details:\n\n"
+          + "Name: " + exerciseName + "\n"
+          + "Sets: " + exerciseSets + "\n"
+          + "Rep-range: " + exerciseRepMin + "-" + exerciseRepMax + "\n"
+          + "Weight: " + exerciseWeight + "kg";
 
       UIUtils.showAlert("Exercise Added", alertContent, AlertType.INFORMATION);
 
@@ -180,8 +175,8 @@ public class ExerciseViewController implements Controller {
 
     } catch (NumberFormatException e) {
       UIUtils.showAlert("Error",
-              "Please enter a number for sets, rep-range, and weight.",
-              AlertType.ERROR);
+          "Please enter a number for sets, rep-range, and weight.",
+          AlertType.ERROR);
     }
   }
 
@@ -190,29 +185,10 @@ public class ExerciseViewController implements Controller {
     // Check if the workout object is not null
     if (workout.getExerciseCount() == 0) {
       UIUtils.showAlert("Error",
-              "No exercises added to the workout.",
-              AlertType.ERROR);
+          "No exercises added to the workout.",
+          AlertType.ERROR);
       return;
     }
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("Overview.fxml"));
-    Controller controller = PageLoader.pageLoader(loader, finishButton);
-    OverviewController overviewController = (OverviewController) controller;
-    overviewController.init(workout);
-  }
-
-  /**
-   * Retrieves the Workout associated with this controller.
-   * <p>
-   *   This method returns the Workout object
-   *   associated with this controller, which contains
-   *   information about a specific workout.
-   *   It allows external code to access and manipulate
-   *   the workout data for various purposes.
-   * </p>
-   *
-   * @return The Workout object associated with this controller.
-   */
-  public Workout getWorkout() {
-    return workout;
+    getMainController().showFXML("Overview.fxml");
   }
 }
