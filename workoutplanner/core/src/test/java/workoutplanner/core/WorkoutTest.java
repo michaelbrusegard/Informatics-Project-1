@@ -48,7 +48,7 @@ public class WorkoutTest {
         workout.addExercise(new Exercise("Bench Press", 4, 6, 10, 135));
         List<Exercise> exercises = workout.getExercises();
         assertEquals(2, exercises.size());
-        assertEquals("Squats", exercises.get(0).getName());
-        assertEquals("Bench Press", exercises.get(1).getName());
+        assertEquals("Squats", exercises.get(0).name());
+        assertEquals("Bench Press", exercises.get(1).name());
     }
 }

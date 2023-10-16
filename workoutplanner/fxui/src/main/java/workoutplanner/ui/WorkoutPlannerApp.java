@@ -1,5 +1,7 @@
 package workoutplanner.ui;
 
+import java.io.IOException;
+import java.io.InputStream;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,31 +9,74 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-import java.io.InputStream;
-
 /**
- * JavaFX App
+ * <h1>WorkoutPlannerApp.</h1>
+ * <p>
+ *   This class extends the JavaFX Application class
+ *   and is the main entry point for the application.
+ *   It initializes the main application window,
+ *   loads the UI from the "Overview.fxml" file, and sets up
+ *   the application icon. Additionally,
+ *   it provides the main method for launching the application.
+ * </p>
+ *
+ * @since 1.0.0
+ * @author Michael Brusegard
+ * @version 1.4.0
  */
 public class WorkoutPlannerApp extends Application {
 
-    @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("Overview.fxml"));
-        Parent parent = fxmlLoader.load();
+  /**
+   * Starts the workout planner application by initializing
+   * the main application window.
+   * <p>
+   *   This method is called when the application is launched
+   *   and is responsible for performing the following tasks:
+   *   1. Loads the main application UI from the "Home.fxml" file
+   *   using a FXMLLoader.
+   *   2. Loads an application icon from the "/icon.png" resource.
+   *   3. Sets the loaded icon as the application icon.
+   *   4. Sets the main scene with the loaded UI.
+   *   5. Displays the main application window.
+   * </p>
+   *
+   * @param stage The primary stage for this application,
+   *              onto which the application scene can be set.
+   *              Applications may create other stages, if needed,
+   *              but they will not be primary stages.
+   * @throws IOException If an I/O error occurs while loading
+   *                    the application UI or icon.
+   */
+  @Override
+  public void start(final Stage stage) throws IOException {
+    FXMLLoader fxmlLoader = new FXMLLoader(this.getClass()
+            .getResource("Home.fxml"));
+    Parent parent = fxmlLoader.load();
 
-        InputStream inputStream = this.getClass().getResourceAsStream("/icon.png");
+    InputStream inputStream = this.getClass().getResourceAsStream("/icon.png");
 
-        Image icon = new Image(inputStream);
+    assert inputStream != null;
+    Image icon = new Image(inputStream);
 
-        // Set the application icon
-        stage.getIcons().add(icon);
+    // Set the application icon
+    stage.getIcons().add(icon);
 
-        stage.setScene(new Scene(parent));
-        stage.show();
-    }
+    stage.setScene(new Scene(parent));
+    stage.show();
+  }
 
-    public static void main(String[] args) {
-        launch();
-    }
+  /**
+   * The entry point for launching the Workout Planner application.
+   * <p>
+   *   This method is the main entry point for launching
+   *   the Workout Planner application.
+   *   It calls the JavaFX launch method to start the application.
+   * </p>
+   *
+   * @param args An array of command-line arguments
+   *             (not used in this application).
+   */
+  public static void main(final String[] args) {
+    launch();
+  }
 }
