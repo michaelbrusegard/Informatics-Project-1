@@ -1,6 +1,5 @@
 package workoutplanner.ui;
 
-import java.lang.ModuleLayer.Controller;
 import java.util.Arrays;
 import java.util.List;
 
@@ -9,6 +8,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import workoutplanner.core.User;
+import workoutplanner.ui.Controller;
 
 public class MainController {
 
@@ -57,6 +57,10 @@ public class MainController {
     for (Controller c : controllers) {
       c.setMainController(this);
     }
+  }
+
+  public User getRemote() {
+    return user;
   }
 
   /**
