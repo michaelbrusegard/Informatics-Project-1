@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="workoutplanner.ui.MainController">
+   <children>
+      <fx:include fx:id="ExerciseView" source="ExerciseView.fxml" />
+      <fx:include fx:id="Home" source="Home.fxml" />
+      <fx:include fx:id="Overview" source="Overview.fxml" />
+      <fx:include fx:id="PlanView" source="PlanView.fxml" />
+   </children>
+</AnchorPane>
