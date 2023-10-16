@@ -58,14 +58,14 @@ public class ExerciseCell {
 
   private void createFxCell() {
     Group cellGroup = new Group();
-    Text name = new Text(exercise.getName() + ":");
+    Text name = new Text(exercise.name() + ":");
     name.setLayoutX(XLAYOUT);
     Font font = new Font("Serif", FONTSIZE);
     name.setFont(font);
-    Text sets = new Text("Sets: " + exercise.getSets());
-    Text reps = new Text("Reps: " + exercise.getRepMin()
-            + " - " + exercise.getRepMax());
-    Text weight = new Text("Weight: " + exercise.getWeight() + "kg");
+    Text sets = new Text("Sets: " + exercise.sets());
+    Text reps = new Text("Reps: " + exercise.repMin()
+            + " - " + exercise.repMax());
+    Text weight = new Text("Weight: " + exercise.weight() + "kg");
     cellGroup.getChildren().addAll(name, sets, reps, weight);
     for (int index = 1; index < cellGroup.getChildren().size(); index++) {
       cellGroup.getChildren().get(index).setLayoutY(index * YLAYOUT);

@@ -1,38 +1,29 @@
 package workoutplanner.core;
 
-public class Exercise {
+/**
+ * <h1>Exercise</h1>
+ * Represents an exercise with associated details.
+ *
+ * <p>
+ *   An Exercise record encapsulates information about an exercise,
+ *   including its name,
+ *   the number of sets, the minimum and maximum repetitions,
+ *   and the weight used.
+ *   It provides a simple and immutable structure for representing
+ *   exercise data.
+ * </p>
+ *
+ * @since 1.0.0
+ * @author David
+ * @version 1.0.0
+ *
+ * @param name The name of the exercise.
+ * @param sets The number of sets for the exercise.
+ * @param repMin The minimum number of repetitions for each set.
+ * @param repMax The maximum number of repetitions for each set.
+ * @param weight The weight used for the exercise.
+ */
+public record Exercise(String name, int sets, int repMin,
+                       int repMax, int weight) {
 
-    private final String name;
-    private final int sets;
-    private final int repMin;
-    private final int repMax;
-    private final int weight;
-
-    public Exercise(String name, int sets, int repMin, int repMax, int weight) {
-        this.name = name;
-        this.sets = sets;
-        this.repMin = repMin;
-        this.repMax = repMax;
-        this.weight = weight;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getSets() {
-        return sets;
-    }
-
-    public int getRepMin() {
-        return repMin;
-    }
-
-    public int getRepMax() {
-        return repMax;
-    }
-
-    public int getWeight() {
-        return weight;
-    }
 }
