@@ -57,6 +57,10 @@ public class WorkoutPlannerApp extends Application {
     Image icon = new Image(inputStream);
     primaryStage.getIcons().add(icon);
 
+    // Set the minimum width and height for the stage
+    primaryStage.setMinWidth(600); // Set the minimum width
+    primaryStage.setMinHeight(428); // Set the minimum height
+
     FXMLLoader fxmlLoader = new FXMLLoader(this.getClass()
         .getResource("Main.fxml"));
     primaryStage.setScene(new Scene(fxmlLoader.load()));

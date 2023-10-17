@@ -10,7 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import workoutplanner.core.Exercise;
 import workoutplanner.fxutil.ExerciseLoader;
 import workoutplanner.fxutil.ExerciseView;
 import workoutplanner.fxutil.UIUtils;
@@ -98,9 +97,6 @@ public class ExerciseViewController extends Controller {
 
     // Update the name text when an exercise is selected in the list view
     name.textProperty().bind(list.getSelectionModel().selectedItemProperty());
-
-    // Create a new workout object in the user object
-    // getMainController().getUser().createWorkout();
   }
 
   // When the user clicks the add Exercise button
@@ -119,8 +115,8 @@ public class ExerciseViewController extends Controller {
       int exerciseWeight = Integer.parseInt(weightText);
 
       // Add the exercise to the new workout
-      getMainController().getUser().getLatestWorkout().addExercise(
-          new Exercise(exerciseName, exerciseSets, exerciseRepMin, exerciseRepMax, exerciseWeight));
+      getMainController().getUser().getLatestWorkout().addExercise(exerciseName, exerciseSets, exerciseRepMin,
+          exerciseRepMax, exerciseWeight);
 
       ExerciseView.displayExerciseAddedPrompt(exerciseName, exerciseSets, exerciseRepMin, exerciseRepMax,
           exerciseWeight);
@@ -136,8 +132,9 @@ public class ExerciseViewController extends Controller {
     if (UIUtils.showConfirmation("Cancel Workout",
         "Are you sure you want to cancel the workout? "
             + "All progress will be lost.")) {
+      clearInputFields();
       getMainController().getUser().removeLatestWorkout();
-      getMainController().showFXML("Home.fxml");
+      getMainController().showFXML("Home");
     }
   }
 
@@ -151,7 +148,8 @@ public class ExerciseViewController extends Controller {
           AlertType.ERROR);
       return;
     }
-    getMainController().showFXML("Overview.fxml");
+    clearInputFields();
+    getMainController().showFXML("Overview");
   }
 
   // Clear the input fields

@@ -82,10 +82,17 @@ public class Workout {
    * associated with the workout.
    * </p>
    *
-   * @param exercise The Exercise object to add to the workout.
+   * @param name   The name of the exercise.
+   * @param sets   The number of sets for the exercise.
+   * @param repMin The minimum number of reps for the exercise.
+   * @param repMax The maximum number of reps for the exercise.
+   * @param weight The weight for the exercise.
+   * 
    */
-  public void addExercise(final Exercise exercise) {
-    exercises.add(exercise);
+  public void addExercise(String name, int sets, int repMin,
+      int repMax, int weight) {
+    Exercise exercise = new Exercise(name, sets, repMin, repMax, weight);
+    this.exercises.add(exercise);
   }
 
   /**
