@@ -14,8 +14,8 @@ import java.util.List;
  * </p>
  *
  * @since 1.4.0
- * @author Michael
- * @version 2.0.0
+ * @author Michael Brusegard + Arman Ilkka Nemati
+ * @version 1.4.0
  */
 
 public class ExerciseLoader {

@@ -15,7 +15,7 @@ import java.util.List;
  * </p>
  *
  * @since 1.0.0
- * @author Michael
+ * @author David Salguero Spilde + Michael Brusegard + Arman Ilkka Nemati
  * @version 2.0.0
  */
 public class Workout {

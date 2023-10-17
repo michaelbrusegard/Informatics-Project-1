@@ -14,6 +14,7 @@ import javafx.scene.control.ButtonType;
  * </p>
  *
  * @since 1.0.0
+ * @author Michael Brusegard
  * @version 2.0.0
  */
 
@@ -27,5 +28,22 @@ public class UIUtils {
         Button errorButton = (Button) alert.getDialogPane().lookupButton(ButtonType.OK);
         errorButton.setId("alertButton");
         alert.showAndWait();
+    }
+
+    // Show a confirmation dialog with the given title and message
+    public static boolean showConfirmation(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+
+        ButtonType okButton = new ButtonType("OK", ButtonType.OK.getButtonData());
+        ButtonType cancelButton = new ButtonType("Cancel", ButtonType.CANCEL.getButtonData());
+
+        alert.getButtonTypes().setAll(okButton, cancelButton);
+
+        // Show and wait for the user's response
+        ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);
+        return result == okButton;
     }
 }

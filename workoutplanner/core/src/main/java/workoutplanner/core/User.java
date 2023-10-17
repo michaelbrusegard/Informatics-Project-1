@@ -11,7 +11,7 @@ import java.util.Stack;
  * </p>
  *
  * @since 1.0.0
- * @author Michael
+ * @author Michael Brusegard
  * @version 2.0.0
  */
 public class User {
@@ -22,9 +22,9 @@ public class User {
         this.workouts = new Stack<>();
     }
 
-    // Add a workout to the list of workouts
-    public void addWorkout(Workout workout) {
-        this.workouts.add(workout);
+    // Create a new workout
+    public void createWorkout() {
+        this.workouts.add(new Workout());
     }
 
     // Remove a workout from the list of workouts
@@ -35,6 +35,11 @@ public class User {
     // Return the latest workout
     public Workout getLatestWorkout() {
         return this.workouts.peek();
+    }
+
+    // Remove the latest workout
+    public void removeLatestWorkout() {
+        this.workouts.pop();
     }
 
     // Return the list of workouts

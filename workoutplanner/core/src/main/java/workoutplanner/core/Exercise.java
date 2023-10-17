@@ -14,7 +14,7 @@ package workoutplanner.core;
  * </p>
  *
  * @since 1.0.0
- * @author Arman
+ * @author Arman Ilkka Nemati
  * @version 1.4.0
  *
  * @param name   The name of the exercise.
@@ -24,5 +24,5 @@ package workoutplanner.core;
  * @param weight The weight used for the exercise.
  */
 public record Exercise(String name, int sets, int repMin,
-        int repMax, int weight) {
+                int repMax, int weight) {
 }
