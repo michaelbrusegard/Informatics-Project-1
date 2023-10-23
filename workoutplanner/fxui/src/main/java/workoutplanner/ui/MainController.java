@@ -80,11 +80,17 @@ public class MainController {
     fxmlContainers.get(this.currentContainer).setVisible(false);
     for (VBox container : fxmlContainers) {
       if (containerString.get(fxmlContainers.indexOf(container)).equals(resource)) {
-
         // Create a new workout if the user goes to the exercise view from home
         if (resource.equals("ExerciseView") && this.currentContainer == 0) {
           getUser().createWorkout();
         }
+        if(resource.equals("Overview") && this.currentContainer == 1){
+          this.overviewController.init();
+        }
+        if(resource.equals("WorkoutView") && this.currentContainer == 2){
+          // this.workoutView.init();
+        }
+
 
         container.setVisible(true);
         this.currentContainer = fxmlContainers.indexOf(container);
