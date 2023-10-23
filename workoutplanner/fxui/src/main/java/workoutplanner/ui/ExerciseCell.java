@@ -6,17 +6,17 @@ import javafx.scene.text.Text;
 import workoutplanner.core.Exercise;
 
 /**
- *  <h1>ExerciseCell.</h1>
- *  <p>
- *    The ExerciseCell class represents a virtual container for
- *    displaying information about an exercise.
- *    It encapsulates the Exercise model and creates a digital representation
- *    of the exercise information.
- *  </p>
+ * <h1>ExerciseCell.</h1>
+ * <p>
+ * The ExerciseCell class represents a virtual container for
+ * displaying information about an exercise.
+ * It encapsulates the Exercise model and creates a digital representation
+ * of the exercise information.
+ * </p>
  *
  * @since 1.0.0
  * @author Erlend Løken Sæveraas
- * @version 1.4.0
+ * @version 2.0.0
  */
 public class ExerciseCell {
   /**
@@ -43,10 +43,10 @@ public class ExerciseCell {
   /**
    * Constructs an ExerciseCell with the provided Exercise instance.
    * <p>
-   *   This constructor initializes an ExerciseCell
-   *   with the given Exercise instance,
-   *   allowing the cell to display information related to the exercise.
-   *   It also triggers the creation of the data for the exercise cell.
+   * This constructor initializes an ExerciseCell
+   * with the given Exercise instance,
+   * allowing the cell to display information related to the exercise.
+   * It also triggers the creation of the data for the exercise cell.
    * </p>
    *
    * @param inputExercise The Exercise instance to be displayed in the cell.
@@ -64,7 +64,7 @@ public class ExerciseCell {
     name.setFont(font);
     Text sets = new Text("Sets: " + exercise.sets());
     Text reps = new Text("Reps: " + exercise.repMin()
-            + " - " + exercise.repMax());
+        + " - " + exercise.repMax());
     Text weight = new Text("Weight: " + exercise.weight() + "kg");
     cellGroup.getChildren().addAll(name, sets, reps, weight);
     for (int index = 1; index < cellGroup.getChildren().size(); index++) {
@@ -77,10 +77,10 @@ public class ExerciseCell {
   /**
    * Retrieves the JavaFX Group representing the exercise cell.
    * <p>
-   *   This method returns the JavaFX Group that contains
-   *   the data for the exercise cell.
-   *   It allows external code to access
-   *   and display the data from the exercise cell.
+   * This method returns the JavaFX Group that contains
+   * the data for the exercise cell.
+   * It allows external code to access
+   * and display the data from the exercise cell.
    * </p>
    *
    * @return The Group containing the data of the exercise cell.

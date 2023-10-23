@@ -22,10 +22,11 @@ public class OverviewControllerTest extends ApplicationTest {
     @Override
     public void start(Stage primaryStage) throws Exception {
         stage = primaryStage;
-        FXMLLoader loader = new FXMLLoader(OverviewController.class.getResource("Overview.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
+        // FXMLLoader loader = new
+        // FXMLLoader(OverviewController.class.getResource("Overview.fxml"));
+        // Parent root = loader.load();
+        // Scene scene = new Scene(root);
+        // stage.setScene(scene);
         stage.show();
     }
 
@@ -41,7 +42,7 @@ public class OverviewControllerTest extends ApplicationTest {
     public void testSavedValidation() {
         clickOn("#saveButton");
         FxAssert.verifyThat("#alertButton", (button) -> !button.isDisabled());
-         clickOn("#alertButton");
+        clickOn("#alertButton");
     }
 
     @Test
@@ -51,5 +52,5 @@ public class OverviewControllerTest extends ApplicationTest {
         FxAssert.verifyThat("#alertButton", (button) -> !button.isDisabled());
         clickOn("#alertButton");
     }
-    
+
 }
