@@ -36,8 +36,7 @@ public class MainController {
   private User user = new User();
   private int currentContainer = 0;
   private List<VBox> fxmlContainers;
-  private List<String> containerString = Arrays.asList("ExerciseView",
-      "Home", "Overview", "WorkoutView");
+  private List<String> containerString = Arrays.asList("Home", "ExerciseView", "Overview", "WorkoutView");
   private List<Controller> controllers;
 
   /**
@@ -55,8 +54,7 @@ public class MainController {
     exerciseView.setVisible(false);
     overview.setVisible(false);
     workoutView.setVisible(false);
-    this.fxmlContainers = Arrays.asList(exerciseView, home, overview, workoutView);
-    // TODO: Add the rest of the controllers to the list
+    this.fxmlContainers = Arrays.asList(home, exerciseView, overview, workoutView);
     controllers = Arrays.asList(homeController, exerciseViewController, overviewController, workoutViewController);
 
     for (Controller c : controllers) {
@@ -82,6 +80,12 @@ public class MainController {
     fxmlContainers.get(this.currentContainer).setVisible(false);
     for (VBox container : fxmlContainers) {
       if (containerString.get(fxmlContainers.indexOf(container)).equals(resource)) {
+
+        // Create a new workout if the user goes to the exercise view from home
+        if (resource.equals("ExerciseView") && this.currentContainer == 0) {
+          getUser().createWorkout();
+        }
+
         container.setVisible(true);
         this.currentContainer = fxmlContainers.indexOf(container);
       }

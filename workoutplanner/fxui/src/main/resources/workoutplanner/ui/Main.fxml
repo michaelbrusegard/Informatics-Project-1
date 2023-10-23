@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="workoutplanner.ui.MainController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="workoutplanner.ui.MainController">
    <children>
-      <fx:include fx:id="exerciseView" source="ExerciseView.fxml" />
       <fx:include fx:id="home" source="Home.fxml" />
+      <fx:include fx:id="exerciseView" source="ExerciseView.fxml" />
       <fx:include fx:id="overview" source="Overview.fxml" />
       <fx:include fx:id="workoutView" source="WorkoutView.fxml" />
    </children>
-</AnchorPane>
+</StackPane>
