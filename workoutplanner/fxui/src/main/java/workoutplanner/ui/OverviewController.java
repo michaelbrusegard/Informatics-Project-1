@@ -100,6 +100,47 @@ public class OverviewController extends Controller {
   private static final int CELLFONTSIZE = 18;
 
   /**
+   * Cancels the current operation and navigates to the Homepage.
+   * <p>
+   * This method is responsible for canceling the current operation,
+   * and it validates the input data.
+   * If the validation succeeds, it navigates to the Homepage by loading
+   * Home.fxml.
+   * </p>
+   *
+   * @throws IOException If an I/O error occurs while loading Home.fxml.
+   */
+  @FXML
+  public void cancel() throws IOException {
+    if (Overview.validateOverview(false, true, this.inpName)) {
+      if (Overview.checkIfCancel()) {
+        getMainController().getUser().removeLatestWorkout();
+        getMainController().showFXML("Home");
+      }
+    }
+  }
+
+  /**
+   * Saves the workout data and initializes the PlanController with the workout.
+   * <p>
+   * This method is responsible for saving the workout data, name and date,
+   * and initializing the PlanController with the workout information.
+   * The PlanController is then used to display the workout in the PlanView
+   * page.
+   * </p>
+   *
+   * @throws IOException If an I/O error occurs while loading PlanView.fxml.
+   */
+  @FXML
+  public void save() throws IOException {
+    if (Overview.validateOverview(true, false, this.inpName)) {
+      getMainController().getUser().getLatestWorkout().setName(inpName.getText());
+      getMainController().getUser().getLatestWorkout().setDate(new Date());
+      getMainController().showFXML("WorkoutView");
+    }
+  }
+
+  /**
    * Creates and populates a grid within the ScrollPane
    * to display workout exercises.
    * <p>
@@ -172,47 +213,6 @@ public class OverviewController extends Controller {
       ((Text) cellGroup.getChildren().get(index)).setFont(font);
     }
     return cellGroup;
-  }
-
-  /**
-   * Cancels the current operation and navigates to the Homepage.
-   * <p>
-   * This method is responsible for canceling the current operation,
-   * and it validates the input data.
-   * If the validation succeeds, it navigates to the Homepage by loading
-   * Home.fxml.
-   * </p>
-   *
-   * @throws IOException If an I/O error occurs while loading Home.fxml.
-   */
-  @FXML
-  public void cancel() throws IOException {
-    if (Overview.validateOverview(false, true, this.inpName)) {
-      if (Overview.checkIfCancel()) {
-        getMainController().getUser().removeLatestWorkout();
-        getMainController().showFXML("Home");
-      }
-    }
-  }
-
-  /**
-   * Saves the workout data and initializes the PlanController with the workout.
-   * <p>
-   * This method is responsible for saving the workout data, name and date,
-   * and initializing the PlanController with the workout information.
-   * The PlanController is then used to display the workout in the PlanView
-   * page.
-   * </p>
-   *
-   * @throws IOException If an I/O error occurs while loading PlanView.fxml.
-   */
-  @FXML
-  public void save() throws IOException {
-    if (Overview.validateOverview(true, false, this.inpName)) {
-      getMainController().getUser().getLatestWorkout().setName(inpName.getText());
-      getMainController().getUser().getLatestWorkout().setDate(new Date());
-      getMainController().showFXML("WorkoutView");
-    }
   }
 
   /**

@@ -82,12 +82,10 @@ public class MainController {
       if (containerString.get(fxmlContainers.indexOf(container)).equals(resource)) {
         // Create a new workout if the user goes to the exercise view from home
         if (resource.equals("ExerciseView") && this.currentContainer == 0) {
-          getUser().createWorkout();
-        }
-        if (resource.equals("Overview") && this.currentContainer == 1) {
+          this.exerciseViewController.init();
+        } else if (resource.equals("Overview") && this.currentContainer == 1) {
           this.overviewController.init();
-        }
-        if (resource.equals("WorkoutView") && this.currentContainer == 2) {
+        } else if (resource.equals("WorkoutView") && this.currentContainer == 2) {
           this.workoutViewController.init();
         }
 

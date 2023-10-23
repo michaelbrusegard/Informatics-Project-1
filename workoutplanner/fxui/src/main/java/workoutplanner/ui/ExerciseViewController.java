@@ -152,6 +152,11 @@ public class ExerciseViewController extends Controller {
     getMainController().showFXML("Overview");
   }
 
+  // Start a new workout
+  public void init() {
+    getMainController().getUser().createWorkout();
+  }
+
   // Clear the input fields
   private void clearInputFields() {
     sets.setText("");
