@@ -17,11 +17,11 @@ import workoutplanner.core.Workout;
  * The OverviewGridHandler class is responsible for managing
  * the graphical representation of a workout's overview.
  * <p>
- *   This class is used to create and populate a grid within a ScrollPane
- *   to display workout exercises' overview.
- *   It handles the layout and positioning of ExerciseCell elements,
- *   each displaying information about an exercise
- *   from the associated workout.
+ * This class is used to create and populate a grid within a ScrollPane
+ * to display workout exercises' overview.
+ * It handles the layout and positioning of ExerciseCell elements,
+ * each displaying information about an exercise
+ * from the associated workout.
  * </p>
  *
  * @since 1.0.0
@@ -44,30 +44,34 @@ public class OverviewGridHandler {
   /**
    * Local int variable, used to define row height of the grid.
    */
-  private static final int ROWHEIGHT = 150;
+  private final int ROWHEIGHT = 150;
   /**
    * Local int variable, used to define column width of the grid.
    */
-  private static final int COLUMNWIDTH = 250;
+  private final int COLUMNWIDTH = 199;
+  /**
+   * Local int variable, define how may columns.
+   */
+  private final int COLUMNS = 3;
 
   /**
    * Constructs an OverviewGridHandler to manage the display of a
    * workout's overview.
    * <p>
-   *   This constructor initializes an OverviewGridHandler with the
-   *   specified ScrollPane and Workout instances,
-   *   allowing it to create and manage
-   *   the graphical representation of a workout's
-   *   overview within the provided ScrollPane.
+   * This constructor initializes an OverviewGridHandler with the
+   * specified ScrollPane and Workout instances,
+   * allowing it to create and manage
+   * the graphical representation of a workout's
+   * overview within the provided ScrollPane.
    * </p>
    *
    * @param inputScrollPane The ScrollPane in which the workout's overview
    *                        will be displayed.
-   * @param inputWorkout The Workout for which the overview will be
-   *                     created and managed.
+   * @param inputWorkout    The Workout for which the overview will be
+   *                        created and managed.
    */
   public OverviewGridHandler(final ScrollPane inputScrollPane,
-                             final Workout inputWorkout) {
+      final Workout inputWorkout) {
     this.scrollPane = inputScrollPane;
     this.workout = inputWorkout;
   }
@@ -76,10 +80,10 @@ public class OverviewGridHandler {
    * Creates and populates a grid within the ScrollPane
    * to display workout exercises.
    * <p>
-   *   This method sets up a GridPane to represent the overview of exercises
-   *   within the provided ScrollPane.
-   *   It populates the grid with ExerciseCell elements,
-   *   each displaying information about an exercise from the workout.
+   * This method sets up a GridPane to represent the overview of exercises
+   * within the provided ScrollPane.
+   * It populates the grid with ExerciseCell elements,
+   * each displaying information about an exercise from the workout.
    * </p>
    *
    * @implNote The exercises are retrieved from the associated workout.
@@ -93,16 +97,16 @@ public class OverviewGridHandler {
     this.scrollPane.setFitToHeight(true);
     for (int i = 0; i < exercises.size(); i++) {
       ExerciseCell cell = new ExerciseCell(exercises.get(i));
-      grid.add(cell.getGroup(), i % 2, Math.floorDiv(i, 2));
+      grid.add(cell.getGroup(), i % COLUMNS, Math.floorDiv(i, COLUMNS));
       if (grid.getRowCount() < i) {
         grid.getRowConstraints().add(new RowConstraints(ROWHEIGHT, ROWHEIGHT,
-                ROWHEIGHT, Priority.SOMETIMES, VPos.CENTER, false));
+            ROWHEIGHT, Priority.SOMETIMES, VPos.CENTER, false));
       }
-      if (i < 2) {
+      if (i < COLUMNS) {
         grid.getColumnConstraints()
-                        .add(new ColumnConstraints(COLUMNWIDTH, COLUMNWIDTH,
-                                COLUMNWIDTH, Priority.SOMETIMES, HPos.CENTER,
-                                false));
+            .add(new ColumnConstraints(COLUMNWIDTH, COLUMNWIDTH,
+                COLUMNWIDTH, Priority.SOMETIMES, HPos.CENTER,
+                false));
       }
     }
   }
