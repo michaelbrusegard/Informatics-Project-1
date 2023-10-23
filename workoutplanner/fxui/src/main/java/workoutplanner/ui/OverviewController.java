@@ -22,7 +22,7 @@ import workoutplanner.fxutil.UIUtils;
  *
  * @since 1.0.0
  * @author Erlend Løken Sæveraas
- * @version 1.4.0
+ * @version 2.0.0
  */
 public class OverviewController extends Controller {
   /**
@@ -76,7 +76,6 @@ public class OverviewController extends Controller {
    */
   @FXML
   public void cancel() throws IOException {
-    System.out.println("hei");
     if (this.validateOverview(false, true)) {
         if (UIUtils.showConfirmation("Cancel Workout",
         "Are you sure you want to cancel the workout? "
@@ -140,6 +139,7 @@ public class OverviewController extends Controller {
    * @param inputWorkout The workout to be displayed and managed in the
    *                     overview.
    */
+  
   public void init() {
     OverviewGridHandler ogh = new OverviewGridHandler(scrollPane, getMainController().getUser().getLatestWorkout());
     ogh.createGrid();
@@ -161,4 +161,4 @@ public class OverviewController extends Controller {
     date.setFont(new Font(DATEFONTSIZE));
     saveWorkoutNameBox.getChildren().addAll(name, date, cancelButton);
   }
-}
+} 
