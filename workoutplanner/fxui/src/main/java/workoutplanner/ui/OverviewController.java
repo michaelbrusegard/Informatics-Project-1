@@ -3,20 +3,14 @@ package workoutplanner.ui;
 import java.io.IOException;
 import java.util.Date;
 import javafx.fxml.FXML;
-import javafx.geometry.HPos;
-import javafx.geometry.VPos;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import workoutplanner.core.Exercise;
-import workoutplanner.core.Workout;
+import workoutplanner.fxutil.GridBuilder;
 import workoutplanner.fxutil.Overview;
 
 /**
@@ -65,27 +59,6 @@ public class OverviewController extends Controller {
    * Local int variable, used to define size of display-font for workout-date.
    */
   private static final int DATEFONTSIZE = 20;
-  /**
-   * Local int variable, used to define row height of the grid.
-   */
-  private final int ROWHEIGHT = 150;
-  /**
-   * Local int variable, used to define column width of the grid.
-   */
-  private final int COLUMNWIDTH = 199;
-  /**
-   * Local int variable, define how may columns.
-   */
-  private final int COLUMNS = 3;
-
-  /**
-   * Local int variable, used to define current row.
-   */
-  private int currentRow = 0;
-  /**
-   * Local int variable, used to define current column.
-   */
-  private int currentColumn = 0;
   /**
    * Local double variable, used to define the x-position of data in the cell.
    */
@@ -153,37 +126,8 @@ public class OverviewController extends Controller {
    * @implNote The exercises are retrieved from the associated workout.
    */
   public void init() {
-    Workout workout = getMainController().getUser().getLatestWorkout();
-
-    // Define RowConstraints and ColumnConstraints
-    RowConstraints rowConstraints = new RowConstraints(ROWHEIGHT, ROWHEIGHT, ROWHEIGHT, Priority.SOMETIMES, VPos.CENTER,
-        false);
-    ColumnConstraints columnConstraints = new ColumnConstraints(COLUMNWIDTH, COLUMNWIDTH, COLUMNWIDTH,
-        Priority.SOMETIMES, HPos.CENTER, false);
-
-    // Apply ColumnConstraints to the GridPane
-    for (int i = 0; i < COLUMNS; i++) {
-      gridPane.getColumnConstraints().add(columnConstraints);
-    }
-
-    // Add exercises to grid
-    workout.getExercises().forEach(exercise -> {
-      // Create a new cell for the exercise
-      Group cell = createCell(exercise);
-      // Add the cell to the grid at the current column and row
-      gridPane.add(cell, currentRow % COLUMNS, currentRow / COLUMNS);
-
-      // Update the current row and create new rows as needed
-      currentRow++;
-
-      // Add new rows if we need more rows
-      if (currentColumn < COLUMNS - 1) {
-        currentColumn++;
-      } else {
-        currentColumn = 0;
-        gridPane.getRowConstraints().add(rowConstraints);
-      }
-    });
+    new GridBuilder(gridPane,
+        getMainController().getUser().getLatestWorkout().getExercises(), this::createCell);
   }
 
   /**
@@ -197,38 +141,22 @@ public class OverviewController extends Controller {
    *
    * @param exercise The Exercise instance to be displayed in the cell.
    */
-  private Group createCell(Exercise exercise) {
+  private Group createCell(int index) {
     Group cellGroup = new Group();
-    Text name = new Text(exercise.name() + ":");
+    Text name = new Text(getMainController().getUser().getLatestWorkout().getExercises().get(index).name() + ":");
     name.setLayoutX(LAYOUTX);
     Font font = new Font(CELLFONTSIZE);
     name.setFont(font);
-    Text sets = new Text("Sets: " + exercise.sets());
-    Text reps = new Text("Reps: " + exercise.repMin()
-        + " - " + exercise.repMax());
-    Text weight = new Text("Weight: " + exercise.weight() + "kg");
+    Text sets = new Text("Sets: " + getMainController().getUser().getLatestWorkout().getExercises().get(index).sets());
+    Text reps = new Text("Reps: " + getMainController().getUser().getLatestWorkout().getExercises().get(index).repMin()
+        + " - " + getMainController().getUser().getLatestWorkout().getExercises().get(index).repMax());
+    Text weight = new Text(
+        "Weight: " + getMainController().getUser().getLatestWorkout().getExercises().get(index).weight() + "kg");
     cellGroup.getChildren().addAll(name, sets, reps, weight);
-    for (int index = 1; index < cellGroup.getChildren().size(); index++) {
-      cellGroup.getChildren().get(index).setLayoutY(index * LAYOUTY);
-      ((Text) cellGroup.getChildren().get(index)).setFont(font);
+    for (int i = 1; i < cellGroup.getChildren().size(); i++) {
+      cellGroup.getChildren().get(i).setLayoutY(i * LAYOUTY);
+      ((Text) cellGroup.getChildren().get(i)).setFont(font);
     }
     return cellGroup;
-  }
-
-  /**
-   * Loads the overview from a workout plan.
-   * <p>
-   * This method is responsible for gathering the information from a workout
-   * and displaying it. It gathers the workout name and date,
-   * as well as all the exercises that pertain to that workout.
-   * </p>
-   */
-  public void loadOverviewFromPlan() {
-    saveWorkoutNameBox.getChildren().clear();
-    Text name = new Text(getMainController().getUser().getLatestWorkout().getName());
-    name.setFont(new Font(NAMEFONTSIZE));
-    Text date = new Text(getMainController().getUser().getLatestWorkout().getDateAsString());
-    date.setFont(new Font(DATEFONTSIZE));
-    saveWorkoutNameBox.getChildren().addAll(name, date, cancelButton);
   }
 }
