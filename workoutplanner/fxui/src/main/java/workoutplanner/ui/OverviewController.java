@@ -5,6 +5,7 @@ import java.util.Date;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
+import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
@@ -14,6 +15,7 @@ import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import workoutplanner.core.Exercise;
 import workoutplanner.core.Workout;
 import workoutplanner.fxutil.Overview;
 
@@ -30,15 +32,6 @@ import workoutplanner.fxutil.Overview;
  * @version 2.0.0
  */
 public class OverviewController extends Controller {
-
-  /**
-   * Local int variable, used to define size of display-font for workout-name.
-   */
-  private static final int NAMEFONTSIZE = 40;
-  /**
-   * Local int variable, used to define size of display-font for workout-date.
-   */
-  private static final int DATEFONTSIZE = 20;
   /**
    * Imported VBox from javaFx, used to contain the viewable page.
    */
@@ -65,6 +58,14 @@ public class OverviewController extends Controller {
   @FXML
   private TextField inpName;
   /**
+   * Local int variable, used to define size of display-font for workout-name.
+   */
+  private static final int NAMEFONTSIZE = 40;
+  /**
+   * Local int variable, used to define size of display-font for workout-date.
+   */
+  private static final int DATEFONTSIZE = 20;
+  /**
    * Local int variable, used to define row height of the grid.
    */
   private final int ROWHEIGHT = 150;
@@ -85,6 +86,18 @@ public class OverviewController extends Controller {
    * Local int variable, used to define current column.
    */
   private int currentColumn = 0;
+  /**
+   * Local double variable, used to define the x-position of data in the cell.
+   */
+  private static final double LAYOUTX = -10.0;
+  /**
+   * Local int variable, used to define the y-position of data in the cell.
+   */
+  private static final int LAYOUTY = 30;
+  /**
+   * Local int variable, used to define the font size used in the cell.
+   */
+  private static final int CELLFONTSIZE = 18;
 
   /**
    * Creates and populates a grid within the ScrollPane
@@ -101,9 +114,6 @@ public class OverviewController extends Controller {
   public void init() {
     Workout workout = getMainController().getUser().getLatestWorkout();
 
-    // Clear any existing content in the GridPane
-    gridPane.getChildren().clear();
-
     // Define RowConstraints and ColumnConstraints
     RowConstraints rowConstraints = new RowConstraints(ROWHEIGHT, ROWHEIGHT, ROWHEIGHT, Priority.SOMETIMES, VPos.CENTER,
         false);
@@ -117,9 +127,10 @@ public class OverviewController extends Controller {
 
     // Add exercises to grid
     workout.getExercises().forEach(exercise -> {
-      ExerciseCell cell = new ExerciseCell(exercise);
+      // Create a new cell for the exercise
+      Group cell = createCell(exercise);
       // Add the cell to the grid at the current column and row
-      gridPane.add(cell.getGroup(), currentRow % COLUMNS, currentRow / COLUMNS);
+      gridPane.add(cell, currentRow % COLUMNS, currentRow / COLUMNS);
 
       // Update the current row and create new rows as needed
       currentRow++;
@@ -132,6 +143,35 @@ public class OverviewController extends Controller {
         gridPane.getRowConstraints().add(rowConstraints);
       }
     });
+  }
+
+  /**
+   * Constructs an ExerciseCell with the provided Exercise instance.
+   * <p>
+   * This constructor initializes an ExerciseCell
+   * with the given Exercise instance,
+   * allowing the cell to display information related to the exercise.
+   * It also triggers the creation of the data for the exercise cell.
+   * </p>
+   *
+   * @param exercise The Exercise instance to be displayed in the cell.
+   */
+  private Group createCell(Exercise exercise) {
+    Group cellGroup = new Group();
+    Text name = new Text(exercise.name() + ":");
+    name.setLayoutX(LAYOUTX);
+    Font font = new Font(CELLFONTSIZE);
+    name.setFont(font);
+    Text sets = new Text("Sets: " + exercise.sets());
+    Text reps = new Text("Reps: " + exercise.repMin()
+        + " - " + exercise.repMax());
+    Text weight = new Text("Weight: " + exercise.weight() + "kg");
+    cellGroup.getChildren().addAll(name, sets, reps, weight);
+    for (int index = 1; index < cellGroup.getChildren().size(); index++) {
+      cellGroup.getChildren().get(index).setLayoutY(index * LAYOUTY);
+      ((Text) cellGroup.getChildren().get(index)).setFont(font);
+    }
+    return cellGroup;
   }
 
   /**

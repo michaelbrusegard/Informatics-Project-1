@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-
+<?import javafx.scene.layout.GridPane?>
 
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="workoutplanner.ui.OverviewController">
    <children>
@@ -22,7 +22,7 @@
       </VBox>
       <ScrollPane fitToHeight="true" fitToWidth="true" pannable="true" prefHeight="600.0" prefWidth="600.0">
          <content>
-            <GridPane fx:id="gridPane" alignment="CENTER" gridLinesVisible="true" />
+            <GridPane fx:id="gridPane" alignment="CENTER" gridLinesVisible="true" prefHeight="600.0" prefWidth="600.0" />
          </content>
       </ScrollPane>
    </children>
