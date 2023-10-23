@@ -3,12 +3,18 @@ package workoutplanner.ui;
 import java.io.IOException;
 import java.util.Date;
 import javafx.fxml.FXML;
+import javafx.geometry.HPos;
+import javafx.geometry.VPos;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import workoutplanner.core.Workout;
 import workoutplanner.fxutil.Overview;
 
 /**
@@ -39,10 +45,10 @@ public class OverviewController extends Controller {
   @FXML
   private VBox saveWorkoutNameBox;
   /**
-   * Imported ScrollPane from javaFx, used to make a grid scrollable.
+   * Imported GridPane from javaFx, used to make a grid scrollable.
    */
   @FXML
-  private ScrollPane scrollPane;
+  private GridPane gridPane;
   /**
    * Imported Button from javaFx, used for cancel function.
    */
@@ -58,6 +64,75 @@ public class OverviewController extends Controller {
    */
   @FXML
   private TextField inpName;
+  /**
+   * Local int variable, used to define row height of the grid.
+   */
+  private final int ROWHEIGHT = 150;
+  /**
+   * Local int variable, used to define column width of the grid.
+   */
+  private final int COLUMNWIDTH = 199;
+  /**
+   * Local int variable, define how may columns.
+   */
+  private final int COLUMNS = 3;
+
+  /**
+   * Local int variable, used to define current row.
+   */
+  private int currentRow = 0;
+  /**
+   * Local int variable, used to define current column.
+   */
+  private int currentColumn = 0;
+
+  /**
+   * Creates and populates a grid within the ScrollPane
+   * to display workout exercises.
+   * <p>
+   * This method sets up a GridPane to represent the overview of exercises
+   * within the provided ScrollPane.
+   * It populates the grid with ExerciseCell elements,
+   * each displaying information about an exercise from the workout.
+   * </p>
+   *
+   * @implNote The exercises are retrieved from the associated workout.
+   */
+  public void init() {
+    Workout workout = getMainController().getUser().getLatestWorkout();
+
+    // Clear any existing content in the GridPane
+    gridPane.getChildren().clear();
+
+    // Define RowConstraints and ColumnConstraints
+    RowConstraints rowConstraints = new RowConstraints(ROWHEIGHT, ROWHEIGHT, ROWHEIGHT, Priority.SOMETIMES, VPos.CENTER,
+        false);
+    ColumnConstraints columnConstraints = new ColumnConstraints(COLUMNWIDTH, COLUMNWIDTH, COLUMNWIDTH,
+        Priority.SOMETIMES, HPos.CENTER, false);
+
+    // Apply ColumnConstraints to the GridPane
+    for (int i = 0; i < COLUMNS; i++) {
+      gridPane.getColumnConstraints().add(columnConstraints);
+    }
+
+    // Add exercises to grid
+    workout.getExercises().forEach(exercise -> {
+      ExerciseCell cell = new ExerciseCell(exercise);
+      // Add the cell to the grid at the current column and row
+      gridPane.add(cell.getGroup(), currentRow % COLUMNS, currentRow / COLUMNS);
+
+      // Update the current row and create new rows as needed
+      currentRow++;
+
+      // Add new rows if we need more rows
+      if (currentColumn < COLUMNS - 1) {
+        currentColumn++;
+      } else {
+        currentColumn = 0;
+        gridPane.getRowConstraints().add(rowConstraints);
+      }
+    });
+  }
 
   /**
    * Cancels the current operation and navigates to the Homepage.
@@ -98,22 +173,6 @@ public class OverviewController extends Controller {
       getMainController().getUser().getLatestWorkout().setDate(new Date());
       getMainController().showFXML("WorkoutView");
     }
-  }
-
-  /**
-   * Initializes the OverviewController with the provided workout and
-   * updates the user interface.
-   * <p>
-   * This method sets the internal 'workout' field
-   * to the provided 'theWorkout' and utilizes the OverviewGridHandler
-   * to create and update the workout overview grid within the user interface.
-   * </p>
-   *
-   */
-
-  public void init() {
-    OverviewGridHandler ogh = new OverviewGridHandler(scrollPane, getMainController().getUser().getLatestWorkout());
-    ogh.createGrid();
   }
 
   /**

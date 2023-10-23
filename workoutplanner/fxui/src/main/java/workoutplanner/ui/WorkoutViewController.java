@@ -44,6 +44,7 @@ public class WorkoutViewController extends Controller {
         for (int i = 0; i < colAmount; i++) {
             addColumn();
         }
+
         for (Workout w : workouts) {
             Text name = new Text("Name: " + w.getName());
             name.setFont(new Font(28));

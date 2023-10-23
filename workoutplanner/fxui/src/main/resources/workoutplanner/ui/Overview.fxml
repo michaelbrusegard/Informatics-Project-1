@@ -20,6 +20,10 @@
             </HBox>
          </children>
       </VBox>
-      <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" pannable="true" prefHeight="600.0" prefWidth="600.0" />
+      <ScrollPane fitToHeight="true" fitToWidth="true" pannable="true" prefHeight="600.0" prefWidth="600.0">
+         <content>
+            <GridPane fx:id="gridPane" alignment="CENTER" gridLinesVisible="true" />
+         </content>
+      </ScrollPane>
    </children>
 </VBox>

@@ -84,13 +84,12 @@ public class MainController {
         if (resource.equals("ExerciseView") && this.currentContainer == 0) {
           getUser().createWorkout();
         }
-        if(resource.equals("Overview") && this.currentContainer == 1){
+        if (resource.equals("Overview") && this.currentContainer == 1) {
           this.overviewController.init();
         }
-        if(resource.equals("WorkoutView") && this.currentContainer == 2){
-          // this.workoutView.init();
+        if (resource.equals("WorkoutView") && this.currentContainer == 2) {
+          this.workoutViewController.init();
         }
-
 
         container.setVisible(true);
         this.currentContainer = fxmlContainers.indexOf(container);
