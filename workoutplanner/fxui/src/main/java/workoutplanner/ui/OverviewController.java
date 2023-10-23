@@ -3,14 +3,12 @@ package workoutplanner.ui;
 import java.io.IOException;
 import java.util.Date;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import workoutplanner.fxutil.UIUtils;
 
 /**
  *  <h1>OverviewController.</h1>
@@ -25,10 +23,7 @@ import workoutplanner.fxutil.UIUtils;
  * @version 2.0.0
  */
 public class OverviewController extends Controller {
-  /**
-   * Local int variable, used to limit characters in Input-field.
-   */
-  private static final int CHARLIMIT = 20;
+
   /**
    * Local int variable, used to define size of display-font for workout-name.
    */
@@ -76,10 +71,8 @@ public class OverviewController extends Controller {
    */
   @FXML
   public void cancel() throws IOException {
-    if (this.validateOverview(false, true)) {
-        if (UIUtils.showConfirmation("Cancel Workout",
-        "Are you sure you want to cancel the workout? "
-            + "All progress will be lost.")) {
+    if (Overview.validateOverview(false, true,this.inpName)) {
+        if (Overview.checkIfCancel()) {
         getMainController().getUser().removeLatestWorkout();
         getMainController().showFXML("Home");
     }
@@ -98,33 +91,11 @@ public class OverviewController extends Controller {
    */
   @FXML
   public void save() throws IOException {
-    if (this.validateOverview(true, false)) {
+    if (Overview.validateOverview(true, false,this.inpName)) {
       getMainController().getUser().getLatestWorkout().setName(inpName.getText());
       getMainController().getUser().getLatestWorkout().setDate(new Date());
       getMainController().showFXML("WorkoutView");
     }
-  }
-
-  private boolean validateOverview(final boolean saved, final boolean close) {
-    if (inpName.getText().isEmpty() && saved) {
-      UIUtils.showAlert("Empty input-field",
-              "Input-field cannot be empty",
-              AlertType.ERROR);
-      return false;
-    } else if (inpName.getText().length() >= CHARLIMIT) {
-      UIUtils.showAlert("Too many characters in input-field",
-              "Name shouldn't be more than 20 characters",
-              AlertType.ERROR);
-      return false;
-    } else if (saved) {
-      UIUtils.showAlert("Save successful",
-              "Workout saved successfully",
-              AlertType.INFORMATION);
-      return true;
-    } else if (close) {
-      return true;
-    }
-  return true;
   }
 
   /**
@@ -136,8 +107,6 @@ public class OverviewController extends Controller {
    *   to create and update the workout overview grid within the user interface.
    * </p>
    *
-   * @param inputWorkout The workout to be displayed and managed in the
-   *                     overview.
    */
   
   public void init() {
