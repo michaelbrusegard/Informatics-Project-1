@@ -10,11 +10,11 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="workoutplanner.ui.OverviewController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="workoutplanner.ui.OverviewController">
    <children>
-      <VBox fx:id="saveWorkoutNameBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+      <VBox fx:id="saveWorkoutNameBox" alignment="CENTER">
          <children>
-            <TextField fx:id="inpName" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="226.0" promptText="Input name of workout here" style="-fx-border-color: gray; -fx-border-radius: 20; -fx-background-radius: 20;">
+            <TextField fx:id="inpName" maxWidth="-Infinity" minWidth="-Infinity" promptText="Input name of workout here" style="-fx-border-color: gray; -fx-border-radius: 10; -fx-background-radius: 10;">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -32,10 +32,10 @@
                   <Font size="16.0" />
                </font>
             </TextField>
-            <HBox alignment="TOP_CENTER" prefHeight="41.0" prefWidth="600.0" spacing="50.0">
+            <HBox alignment="TOP_CENTER" spacing="50.0">
                <children>
-                  <Button fx:id="cancelButton" cancelButton="true" minWidth="-Infinity" mnemonicParsing="false" prefHeight="42.0" prefWidth="90.0" text="Cancel" />
-                  <Button fx:id="saveButton" alignment="CENTER" defaultButton="true" minWidth="-Infinity" mnemonicParsing="false" prefHeight="42.0" prefWidth="90.0" text="Save">
+                  <Button fx:id="cancelButton" onAction="#cancel" cancelButton="true" minWidth="-Infinity" mnemonicParsing="false" text="Cancel" />
+                  <Button fx:id="saveButton" onAction="#save" alignment="CENTER" defaultButton="true" minWidth="-Infinity" mnemonicParsing="false" text="Save">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -47,7 +47,7 @@
             </HBox>
          </children>
       </VBox>
-      <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pannable="true" prefHeight="195.0" prefWidth="600.0">
+      <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pannable="true">
          <padding>
             <Insets left="50.0" right="25.0" />
          </padding>
