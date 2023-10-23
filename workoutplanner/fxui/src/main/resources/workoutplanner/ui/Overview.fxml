@@ -34,8 +34,8 @@
             </TextField>
             <HBox alignment="TOP_CENTER" prefHeight="41.0" prefWidth="600.0" spacing="50.0">
                <children>
-                  <Button fx:id="cancelButton" cancelButton="true" minWidth="-Infinity" mnemonicParsing="false" prefHeight="42.0" prefWidth="90.0" text="Cancel" />
-                  <Button fx:id="saveButton" alignment="CENTER" defaultButton="true" minWidth="-Infinity" mnemonicParsing="false" prefHeight="42.0" prefWidth="90.0" text="Save">
+                  <Button fx:id="cancelButton" onAction="#cancel" cancelButton="true" minWidth="-Infinity" mnemonicParsing="false" prefHeight="42.0" prefWidth="90.0" text="Cancel" />
+                  <Button fx:id="saveButton" onAction="#save" alignment="CENTER" defaultButton="true" minWidth="-Infinity" mnemonicParsing="false" prefHeight="42.0" prefWidth="90.0" text="Save">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
