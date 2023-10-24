@@ -10,4 +10,4 @@ The goal for the app is to be able to have a list of your personal workouts base
 ![exercices](../concepts/exercices.png)
 ![exercices 2](../concepts/exercices-2.png)
 ![overview](../concepts/overview.png)
-![plans](../concepts/plans.png)
+![plans](../concepts/workouts.png)
