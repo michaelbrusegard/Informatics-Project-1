@@ -68,6 +68,11 @@ public class ExerciseViewController extends Controller {
   private Button finishButton;
 
   /**
+   * Local int variable, used to define the index of the workout.
+   */
+  private int index = -1;
+
+  /**
    * Initializes the controller and sets up the user interface elements.
    * <p>
    * This method is called when the controller is initialized
@@ -115,7 +120,7 @@ public class ExerciseViewController extends Controller {
       int exerciseWeight = Integer.parseInt(weightText);
 
       // Add the exercise to the new workout
-      getMainController().getUser().getLatestWorkout().addExercise(exerciseName, exerciseSets, exerciseRepMin,
+      getMainController().getUser().getCurrentWorkout().addExercise(exerciseName, exerciseSets, exerciseRepMin,
           exerciseRepMax, exerciseWeight);
 
       ExerciseView.displayExerciseAddedPrompt(exerciseName, exerciseSets, exerciseRepMin, exerciseRepMax,
@@ -133,7 +138,7 @@ public class ExerciseViewController extends Controller {
         "Are you sure you want to cancel the workout? "
             + "All progress will be lost.")) {
       clearInputFields();
-      getMainController().getUser().removeLatestWorkout();
+      getMainController().getUser().removeCurrentWorkout();
       getMainController().showFXML("Home");
     }
   }
@@ -142,19 +147,26 @@ public class ExerciseViewController extends Controller {
   @FXML
   private void finish() throws IOException {
     // Check if the workout object is not null
-    if (getMainController().getUser().getLatestWorkout().getExerciseCount() == 0) {
+    if (getMainController().getUser().getCurrentWorkout().getExerciseCount() == 0) {
       UIUtils.showAlert("Error",
           "No exercises added to the workout.",
           AlertType.ERROR);
       return;
     }
     clearInputFields();
-    getMainController().showFXML("Overview");
+    // When loading overview with a workoutIndex of something other than -1 so it
+    // doesnt show the save workout name box
+    getMainController().showFXML("Overview", index);
   }
 
   // Start a new workout
-  public void init() {
-    getMainController().getUser().createWorkout();
+  public void init(int workoutIndex) {
+    this.index = workoutIndex;
+    if (workoutIndex != -1) {
+      getMainController().getUser().setCurrentWorkout(workoutIndex);
+    } else {
+      getMainController().getUser().createWorkout();
+    }
   }
 
   // Clear the input fields

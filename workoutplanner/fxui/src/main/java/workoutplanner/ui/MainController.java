@@ -77,15 +77,18 @@ public class MainController {
    * @param resource the new fxml
    */
   public void showFXML(String resource) {
+    showFXML(resource, -1);
+  }
+
+  public void showFXML(String resource, int workoutIndex) {
     fxmlContainers.get(this.currentContainer).setVisible(false);
     for (VBox container : fxmlContainers) {
       if (containerString.get(fxmlContainers.indexOf(container)).equals(resource)) {
-        // Create a new workout if the user goes to the exercise view from home
-        if (resource.equals("ExerciseView") && this.currentContainer == 0) {
-          this.exerciseViewController.init();
-        } else if (resource.equals("Overview") && this.currentContainer == 1) {
-          this.overviewController.init();
-        } else if (resource.equals("WorkoutView") && this.currentContainer == 2) {
+        if (resource.equals("ExerciseView")) {
+          this.exerciseViewController.init(workoutIndex);
+        } else if (resource.equals("Overview")) {
+          this.overviewController.init(workoutIndex);
+        } else if (resource.equals("WorkoutView")) {
           this.workoutViewController.init();
         }
 

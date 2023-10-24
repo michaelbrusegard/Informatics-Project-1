@@ -5,8 +5,9 @@ import java.util.Date;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -32,10 +33,15 @@ public class OverviewController extends Controller {
   @FXML
   private VBox saveWorkoutNameBox;
   /**
+   * Imported HBox from javaFx, used to display the workout information.
+   */
+  @FXML
+  private HBox workoutInfoBox;
+  /**
    * Imported GridPane from javaFx, used to make a grid scrollable.
    */
   @FXML
-  private GridPane gridPane;
+  private ScrollPane scrollPane;
   /**
    * Imported Button from javaFx, used for cancel function.
    */
@@ -47,30 +53,32 @@ public class OverviewController extends Controller {
   @FXML
   private Button saveButton;
   /**
+   * Imported Button from javaFx, used for adding exercises.
+   */
+  @FXML
+  private Button addExercisesButton;
+  /**
    * Imported TextField from javaFx, used for naming workout.
    */
   @FXML
-  private TextField inpName;
+  private TextField inputName;
+  /**
+   * Imported TextField from javaFx, used for displaying workout name.
+   */
+  @FXML
+  private Text name;
   /**
    * Local int variable, used to define size of display-font for workout-name.
    */
-  private static final int NAMEFONTSIZE = 40;
-  /**
-   * Local int variable, used to define size of display-font for workout-date.
-   */
-  private static final int DATEFONTSIZE = 20;
+  private static final int FONTSIZE = 18;
   /**
    * Local double variable, used to define the x-position of data in the cell.
    */
-  private static final double LAYOUTX = -10.0;
+  private static final double LAYOUTX = -10;
   /**
    * Local int variable, used to define the y-position of data in the cell.
    */
-  private static final int LAYOUTY = 30;
-  /**
-   * Local int variable, used to define the font size used in the cell.
-   */
-  private static final int CELLFONTSIZE = 18;
+  private static final int LAYOUTY = 20;
 
   /**
    * Cancels the current operation and navigates to the Homepage.
@@ -85,9 +93,9 @@ public class OverviewController extends Controller {
    */
   @FXML
   public void cancel() throws IOException {
-    if (Overview.validateOverview(false, true, this.inpName)) {
+    if (Overview.validateOverview(false, true, this.inputName)) {
       if (Overview.checkIfCancel()) {
-        getMainController().getUser().removeLatestWorkout();
+        getMainController().getUser().removeCurrentWorkout();
         getMainController().showFXML("Home");
       }
     }
@@ -106,11 +114,22 @@ public class OverviewController extends Controller {
    */
   @FXML
   public void save() throws IOException {
-    if (Overview.validateOverview(true, false, this.inpName)) {
-      getMainController().getUser().getLatestWorkout().setName(inpName.getText());
-      getMainController().getUser().getLatestWorkout().setDate(new Date());
+    if (Overview.validateOverview(true, false, this.inputName)) {
+      getMainController().getUser().getCurrentWorkout().setName(inputName.getText());
+      getMainController().getUser().getCurrentWorkout().setDate(new Date());
       getMainController().showFXML("WorkoutView");
     }
+  }
+
+  @FXML
+  private void returnBack() {
+    getMainController().showFXML("WorkoutView");
+  }
+
+  @FXML
+  private void addExercises() {
+    int index = getMainController().getUser().getCurrentWorkoutIndex();
+    getMainController().showFXML("ExerciseView", index);
   }
 
   /**
@@ -125,9 +144,23 @@ public class OverviewController extends Controller {
    *
    * @implNote The exercises are retrieved from the associated workout.
    */
-  public void init() {
-    new GridBuilder(gridPane,
-        getMainController().getUser().getLatestWorkout().getExercises(), this::createCell);
+  public void init(int index) {
+    if (index != -1) {
+      saveWorkoutNameBox.setVisible(false);
+      workoutInfoBox.setVisible(true);
+      name.setText(getMainController().getUser().getWorkouts().get(index).getName());
+    } else {
+      workoutInfoBox.setVisible(false);
+      saveWorkoutNameBox.setVisible(true);
+    }
+    saveWorkoutNameBox.managedProperty().bind(saveWorkoutNameBox.visibleProperty());
+    workoutInfoBox.managedProperty().bind(workoutInfoBox.visibleProperty());
+    // Clear name and scrollpane
+    inputName.clear();
+    scrollPane.setContent(new Group());
+    // Create grid
+    new GridBuilder(scrollPane,
+        getMainController().getUser().getCurrentWorkout().getExercises(), this::createCell);
   }
 
   /**
@@ -139,24 +172,23 @@ public class OverviewController extends Controller {
    * It also triggers the creation of the data for the exercise cell.
    * </p>
    *
-   * @param exercise The Exercise instance to be displayed in the cell.
+   * @param index The index of the Exercise to be displayed in the cell.
    */
   private Group createCell(int index) {
-    Group cellGroup = new Group();
-    Text name = new Text(getMainController().getUser().getLatestWorkout().getExercises().get(index).name() + ":");
+    Group cell = new Group();
+    Text name = new Text(getMainController().getUser().getCurrentWorkout().getExercises().get(index).name() + ":");
     name.setLayoutX(LAYOUTX);
-    Font font = new Font(CELLFONTSIZE);
-    name.setFont(font);
-    Text sets = new Text("Sets: " + getMainController().getUser().getLatestWorkout().getExercises().get(index).sets());
-    Text reps = new Text("Reps: " + getMainController().getUser().getLatestWorkout().getExercises().get(index).repMin()
-        + " - " + getMainController().getUser().getLatestWorkout().getExercises().get(index).repMax());
+
+    name.setFont(new Font(FONTSIZE));
+    Text sets = new Text("Sets: " + getMainController().getUser().getCurrentWorkout().getExercises().get(index).sets());
+    Text reps = new Text("Reps: " + getMainController().getUser().getCurrentWorkout().getExercises().get(index).repMin()
+        + " - " + getMainController().getUser().getCurrentWorkout().getExercises().get(index).repMax());
     Text weight = new Text(
-        "Weight: " + getMainController().getUser().getLatestWorkout().getExercises().get(index).weight() + "kg");
-    cellGroup.getChildren().addAll(name, sets, reps, weight);
-    for (int i = 1; i < cellGroup.getChildren().size(); i++) {
-      cellGroup.getChildren().get(i).setLayoutY(i * LAYOUTY);
-      ((Text) cellGroup.getChildren().get(i)).setFont(font);
+        "Weight: " + getMainController().getUser().getCurrentWorkout().getExercises().get(index).weight() + "kg");
+    cell.getChildren().addAll(name, sets, reps, weight);
+    for (int i = 1; i < cell.getChildren().size(); i++) {
+      cell.getChildren().get(i).setLayoutY(i * LAYOUTY);
     }
-    return cellGroup;
+    return cell;
   }
 }
