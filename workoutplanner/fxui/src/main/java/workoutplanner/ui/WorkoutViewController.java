@@ -1,68 +1,83 @@
 package workoutplanner.ui;
 
 import javafx.fxml.FXML;
-import javafx.geometry.HPos;
-import javafx.geometry.VPos;
+import javafx.geometry.Pos;
+import javafx.scene.Group;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import workoutplanner.core.Workout;
-
-import java.util.List;
+import workoutplanner.fxutil.GridBuilder;
+import workoutplanner.fxutil.UIUtils;
 
 public class WorkoutViewController extends Controller {
 
     @FXML
     private ScrollPane scrollPane;
+    /**
+     * Local int variable, used to define size of display-font for workout-name.
+     */
+    private static final int FONTSIZE = 20;
+    /**
+     * Local int variable, used to define the y-position of data in the cell.
+     */
+    private static final int LAYOUTY = 28;
 
     @FXML
-    private GridPane gridPane;
+    private void returnBack() {
+        getMainController().showFXML("Home");
+    }
 
     public void init() {
-        List<Workout> workouts = getMainController().getUser().getWorkouts();
-        fillGrid(workouts);
-    }
-
-    public void fillGrid(List<Workout> workouts) {
-        int row = 0;
-        int col = 0;
-
-        addRow();
-        int colAmount;
-        if (workouts.size() <= 1) {
-            colAmount = 1;
-        } else if (workouts.size() == 2) {
-            colAmount = 2;
+        // Clear scrollpane
+        scrollPane.setContent(new Group());
+        // Create grid if there are workouts
+        if (getMainController().getUser().getWorkouts().size() > 0) {
+            new GridBuilder(scrollPane,
+                    getMainController().getUser().getWorkouts(), this::createCell);
         } else {
-            colAmount = 3;
-        }
-
-        for (int i = 0; i < colAmount; i++) {
-            addColumn();
-        }
-        for (Workout w : workouts) {
-            Text name = new Text("Name: " + w.getName());
-            name.setFont(new Font(28));
-            gridPane.add(name, col, row);
-            col++;
-            if (col == 3) {
-                col = 0;
-                row++;
-                addRow();
-            }
+            VBox container = new VBox();
+            Text noWorkouts = new Text("You don't have any workouts yet.");
+            noWorkouts.setFont(new Font(FONTSIZE));
+            container.getChildren().add(noWorkouts);
+            container.setAlignment(Pos.CENTER);
+            scrollPane.setContent(container);
         }
     }
 
-    private void addRow() {
-        gridPane.getRowConstraints().add(new RowConstraints(150, 150, 150, Priority.SOMETIMES, VPos.CENTER, false));
+    private Group createCell(int index) {
+        Group cell = new Group();
+        Text name = new Text(getMainController().getUser().getWorkouts().get(index).getName());
+        name.setFont(new Font(FONTSIZE));
+        Text date = new Text(getMainController().getUser().getWorkouts().get(index).getDateAsString());
+        date.setLayoutY(LAYOUTY);
+        // Define buttons
+        Button viewButton = new Button("View");
+        Button deleteButton = new Button("Delete");
+        viewButton.setOnAction(event -> view(index));
+        deleteButton.setOnAction(event -> delete(index));
+        HBox buttonBox = new HBox(viewButton, deleteButton);
+        buttonBox.setAlignment(Pos.CENTER);
+        buttonBox.setSpacing(10);
+        buttonBox.setLayoutY(1.5 * LAYOUTY);
+        cell.getChildren().addAll(name, date, buttonBox);
+        return cell;
     }
 
-    private void addColumn() {
-        gridPane.getColumnConstraints()
-                .add(new ColumnConstraints(250, 250, 250, Priority.SOMETIMES, HPos.CENTER, false));
+    private void view(int index) {
+        getMainController().getUser().setCurrentWorkout(index);
+        getMainController().showFXML("Overview", index);
+    }
+
+    private void delete(int index) {
+        if (UIUtils.showConfirmation("Delete Workout",
+                "Are you sure you want to delete " + getMainController().getUser().getWorkouts().get(index).getName()
+                        + "? "
+                        + "All exercise data will be lost.")) {
+            getMainController().getUser().getWorkouts().remove(index);
+            init();
+        }
     }
 }

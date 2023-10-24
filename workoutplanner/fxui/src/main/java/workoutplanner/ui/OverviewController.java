@@ -3,12 +3,15 @@ package workoutplanner.ui;
 import java.io.IOException;
 import java.util.Date;
 import javafx.fxml.FXML;
+import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import workoutplanner.fxutil.GridBuilder;
 import workoutplanner.fxutil.Overview;
 
 /**
@@ -24,22 +27,18 @@ import workoutplanner.fxutil.Overview;
  * @version 2.0.0
  */
 public class OverviewController extends Controller {
-
-  /**
-   * Local int variable, used to define size of display-font for workout-name.
-   */
-  private static final int NAMEFONTSIZE = 40;
-  /**
-   * Local int variable, used to define size of display-font for workout-date.
-   */
-  private static final int DATEFONTSIZE = 20;
   /**
    * Imported VBox from javaFx, used to contain the viewable page.
    */
   @FXML
   private VBox saveWorkoutNameBox;
   /**
-   * Imported ScrollPane from javaFx, used to make a grid scrollable.
+   * Imported HBox from javaFx, used to display the workout information.
+   */
+  @FXML
+  private HBox workoutInfoBox;
+  /**
+   * Imported GridPane from javaFx, used to make a grid scrollable.
    */
   @FXML
   private ScrollPane scrollPane;
@@ -54,10 +53,32 @@ public class OverviewController extends Controller {
   @FXML
   private Button saveButton;
   /**
+   * Imported Button from javaFx, used for adding exercises.
+   */
+  @FXML
+  private Button addExercisesButton;
+  /**
    * Imported TextField from javaFx, used for naming workout.
    */
   @FXML
-  private TextField inpName;
+  private TextField inputName;
+  /**
+   * Imported TextField from javaFx, used for displaying workout name.
+   */
+  @FXML
+  private Text name;
+  /**
+   * Local int variable, used to define size of display-font for workout-name.
+   */
+  private static final int FONTSIZE = 18;
+  /**
+   * Local double variable, used to define the x-position of data in the cell.
+   */
+  private static final double LAYOUTX = -10;
+  /**
+   * Local int variable, used to define the y-position of data in the cell.
+   */
+  private static final int LAYOUTY = 20;
 
   /**
    * Cancels the current operation and navigates to the Homepage.
@@ -72,9 +93,9 @@ public class OverviewController extends Controller {
    */
   @FXML
   public void cancel() throws IOException {
-    if (Overview.validateOverview(false, true, this.inpName)) {
+    if (Overview.validateOverview(false, true, this.inputName)) {
       if (Overview.checkIfCancel()) {
-        getMainController().getUser().removeLatestWorkout();
+        getMainController().getUser().removeCurrentWorkout();
         getMainController().showFXML("Home");
       }
     }
@@ -93,43 +114,81 @@ public class OverviewController extends Controller {
    */
   @FXML
   public void save() throws IOException {
-    if (Overview.validateOverview(true, false, this.inpName)) {
-      getMainController().getUser().getLatestWorkout().setName(inpName.getText());
-      getMainController().getUser().getLatestWorkout().setDate(new Date());
+    if (Overview.validateOverview(true, false, this.inputName)) {
+      getMainController().getUser().getCurrentWorkout().setName(inputName.getText());
+      getMainController().getUser().getCurrentWorkout().setDate(new Date());
       getMainController().showFXML("WorkoutView");
     }
   }
 
-  /**
-   * Initializes the OverviewController with the provided workout and
-   * updates the user interface.
-   * <p>
-   * This method sets the internal 'workout' field
-   * to the provided 'theWorkout' and utilizes the OverviewGridHandler
-   * to create and update the workout overview grid within the user interface.
-   * </p>
-   *
-   */
+  @FXML
+  private void returnBack() {
+    getMainController().showFXML("WorkoutView");
+  }
 
-  public void init() {
-    OverviewGridHandler ogh = new OverviewGridHandler(scrollPane, getMainController().getUser().getLatestWorkout());
-    ogh.createGrid();
+  @FXML
+  private void addExercises() {
+    int index = getMainController().getUser().getCurrentWorkoutIndex();
+    getMainController().showFXML("ExerciseView", index);
   }
 
   /**
-   * Loads the overview from a workout plan.
+   * Creates and populates a grid within the ScrollPane
+   * to display workout exercises.
    * <p>
-   * This method is responsible for gathering the information from a workout
-   * and displaying it. It gathers the workout name and date,
-   * as well as all the exercises that pertain to that workout.
+   * This method sets up a GridPane to represent the overview of exercises
+   * within the provided ScrollPane.
+   * It populates the grid with ExerciseCell elements,
+   * each displaying information about an exercise from the workout.
    * </p>
+   *
+   * @implNote The exercises are retrieved from the associated workout.
    */
-  public void loadOverviewFromPlan() {
-    saveWorkoutNameBox.getChildren().clear();
-    Text name = new Text(getMainController().getUser().getLatestWorkout().getName());
-    name.setFont(new Font(NAMEFONTSIZE));
-    Text date = new Text(getMainController().getUser().getLatestWorkout().getDateAsString());
-    date.setFont(new Font(DATEFONTSIZE));
-    saveWorkoutNameBox.getChildren().addAll(name, date, cancelButton);
+  public void init(int index) {
+    if (index != -1) {
+      saveWorkoutNameBox.setVisible(false);
+      workoutInfoBox.setVisible(true);
+      name.setText(getMainController().getUser().getWorkouts().get(index).getName());
+    } else {
+      workoutInfoBox.setVisible(false);
+      saveWorkoutNameBox.setVisible(true);
+    }
+    saveWorkoutNameBox.managedProperty().bind(saveWorkoutNameBox.visibleProperty());
+    workoutInfoBox.managedProperty().bind(workoutInfoBox.visibleProperty());
+    // Clear name and scrollpane
+    inputName.clear();
+    scrollPane.setContent(new Group());
+    // Create grid
+    new GridBuilder(scrollPane,
+        getMainController().getUser().getCurrentWorkout().getExercises(), this::createCell);
+  }
+
+  /**
+   * Constructs an ExerciseCell with the provided Exercise instance.
+   * <p>
+   * This constructor initializes an ExerciseCell
+   * with the given Exercise instance,
+   * allowing the cell to display information related to the exercise.
+   * It also triggers the creation of the data for the exercise cell.
+   * </p>
+   *
+   * @param index The index of the Exercise to be displayed in the cell.
+   */
+  private Group createCell(int index) {
+    Group cell = new Group();
+    Text name = new Text(getMainController().getUser().getCurrentWorkout().getExercises().get(index).name() + ":");
+    name.setLayoutX(LAYOUTX);
+
+    name.setFont(new Font(FONTSIZE));
+    Text sets = new Text("Sets: " + getMainController().getUser().getCurrentWorkout().getExercises().get(index).sets());
+    Text reps = new Text("Reps: " + getMainController().getUser().getCurrentWorkout().getExercises().get(index).repMin()
+        + " - " + getMainController().getUser().getCurrentWorkout().getExercises().get(index).repMax());
+    Text weight = new Text(
+        "Weight: " + getMainController().getUser().getCurrentWorkout().getExercises().get(index).weight() + "kg");
+    cell.getChildren().addAll(name, sets, reps, weight);
+    for (int i = 1; i < cell.getChildren().size(); i++) {
+      cell.getChildren().get(i).setLayoutY(i * LAYOUTY);
+    }
+    return cell;
   }
 }
