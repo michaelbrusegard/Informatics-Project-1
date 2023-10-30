@@ -8,6 +8,7 @@ import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -238,6 +239,13 @@ public class OverviewController extends Controller {
   }
 
   private void delete(int exerciseIndex) {
+    if (getMainController().getUser().getCurrentWorkout().getExerciseCount() == 1) {
+      UIUtils.showAlert("Error",
+          "Cannot delete the last exercise in a workout.",
+          AlertType.ERROR);
+      return;
+    }
+
     if (UIUtils.showConfirmation("Delete Exercise",
         "Are you sure you want to delete "
             + getMainController().getUser().getCurrentWorkout().getExercises().get(exerciseIndex).name()
