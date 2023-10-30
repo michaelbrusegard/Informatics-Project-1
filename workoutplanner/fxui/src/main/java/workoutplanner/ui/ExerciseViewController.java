@@ -62,15 +62,14 @@ public class ExerciseViewController extends Controller {
   @FXML
   private ListView<String> list;
   /**
-   * Imported Button from javaFx, used to finish creating a workout.
+   * Imported Button from javaFx, used to cancel creating a workout.
    */
   @FXML
-  private Button finishButton;
-
+  private Button cancelButton;
   /**
-   * Local int variable, used to define the index of the workout.
+   * Boolean variable, used to check if the user is editing a workout.
    */
-  private int index = -1;
+  private boolean isEditing;
 
   /**
    * Initializes the controller and sets up the user interface elements.
@@ -156,15 +155,21 @@ public class ExerciseViewController extends Controller {
     clearInputFields();
     // When loading overview with a workoutIndex of something other than -1 so it
     // doesnt show the save workout name box
-    getMainController().showFXML("Overview", index);
+    if (isEditing) {
+      getMainController().showFXML("Overview", getMainController().getUser().getCurrentWorkoutIndex());
+    } else {
+      getMainController().showFXML("Overview", -1);
+    }
   }
 
   // Start a new workout
   public void init(int workoutIndex) {
-    this.index = workoutIndex;
     if (workoutIndex != -1) {
+      isEditing = true;
+      cancelButton.setVisible(false);
       getMainController().getUser().setCurrentWorkout(workoutIndex);
     } else {
+      isEditing = false;
       getMainController().getUser().createWorkout();
     }
   }

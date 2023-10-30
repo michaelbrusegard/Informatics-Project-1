@@ -31,6 +31,11 @@ public class User {
     }
 
     // Remove a workout from the list of workouts
+    public void removeWorkout(int workoutIndex) {
+        this.workouts.remove(workoutIndex);
+    }
+
+    // Remove a workout from the list of workouts
     public void removeCurrentWorkout() {
         this.workouts.remove(this.currentWorkout);
         this.currentWorkout = null;

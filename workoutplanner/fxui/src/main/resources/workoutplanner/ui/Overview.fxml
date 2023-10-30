@@ -25,7 +25,7 @@
       </VBox>
       <HBox fx:id="workoutInfoBox" alignment="CENTER_LEFT" prefHeight="300.0" prefWidth="600.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#returnBack" text="Return">
+            <Button mnemonicParsing="false" onAction="#returnAllWorkouts" text="All Workouts">
                <HBox.margin>
                   <Insets left="20.0" right="40.0" />
                </HBox.margin>
