@@ -62,10 +62,10 @@ public class ExerciseViewController extends Controller {
   @FXML
   private ListView<String> list;
   /**
-   * Imported Button from javaFx, used to finish creating a workout.
+   * Imported Button from javaFx, used to cancel creating a workout.
    */
   @FXML
-  private Button finishButton;
+  private Button cancelButton;
 
   /**
    * Local int variable, used to define the index of the workout.
@@ -163,6 +163,7 @@ public class ExerciseViewController extends Controller {
   public void init(int workoutIndex) {
     this.index = workoutIndex;
     if (workoutIndex != -1) {
+      cancelButton.setVisible(false);
       getMainController().getUser().setCurrentWorkout(workoutIndex);
     } else {
       getMainController().getUser().createWorkout();

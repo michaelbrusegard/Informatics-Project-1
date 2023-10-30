@@ -12,6 +12,16 @@ import javafx.scene.text.Text;
 import workoutplanner.fxutil.GridBuilder;
 import workoutplanner.fxutil.UIUtils;
 
+/**
+ * <h1>WorkoutViewController</h1>
+ * <p>
+ * The WorkoutViewController class is responsible for listing all workouts.
+ * </p>
+ *
+ * @since 2.0.0
+ * @author Michael Brusegard
+ * @version 2.0.0
+ */
 public class WorkoutViewController extends Controller {
 
     @FXML
@@ -26,7 +36,7 @@ public class WorkoutViewController extends Controller {
     private static final int LAYOUTY = 28;
 
     @FXML
-    private void returnBack() {
+    private void returnHome() {
         getMainController().showFXML("Home");
     }
 

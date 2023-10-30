@@ -23,7 +23,7 @@ import workoutplanner.fxutil.Overview;
  * </p>
  *
  * @since 1.0.0
- * @author Erlend Løken Sæveraas
+ * @author Erlend Løken Sæveraas + Michael Brusegard
  * @version 2.0.0
  */
 public class OverviewController extends Controller {
@@ -122,7 +122,7 @@ public class OverviewController extends Controller {
   }
 
   @FXML
-  private void returnBack() {
+  private void returnAllWorkouts() {
     getMainController().showFXML("WorkoutView");
   }
 
