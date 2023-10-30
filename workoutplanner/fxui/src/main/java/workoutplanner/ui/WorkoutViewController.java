@@ -57,17 +57,17 @@ public class WorkoutViewController extends Controller {
         }
     }
 
-    private Group createCell(int index) {
+    private Group createCell(int workoutIndex) {
         Group cell = new Group();
-        Text name = new Text(getMainController().getUser().getWorkouts().get(index).getName());
+        Text name = new Text(getMainController().getUser().getWorkouts().get(workoutIndex).getName());
         name.setFont(new Font(FONTSIZE));
-        Text date = new Text(getMainController().getUser().getWorkouts().get(index).getDateAsString());
+        Text date = new Text(getMainController().getUser().getWorkouts().get(workoutIndex).getDateAsString());
         date.setLayoutY(LAYOUTY);
         // Define buttons
         Button viewButton = new Button("View");
         Button deleteButton = new Button("Delete");
-        viewButton.setOnAction(event -> view(index));
-        deleteButton.setOnAction(event -> delete(index));
+        viewButton.setOnAction(event -> view(workoutIndex));
+        deleteButton.setOnAction(event -> delete(workoutIndex));
         HBox buttonBox = new HBox(viewButton, deleteButton);
         buttonBox.setAlignment(Pos.CENTER);
         buttonBox.setSpacing(10);
@@ -76,17 +76,18 @@ public class WorkoutViewController extends Controller {
         return cell;
     }
 
-    private void view(int index) {
-        getMainController().getUser().setCurrentWorkout(index);
-        getMainController().showFXML("Overview", index);
+    private void view(int workoutIndex) {
+        getMainController().getUser().setCurrentWorkout(workoutIndex);
+        getMainController().showFXML("Overview", workoutIndex);
     }
 
-    private void delete(int index) {
+    private void delete(int workoutIndex) {
         if (UIUtils.showConfirmation("Delete Workout",
-                "Are you sure you want to delete " + getMainController().getUser().getWorkouts().get(index).getName()
+                "Are you sure you want to delete "
+                        + getMainController().getUser().getWorkouts().get(workoutIndex).getName()
                         + "? "
-                        + "All exercise data will be lost.")) {
-            getMainController().getUser().getWorkouts().remove(index);
+                        + "All workout data will be lost.")) {
+            getMainController().getUser().removeWorkout(workoutIndex);
             init();
         }
     }
