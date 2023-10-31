@@ -53,7 +53,7 @@ public class WorkoutViewController extends Controller {
                     getMainController().getUser().getWorkouts(), this::createCell);
         } else {
             VBox container = new VBox();
-            Text noWorkouts = new Text("You don't have any workouts yet.");
+            Text noWorkouts = new Text("You don't have any workouts.");
             noWorkouts.setFont(new Font(FONT_FAMILY, FONTSIZE));
             container.getChildren().add(noWorkouts);
             container.setAlignment(Pos.CENTER);
