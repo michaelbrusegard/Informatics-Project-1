@@ -35,7 +35,7 @@ public class GridBuilder {
   /**
    * Local int variable, used to define row height of the grid.
    */
-  private static final int ROWHEIGHT = 175;
+  private static final int ROWHEIGHT = 169;
   /**
    * Local int variable, used to define column width of the grid.
    */

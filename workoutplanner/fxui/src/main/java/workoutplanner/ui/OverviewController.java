@@ -78,14 +78,6 @@ public class OverviewController extends Controller {
    */
   private static final String FONT_FAMILY = "SansSerif";
   /**
-   * Local double variable, used to define the x-position of data in the cell.
-   */
-  private static final double LAYOUTX = 0;
-  /**
-   * Local int variable, used to define the y-position of data in the cell.
-   */
-  private static final int LAYOUTY = 15;
-  /**
    * Local boolean variable, used to kep track of whether the workout is saved or
    * not when updating the workout.
    */
@@ -193,7 +185,6 @@ public class OverviewController extends Controller {
     // Create text elements
     Text name = new Text(
         getMainController().getUser().getCurrentWorkout().getExercises().get(exerciseIndex).name() + ":");
-    name.setLayoutX(LAYOUTX);
     name.setFont(new Font(FONT_FAMILY,FONTSIZE));
     Text sets = new Text(
         "Sets: " + getMainController().getUser().getCurrentWorkout().getExercises().get(exerciseIndex).sets());
@@ -210,6 +201,15 @@ public class OverviewController extends Controller {
     "-fx-background-color:  white;"+
     "-fx-bounds-type: visual";
 
+    String deleteButtonStyle = "-fx-pref-width: 80;"+
+    "-fx-pref-height: 35;"+
+    "-fx-background-insets: 2;"+
+    "-fx-background-color:  white;"+
+    "-fx-border-color:  #666666;"+
+    "-fx-border-width: 2;"+
+    "-fx-background-radius: 20;"+
+    "-fx-border-radius: 10;";
+
     Button moveLeftButton = new Button("←");
     moveLeftButton.setStyle(defaultButton);
     Button moveRightButton = new Button("→");
@@ -222,7 +222,7 @@ public class OverviewController extends Controller {
     // Delete button
     Button deleteButton = new Button("Delete");
     deleteButton.setOnAction(event -> delete(exerciseIndex));
-    deleteButton.setStyle(defaultButton);
+    deleteButton.setStyle(deleteButtonStyle);
     
     // VBox for the content of the cell
     VBox contentBox = new VBox();    
