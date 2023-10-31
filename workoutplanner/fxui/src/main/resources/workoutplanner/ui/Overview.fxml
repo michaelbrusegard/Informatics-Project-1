@@ -16,8 +16,8 @@
             <TextField fx:id="inputName" maxWidth="-Infinity" minWidth="-Infinity" promptText="Input name of workout" styleClass="inputField" stylesheets="@style.css" />
             <HBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="46.0" prefWidth="600.0" spacing="50.0">
                <children>
-                  <Button fx:id="cancelButton" cancelButton="true" minWidth="-Infinity" mnemonicParsing="false" onAction="#cancel" prefHeight="44.0" prefWidth="81.0" style="-fx-border-color: #008484; -fx-border-radius: 20;" styleClass="inverseButton" stylesheets="@style.css" text="Cancel" textFill="#008484" />
-                  <Button fx:id="saveButton" alignment="CENTER" minWidth="-Infinity" mnemonicParsing="false" onAction="#save" prefHeight="42.0" prefWidth="68.0" style="-fx-background-color: #008484; -fx-background-radius: 20;" styleClass="regularButton" stylesheets="@style.css" text="Save" textFill="WHITE" />
+                  <Button fx:id="cancelButton" cancelButton="true" minWidth="-Infinity" mnemonicParsing="false" onAction="#cancel" prefHeight="44.0" prefWidth="81.0" style="-fx-border-radius: 20;" styleClass="inverseButton" stylesheets="@style.css" text="Cancel" textFill="#008484" />
+                  <Button fx:id="saveButton" alignment="CENTER" minWidth="-Infinity" mnemonicParsing="false" onAction="#save" prefHeight="42.0" prefWidth="68.0" style="-fx-background-radius: 20;" styleClass="regularButton" stylesheets="@style.css" text="Save" textFill="WHITE" />
                </children>
             </HBox>
          </children>
@@ -30,7 +30,7 @@
       </VBox>
       <HBox fx:id="workoutInfoBox" alignment="CENTER" prefHeight="300.0" prefWidth="600.0" style="-fx-background-color: #FF7B7B;">
          <children>
-            <Button mnemonicParsing="false" onAction="#returnAllWorkouts" prefHeight="32.0" prefWidth="95.0" style="-fx-border-color: #008484; -fx-border-radius: 20; -fx-pref-width: 90;" styleClass="inverseButton" stylesheets="@style.css" text="All Workouts">
+            <Button mnemonicParsing="false" onAction="#returnAllWorkouts" prefHeight="32.0" prefWidth="95.0" style="-fx-border-radius: 20; -fx-pref-width: 90;" styleClass="inverseButton" stylesheets="@style.css" text="All Workouts">
                <HBox.margin>
                   <Insets left="20.0" right="40.0" />
                </HBox.margin>
@@ -40,7 +40,7 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <Button mnemonicParsing="false" onAction="#addExercises" style="-fx-pref-width: 100; -fx-background-color: #008484;" styleClass="regularButton" stylesheets="@style.css" text="Add Exercices" textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#addExercises" style="-fx-pref-width: 100;" styleClass="regularButton" stylesheets="@style.css" text="Add Exercices" textFill="WHITE">
                <HBox.margin>
                   <Insets left="80.0" right="20.0" />
                </HBox.margin>

@@ -37,7 +37,7 @@
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Create new workout:">
                      <font>
-                        <Font size="23.0" />
+                        <Font name="SansSerif Regular" size="23.0" />
                      </font>
                      <VBox.margin>
                         <Insets bottom="20.0" />
@@ -67,7 +67,7 @@
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="All workouts:">
                      <font>
-                        <Font size="23.0" />
+                        <Font name="Arial" size="23.0" />
                      </font>
                      <VBox.margin>
                         <Insets bottom="20.0" />

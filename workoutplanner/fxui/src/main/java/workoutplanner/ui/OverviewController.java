@@ -74,6 +74,10 @@ public class OverviewController extends Controller {
    */
   private static final int FONTSIZE = 20;
   /**
+   * Local int variable, used to define size of display-font for workout-name.
+   */
+  private static final String FONT_FAMILY = "SansSerif";
+  /**
    * Local double variable, used to define the x-position of data in the cell.
    */
   private static final double LAYOUTX = 0;
@@ -190,7 +194,7 @@ public class OverviewController extends Controller {
     Text name = new Text(
         getMainController().getUser().getCurrentWorkout().getExercises().get(exerciseIndex).name() + ":");
     name.setLayoutX(LAYOUTX);
-    name.setFont(new Font(FONTSIZE));
+    name.setFont(new Font(FONT_FAMILY,FONTSIZE));
     Text sets = new Text(
         "Sets: " + getMainController().getUser().getCurrentWorkout().getExercises().get(exerciseIndex).sets());
     Text reps = new Text(
@@ -218,13 +222,12 @@ public class OverviewController extends Controller {
     // Delete button
     Button deleteButton = new Button("Delete");
     deleteButton.setOnAction(event -> delete(exerciseIndex));
+    deleteButton.setStyle(defaultButton);
     
     // VBox for the content of the cell
     VBox contentBox = new VBox();    
     contentBox.getChildren().addAll(sets, reps, weight, deleteButton);
-    for (int i = 0; i < cell.getChildren().size(); i++) {
-      cell.getChildren().get(i).setLayoutY(i * LAYOUTY);
-    }
+    contentBox.setSpacing(10);
     cell.setStyle("-fx-alignment: CENTER");
 
     // HBox for the move buttons and the content in the middle
