@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Date;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -228,7 +229,7 @@ public class OverviewController extends Controller {
     VBox contentBox = new VBox();    
     contentBox.getChildren().addAll(sets, reps, weight, deleteButton);
     contentBox.setSpacing(10);
-    cell.setStyle("-fx-alignment: CENTER");
+    cell.setAlignment(Pos.CENTER);
 
     // HBox for the move buttons and the content in the middle
     HBox moveContentBox = new HBox(moveLeftButton,contentBox, moveRightButton);
