@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -12,35 +11,44 @@
 
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="workoutplanner.ui.OverviewController">
    <children>
-      <VBox fx:id="saveWorkoutNameBox" alignment="CENTER" prefHeight="400.0" prefWidth="600.0">
+      <VBox fx:id="saveWorkoutNameBox" alignment="CENTER" prefHeight="400.0" prefWidth="600.0" spacing="20.0" style="-fx-background-color: #FF7B7B;">
          <children>
-            <TextField fx:id="inputName" maxWidth="-Infinity" minWidth="-Infinity" promptText="Input name of workout" />
-            <HBox alignment="CENTER" spacing="50.0">
+            <TextField fx:id="inputName" maxWidth="-Infinity" minWidth="-Infinity" promptText="Input name of workout" styleClass="inputField" stylesheets="@style.css" />
+            <HBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="46.0" prefWidth="600.0" spacing="50.0">
                <children>
-                  <Button fx:id="cancelButton" cancelButton="true" minWidth="-Infinity" mnemonicParsing="false" onAction="#cancel" text="Cancel" />
-                  <Button fx:id="saveButton" alignment="CENTER" defaultButton="true" minWidth="-Infinity" mnemonicParsing="false" onAction="#save" text="Save" />
+                  <Button fx:id="cancelButton" cancelButton="true" minWidth="-Infinity" mnemonicParsing="false" onAction="#cancel" prefHeight="44.0" prefWidth="81.0" style="-fx-border-radius: 20;" styleClass="inverseButton" stylesheets="@style.css" text="Cancel" textFill="#008484" />
+                  <Button fx:id="saveButton" alignment="CENTER" minWidth="-Infinity" mnemonicParsing="false" onAction="#save" prefHeight="42.0" prefWidth="68.0" style="-fx-background-radius: 20;" styleClass="regularButton" stylesheets="@style.css" text="Save" textFill="WHITE" />
                </children>
             </HBox>
          </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <padding>
+            <Insets top="30.0" />
+         </padding>
       </VBox>
-      <HBox fx:id="workoutInfoBox" alignment="CENTER_LEFT" prefHeight="300.0" prefWidth="600.0">
+      <HBox fx:id="workoutInfoBox" alignment="CENTER" prefHeight="300.0" prefWidth="600.0" style="-fx-background-color: #FF7B7B;">
          <children>
-            <Button mnemonicParsing="false" onAction="#returnAllWorkouts" text="All Workouts">
+            <Button mnemonicParsing="false" onAction="#returnAllWorkouts" prefHeight="32.0" prefWidth="95.0" style="-fx-border-radius: 20; -fx-pref-width: 90;" styleClass="inverseButton" stylesheets="@style.css" text="All Workouts">
                <HBox.margin>
                   <Insets left="20.0" right="40.0" />
                </HBox.margin>
             </Button>
-            <Text fx:id="name" strokeType="OUTSIDE" strokeWidth="0.0">
+            <Text fx:id="name" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
                   <Font size="24.0" />
                </font>
             </Text>
-            <Button mnemonicParsing="false" onAction="#addExercises" text="Add Exercices">
+            <Button mnemonicParsing="false" onAction="#addExercises" style="-fx-pref-width: 100;" styleClass="regularButton" stylesheets="@style.css" text="Add Exercices" textFill="WHITE">
                <HBox.margin>
                   <Insets left="80.0" right="20.0" />
                </HBox.margin>
             </Button>
          </children>
+         <padding>
+            <Insets bottom="20.0" top="20.0" />
+         </padding>
       </HBox>
       <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" pannable="true" prefHeight="600.0" prefWidth="600.0" />
    </children>

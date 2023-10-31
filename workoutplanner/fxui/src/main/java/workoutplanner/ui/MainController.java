@@ -56,10 +56,13 @@ public class MainController {
     workoutView.setVisible(false);
     this.fxmlContainers = Arrays.asList(home, exerciseView, overview, workoutView);
     controllers = Arrays.asList(homeController, exerciseViewController, overviewController, workoutViewController);
-
+    
     for (Controller c : controllers) {
       c.setMainController(this);
     }
+    overview.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+    exerciseView.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+    workoutView.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
   }
 
   /**
