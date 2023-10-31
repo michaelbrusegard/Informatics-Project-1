@@ -15,19 +15,12 @@ import java.util.List;
  * @version 2.0.0
  */
 public class User {
-    List<Workout> workouts;
-    Workout currentWorkout;
+    private List<Workout> workouts;
+    private int currentWorkoutIndex = -1;
 
     // Constructor with a new list of workouts
     public User() {
         this.workouts = new ArrayList<>();
-    }
-
-    // Create a new workout
-    public void createWorkout() {
-        Workout newWorkout = new Workout();
-        this.workouts.add(newWorkout);
-        this.currentWorkout = newWorkout;
     }
 
     // Remove a workout from the list of workouts
@@ -35,24 +28,25 @@ public class User {
         this.workouts.remove(workoutIndex);
     }
 
-    // Remove a workout from the list of workouts
+    // Remove the current workout from the list of workouts
     public void removeCurrentWorkout() {
-        this.workouts.remove(this.currentWorkout);
-        this.currentWorkout = null;
+        this.workouts.remove(this.currentWorkoutIndex);
+        this.currentWorkoutIndex = -1;
     }
 
-    // Return the current workout
+    // Return the current workout or create a new one if it doesn't exist
     public Workout getCurrentWorkout() {
-        return this.currentWorkout;
+        if (this.currentWorkoutIndex == -1) {
+            this.currentWorkoutIndex = this.workouts.size();
+            this.workouts.add(new Workout());
+        }
+
+        return this.workouts.get(this.currentWorkoutIndex);
     }
 
-    public int getCurrentWorkoutIndex() {
-        return this.workouts.indexOf(this.currentWorkout);
-    }
-
-    // Remove the latest workout
+    // Set the current workout
     public void setCurrentWorkout(int workoutIndex) {
-        this.currentWorkout = this.workouts.get(workoutIndex);
+        this.currentWorkoutIndex = workoutIndex;
     }
 
     // Return the list of workouts

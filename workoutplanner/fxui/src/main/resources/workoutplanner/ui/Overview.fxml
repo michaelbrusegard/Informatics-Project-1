@@ -30,7 +30,7 @@
       </VBox>
       <HBox fx:id="workoutInfoBox" alignment="CENTER" prefHeight="300.0" prefWidth="600.0" style="-fx-background-color: #FF7B7B;">
          <children>
-            <Button mnemonicParsing="false" onAction="#returnAllWorkouts" prefHeight="32.0" prefWidth="95.0" style="-fx-border-radius: 20; -fx-pref-width: 90;" styleClass="inverseButton" stylesheets="@style.css" text="All Workouts">
+            <Button mnemonicParsing="false" onAction="#returnWorkoutView" prefHeight="32.0" prefWidth="95.0" style="-fx-border-radius: 20; -fx-pref-width: 90;" styleClass="inverseButton" stylesheets="@style.css" text="All Workouts">
                <HBox.margin>
                   <Insets left="20.0" right="40.0" />
                </HBox.margin>

@@ -56,7 +56,7 @@ public class MainController {
     workoutView.setVisible(false);
     this.fxmlContainers = Arrays.asList(home, exerciseView, overview, workoutView);
     controllers = Arrays.asList(homeController, exerciseViewController, overviewController, workoutViewController);
-    
+
     for (Controller c : controllers) {
       c.setMainController(this);
     }
@@ -80,21 +80,16 @@ public class MainController {
    * @param resource the new fxml
    */
   public void showFXML(String resource) {
-    showFXML(resource, -1);
-  }
-
-  public void showFXML(String resource, int workoutIndex) {
     fxmlContainers.get(this.currentContainer).setVisible(false);
     for (VBox container : fxmlContainers) {
       if (containerString.get(fxmlContainers.indexOf(container)).equals(resource)) {
         if (resource.equals("ExerciseView")) {
-          this.exerciseViewController.init(workoutIndex);
+          this.exerciseViewController.init();
         } else if (resource.equals("Overview")) {
-          this.overviewController.init(workoutIndex);
+          this.overviewController.init();
         } else if (resource.equals("WorkoutView")) {
           this.workoutViewController.init();
         }
-
         container.setVisible(true);
         this.currentContainer = fxmlContainers.indexOf(container);
       }

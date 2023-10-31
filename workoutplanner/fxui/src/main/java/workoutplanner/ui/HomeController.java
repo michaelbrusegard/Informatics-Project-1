@@ -20,6 +20,7 @@ public class HomeController extends Controller {
   @FXML
   // Button for creating a new workout
   private void createNewWorkout() throws IOException {
+    getMainController().getUser().setCurrentWorkout(-1);
     getMainController().showFXML("ExerciseView");
   }
 
