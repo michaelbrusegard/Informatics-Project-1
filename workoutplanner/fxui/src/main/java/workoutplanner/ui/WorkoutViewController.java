@@ -57,8 +57,8 @@ public class WorkoutViewController extends Controller {
         }
     }
 
-    private Group createCell(int workoutIndex) {
-        Group cell = new Group();
+    private VBox createCell(int workoutIndex) {
+        VBox cell = new VBox();
         Text name = new Text(getMainController().getUser().getWorkouts().get(workoutIndex).getName());
         name.setFont(new Font(FONTSIZE));
         Text date = new Text(getMainController().getUser().getWorkouts().get(workoutIndex).getDateAsString());

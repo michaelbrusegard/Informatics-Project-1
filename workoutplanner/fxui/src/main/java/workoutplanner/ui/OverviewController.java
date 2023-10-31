@@ -2,9 +2,8 @@ package workoutplanner.ui;
 
 import java.io.IOException;
 import java.util.Date;
+
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -73,11 +72,11 @@ public class OverviewController extends Controller {
   /**
    * Local int variable, used to define size of display-font for workout-name.
    */
-  private static final int FONTSIZE = 18;
+  private static final int FONTSIZE = 20;
   /**
    * Local double variable, used to define the x-position of data in the cell.
    */
-  private static final double LAYOUTX = -10;
+  private static final double LAYOUTX = 0;
   /**
    * Local int variable, used to define the y-position of data in the cell.
    */
@@ -167,7 +166,7 @@ public class OverviewController extends Controller {
     workoutInfoBox.managedProperty().bind(workoutInfoBox.visibleProperty());
     // Clear name and scrollpane
     inputName.clear();
-    scrollPane.setContent(new Group());
+    scrollPane.setContent(new VBox());
     // Create grid
     new GridBuilder(scrollPane,
         getMainController().getUser().getCurrentWorkout().getExercises(), this::createCell);
@@ -184,8 +183,8 @@ public class OverviewController extends Controller {
    *
    * @param exerciseIndex The index of the Exercise to be displayed in the cell.
    */
-  private Group createCell(int exerciseIndex) {
-    Group cell = new Group();
+  private VBox createCell(int exerciseIndex) {
+    VBox cell = new VBox();
 
     // Create text elements
     Text name = new Text(
@@ -202,28 +201,41 @@ public class OverviewController extends Controller {
             + "kg");
 
     // Move buttons
-    Button moveLeftButton = new Button("Move Left");
-    Button moveRightButton = new Button("Move Right");
+    String defaultButton = "-fx-font-size: 25;"+
+    "-fx-background-insets: 2;"+
+    "-fx-background-color:  white;"+
+    "-fx-bounds-type: visual";
+
+    Button moveLeftButton = new Button("←");
+    moveLeftButton.setStyle(defaultButton);
+    Button moveRightButton = new Button("→");
+    moveRightButton.setStyle(defaultButton);
+
     moveLeftButton.setOnAction(event -> move(exerciseIndex, true));
     moveRightButton.setOnAction(event -> move(exerciseIndex, false));
 
-    // HBox for the move buttons
-    HBox moveButtonBox = new HBox(moveLeftButton, moveRightButton);
-    moveButtonBox.setAlignment(Pos.CENTER);
-    moveButtonBox.setSpacing(10);
-
+    
     // Delete button
     Button deleteButton = new Button("Delete");
     deleteButton.setOnAction(event -> delete(exerciseIndex));
-
-    // VBox for all the buttons
-    VBox buttonBox = new VBox(moveButtonBox, deleteButton);
-
-    // Add all elements to the cell with correct layout
-    cell.getChildren().addAll(name, sets, reps, weight, buttonBox);
-    for (int i = 1; i < cell.getChildren().size(); i++) {
+    
+    // VBox for the content of the cell
+    VBox contentBox = new VBox();    
+    contentBox.getChildren().addAll(sets, reps, weight, deleteButton);
+    for (int i = 0; i < cell.getChildren().size(); i++) {
       cell.getChildren().get(i).setLayoutY(i * LAYOUTY);
     }
+    cell.setStyle("-fx-alignment: CENTER");
+
+    // HBox for the move buttons and the content in the middle
+    HBox moveContentBox = new HBox(moveLeftButton,contentBox, moveRightButton);
+
+    moveContentBox.setSpacing(0);
+
+    cell.getChildren().addAll(name, moveContentBox);
+
+    // Add all elements to the cell with correct layout
+
     return cell;
   }
 

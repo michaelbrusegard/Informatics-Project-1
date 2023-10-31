@@ -22,7 +22,7 @@
                   <Insets right="80.0" />
                </HBox.margin>
             </Text>
-            <Button fx:id="cancelButton" cache="true" contentDisplay="CENTER" graphicTextGap="0.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cancel" prefHeight="35.0" prefWidth="80.0" style="-fx-border-color: #008484; -fx-border-radius: 20;" styleClass="inverseButton" stylesheets="@style.css" textFill="#008484">
+            <Button fx:id="cancelButton" cache="true" contentDisplay="CENTER" graphicTextGap="0.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cancel" prefHeight="35.0" prefWidth="80.0" style="-fx-border-color: #666666; -fx-border-radius: 20;" styleClass="inverseButton" stylesheets="@style.css" textFill="#666666">
                <font>
                   <Font size="40.0" />
                </font>
@@ -30,10 +30,10 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
                <graphic>
-                  <Text boundsType="VISUAL" fill="#008484" strokeMiterLimit="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cancel" wrappingWidth="165.28601455688477" />
+                  <Text boundsType="VISUAL" fill="#666666" strokeMiterLimit="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cancel" wrappingWidth="165.28601455688477" />
                </graphic>
             </Button>
-            <Button layoutX="470.0" layoutY="22.0" mnemonicParsing="false" onAction="#finish" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #008484; -fx-background-radius: 20;" text="Finish" textFill="WHITE" />
+            <Button layoutX="470.0" layoutY="22.0" mnemonicParsing="false" onAction="#finish" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #666666; -fx-background-radius: 20;" text="Finish" textFill="WHITE" />
          </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0">
@@ -104,7 +104,7 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <Button mnemonicParsing="false" onAction="#addExercise" style="-fx-background-color: #FF7B7B;" styleClass="regularButton" stylesheets="@style.css" text="Add Exercise" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#addExercise" style="-fx-background-color: #FF7B7B; -fx-pref-width: 90;" styleClass="regularButton" stylesheets="@style.css" text="Add Exercise" textFill="WHITE">
                      <VBox.margin>
                         <Insets bottom="30.0" />
                      </VBox.margin>

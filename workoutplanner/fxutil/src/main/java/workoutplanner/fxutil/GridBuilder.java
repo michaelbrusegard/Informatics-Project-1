@@ -1,11 +1,11 @@
 package workoutplanner.fxutil;
 
-import javafx.scene.Group;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.VBox;
 
 import java.util.List;
 import java.util.function.Function;
@@ -27,7 +27,7 @@ import javafx.geometry.VPos;
 public class GridBuilder {
   private ScrollPane scrollPane;
   private List<?> items;
-  private Function<Integer, Group> createCell;
+  private Function<Integer, VBox> createCell;
   /**
    * Local int variable, for gridPane width and height.
    */
@@ -35,7 +35,7 @@ public class GridBuilder {
   /**
    * Local int variable, used to define row height of the grid.
    */
-  private static final int ROWHEIGHT = 149;
+  private static final int ROWHEIGHT = 175;
   /**
    * Local int variable, used to define column width of the grid.
    */
@@ -52,7 +52,7 @@ public class GridBuilder {
    * @param items      List of items to add to the grid.
    * @param createCell Function to create a cell for the grid.
    */
-  public GridBuilder(ScrollPane scrollPane, List<?> items, Function<Integer, Group> createCell) {
+  public GridBuilder(ScrollPane scrollPane, List<?> items, Function<Integer, VBox> createCell) {
     this.items = items;
     this.scrollPane = scrollPane;
     this.createCell = createCell;
@@ -94,7 +94,7 @@ public class GridBuilder {
     int currentRow = 0;
     int currentColumn = 0;
     for (int index = 0; index < items.size(); index++) {
-      Group cell = createCell.apply(index);
+      VBox cell = createCell.apply(index);
       gridPane.add(cell, currentColumn % COLUMNS, currentRow / COLUMNS);
       currentRow++;
       if (currentColumn < COLUMNS - 1) {

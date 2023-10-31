@@ -2,13 +2,17 @@
   -fx-background-color: linear-gradient(to bottom, #FF9C7C, #CA0000);
 }
 .regularButton{
-  -fx-background-color: #FF5252;
+  -fx-pref-width: 80;
+  -fx-pref-height: 35;
+  -fx-background-color:  #008484;
   -fx-background-radius: 20;
 }
 .inverseButton{
+  -fx-pref-width: 80;
+  -fx-pref-height: 35;
   -fx-background-insets: 2;
   -fx-background-color:  white;
-  -fx-border-color:  #FF7B7B;
+  -fx-border-color:  #008484;
   -fx-border-width: 2;
   -fx-background-radius: 20;
   -fx-border-radius: 10;
