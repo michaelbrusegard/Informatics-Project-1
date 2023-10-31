@@ -1,0 +1,21 @@
+.container{
+  -fx-background-color: linear-gradient(to bottom, #FF9C7C, #CA0000);
+}
+.regularButton{
+  -fx-background-color: #FF5252;
+  -fx-background-radius: 20;
+}
+.inverseButton{
+  -fx-background-insets: 2;
+  -fx-background-color:  white;
+  -fx-border-color:  #FF7B7B;
+  -fx-border-width: 2;
+  -fx-background-radius: 20;
+  -fx-border-radius: 10;
+}
+.inputField{
+  -fx-border-color: #008484;
+  -fx-border-width: 1;
+  -fx-background-radius: 5;
+  -fx-border-radius: 5;
+}
