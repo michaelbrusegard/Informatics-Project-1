@@ -37,14 +37,7 @@ public class MainController {
     fxmlControllerMap.put("ExerciseView", new FXMLControllerPair(this, exerciseView, exerciseViewController));
     fxmlControllerMap.put("Overview", new FXMLControllerPair(this, overview, overviewController));
     fxmlControllerMap.put("WorkoutView", new FXMLControllerPair(this, workoutView, workoutViewController));
-    loadStylesheets();
     showFXML("Home");
-  }
-
-  private void loadStylesheets() {
-    exerciseView.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
-    overview.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
-    workoutView.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
   }
 
   /**
