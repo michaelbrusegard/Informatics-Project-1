@@ -16,11 +16,10 @@ import javafx.fxml.FXML;
  * @version 2.0.0
  */
 
-public class HomeController extends Controller {
+public class HomeController extends BaseController {
   @FXML
   // Button for creating a new workout
   private void createNewWorkout() throws IOException {
-    getMainController().getUser().setCurrentWorkout(-1);
     getMainController().showFXML("ExerciseView");
   }
 
@@ -28,5 +27,10 @@ public class HomeController extends Controller {
   // Display all workouts when the user clicks the "All Workouts" button
   private void showAllWorkouts() throws IOException {
     getMainController().showFXML("WorkoutView");
+  }
+
+  @Override
+  public void init() {
+    getMainController().getUser().setCurrentWorkout(-1);
   }
 }

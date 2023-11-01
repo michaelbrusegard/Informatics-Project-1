@@ -26,7 +26,7 @@ import workoutplanner.fxutil.UIUtils;
  * @author Michael Brusegard
  * @version 2.0.0
  */
-public class ExerciseViewController extends Controller {
+public class ExerciseViewController extends BaseController {
   /**
    * Imported TextField from javaFx,
    * used for acquiring amount of sets for an exercise.
@@ -153,7 +153,7 @@ public class ExerciseViewController extends Controller {
     getMainController().showFXML("Overview");
   }
 
-  // Start a new workout
+  @Override
   public void init() {
     if (getMainController().getUser().getCurrentWorkout().isSaved()) {
       cancelButton.setVisible(false);

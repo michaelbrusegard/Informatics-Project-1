@@ -29,7 +29,7 @@ import workoutplanner.fxutil.UIUtils;
  * @author Erlend Løken Sæveraas + Michael Brusegard
  * @version 2.0.0
  */
-public class OverviewController extends Controller {
+public class OverviewController extends BaseController {
   /**
    * Imported VBox from javaFx, used to contain the viewable page.
    */
@@ -143,6 +143,7 @@ public class OverviewController extends Controller {
    *
    * @implNote The exercises are retrieved from the associated workout.
    */
+  @Override
   public void init() {
     // Clear name and scrollpane
     inputName.clear();

@@ -22,7 +22,7 @@ import workoutplanner.fxutil.UIUtils;
  * @author Michael Brusegard
  * @version 2.0.0
  */
-public class WorkoutViewController extends Controller {
+public class WorkoutViewController extends BaseController {
 
     @FXML
     private ScrollPane scrollPane;
@@ -44,6 +44,7 @@ public class WorkoutViewController extends Controller {
         getMainController().showFXML("Home");
     }
 
+    @Override
     public void init() {
         // Clear scrollpane
         scrollPane.setContent(new Group());

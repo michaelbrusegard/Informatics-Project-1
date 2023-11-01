@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class User {
     private List<Workout> workouts;
-    private int currentWorkoutIndex = -1;
+    private int currentWorkoutIndex;
 
     // Constructor with a new list of workouts
     public User() {
