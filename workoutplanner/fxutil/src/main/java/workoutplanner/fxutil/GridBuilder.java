@@ -39,7 +39,7 @@ public class GridBuilder {
   /**
    * Local int variable, used to define column width of the grid.
    */
-  private static final int COLUMNWIDTH = 199;
+  private static final int COLUMNWIDTH = 198;
   /**
    * Local int variable, define how may columns.
    */
@@ -66,6 +66,7 @@ public class GridBuilder {
     gridPane.setPrefWidth(PREFSIZE);
     gridPane.setPrefHeight(PREFSIZE);
     scrollPane.setContent(gridPane);
+    scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
     initializeGrid(gridPane);
   }
 
