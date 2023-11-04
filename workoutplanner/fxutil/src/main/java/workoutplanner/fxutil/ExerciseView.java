@@ -47,6 +47,9 @@ public class ExerciseView {
             "You can't do negative reps or weight. Also, you need to have at least one set and at least one max repetition in the rep-range.",
             AlertType.ERROR);
         return false;
+      } else if (exerciseRepMin > 5000 || exerciseRepMax > 5000 || exerciseSets > 5000 || exerciseWeight > 5000) {
+        UIUtils.showAlert("Error", "Please enter a number less than 5000. You are not that strong.", AlertType.ERROR);
+        return false;
       }
     } catch (NumberFormatException e) {
       UIUtils.showAlert("Error", "Please enter a number for sets, rep-range, and weight.", AlertType.ERROR);

@@ -22,7 +22,7 @@ import workoutplanner.fxutil.UIUtils;
  * @author Michael Brusegard
  * @version 2.0.0
  */
-public class WorkoutViewController extends Controller {
+public class WorkoutViewController extends BaseController {
 
     @FXML
     private ScrollPane scrollPane;
@@ -44,6 +44,7 @@ public class WorkoutViewController extends Controller {
         getMainController().showFXML("Home");
     }
 
+    @Override
     public void init() {
         // Clear scrollpane
         scrollPane.setContent(new Group());
@@ -53,8 +54,8 @@ public class WorkoutViewController extends Controller {
                     getMainController().getUser().getWorkouts(), this::createCell);
         } else {
             VBox container = new VBox();
-            Text noWorkouts = new Text("You don't have any workouts yet.");
-            noWorkouts.setFont(new Font(FONT_FAMILY,FONTSIZE));
+            Text noWorkouts = new Text("You don't have any workouts.");
+            noWorkouts.setFont(new Font(FONT_FAMILY, FONTSIZE));
             container.getChildren().add(noWorkouts);
             container.setAlignment(Pos.CENTER);
             scrollPane.setContent(container);
@@ -62,18 +63,18 @@ public class WorkoutViewController extends Controller {
     }
 
     private VBox createCell(int workoutIndex) {
-        String defaultButton = "-fx-pref-width: 80;"+
-        "-fx-pref-height: 35;"+
-        "-fx-background-insets: 2;"+
-        "-fx-background-color:  white;"+
-        "-fx-border-color:  #666666;"+
-        "-fx-border-width: 2;"+
-        "-fx-background-radius: 20;"+
-        "-fx-border-radius: 10;";
+        String defaultButton = "-fx-pref-width: 80;" +
+                "-fx-pref-height: 35;" +
+                "-fx-background-insets: 2;" +
+                "-fx-background-color:  white;" +
+                "-fx-border-color:  #666666;" +
+                "-fx-border-width: 2;" +
+                "-fx-background-radius: 20;" +
+                "-fx-border-radius: 10;";
 
         VBox cell = new VBox();
         Text name = new Text(getMainController().getUser().getWorkouts().get(workoutIndex).getName());
-        name.setFont(new Font(FONT_FAMILY,FONTSIZE));
+        name.setFont(new Font(FONT_FAMILY, FONTSIZE));
         Text date = new Text(getMainController().getUser().getWorkouts().get(workoutIndex).getDateAsString());
         date.setLayoutY(LAYOUTY);
         // Define buttons
@@ -93,7 +94,7 @@ public class WorkoutViewController extends Controller {
 
     private void view(int workoutIndex) {
         getMainController().getUser().setCurrentWorkout(workoutIndex);
-        getMainController().showFXML("Overview", workoutIndex);
+        getMainController().showFXML("Overview");
     }
 
     private void delete(int workoutIndex) {

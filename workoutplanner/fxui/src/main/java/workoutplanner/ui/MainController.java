@@ -1,7 +1,7 @@
 package workoutplanner.ui;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
@@ -10,20 +10,14 @@ import workoutplanner.core.User;
 /**
  *
  * @since 2.0.0
- * @author Erlend Løken Sæveraas
+ * @author Erlend Løken Sæveraas + Michael Brusegard
  * @version 2.0.0
  */
 
 public class MainController {
+  @FXML
+  private VBox exerciseView, home, overview, workoutView;
 
-  @FXML
-  private VBox exerciseView;
-  @FXML
-  private VBox home;
-  @FXML
-  private VBox overview;
-  @FXML
-  private VBox workoutView;
   @FXML
   private HomeController homeController;
   @FXML
@@ -34,35 +28,29 @@ public class MainController {
   private WorkoutViewController workoutViewController;
 
   private User user = new User();
-  private int currentContainer = 0;
-  private List<VBox> fxmlContainers;
-  private List<String> containerString = Arrays.asList("Home", "ExerciseView", "Overview", "WorkoutView");
-  private List<Controller> controllers;
+  private Map<String, FXMLControllerPair> fxmlControllerMap = new HashMap<>();
+  private String currentFXMLName = "Home";
 
-  /**
-   * Initializes the maincontroller, and sets only the neccessary window visible,
-   * and connects the controllers.
-   * 
-   *
-   */
   @FXML
   private void initialize() {
-    // Hides unnecessary windows
-    // Connects all controllers by connecting them to this MainController
-    // Reads json file for persistency
-    home.setVisible(true);
-    exerciseView.setVisible(false);
-    overview.setVisible(false);
-    workoutView.setVisible(false);
-    this.fxmlContainers = Arrays.asList(home, exerciseView, overview, workoutView);
-    controllers = Arrays.asList(homeController, exerciseViewController, overviewController, workoutViewController);
-    
-    for (Controller c : controllers) {
-      c.setMainController(this);
+    fxmlControllerMap.put("Home", new FXMLControllerPair(this, home, homeController));
+    fxmlControllerMap.put("ExerciseView", new FXMLControllerPair(this, exerciseView, exerciseViewController));
+    fxmlControllerMap.put("Overview", new FXMLControllerPair(this, overview, overviewController));
+    fxmlControllerMap.put("WorkoutView", new FXMLControllerPair(this, workoutView, workoutViewController));
+    showFXML("Home");
+  }
+
+  /**
+   * Shows the new window and hides the previous window.
+   *
+   * @param resource the new fxml
+   */
+  public void showFXML(String FXMLName) {
+    if (fxmlControllerMap.containsKey(FXMLName)) {
+      fxmlControllerMap.get(currentFXMLName).hide();
+      fxmlControllerMap.get(FXMLName).show();
+      currentFXMLName = FXMLName;
     }
-    overview.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
-    exerciseView.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
-    workoutView.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
   }
 
   /**
@@ -72,32 +60,5 @@ public class MainController {
    */
   public User getUser() {
     return user;
-  }
-
-  /**
-   * Shows the new window and hides the previous window.
-   *
-   * @param resource the new fxml
-   */
-  public void showFXML(String resource) {
-    showFXML(resource, -1);
-  }
-
-  public void showFXML(String resource, int workoutIndex) {
-    fxmlContainers.get(this.currentContainer).setVisible(false);
-    for (VBox container : fxmlContainers) {
-      if (containerString.get(fxmlContainers.indexOf(container)).equals(resource)) {
-        if (resource.equals("ExerciseView")) {
-          this.exerciseViewController.init(workoutIndex);
-        } else if (resource.equals("Overview")) {
-          this.overviewController.init(workoutIndex);
-        } else if (resource.equals("WorkoutView")) {
-          this.workoutViewController.init();
-        }
-
-        container.setVisible(true);
-        this.currentContainer = fxmlContainers.indexOf(container);
-      }
-    }
   }
 }

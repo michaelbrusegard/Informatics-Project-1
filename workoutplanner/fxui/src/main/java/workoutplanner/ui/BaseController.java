@@ -3,17 +3,17 @@ package workoutplanner.ui;
 import javafx.fxml.FXML;
 
 /**
- * <h1>Controller.</h1>
+ * <h1>BaseController</h1>
  * <p>
- * The Controller class gives access to the MainController object for all
- * sub-controllers.
+ * The BaseController class gives access to the MainController object for all
+ * sub-controllers and defines a base init method to be overridden.
  * </p>
  *
  * @since 1.4.0
  * @author Michael Brusegard
  * @version 2.0.0
  */
-public class Controller {
+public class BaseController {
     @FXML
     private MainController mainController;
 
@@ -26,5 +26,9 @@ public class Controller {
     // Set the MainController object a sub-controller is using
     public void setMainController(MainController mc) {
         this.mainController = mc;
+    }
+
+    // Base init method to be overridden by sub-controllers
+    public void init() {
     }
 }

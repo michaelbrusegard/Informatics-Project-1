@@ -26,7 +26,7 @@ import workoutplanner.fxutil.UIUtils;
  * @author Michael Brusegard
  * @version 2.0.0
  */
-public class ExerciseViewController extends Controller {
+public class ExerciseViewController extends BaseController {
   /**
    * Imported TextField from javaFx,
    * used for acquiring amount of sets for an exercise.
@@ -66,10 +66,6 @@ public class ExerciseViewController extends Controller {
    */
   @FXML
   private Button cancelButton;
-  /**
-   * Boolean variable, used to check if the user is editing a workout.
-   */
-  private boolean isEditing;
 
   /**
    * Initializes the controller and sets up the user interface elements.
@@ -153,24 +149,16 @@ public class ExerciseViewController extends Controller {
       return;
     }
     clearInputFields();
-    // When loading overview with a workoutIndex of something other than -1 so it
-    // doesnt show the save workout name box
-    if (isEditing) {
-      getMainController().showFXML("Overview", getMainController().getUser().getCurrentWorkoutIndex());
-    } else {
-      getMainController().showFXML("Overview", -1);
-    }
+    // Load overview
+    getMainController().showFXML("Overview");
   }
 
-  // Start a new workout
-  public void init(int workoutIndex) {
-    if (workoutIndex != -1) {
-      isEditing = true;
+  @Override
+  public void init() {
+    if (getMainController().getUser().getCurrentWorkout().isSaved()) {
       cancelButton.setVisible(false);
-      getMainController().getUser().setCurrentWorkout(workoutIndex);
     } else {
-      isEditing = false;
-      getMainController().getUser().createWorkout();
+      cancelButton.setVisible(true);
     }
   }
 

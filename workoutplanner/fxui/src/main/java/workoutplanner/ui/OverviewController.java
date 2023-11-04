@@ -30,7 +30,7 @@ import workoutplanner.fxutil.UIUtils;
  * @author Erlend Løken Sæveraas + Michael Brusegard
  * @version 2.0.0
  */
-public class OverviewController extends Controller {
+public class OverviewController extends BaseController {
   /**
    * Imported VBox from javaFx, used to contain the viewable page.
    */
@@ -79,11 +79,6 @@ public class OverviewController extends Controller {
    * Local int variable, used to define size of display-font for workout-name.
    */
   private static final String FONT_FAMILY = "SansSerif";
-  /**
-   * Local boolean variable, used to kep track of whether the workout is saved or
-   * not when updating the workout.
-   */
-  private boolean isSaved;
 
   /**
    * Cancels the current operation and navigates to the Homepage.
@@ -122,19 +117,19 @@ public class OverviewController extends Controller {
     if (Overview.validateOverview(true, false, this.inputName)) {
       getMainController().getUser().getCurrentWorkout().setName(inputName.getText());
       getMainController().getUser().getCurrentWorkout().setDate(new Date());
+      getMainController().getUser().getCurrentWorkout().save();
       getMainController().showFXML("WorkoutView");
     }
   }
 
   @FXML
-  private void returnAllWorkouts() {
+  private void returnWorkoutView() {
     getMainController().showFXML("WorkoutView");
   }
 
   @FXML
   private void addExercises() {
-    int index = getMainController().getUser().getCurrentWorkoutIndex();
-    getMainController().showFXML("ExerciseView", index);
+    getMainController().showFXML("ExerciseView");
   }
 
   /**
@@ -149,22 +144,23 @@ public class OverviewController extends Controller {
    *
    * @implNote The exercises are retrieved from the associated workout.
    */
-  public void init(int workoutIndex) {
-    if (workoutIndex != -1) {
-      isSaved = true;
+  @Override
+  public void init() {
+    // Clear name and scrollpane
+    inputName.clear();
+    scrollPane.setContent(new VBox());
+
+    if (getMainController().getUser().getCurrentWorkout().isSaved()) {
       saveWorkoutNameBox.setVisible(false);
       workoutInfoBox.setVisible(true);
-      name.setText(getMainController().getUser().getWorkouts().get(workoutIndex).getName());
+      name.setText(getMainController().getUser().getCurrentWorkout().getName());
     } else {
-      isSaved = false;
       workoutInfoBox.setVisible(false);
       saveWorkoutNameBox.setVisible(true);
     }
     saveWorkoutNameBox.managedProperty().bind(saveWorkoutNameBox.visibleProperty());
     workoutInfoBox.managedProperty().bind(workoutInfoBox.visibleProperty());
-    // Clear name and scrollpane
-    inputName.clear();
-    scrollPane.setContent(new VBox());
+
     // Create grid
     new GridBuilder(scrollPane,
         getMainController().getUser().getCurrentWorkout().getExercises(), this::createCell);
@@ -187,7 +183,7 @@ public class OverviewController extends Controller {
     // Create text elements
     Text name = new Text(
         getMainController().getUser().getCurrentWorkout().getExercises().get(exerciseIndex).name() + ":");
-    name.setFont(new Font(FONT_FAMILY,FONTSIZE));
+    name.setFont(new Font(FONT_FAMILY, FONTSIZE));
     Text sets = new Text(
         "Sets: " + getMainController().getUser().getCurrentWorkout().getExercises().get(exerciseIndex).sets());
     Text reps = new Text(
@@ -220,14 +216,13 @@ public class OverviewController extends Controller {
     moveLeftButton.setOnAction(event -> move(exerciseIndex, true));
     moveRightButton.setOnAction(event -> move(exerciseIndex, false));
 
-    
     // Delete button
     Button deleteButton = new Button("Delete");
     deleteButton.setOnAction(event -> delete(exerciseIndex));
     deleteButton.setStyle(deleteButtonStyle);
-    
+
     // VBox for the content of the cell
-    VBox contentBox = new VBox();    
+    VBox contentBox = new VBox();
     contentBox.getChildren().addAll(sets, reps, weight, deleteButton);
     contentBox.setSpacing(10);
     cell.setAlignment(Pos.CENTER);
@@ -251,11 +246,7 @@ public class OverviewController extends Controller {
     // Move the exercise
     getMainController().getUser().getCurrentWorkout().moveExercise(exerciseIndex, left);
     // Reload the overview with the new order
-    if (isSaved) {
-      init(getMainController().getUser().getCurrentWorkoutIndex());
-    } else {
-      init(-1);
-    }
+    init();
   }
 
   private void delete(int exerciseIndex) {
@@ -272,12 +263,8 @@ public class OverviewController extends Controller {
             + "? ")) {
       getMainController().getUser().getCurrentWorkout().removeExercise(exerciseIndex);
 
-      // Reload the overview now that the exercise has been deleted
-      if (isSaved) {
-        init(getMainController().getUser().getCurrentWorkoutIndex());
-      } else {
-        init(-1);
-      }
+      // Reload the overview now that an exercise has been deleted
+      init();
     }
   }
 }

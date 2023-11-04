@@ -27,6 +27,11 @@ public class Workout {
    * Local Date variable, used to set the date of when the workout was created.
    */
   private Date date;
+
+  /**
+   * Local boolean variable, used to check if the workout is saved.
+   */
+  private boolean isSaved = false;
   /**
    * Local List variable, used to have a list of all the
    * exercises in the workout.
@@ -133,22 +138,22 @@ public class Workout {
     if (left) {
       if (exerciseIndex == 0) {
         // Move the first exercise to the end
-        exercises.remove(exerciseIndex);
-        exercises.add(exercise);
+        this.exercises.remove(exerciseIndex);
+        this.exercises.add(exercise);
       } else {
         // Move the exercise to the left
-        exercises.remove(exerciseIndex);
-        exercises.add(exerciseIndex - 1, exercise);
+        this.exercises.remove(exerciseIndex);
+        this.exercises.add(exerciseIndex - 1, exercise);
       }
     } else {
       if (exerciseIndex == exercises.size() - 1) {
         // Move the last exercise to the start
-        exercises.remove(exerciseIndex);
-        exercises.add(0, exercise);
+        this.exercises.remove(exerciseIndex);
+        this.exercises.add(0, exercise);
       } else {
         // Move the exercise to the right
-        exercises.remove(exerciseIndex);
-        exercises.add(exerciseIndex + 1, exercise);
+        this.exercises.remove(exerciseIndex);
+        this.exercises.add(exerciseIndex + 1, exercise);
       }
     }
   }
@@ -165,7 +170,7 @@ public class Workout {
    * @return A String representing the name of the workout.
    */
   public String getName() {
-    return name;
+    return this.name;
   }
 
   /**
@@ -181,7 +186,7 @@ public class Workout {
    */
   public String getDateAsString() {
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM dd, yyyy HH:mm");
-    return dateFormat.format(date);
+    return dateFormat.format(this.date);
   }
 
   /**
@@ -196,7 +201,15 @@ public class Workout {
    * @return An integer representing the count of exercises in the workout.
    */
   public int getExerciseCount() {
-    return exercises.size();
+    return this.exercises.size();
+  }
+
+  public boolean isSaved() {
+    return this.isSaved;
+  }
+
+  public void save() {
+    this.isSaved = true;
   }
 
   /**
@@ -212,6 +225,6 @@ public class Workout {
    *         the exercises in the workout.
    */
   public List<Exercise> getExercises() {
-    return exercises;
+    return this.exercises;
   }
 }
