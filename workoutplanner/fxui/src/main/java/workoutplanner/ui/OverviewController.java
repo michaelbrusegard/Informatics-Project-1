@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Date;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -193,19 +194,19 @@ public class OverviewController extends BaseController {
             + "kg");
 
     // Move buttons
-    String defaultButton = "-fx-font-size: 25;" +
-        "-fx-background-insets: 2;" +
-        "-fx-background-color:  white;" +
-        "-fx-bounds-type: visual";
+    String defaultButton = "-fx-font-size: 25;"+
+    "-fx-background-insets: 2;"+
+    "-fx-background-color:  #e9e9e9;"+
+    "-fx-bounds-type: visual";
 
-    String deleteButtonStyle = "-fx-pref-width: 80;" +
-        "-fx-pref-height: 35;" +
-        "-fx-background-insets: 2;" +
-        "-fx-background-color:  white;" +
-        "-fx-border-color:  #666666;" +
-        "-fx-border-width: 2;" +
-        "-fx-background-radius: 20;" +
-        "-fx-border-radius: 10;";
+    String deleteButtonStyle = "-fx-pref-width: 80;"+
+    "-fx-pref-height: 30;"+
+    "-fx-background-insets: 2;"+
+    "-fx-background-color:  white;"+
+    "-fx-border-color:  #666666;"+
+    "-fx-border-width: 2;"+
+    "-fx-background-radius: 20;"+
+    "-fx-border-radius: 10;";
 
     Button moveLeftButton = new Button("←");
     moveLeftButton.setStyle(defaultButton);
@@ -225,13 +226,16 @@ public class OverviewController extends BaseController {
     contentBox.getChildren().addAll(sets, reps, weight, deleteButton);
     contentBox.setSpacing(10);
     cell.setAlignment(Pos.CENTER);
+    VBox.setMargin(contentBox, new Insets(0,0,10,20));
 
-    // HBox for the move buttons and the content in the middle
-    HBox moveContentBox = new HBox(moveLeftButton, contentBox, moveRightButton);
+    // HBox for the move buttons and the deletebutton
+    HBox moveContentBox = new HBox(moveLeftButton,deleteButton, moveRightButton);
+    moveContentBox.setAlignment(Pos.CENTER);
+
 
     moveContentBox.setSpacing(0);
 
-    cell.getChildren().addAll(name, moveContentBox);
+    cell.getChildren().addAll(name, contentBox, moveContentBox);
 
     // Add all elements to the cell with correct layout
 

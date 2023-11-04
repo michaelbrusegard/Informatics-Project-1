@@ -8,9 +8,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #e9e9e9;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="workoutplanner.ui.HomeController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" minHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #e9e9e9;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="workoutplanner.ui.HomeController">
    <children>
-      <VBox alignment="TOP_CENTER" maxHeight="-Infinity" prefHeight="100.0" spacing="5.0" style="-fx-background-color: FF7B7B;" VBox.vgrow="ALWAYS">
+      <VBox alignment="TOP_CENTER" maxHeight="-Infinity" prefHeight="100.0" spacing="5.0" style="-fx-background-color: FF7B7B;">
          <children>
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="WORKOUTPLANNER">
                <font>
