@@ -9,7 +9,8 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
- * <h1>WorkoutPlannerApp.</h1>
+ * <h1>WorkoutPlannerApp</h1>
+ *
  * <p>
  * This class extends the JavaFX Application class
  * and is the main entry point for the application.
@@ -24,6 +25,14 @@ import javafx.stage.Stage;
  * @version 1.4.0
  */
 public class WorkoutPlannerApp extends Application {
+  /**
+   * Local int variable, used to define the minimum width of the stage.
+   */
+  private static final int MINWIDTH = 600;
+  /**
+   * Local int variable, used to define the minimum height of the stage.
+   */
+  private static final int MINHEIGHT = 428;
 
   /**
    * Starts the workout planner application by initializing
@@ -39,10 +48,10 @@ public class WorkoutPlannerApp extends Application {
    * 5. Displays the main application window.
    * </p>
    *
-   * @param stage The primary stage for this application,
-   *              onto which the application scene can be set.
-   *              Applications may create other stages, if needed,
-   *              but they will not be primary stages.
+   * @param primaryStage The primary stage for this application,
+   *                     onto which the application scene can be set.
+   *                     Applications may create other stages, if needed,
+   *                     but they will not be primary stages.
    * @throws IOException If an I/O error occurs while loading
    *                     the application UI or icon.
    */
@@ -58,8 +67,8 @@ public class WorkoutPlannerApp extends Application {
     primaryStage.getIcons().add(icon);
 
     // Set the minimum width and height for the stage
-    primaryStage.setMinWidth(600); // Set the minimum width
-    primaryStage.setMinHeight(428); // Set the minimum height
+    primaryStage.setMinWidth(MINWIDTH); // Set the minimum width
+    primaryStage.setMinHeight(MINHEIGHT); // Set the minimum height
 
     FXMLLoader fxmlLoader = new FXMLLoader(this.getClass()
         .getResource("Main.fxml"));

@@ -7,6 +7,8 @@ import java.util.List;
 
 /**
  * <h1>Workout</h1>
+ * Represents a workout consisting of exercises and related data.
+ *
  * <p>
  * A Workout object encapsulates information about a workout,
  * including its name,
@@ -87,16 +89,18 @@ public class Workout {
    * associated with the workout.
    * </p>
    *
-   * @param name   The name of the exercise.
-   * @param sets   The number of sets for the exercise.
-   * @param repMin The minimum number of reps for the exercise.
-   * @param repMax The maximum number of reps for the exercise.
-   * @param weight The weight for the exercise.
-   * 
+   * @param inputName The name of the exercise.
+   * @param sets      The number of sets for the exercise.
+   * @param repMin    The minimum number of reps for the exercise.
+   * @param repMax    The maximum number of reps for the exercise.
+   * @param weight    The weight for the exercise.
    */
-  public void addExercise(String name, int sets, int repMin,
-      int repMax, int weight) {
-    Exercise exercise = new Exercise(name, sets, repMin, repMax, weight);
+  public void addExercise(final String inputName,
+                          final int sets,
+                          final int repMin,
+                          final int repMax,
+                          final int weight) {
+    Exercise exercise = new Exercise(inputName, sets, repMin, repMax, weight);
     this.exercises.add(exercise);
   }
 
@@ -111,7 +115,7 @@ public class Workout {
    *
    * @param exerciseIndex The index of the exercise to remove.
    */
-  public void removeExercise(int exerciseIndex) {
+  public void removeExercise(final int exerciseIndex) {
     this.exercises.remove(exerciseIndex);
   }
 
@@ -127,7 +131,7 @@ public class Workout {
    * @param exerciseIndex The index of the exercise to move.
    * @param left          Whether to move the exercise to the left or right.
    */
-  public void moveExercise(int exerciseIndex, boolean left) {
+  public void moveExercise(final int exerciseIndex, final boolean left) {
     if (exerciseIndex < 0 || exerciseIndex >= exercises.size()) {
       // Invalid exercise index
       return;
@@ -204,10 +208,28 @@ public class Workout {
     return this.exercises.size();
   }
 
+  /**
+   * Checks if the workout has been saved.
+   *
+   * <p>
+   * This method allows you to check whether the workout has been saved or not.
+   * It returns a boolean value indicating the saved status of the workout.
+   * </p>
+   *
+   * @return {@code true} if the object has been saved; {@code false} otherwise.
+   */
   public boolean isSaved() {
     return this.isSaved;
   }
 
+  /**
+   * Marks the workout as saved.
+   *
+   * <p>
+   * This method sets the saved status of the workout to {@code true},
+   * indicating that the object has been saved.
+   * </p>
+   */
   public void save() {
     this.isSaved = true;
   }

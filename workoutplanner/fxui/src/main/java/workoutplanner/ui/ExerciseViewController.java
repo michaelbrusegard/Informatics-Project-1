@@ -12,14 +12,18 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import workoutplanner.fxutil.ExerciseLoader;
 import workoutplanner.fxutil.ExerciseView;
-import workoutplanner.fxutil.UIUtils;
+import workoutplanner.fxutil.UiUtils;
 
 /**
- * <h1>ExerciseViewController.</h1>
+ * <h1>ExerciseViewController</h1>
+ * The ExerciseViewController class is responsible for managing the user
+ * interface and user interactions related to creating and adding exercises
+ * to a workout.
  * <p>
- * The ExerciseViewController class is responsible for managing
- * the user interface and user interactions
- * related to creating and adding exercises to a workout.
+ * This class provides the functionality to create and add exercises to a
+ * workout. It allows users to select exercises from a list, input exercise
+ * details (sets, reps, weight), and add exercises to the workout. Users can
+ * also cancel the workout creation process or finish creating the workout.
  * </p>
  *
  * @since 1.0.0
@@ -108,18 +112,20 @@ public class ExerciseViewController extends BaseController {
     String repMaxText = repMax.getText();
     String weightText = weight.getText();
 
-    if (ExerciseView.validateExerciseInput(exerciseName, setsText, repMinText, repMaxText, weightText)) {
+    if (ExerciseView.validateExerciseInput(exerciseName, setsText, repMinText,
+            repMaxText, weightText)) {
       int exerciseSets = Integer.parseInt(setsText);
       int exerciseRepMin = Integer.parseInt(repMinText);
       int exerciseRepMax = Integer.parseInt(repMaxText);
       int exerciseWeight = Integer.parseInt(weightText);
 
       // Add the exercise to the new workout
-      getMainController().getUser().getCurrentWorkout().addExercise(exerciseName, exerciseSets, exerciseRepMin,
-          exerciseRepMax, exerciseWeight);
+      getMainController().getUser().getCurrentWorkout().addExercise(
+              exerciseName, exerciseSets, exerciseRepMin,
+              exerciseRepMax, exerciseWeight);
 
-      ExerciseView.displayExerciseAddedPrompt(exerciseName, exerciseSets, exerciseRepMin, exerciseRepMax,
-          exerciseWeight);
+      ExerciseView.displayExerciseAddedPrompt(exerciseName, exerciseSets,
+              exerciseRepMin, exerciseRepMax, exerciseWeight);
 
       // Clear the input fields so a new exercise can be added
       clearInputFields();
@@ -128,38 +134,48 @@ public class ExerciseViewController extends BaseController {
 
   // When the user clicks the cancel button
   @FXML
-  private void cancel() throws IOException {
-    if (UIUtils.showConfirmation("Cancel Workout",
+  private void cancel() {
+    if (UiUtils.showConfirmation("Cancel Workout",
         "Are you sure you want to cancel the workout? "
             + "All progress will be lost.")) {
       clearInputFields();
       getMainController().getUser().removeCurrentWorkout();
-      getMainController().showFXML("Home");
+      getMainController().showFxml("Home");
     }
   }
 
   // When the user clicks the finish button
   @FXML
-  private void finish() throws IOException {
+  private void finish() {
     // Check if the workout object is not null
-    if (getMainController().getUser().getCurrentWorkout().getExerciseCount() == 0) {
-      UIUtils.showAlert("Error",
+    if (getMainController().getUser().getCurrentWorkout().getExerciseCount()
+            == 0) {
+      UiUtils.showAlert("Error",
           "No exercises added to the workout.",
           AlertType.ERROR);
       return;
     }
     clearInputFields();
     // Load overview
-    getMainController().showFXML("Overview");
+    getMainController().showFxml("Overview");
   }
 
+  /**
+   * Initializes the controller's state and UI elements.
+   *
+   * <p>
+   * This method is an overridden implementation of the base initialization
+   * method. It initializes the controller's state and user interface (UI)
+   * elements. In this case, it controls the visibility of the "Cancel" button
+   * based on the saved status of the current workout associated with the user.
+   * If the current workout is saved, the "Cancel" button is hidden; otherwise,
+   * it is shown.
+   * </p>
+   */
   @Override
   public void init() {
-    if (getMainController().getUser().getCurrentWorkout().isSaved()) {
-      cancelButton.setVisible(false);
-    } else {
-      cancelButton.setVisible(true);
-    }
+    cancelButton.setVisible(
+            !getMainController().getUser().getCurrentWorkout().isSaved());
   }
 
   // Clear the input fields
