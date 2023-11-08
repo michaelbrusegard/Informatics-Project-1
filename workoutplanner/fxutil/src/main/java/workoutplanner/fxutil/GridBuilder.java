@@ -1,5 +1,9 @@
 package workoutplanner.fxutil;
 
+import java.util.List;
+import java.util.function.Function;
+import javafx.geometry.HPos;
+import javafx.geometry.VPos;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -7,17 +11,14 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 
-import java.util.List;
-import java.util.function.Function;
-
-import javafx.geometry.HPos;
-import javafx.geometry.VPos;
-
 /**
  * <h1>GridBuilder</h1>
- * <p>
  * GridBuilder is a helper class for creating a grid of cells for Workouts and
  * Exercises.
+ * <p>
+ * This class provides the functionality to create a grid layout for displaying
+ * a list of items, such as Workouts or Exercises, in a scrollable view. The
+ * grid is designed to accommodate multiple cells organized in rows and columns.
  * </p>
  *
  * @since 2.0.0
@@ -25,9 +26,20 @@ import javafx.geometry.VPos;
  * @version 2.0.0
  */
 public class GridBuilder {
-  private ScrollPane scrollPane;
-  private List<?> items;
-  private Function<Integer, VBox> createCell;
+  /**
+   * Local scrollPane variable, used for containing the grid.
+   */
+  private final ScrollPane scrollPane;
+
+  /**
+   * Local List variable, an array of items that will be put in the grid.
+   */
+  private final List<?> items;
+
+  /**
+   * Local function variable, used for containing the items in the grid.
+   */
+  private final Function<Integer, VBox> createCell;
   /**
    * Local int variable, for gridPane width and height.
    */
@@ -48,14 +60,15 @@ public class GridBuilder {
   /**
    * Constructor for GridBuilder.
    *
-   * @param scrollPane ScrollPane to add GridPane to add cells to.
-   * @param items      List of items to add to the grid.
-   * @param createCell Function to create a cell for the grid.
+   * @param inputScrollPane ScrollPane to add GridPane to add cells to.
+   * @param inputItems      List of items to add to the grid.
+   * @param inputCreateCell Function to create a cell for the grid.
    */
-  public GridBuilder(ScrollPane scrollPane, List<?> items, Function<Integer, VBox> createCell) {
-    this.items = items;
-    this.scrollPane = scrollPane;
-    this.createCell = createCell;
+  public GridBuilder(final ScrollPane inputScrollPane, final List<?> inputItems,
+                     final Function<Integer, VBox> inputCreateCell) {
+    this.items = inputItems;
+    this.scrollPane = inputScrollPane;
+    this.createCell = inputCreateCell;
     createGrid();
   }
 
@@ -70,24 +83,21 @@ public class GridBuilder {
     initializeGrid(gridPane);
   }
 
-  /**
-   * Initializes the grid.
-   */
-  private void initializeGrid(GridPane gridPane) {
+  private void initializeGrid(final GridPane gridPane) {
     // Calculate number of rows
     int rows = (items.size() + COLUMNS - 1) / COLUMNS;
 
     // Set column constraints
     for (int i = 0; i < COLUMNS; i++) {
-      ColumnConstraints columnConstraints = new ColumnConstraints(COLUMNWIDTH, COLUMNWIDTH, COLUMNWIDTH,
-          Priority.SOMETIMES, HPos.CENTER, false);
+      ColumnConstraints columnConstraints = new ColumnConstraints(COLUMNWIDTH,
+              COLUMNWIDTH, COLUMNWIDTH, Priority.SOMETIMES, HPos.CENTER, false);
       gridPane.getColumnConstraints().add(columnConstraints);
     }
 
     // Set row constraints
     for (int i = 0; i < rows; i++) {
-      RowConstraints rowConstraints = new RowConstraints(ROWHEIGHT, ROWHEIGHT, ROWHEIGHT, Priority.SOMETIMES,
-          VPos.CENTER, false);
+      RowConstraints rowConstraints = new RowConstraints(ROWHEIGHT, ROWHEIGHT,
+              ROWHEIGHT, Priority.SOMETIMES, VPos.CENTER, false);
       gridPane.getRowConstraints().add(rowConstraints);
     }
 
