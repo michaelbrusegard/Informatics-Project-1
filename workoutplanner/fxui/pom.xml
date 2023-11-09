@@ -39,19 +39,16 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>5.10.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.10.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-params</artifactId>
-            <version>5.10.0</version>
             <scope>test</scope>
         </dependency>
 
@@ -59,65 +56,66 @@
 		<dependency>
 			<groupId>org.testfx</groupId>
 			<artifactId>testfx-core</artifactId>
-			<version>4.0.16-alpha</version>
-			<scope>test</scope>
+            <scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.testfx</groupId>
 			<artifactId>testfx-junit5</artifactId>
-			<version>4.0.16-alpha</version>
-			<scope>test</scope>
+            <scope>test</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.15.2</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
-            <version>2.15.2</version>
         </dependency>
     </dependencies>
 
-    <profiles>
-        <profile>
-            <id>headless</id>
-            <properties>
-                <headlessTests>true</headlessTests>
-            </properties>
-            <dependencies>
-                <!-- https://mvnrepository.com/artifact/org.testfx/openjfx-monocle -->
-                <dependency>
-                    <groupId>org.testfx</groupId>
-                    <artifactId>openjfx-monocle</artifactId>
-                    <version>jdk-12.0.1+2</version>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-        </profile>
-    </profiles>
+<!--    <profiles>-->
+<!--        <profile>-->
+<!--            <id>headless</id>-->
+<!--            <properties>-->
+<!--                <headlessTests>true</headlessTests>-->
+<!--            </properties>-->
+<!--            <dependencies>-->
+<!--                &lt;!&ndash; https://mvnrepository.com/artifact/org.testfx/openjfx-monocle &ndash;&gt;-->
+<!--                <dependency>-->
+<!--                    <groupId>org.testfx</groupId>-->
+<!--                    <artifactId>openjfx-monocle</artifactId>-->
+<!--                    <version>jdk-12.0.1+2</version>-->
+<!--                    <scope>test</scope>-->
+<!--                </dependency>-->
+<!--            </dependencies>-->
+<!--        </profile>-->
+<!--    </profiles>-->
 
     <build>
         <plugins>
             <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.8</version>
+                <configuration>
+                    <!-- syntax: module-name/full-app-class-name -->
+                    <mainClass>workoutplanner.ui/workoutplanner.ui.WorkoutPlannerApp</mainClass>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
             </plugin>
             <!-- Run the spotbugs code quality tool -->
             <plugin>
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-maven-plugin</artifactId>
             </plugin>
-
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
         		<artifactId>maven-surefire-plugin</artifactId>
-                <version>3.1.2</version>
                 <configuration>
                     <argLine>
                     @{jaCoCoArgLine} -Dtestfx.robot=awt
@@ -136,24 +134,25 @@
                     <propertyName>jaCoCoArgLine</propertyName>
                 </configuration>
             </plugin>
-            <plugin>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-maven-plugin</artifactId>
-            <version>0.0.8</version>
-            <executions>
-                <execution>
-                    <id>javafx:run</id>
-                    <phase>package</phase>
-                    <goals>
-                        <goal>run</goal>
-                    </goals>
-                </execution>
-            </executions>
-            <configuration>
-                <!-- syntax: module-name/full-app-class-name -->
-                <mainClass>workoutplanner.ui/workoutplanner.ui.WorkoutPlannerApp</mainClass>
-            </configuration>
-        </plugin>
         </plugins>
     </build>
+    <profiles>
+        <profile>
+            <id>remoteapp</id>
+                <build>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.openjfx</groupId>
+                            <artifactId>javafx-maven-plugin</artifactId>
+                            <version>0.0.8</version>
+                            <configuration>
+                                <!-- syntax: module-name/full-app-class-name -->
+                                <mainClass>workoutplanner.ui/workoutplanner.ui.WorkoutPlannerApp</mainClass>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </build>
+            <!--<id>headless</id>-->
+        </profile>
+    </profiles>
 </project>
