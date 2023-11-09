@@ -114,26 +114,19 @@ public class WorkoutDeserializer extends JsonDeserializer<Workout> {
           Exercise exercise = exerciseDeserializer
                   .deserializeNode(exerciseNode);
           // checks that there is an exercise
-          if (exercise == null) {
-            // appends the exercise to the workout
-            workout.addExercise(null,0,0,0,0);
-            System.out.println("Hello from workout deserializer: line 120");
+          if (exercise != null) {
+            workout.addExercise(exercise.name(), exercise.sets(),
+                    exercise.repMin(), exercise.repMax(), exercise.weight());
           }
-          workout.addExercise(exercise.name(), exercise.sets(),
-                  exercise.repMin(), exercise.repMax(), exercise.weight());
         }
       }
       // checks that the required fields of the workout are there
-      try{
       if (workout.getName() == null
               || workout.getDateAsString() == null
               || workout.getExerciseCount() == 0) {
         // returns null if there is a required field missing
         return null;
-      }}
-      catch(NullPointerException e){
-          return null;
-        }
+      }
       // returns the workout that was constructed
       return workout;
     }
