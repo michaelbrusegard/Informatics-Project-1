@@ -1,3 +1,4 @@
 module workoutplanner.core {
-    exports workoutplanner.core;
+  requires com.fasterxml.jackson.databind;
+  exports workoutplanner.core;
 }

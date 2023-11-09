@@ -127,4 +127,19 @@ public class User {
     // Return the list of workouts
     return workouts;
   }
+
+  /**
+   * Adds a workout to the list of workouts from a file.
+   *
+   * <p>
+   * This method adds a provided workout to the list of workouts. It is
+   * typically used to populate the list of workouts by loading them from a
+   * file.
+   * </p>
+   *
+   * @param workout The workout to be added to the list of workouts.
+   */
+  public void addWorkoutFromFile(final Workout workout) {
+    workouts.add(workout);
+  }
 }
