@@ -187,12 +187,8 @@ public class ExerciseViewController extends BaseController {
    */
   @Override
   public void init() {
-    try {
-      cancelButton.setVisible(
-          !getMainController().getUser().getCurrentWorkout().isSaved());
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
+    cancelButton.setVisible(
+        !getMainController().getUser().getCurrentWorkout().isSaved());
   }
 
   // Clear the input fields

@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
@@ -11,12 +12,12 @@ import static org.junit.jupiter.api.Assertions.*;
 public class WorkoutTest {
 
     private Workout workout;
-    private Date date;
+    private LocalDate date;
     private String name;
 
     @BeforeEach
     public void setUp() {
-        date = new Date();
+        date = LocalDate.now();
         name = "My Workout";
         workout = new Workout();
         workout.setDate(date);

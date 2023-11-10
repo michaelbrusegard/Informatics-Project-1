@@ -13,8 +13,6 @@ import javafx.scene.text.Text;
 import workoutplanner.fxutil.GridBuilder;
 import workoutplanner.fxutil.UiUtils;
 
-import java.io.IOException;
-
 /**
  * <h1>WorkoutViewController</h1>
  * The WorkoutViewController class is responsible for listing all workouts.
@@ -92,7 +90,7 @@ public class WorkoutViewController extends BaseController {
     }
   }
 
-  private VBox createCell(final int workoutIndex) throws IOException {
+  private VBox createCell(final int workoutIndex) {
     String defaultButton = "-fx-pref-width: 80;"
         + "-fx-pref-height: 35;"
         + "-fx-background-insets: 2;"
@@ -132,7 +130,7 @@ public class WorkoutViewController extends BaseController {
     getMainController().showFxml("Overview");
   }
 
-  private void delete(final int workoutIndex) throws IOException {
+  private void delete(final int workoutIndex) {
     if (UiUtils.showConfirmation("Delete Workout",
         "Are you sure you want to delete "
             + getMainController().getUser().getWorkouts()

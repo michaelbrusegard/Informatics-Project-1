@@ -72,15 +72,25 @@ public class RemoteUserAccess implements UserAccess {
   }
 
   @Override
-  public Workout getCurrentWorkout() throws IOException {
-    Reader reader = httpGetRequest("/current-workout");
-    return objectMapper.readValue(reader, Workout.class);
+  public Workout getCurrentWorkout() {
+    Reader reader = null;
+    try {
+      reader = httpGetRequest("/current-workout");
+      return objectMapper.readValue(reader, Workout.class);
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
   }
 
   @Override
-  public List<Workout> getWorkouts() throws IOException {
-    Reader reader = httpGetRequest("/workouts");
-    return objectMapper.readValue(reader, User.class).getWorkouts();
+  public List<Workout> getWorkouts() {
+    Reader reader = null;
+    try {
+      reader = httpGetRequest("/workouts");
+      return objectMapper.readValue(reader, User.class).getWorkouts();
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
   }
 
   @Override

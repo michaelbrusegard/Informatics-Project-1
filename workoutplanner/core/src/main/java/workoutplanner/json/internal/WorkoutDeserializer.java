@@ -9,6 +9,9 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.node.TextNode;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.chrono.ChronoLocalDate;
 import java.util.Date;
 import workoutplanner.core.Exercise;
 import workoutplanner.core.Workout;
@@ -102,7 +105,7 @@ public class WorkoutDeserializer extends JsonDeserializer<Workout> {
       // checks that the node is of the correct type
       if (dateNode instanceof TextNode) {
         // configures the date of the workout
-        workout.setDate(new Date(Date.parse(dateNode.asText())));
+        workout.setDate(LocalDate.from(LocalDateTime.parse(dateNode.asText())));
       }
       // finds the list of exercises for the workout
       JsonNode exercisesNode = objectNode.get("exercises");
@@ -115,8 +118,7 @@ public class WorkoutDeserializer extends JsonDeserializer<Workout> {
                   .deserializeNode(exerciseNode);
           // checks that there is an exercise
           if (exercise != null) {
-            workout.addExercise(exercise.name(), exercise.sets(),
-                    exercise.repMin(), exercise.repMax(), exercise.weight());
+            workout.addExercise(exercise);
           }
         }
       }
