@@ -122,6 +122,7 @@ public class OverviewController extends BaseController {
         UiUtils.showAlert("Error",
             e.getMessage(),
             AlertType.ERROR);
+        return;
       }
       getMainController().showFxml("WorkoutView");
     }
