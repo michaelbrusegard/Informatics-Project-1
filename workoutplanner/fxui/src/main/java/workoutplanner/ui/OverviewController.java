@@ -1,5 +1,6 @@
 package workoutplanner.ui;
 
+import java.io.IOException;
 import java.util.Date;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -187,7 +188,7 @@ public class OverviewController extends BaseController {
    * @param exerciseIndex The index of the exercise to be displayed.
    * @return A VBox representing the graphical cell for the exercise.
    */
-  private VBox createCell(final int exerciseIndex) {
+  private VBox createCell(final int exerciseIndex) throws IOException {
     // Create text elements
     Text exerciseName = new Text(
         getMainController().getUser().getCurrentWorkout().getExercises()
@@ -270,7 +271,7 @@ public class OverviewController extends BaseController {
     init();
   }
 
-  private void delete(final int exerciseIndex) {
+  private void delete(final int exerciseIndex) throws IOException {
     if (getMainController().getUser().getCurrentWorkout()
         .getExerciseCount() == 1) {
       UiUtils.showAlert("Error",

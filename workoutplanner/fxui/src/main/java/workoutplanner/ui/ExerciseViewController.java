@@ -160,7 +160,7 @@ public class ExerciseViewController extends BaseController {
 
   // When the user clicks the finish button
   @FXML
-  private void finish() {
+  private void finish() throws IOException {
     // Check if the workout object is not null
     if (getMainController().getUser().getCurrentWorkout().getExerciseCount() == 0) {
       UiUtils.showAlert("Error",
@@ -187,8 +187,12 @@ public class ExerciseViewController extends BaseController {
    */
   @Override
   public void init() {
-    cancelButton.setVisible(
-        !getMainController().getUser().getCurrentWorkout().isSaved());
+    try {
+      cancelButton.setVisible(
+          !getMainController().getUser().getCurrentWorkout().isSaved());
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
   }
 
   // Clear the input fields
