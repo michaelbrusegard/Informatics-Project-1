@@ -13,7 +13,6 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import workoutplanner.core.Exercise;
-import workoutplanner.core.User;
 import workoutplanner.core.Workout;
 
 /**
@@ -82,10 +81,15 @@ public class RemoteUserAccess implements UserAccess {
   }
 
   @Override
-  public List<Workout> getWorkouts() throws IOException {
-    Reader reader = httpGetRequest("/workouts");
-    return objectMapper.readValue(reader, new TypeReference<List<Workout>>() {
-    });
+  public List<Workout> getWorkouts() {
+    try {
+      Reader reader = httpGetRequest("/workouts");
+      List<Workout> workouts = objectMapper.readValue(reader, new TypeReference<List<Workout>>() {
+      });
+      return workouts;
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
   }
 
   @Override
