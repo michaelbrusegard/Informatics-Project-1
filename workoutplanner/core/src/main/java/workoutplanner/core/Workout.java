@@ -1,8 +1,8 @@
 package workoutplanner.core;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -28,7 +28,7 @@ public class Workout {
   /**
    * Local Date variable, used to set the date of when the workout was created.
    */
-  private Date date;
+  private LocalDate date;
 
   /**
    * Local boolean variable, used to check if the workout is saved.
@@ -76,7 +76,7 @@ public class Workout {
    *
    * @param inputDate The new date to set for the workout.
    */
-  public void setDate(final Date inputDate) {
+  public void setDate(final LocalDate inputDate) {
     this.date = inputDate;
   }
 
@@ -96,10 +96,10 @@ public class Workout {
    * @param weight    The weight for the exercise.
    */
   public void addExercise(final String inputName,
-                          final int sets,
-                          final int repMin,
-                          final int repMax,
-                          final int weight) {
+      final int sets,
+      final int repMin,
+      final int repMax,
+      final int weight) {
     Exercise exercise = new Exercise(inputName, sets, repMin, repMax, weight);
     this.exercises.add(exercise);
   }
