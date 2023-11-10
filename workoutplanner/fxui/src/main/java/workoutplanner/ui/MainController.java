@@ -1,7 +1,7 @@
 package workoutplanner.ui;
 
 import java.net.MalformedURLException;
-import java.net.URL;
+import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 import javafx.fxml.FXML;
@@ -106,7 +106,7 @@ public class MainController {
    * </p>
    */
   public MainController() throws MalformedURLException {
-    user = new RemoteUserAccess(new URL("http://localhost:8080/user"));
+    user = new RemoteUserAccess(URI.create("http://localhost:8080/user/"));
   }
 
   @FXML

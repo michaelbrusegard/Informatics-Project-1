@@ -1,10 +1,8 @@
 package workoutplanner.ui;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.List;
 
-import workoutplanner.core.Exercise;
 import workoutplanner.core.Workout;
 
 public interface UserAccess {
@@ -14,7 +12,11 @@ public interface UserAccess {
 
   public void setCurrentWorkout(final int workoutIndex) throws IOException;
 
-  public void addExerciseToCurrentWorkout(final Exercise exercise) throws IOException;
+  public void addExerciseToCurrentWorkout(final String inputName,
+      final int sets,
+      final int repMin,
+      final int repMax,
+      final int weight) throws IOException;
 
   public void removeExerciseFromCurrentWorkout(final int exerciseIndex) throws IOException;
 

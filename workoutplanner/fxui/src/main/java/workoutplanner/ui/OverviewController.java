@@ -92,7 +92,13 @@ public class OverviewController extends BaseController {
   public void cancel() {
     if (Overview.validateOverview(false, true, this.inputName)) {
       if (Overview.checkIfCancel()) {
-        getMainController().getUser().removeCurrentWorkout();
+        try {
+          getMainController().getUser().removeCurrentWorkout();
+        } catch (Exception e) {
+          UiUtils.showAlert("Error",
+              e.getMessage(),
+              AlertType.ERROR);
+        }
         getMainController().showFxml("Home");
       }
     }
@@ -110,10 +116,13 @@ public class OverviewController extends BaseController {
   @FXML
   public void save() {
     if (Overview.validateOverview(true, false, this.inputName)) {
-      getMainController().getUser().getCurrentWorkout()
-          .setName(inputName.getText());
-      getMainController().getUser().getCurrentWorkout().setDate(new Date());
-      getMainController().getUser().getCurrentWorkout().save();
+      try {
+        getMainController().getUser().saveCurrentWorkout(inputName.getText());
+      } catch (Exception e) {
+        UiUtils.showAlert("Error",
+            e.getMessage(),
+            AlertType.ERROR);
+      }
       getMainController().showFxml("WorkoutView");
     }
   }
@@ -234,7 +243,7 @@ public class OverviewController extends BaseController {
 
     // HBox for the move buttons and the deleteButton
     HBox moveContentBox = new HBox(moveLeftButton, deleteButton,
-            moveRightButton);
+        moveRightButton);
     moveContentBox.setAlignment(Pos.CENTER);
 
     moveContentBox.setSpacing(0);
@@ -248,8 +257,14 @@ public class OverviewController extends BaseController {
 
   private void move(final int exerciseIndex, final boolean left) {
     // Move the exercise
-    getMainController().getUser().getCurrentWorkout()
-        .moveExercise(exerciseIndex, left);
+    try {
+      getMainController().getUser().moveExerciseInCurrentWorkout(exerciseIndex, left);
+    } catch (Exception e) {
+      UiUtils.showAlert("Error",
+          e.getMessage(),
+          AlertType.ERROR);
+      return;
+    }
     // Reload the overview with the new order
     init();
   }
@@ -268,8 +283,14 @@ public class OverviewController extends BaseController {
             + getMainController().getUser().getCurrentWorkout().getExercises()
                 .get(exerciseIndex).name()
             + "? ")) {
-      getMainController().getUser().getCurrentWorkout()
-          .removeExercise(exerciseIndex);
+      try {
+        getMainController().getUser().removeExerciseFromCurrentWorkout(exerciseIndex);
+      } catch (Exception e) {
+        UiUtils.showAlert("Error",
+            e.getMessage(),
+            AlertType.ERROR);
+        return;
+      }
 
       // Reload the overview now that an exercise has been deleted
       init();

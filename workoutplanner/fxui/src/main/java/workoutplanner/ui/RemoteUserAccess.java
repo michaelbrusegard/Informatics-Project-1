@@ -6,8 +6,9 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.net.HttpURLConnection;
-import java.net.URL;
+import java.net.URI;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -20,26 +21,52 @@ import workoutplanner.core.Workout;
 
 public class RemoteUserAccess implements UserAccess {
 
-  private final URL baseUrl;
+  private final URI baseUrl;
 
-  public RemoteUserAccess(URL inputUrl) {
+  public RemoteUserAccess(URI inputUrl) {
     baseUrl = inputUrl;
   }
 
   private Reader httpGetRequest(String path) throws IOException {
-    URL url = new URL(baseUrl + path);
-    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+    URI url = baseUrl.resolve(path);
+    HttpURLConnection connection = (HttpURLConnection) url.toURL().openConnection();
     connection.setRequestProperty("Accept", "application/json");
 
     InputStream responseStream = connection.getInputStream();
-    Reader reader = new InputStreamReader(responseStream, "UTF-8");
+    Reader reader = new InputStreamReader(responseStream, StandardCharsets.UTF_8);
     return reader;
+  }
+
+  private HttpURLConnection httpPutRequest(String path) throws IOException {
+    URI url = baseUrl.resolve(path);
+    HttpURLConnection connection = (HttpURLConnection) url.toURL().openConnection();
+    connection.connect();
+    connection.setDoOutput(true);
+    connection.setRequestProperty("Content-Type", "application/json");
+    connection.setRequestMethod("PUT");
+    return connection;
+  }
+
+  private HttpURLConnection httpDeleteRequest(String path) throws IOException {
+    URI url = baseUrl.resolve(path);
+    HttpURLConnection connection = (HttpURLConnection) url.toURL().openConnection();
+    connection.connect();
+    connection.setDoOutput(true);
+    connection.setRequestProperty("Content-Type", "application/json");
+    connection.setRequestMethod("DELETE");
+    return connection;
+  }
+
+  private void checkResponseCode(HttpURLConnection connection) throws IOException {
+    if (connection.getResponseCode() != 200) {
+      throw new IllegalArgumentException(connection.getResponseCode() + "");
+    }
   }
 
   @Override
   public Workout getCurrentWorkout() {
     Reader reader = httpGetRequest("/current-workout");
-    Workout workout = Deserializer.deserializeCurrentWorkout(reader);
+    Workout workout = Deserializer.deserializeWorkout(reader);
     return workout;
   }
 
@@ -50,81 +77,54 @@ public class RemoteUserAccess implements UserAccess {
     return workouts;
   }
 
-  private HttpURLConnection httpPutRequest(String path) throws IOException {
-    URL url = new URL(baseUrl + path);
-    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-    connection.connect();
-    connection.setDoOutput(true);
-    connection.setRequestProperty("Content-Type", "application/json");
-    connection.setRequestMethod("PUT");
-    return connection;
-  }
-
   @Override
   public void setCurrentWorkout(final int workoutIndex) throws IOException {
     HttpURLConnection connection = httpPutRequest("/current-workout/" + workoutIndex);
-    if (connection.getResponseCode() == 404) {
-      throw new IllegalArgumentException("Workout index not found.");
-    }
+    checkResponseCode(connection);
   }
 
   @Override
-  public void addExerciseToCurrentWorkout(final Exercise exercise) {
+  public void addExerciseToCurrentWorkout(final String inputName,
+      final int sets,
+      final int repMin,
+      final int repMax,
+      final int weight) throws IOException {
     HttpURLConnection connection = httpPutRequest("/current-workout/exercise");
     OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream(), "UTF-8");
-    String json = Serializer.serializeExercise(exercise);
+    String json = Serializer.serializeExercise(new Exercise(inputName, sets, repMin, repMax, weight));
     writer.write(json);
     writer.flush();
     writer.close();
+    checkResponseCode(connection);
   };
 
   @Override
   public void moveExerciseInCurrentWorkout(final int exerciseIndex, final boolean left) throws IOException {
     HttpURLConnection connection = httpPutRequest("/current-workout/exercise/" + exerciseIndex + "?left=" + left);
-    if (connection.getResponseCode() == 404) {
-      throw new IllegalArgumentException("Exercise index not found.");
-    }
+    checkResponseCode(connection);
   };
 
   @Override
   public void saveCurrentWorkout(final String name) throws IOException {
     HttpURLConnection connection = httpPutRequest("/current-workout/save?name=" + URLEncoder.encode(name, "UTF-8"));
-    if (connection.getResponseCode() == 404) {
-      throw new IllegalArgumentException("No current workout.");
-    }
-  }
-
-  private HttpURLConnection httpDeleteRequest(String path) throws IOException {
-    URL url = new URL(baseUrl + path);
-    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-    connection.connect();
-    connection.setDoOutput(true);
-    connection.setRequestProperty("Content-Type", "application/json");
-    connection.setRequestMethod("DELETE");
-    return connection;
+    checkResponseCode(connection);
   }
 
   @Override
   public void removeWorkout(final int workoutIndex) throws IOException {
     HttpURLConnection connection = httpDeleteRequest("/workout/" + workoutIndex);
-    if (connection.getResponseCode() == 404) {
-      throw new IllegalArgumentException("Workout index not found.");
-    }
+    checkResponseCode(connection);
   }
 
   @Override
   public void removeCurrentWorkout() throws IOException {
     HttpURLConnection connection = httpDeleteRequest("/current-workout");
-    if (connection.getResponseCode() == 500) {
-      throw new IllegalArgumentException("No current workout.");
-    }
+    checkResponseCode(connection);
   }
 
   @Override
   public void removeExerciseFromCurrentWorkout(final int exerciseIndex) throws IOException {
     HttpURLConnection connection = httpDeleteRequest("/current-workout/exercise/" + exerciseIndex);
-    if (connection.getResponseCode() == 404) {
-      throw new IllegalArgumentException("Exercise index not found.");
-    }
+    checkResponseCode(connection);
   };
 }
