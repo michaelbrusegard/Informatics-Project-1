@@ -35,8 +35,7 @@ public class RemoteUserAccess implements UserAccess {
 
   private Reader httpGetRequest(final String path) throws IOException {
     URI url = baseUrl.resolve(path);
-    HttpURLConnection connection = (HttpURLConnection)
-            url.toURL().openConnection();
+    HttpURLConnection connection = (HttpURLConnection) url.toURL().openConnection();
     connection.setRequestProperty("Accept", "application/json");
 
     InputStream responseStream = connection.getInputStream();
@@ -44,10 +43,9 @@ public class RemoteUserAccess implements UserAccess {
   }
 
   private HttpURLConnection httpPutRequest(final String path)
-          throws IOException {
+      throws IOException {
     URI url = baseUrl.resolve(path);
-    HttpURLConnection connection = (HttpURLConnection)
-            url.toURL().openConnection();
+    HttpURLConnection connection = (HttpURLConnection) url.toURL().openConnection();
     connection.connect();
     connection.setDoOutput(true);
     connection.setRequestProperty("Content-Type", "application/json");
@@ -56,10 +54,9 @@ public class RemoteUserAccess implements UserAccess {
   }
 
   private HttpURLConnection httpDeleteRequest(final String path)
-          throws IOException {
+      throws IOException {
     URI url = baseUrl.resolve(path);
-    HttpURLConnection connection = (HttpURLConnection)
-            url.toURL().openConnection();
+    HttpURLConnection connection = (HttpURLConnection) url.toURL().openConnection();
     connection.connect();
     connection.setDoOutput(true);
     connection.setRequestProperty("Content-Type", "application/json");
@@ -68,7 +65,7 @@ public class RemoteUserAccess implements UserAccess {
   }
 
   private void checkResponseCode(final HttpURLConnection connection)
-          throws IOException {
+      throws IOException {
     if (connection.getResponseCode() != RESPONSE_CODE) {
       throw new IllegalArgumentException(connection.getResponseCode() + "");
     }
@@ -89,7 +86,7 @@ public class RemoteUserAccess implements UserAccess {
   @Override
   public void setCurrentWorkout(final int workoutIndex) throws IOException {
     HttpURLConnection connection = httpPutRequest("/current-workout/"
-            + workoutIndex);
+        + workoutIndex);
     checkResponseCode(connection);
   }
 
@@ -101,32 +98,32 @@ public class RemoteUserAccess implements UserAccess {
       final int weight) throws IOException {
     HttpURLConnection connection = httpPutRequest("/current-workout/exercise");
     OutputStreamWriter writer = new OutputStreamWriter(
-            connection.getOutputStream(), StandardCharsets.UTF_8);
+        connection.getOutputStream(), StandardCharsets.UTF_8);
     objectMapper.writerWithDefaultPrettyPrinter().writeValue(writer,
-            new Exercise(inputName, sets, repMin, repMax, weight));
+        new Exercise(inputName, sets, repMin, repMax, weight));
     checkResponseCode(connection);
   }
 
   @Override
   public void moveExerciseInCurrentWorkout(final int exerciseIndex,
-                                           final boolean left)
-          throws IOException {
+      final boolean left)
+      throws IOException {
     HttpURLConnection connection = httpPutRequest("/current-workout/exercise/"
-            + exerciseIndex + "?left=" + left);
+        + exerciseIndex + "?left=" + left);
     checkResponseCode(connection);
   }
 
   @Override
   public void saveCurrentWorkout(final String name) throws IOException {
     HttpURLConnection connection = httpPutRequest("/current-workout/save?name="
-            + URLEncoder.encode(name, StandardCharsets.UTF_8));
+        + URLEncoder.encode(name, StandardCharsets.UTF_8));
     checkResponseCode(connection);
   }
 
   @Override
   public void removeWorkout(final int workoutIndex) throws IOException {
     HttpURLConnection connection = httpDeleteRequest("/workout/"
-            + workoutIndex);
+        + workoutIndex);
     checkResponseCode(connection);
   }
 
@@ -138,9 +135,8 @@ public class RemoteUserAccess implements UserAccess {
 
   @Override
   public void removeExerciseFromCurrentWorkout(final int exerciseIndex)
-          throws IOException {
-    HttpURLConnection connection =
-            httpDeleteRequest("/current-workout/exercise/" + exerciseIndex);
+      throws IOException {
+    HttpURLConnection connection = httpDeleteRequest("/current-workout/exercise/" + exerciseIndex);
     checkResponseCode(connection);
   }
 }

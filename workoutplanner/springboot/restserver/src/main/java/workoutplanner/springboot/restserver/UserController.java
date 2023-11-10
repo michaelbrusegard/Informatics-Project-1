@@ -43,8 +43,7 @@ public class UserController {
   };
 
   @PutMapping("/current-workout/exercise")
-  public void addExerciseToCurrentWorkout(@RequestBody String exerciseJson) {
-    Exercise exercise = Deserializer.deserializeExercise(exerciseJson);
+  public void addExerciseToCurrentWorkout(@RequestBody Exercise exercise) {
     user.getCurrentWorkout().addExercise(exercise);
   };
 
