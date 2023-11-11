@@ -117,7 +117,7 @@ public class WorkoutDeserializer extends JsonDeserializer<Workout> {
               .deserializeNode(exerciseNode);
           // checks that there is an exercise
           if (exercise != null) {
-            workout.addExercise(exercise);
+            // workout.addExercise(exercise);
           }
         }
       }

@@ -27,4 +27,6 @@ public interface UserAccess {
   public void removeWorkout(final int workoutIndex) throws IOException;
 
   public void removeCurrentWorkout() throws IOException;
+
+  public List<String> getExerciseList() throws IOException;
 }

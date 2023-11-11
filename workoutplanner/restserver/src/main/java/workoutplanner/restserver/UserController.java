@@ -49,6 +49,13 @@ public class UserController {
     return workouts;
   }
 
+  @GetMapping("/exercise-list")
+  public List<String> getExerciseList() {
+    List<String> exerciseList = user.getExerciseList();
+    logEndpoint("GET /exercise-list", exerciseList);
+    return exerciseList;
+  }
+
   @PutMapping("/current-workout/{workoutIndex}")
   public void setCurrentWorkout(@PathVariable int workoutIndex) {
     logEndpoint("PUT /current-workout/" + workoutIndex);
@@ -58,7 +65,8 @@ public class UserController {
   @PutMapping("/current-workout/exercise")
   public void addExerciseToCurrentWorkout(@RequestBody Exercise exercise) {
     logEndpoint("PUT /current-workout/exercise", exercise);
-    user.addExerciseToCurrentWorkout(exercise.getName(), exercise.getSets(), exercise.getRepMin(), exercise.getRepMax(), exercise.getWeight());
+    user.addExerciseToCurrentWorkout(exercise.name(), exercise.sets(), exercise.repMin(), exercise.repMax(),
+        exercise.weight());
   }
 
   @PutMapping("/current-workout/exercise/{exerciseIndex}")

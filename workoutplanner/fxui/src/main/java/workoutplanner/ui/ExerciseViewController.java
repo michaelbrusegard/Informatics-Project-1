@@ -10,7 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import workoutplanner.fxutil.ExerciseLoader;
 import workoutplanner.fxutil.ExerciseView;
 import workoutplanner.fxutil.UiUtils;
 
@@ -90,7 +89,8 @@ public class ExerciseViewController extends BaseController {
   public void initialize() throws IOException {
     // Update the list view with the exercises
     // Use ExerciseLoader to load exercises from the JSON file
-    List<String> exercisesList = ExerciseLoader.loadExercisesFromJson();
+    List<String> exercisesList = getMainController().getUser()
+        .getExerciseList();
 
     // Convert the List to an ObservableList
     ObservableList<String> exercises = FXCollections

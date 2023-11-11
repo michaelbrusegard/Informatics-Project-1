@@ -1,4 +1,4 @@
-package workoutplanner.fxutil;
+package workoutplanner.core;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -7,8 +7,8 @@ import java.io.InputStream;
 import java.util.List;
 
 /**
- * <h1>ExerciseLoader</h1>
- * The ExerciseLoader class is responsible for loading exercises from a JSON
+ * <h1>ExerciseListLoader</h1>
+ * The ExerciseListLoader class is responsible for loading exercises from a JSON
  * file into the ExerciseView class.
  * <p>
  * This class provides a method for loading a list of exercise names from a JSON
@@ -22,12 +22,12 @@ import java.util.List;
  * @version 1.4.0
  */
 
-public class ExerciseLoader {
+public class ExerciseListLoader {
 
   /**
    * Local objectmapper variable, used to map from the json file.
    */
-  private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+  private static final ObjectMapper objectMapper = new ObjectMapper();
 
   /**
    * Loads exercises from a JSON file as a list of strings.
@@ -43,18 +43,18 @@ public class ExerciseLoader {
    * @throws IOException If the JSON file is not found or an I/O error occurs
    *                     during loading.
    */
-  public static List<String> loadExercisesFromJson() throws IOException {
+  public static List<String> loadExerciseListFromJson() throws IOException {
     // Method to load exercises from a JSON file as a URL
     // Get the URL of the resource
-    String resourcePath = "/workoutplanner/fxutil/exercises.json";
-    InputStream resourceUrl = ExerciseLoader.class
-            .getResourceAsStream(resourcePath);
+    String resourcePath = "/workoutplanner/core/ExerciseList.json";
+    InputStream resourceUrl = ExerciseListLoader.class
+        .getResourceAsStream(resourcePath);
     if (resourceUrl == null) {
       throw new IOException("Resource not found: exercises.json");
     }
     // Open an InputStream from the URL
     try (InputStream inputStream = resourceUrl) {
-      return OBJECT_MAPPER.readValue(inputStream, new TypeReference<>() {
+      return objectMapper.readValue(inputStream, new TypeReference<>() {
       });
     }
   }
