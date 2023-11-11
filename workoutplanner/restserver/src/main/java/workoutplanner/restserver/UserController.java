@@ -58,22 +58,20 @@ public class UserController {
   @PutMapping("/current-workout/exercise")
   public void addExerciseToCurrentWorkout(@RequestBody Exercise exercise) {
     logEndpoint("PUT /current-workout/exercise", exercise);
-    user.getCurrentWorkout().addExercise(exercise);
+    user.addExerciseToCurrentWorkout(exercise.getName(), exercise.getSets(), exercise.getRepMin(), exercise.getRepMax(), exercise.getWeight());
   }
 
   @PutMapping("/current-workout/exercise/{exerciseIndex}")
   public void moveExerciseInCurrentWorkout(@PathVariable int exerciseIndex, @RequestParam boolean left) {
     logEndpoint(
         "PUT /current-workout/exercise/" + exerciseIndex + "?left=" + left);
-    user.getCurrentWorkout().moveExercise(exerciseIndex, left);
+    user.moveExerciseInCurrentWorkout(exerciseIndex, left);
   }
 
   @PutMapping("/current-workout/save")
   public void saveCurrentWorkout(@RequestParam String name, @RequestParam String date) {
     logEndpoint("PUT /current-workout/save" + "?name=" + name);
-    user.getCurrentWorkout().setName(name);
-    user.getCurrentWorkout().setDate(date);
-    user.getCurrentWorkout().setSaved(true);
+    user.saveCurrentWorkout(name, date);
   }
 
   @DeleteMapping("/workout/{workoutIndex}")
@@ -91,7 +89,7 @@ public class UserController {
   @DeleteMapping("/current-workout/exercise/{exerciseIndex}")
   public void removeExerciseFromCurrentWorkout(@PathVariable int exerciseIndex) {
     logEndpoint("DELETE /current-workout/exercise/" + exerciseIndex);
-    user.getCurrentWorkout().removeExercise(exerciseIndex);
+    user.removeExerciseFromCurrentWorkout(exerciseIndex);
   }
 
   private void logEndpoint(String endpoint) {
