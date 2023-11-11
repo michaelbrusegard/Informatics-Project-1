@@ -21,18 +21,18 @@ import workoutplanner.core.Workout;
 
 public class RemoteUserAccess implements UserAccess {
 
-  private final URI baseUrl;
+  private final URI baseUri;
 
   private final ObjectMapper objectMapper = new ObjectMapper();
 
   private static final int RESPONSE_CODE = 200;
 
   public RemoteUserAccess(final URI inputUrl) {
-    baseUrl = inputUrl;
+    baseUri = inputUrl;
   }
 
   private Reader httpGetRequest(final String path) throws IOException {
-    URI url = baseUrl.resolve("/user" + path);
+    URI uri = baseUri.resolve("/user" + path);
     HttpURLConnection connection = (HttpURLConnection) url.toURL().openConnection();
     connection.setRequestProperty("Accept", "application/json");
 
@@ -42,8 +42,8 @@ public class RemoteUserAccess implements UserAccess {
 
   private HttpURLConnection httpPutRequest(final String path)
       throws IOException {
-    URI url = baseUrl.resolve("/user" + path);
-    HttpURLConnection connection = (HttpURLConnection) url.toURL().openConnection();
+    URI uri = baseUri.resolve("/user" + path);
+    HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection();
     connection.setDoOutput(true);
     connection.setRequestProperty("Content-Type", "application/json");
     connection.setRequestMethod("PUT");
@@ -52,7 +52,7 @@ public class RemoteUserAccess implements UserAccess {
 
   private HttpURLConnection httpDeleteRequest(final String path)
       throws IOException {
-    URI url = baseUrl.resolve("/user" + path);
+    URI uri = baseUri.resolve("/user" + path);
     HttpURLConnection connection = (HttpURLConnection) url.toURL().openConnection();
     connection.setDoOutput(true);
     connection.setRequestProperty("Content-Type", "application/json");
