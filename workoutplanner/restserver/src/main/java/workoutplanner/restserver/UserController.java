@@ -78,7 +78,7 @@ public class UserController {
 
   @DeleteMapping("/workout/{workoutIndex}")
   public void removeWorkout(@PathVariable int workoutIndex) {
-    logEndpoint("DELETE /workout/" + workoutIndex, workoutIndex);
+    logEndpoint("DELETE /workout/" + workoutIndex);
     user.removeWorkout(workoutIndex);
   }
 
@@ -101,7 +101,7 @@ public class UserController {
   private void logEndpoint(String endpoint, Object content) {
     try {
       String contentString = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(content);
-      logger.log(Level.INFO, endpoint, contentString);
+      logger.log(Level.INFO, endpoint + "\n" + contentString);
     } catch (JsonProcessingException e) {
       e.printStackTrace();
     }
