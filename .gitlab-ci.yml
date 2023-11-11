@@ -1,8 +1,8 @@
 image: maven:3.8.3-openjdk-17
 
 variables:
-  MAVEN_OPTS: '-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository'
-  MAVEN_CLI_OPTS: '--batch-mode -P headless -DskipUiTests=true'
+  MAVEN_OPTS: "-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository"
+  MAVEN_CLI_OPTS: "--batch-mode -P headless -DskipUiTests=true"
 
 stages:
   - test
@@ -12,7 +12,7 @@ stages:
 cache:
   paths:
     - .m2/repository
-  key: '$CI_BUILD_REF_NAME'
+  key: "$CI_BUILD_REF_NAME"
 
 test:
   stage: test
@@ -28,13 +28,13 @@ build:
     - if: '$CI_COMMIT_BRANCH == "skip build"'
   when: manual
   script:
-    - 'cd workoutplanner; mvn clean install $MAVEN_CLI_OPTS'
+    - "cd workoutplanner; mvn clean install $MAVEN_CLI_OPTS"
 
 semantic-release:
   image: node:latest
   stage: semantic-release
-    rules:
-    - if: '$CI_COMMIT_MESSAGE  !~ /^chore(release)*/'
+  rules:
+    - if: "$CI_COMMIT_MESSAGE  !~ /^chore(release)*/"
   script:
     - export GITLAB_TOKEN=$SEMANTIC_RELEASE_TOKEN
     - npm install @semantic-release/git @semantic-release/gitlab @semantic-release/changelog
