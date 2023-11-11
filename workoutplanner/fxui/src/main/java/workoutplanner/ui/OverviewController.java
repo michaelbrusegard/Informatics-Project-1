@@ -1,6 +1,8 @@
 package workoutplanner.ui;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -92,7 +94,13 @@ public class OverviewController extends BaseController {
   public void cancel() {
     if (Overview.validateOverview(false, true, this.inputName)) {
       if (Overview.checkIfCancel()) {
-        getMainController().getUser().removeCurrentWorkout();
+        try {
+          getMainController().getUser().removeCurrentWorkout();
+        } catch (Exception e) {
+          UiUtils.showAlert("Error",
+              e.getMessage(),
+              AlertType.ERROR);
+        }
         getMainController().showFxml("Home");
       }
     }
@@ -110,10 +118,16 @@ public class OverviewController extends BaseController {
   @FXML
   public void save() {
     if (Overview.validateOverview(true, false, this.inputName)) {
-      getMainController().getUser().getCurrentWorkout()
-          .setName(inputName.getText());
-      getMainController().getUser().getCurrentWorkout().setDate(new Date());
-      getMainController().getUser().getCurrentWorkout().save();
+      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy HH:mm");
+      String formattedDate = LocalDateTime.now().format(formatter);
+      try {
+        getMainController().getUser().saveCurrentWorkout(inputName.getText(), formattedDate);
+      } catch (Exception e) {
+        UiUtils.showAlert("Error",
+            e.getMessage(),
+            AlertType.ERROR);
+        return;
+      }
       getMainController().showFxml("WorkoutView");
     }
   }
@@ -146,7 +160,7 @@ public class OverviewController extends BaseController {
     inputName.clear();
     scrollPane.setContent(new VBox());
 
-    if (getMainController().getUser().getCurrentWorkout().isSaved()) {
+    if (getMainController().getUser().getCurrentWorkout().getSaved()) {
       saveWorkoutNameBox.setVisible(false);
       workoutInfoBox.setVisible(true);
       name.setText(getMainController().getUser().getCurrentWorkout().getName());
@@ -234,7 +248,7 @@ public class OverviewController extends BaseController {
 
     // HBox for the move buttons and the deleteButton
     HBox moveContentBox = new HBox(moveLeftButton, deleteButton,
-            moveRightButton);
+        moveRightButton);
     moveContentBox.setAlignment(Pos.CENTER);
 
     moveContentBox.setSpacing(0);
@@ -248,15 +262,21 @@ public class OverviewController extends BaseController {
 
   private void move(final int exerciseIndex, final boolean left) {
     // Move the exercise
-    getMainController().getUser().getCurrentWorkout()
-        .moveExercise(exerciseIndex, left);
+    try {
+      getMainController().getUser().moveExerciseInCurrentWorkout(exerciseIndex, left);
+    } catch (Exception e) {
+      UiUtils.showAlert("Error",
+          e.getMessage(),
+          AlertType.ERROR);
+      return;
+    }
     // Reload the overview with the new order
     init();
   }
 
   private void delete(final int exerciseIndex) {
     if (getMainController().getUser().getCurrentWorkout()
-        .getExerciseCount() == 1) {
+        .getExercises().size() == 1) {
       UiUtils.showAlert("Error",
           "Cannot delete the last exercise in a workout.",
           AlertType.ERROR);
@@ -268,8 +288,14 @@ public class OverviewController extends BaseController {
             + getMainController().getUser().getCurrentWorkout().getExercises()
                 .get(exerciseIndex).name()
             + "? ")) {
-      getMainController().getUser().getCurrentWorkout()
-          .removeExercise(exerciseIndex);
+      try {
+        getMainController().getUser().removeExerciseFromCurrentWorkout(exerciseIndex);
+      } catch (Exception e) {
+        UiUtils.showAlert("Error",
+            e.getMessage(),
+            AlertType.ERROR);
+        return;
+      }
 
       // Reload the overview now that an exercise has been deleted
       init();

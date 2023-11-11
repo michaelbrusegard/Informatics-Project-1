@@ -1,6 +1,8 @@
 package workoutplanner.ui;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert.AlertType;
+import workoutplanner.fxutil.UiUtils;
 
 /**
  * <h1>HomeController</h1>
@@ -40,6 +42,10 @@ public class HomeController extends BaseController {
    */
   @Override
   public void init() {
-    getMainController().getUser().setCurrentWorkout(-1);
+    try {
+      getMainController().getUser().setCurrentWorkout(-1);
+    } catch (Exception e) {
+      UiUtils.showAlert("Error", e.getMessage(), AlertType.ERROR);
+    }
   }
 }

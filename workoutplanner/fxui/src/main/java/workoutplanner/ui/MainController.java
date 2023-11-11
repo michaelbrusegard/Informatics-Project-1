@@ -1,10 +1,12 @@
 package workoutplanner.ui;
 
+import java.net.MalformedURLException;
+import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
-import workoutplanner.core.User;
+import workoutplanner.ui.remote.RemoteUserAccess;
 
 /**
  * <h1>MainController</h1>
@@ -80,22 +82,20 @@ public class MainController {
   private WorkoutViewController workoutViewController;
 
   /**
-   * Local User object, is the current user object that is used to encapsulate
+   * Remote User object, is the current user object that is used to encapsulate
    * the workouts.
    */
-  private final User user = new User();
+  private final RemoteUserAccess user;
 
   /**
    * Local Map variable, used to register the different controllers.
    */
-  private final Map<String, FxmlControllerPair> fxmlControllerMap =
-          new HashMap<>();
+  private final Map<String, FxmlControllerPair> fxmlControllerMap = new HashMap<>();
 
   /**
    * Local String variable, used to define which controller should be used.
    */
   private String currentFxmlName = "Home";
-
 
   /**
    * Constructs a new MainController instance.
@@ -106,19 +106,20 @@ public class MainController {
    * manages user interactions and the application's main functionality.
    * </p>
    */
-  public MainController() {
+  public MainController() throws MalformedURLException {
+    user = new RemoteUserAccess(URI.create("http://localhost:8080/"));
   }
 
   @FXML
   private void initialize() {
     fxmlControllerMap.put("Home",
-            new FxmlControllerPair(this, home, homeController));
+        new FxmlControllerPair(this, home, homeController));
     fxmlControllerMap.put("ExerciseView",
-            new FxmlControllerPair(this, exerciseView, exerciseViewController));
+        new FxmlControllerPair(this, exerciseView, exerciseViewController));
     fxmlControllerMap.put("Overview",
-            new FxmlControllerPair(this, overview, overviewController));
+        new FxmlControllerPair(this, overview, overviewController));
     fxmlControllerMap.put("WorkoutView",
-            new FxmlControllerPair(this, workoutView, workoutViewController));
+        new FxmlControllerPair(this, workoutView, workoutViewController));
     showFxml("Home");
   }
 
@@ -153,7 +154,7 @@ public class MainController {
    *
    * @return The User object representing the user of the application.
    */
-  public User getUser() {
+  public RemoteUserAccess getUser() {
     return user;
   }
 }

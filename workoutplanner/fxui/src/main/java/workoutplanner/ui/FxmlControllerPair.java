@@ -37,15 +37,17 @@ public class FxmlControllerPair {
    * "false" and establishes the connection with the provided MainController.
    * </p>
    *
-   * @param mainController The MainController instance used for application-wide
-   *                       functionality.
-   * @param inputFxml      The FXML view (VBox) associated with the controller.
+   * @param mainController      The MainController instance used for
+   *                            application-wide
+   *                            functionality.
+   * @param inputFxml           The FXML view (VBox) associated with the
+   *                            controller.
    * @param inputBaseController The BaseController instance linked to the FXML
    *                            view.
    */
   public FxmlControllerPair(final MainController mainController,
-                            final VBox inputFxml,
-                            final BaseController inputBaseController) {
+      final VBox inputFxml,
+      final BaseController inputBaseController) {
     this.fxml = inputFxml;
     this.baseController = inputBaseController;
     this.fxml.setVisible(false);

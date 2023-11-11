@@ -113,19 +113,26 @@ public class ExerciseViewController extends BaseController {
     String weightText = weight.getText();
 
     if (ExerciseView.validateExerciseInput(exerciseName, setsText, repMinText,
-            repMaxText, weightText)) {
+        repMaxText, weightText)) {
       int exerciseSets = Integer.parseInt(setsText);
       int exerciseRepMin = Integer.parseInt(repMinText);
       int exerciseRepMax = Integer.parseInt(repMaxText);
       int exerciseWeight = Integer.parseInt(weightText);
 
       // Add the exercise to the new workout
-      getMainController().getUser().getCurrentWorkout().addExercise(
-              exerciseName, exerciseSets, exerciseRepMin,
-              exerciseRepMax, exerciseWeight);
+      try {
+        getMainController().getUser().addExerciseToCurrentWorkout(
+            exerciseName, exerciseSets, exerciseRepMin,
+            exerciseRepMax, exerciseWeight);
+      } catch (IOException e) {
+        UiUtils.showAlert("Error",
+            e.getMessage(),
+            AlertType.ERROR);
+        return;
+      }
 
       ExerciseView.displayExerciseAddedPrompt(exerciseName, exerciseSets,
-              exerciseRepMin, exerciseRepMax, exerciseWeight);
+          exerciseRepMin, exerciseRepMax, exerciseWeight);
 
       // Clear the input fields so a new exercise can be added
       clearInputFields();
@@ -139,17 +146,23 @@ public class ExerciseViewController extends BaseController {
         "Are you sure you want to cancel the workout? "
             + "All progress will be lost.")) {
       clearInputFields();
-      getMainController().getUser().removeCurrentWorkout();
+      try {
+        getMainController().getUser().removeCurrentWorkout();
+      } catch (IOException e) {
+        UiUtils.showAlert("Error",
+            e.getMessage(),
+            AlertType.ERROR);
+        return;
+      }
       getMainController().showFxml("Home");
     }
   }
 
   // When the user clicks the finish button
   @FXML
-  private void finish() {
+  private void finish() throws IOException {
     // Check if the workout object is not null
-    if (getMainController().getUser().getCurrentWorkout().getExerciseCount()
-            == 0) {
+    if (getMainController().getUser().getCurrentWorkout().getExercises().size() == 0) {
       UiUtils.showAlert("Error",
           "No exercises added to the workout.",
           AlertType.ERROR);
@@ -175,7 +188,7 @@ public class ExerciseViewController extends BaseController {
   @Override
   public void init() {
     cancelButton.setVisible(
-            !getMainController().getUser().getCurrentWorkout().isSaved());
+        !getMainController().getUser().getCurrentWorkout().getSaved());
   }
 
   // Clear the input fields

@@ -5,6 +5,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -78,7 +79,7 @@ public class WorkoutViewController extends BaseController {
     // Create grid if there are workouts
     if (!getMainController().getUser().getWorkouts().isEmpty()) {
       new GridBuilder(scrollPane,
-              getMainController().getUser().getWorkouts(), this::createCell);
+          getMainController().getUser().getWorkouts(), this::createCell);
     } else {
       VBox container = new VBox();
       Text noWorkouts = new Text("You don't have any workouts.");
@@ -91,18 +92,18 @@ public class WorkoutViewController extends BaseController {
 
   private VBox createCell(final int workoutIndex) {
     String defaultButton = "-fx-pref-width: 80;"
-            + "-fx-pref-height: 35;"
-            + "-fx-background-insets: 2;"
-            + "-fx-background-color:  white;"
-            + "-fx-border-color:  #666666;"
-            + "-fx-border-width: 2;"
-            + "-fx-background-radius: 20;"
-            + "-fx-border-radius: 10;";
+        + "-fx-pref-height: 35;"
+        + "-fx-background-insets: 2;"
+        + "-fx-background-color:  white;"
+        + "-fx-border-color:  #666666;"
+        + "-fx-border-width: 2;"
+        + "-fx-background-radius: 20;"
+        + "-fx-border-radius: 10;";
     Text name = new Text(getMainController().getUser().getWorkouts()
-            .get(workoutIndex).getName());
+        .get(workoutIndex).getName());
     name.setFont(new Font(FONT_FAMILY, FONTSIZE));
     Text date = new Text(getMainController().getUser().getWorkouts()
-            .get(workoutIndex).getDateAsString());
+        .get(workoutIndex).getDate());
     date.setLayoutY(LAYOUTY);
     // Define buttons
     Button viewButton = new Button("View");
@@ -121,18 +122,26 @@ public class WorkoutViewController extends BaseController {
   }
 
   private void view(final int workoutIndex) {
-    getMainController().getUser().setCurrentWorkout(workoutIndex);
+    try {
+      getMainController().getUser().setCurrentWorkout(workoutIndex);
+    } catch (Exception e) {
+      UiUtils.showAlert("Error", e.getMessage(), AlertType.ERROR);
+    }
     getMainController().showFxml("Overview");
   }
 
   private void delete(final int workoutIndex) {
     if (UiUtils.showConfirmation("Delete Workout",
-            "Are you sure you want to delete "
-                    + getMainController().getUser().getWorkouts()
-                    .get(workoutIndex).getName()
-                    + "? "
-                    + "All workout data will be lost.")) {
-      getMainController().getUser().removeWorkout(workoutIndex);
+        "Are you sure you want to delete "
+            + getMainController().getUser().getWorkouts()
+                .get(workoutIndex).getName()
+            + "? "
+            + "All workout data will be lost.")) {
+      try {
+        getMainController().getUser().removeWorkout(workoutIndex);
+      } catch (Exception e) {
+        UiUtils.showAlert("Error", e.getMessage(), AlertType.ERROR);
+      }
       init();
     }
   }
