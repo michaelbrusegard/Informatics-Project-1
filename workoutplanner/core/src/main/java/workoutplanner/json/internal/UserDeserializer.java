@@ -16,10 +16,10 @@ import workoutplanner.core.Workout;
  * Deserializes JSON data into a User instance.
  *
  * <p>
- *   This class is responsible for deserializing JSON data into a User instance.
- *   It reads a JSON object using the provided JsonParser and delegates the
- *   deserialization process to the `deserializeNode` method. The resulting User
- *   instance is returned.
+ * This class is responsible for deserializing JSON data into a User instance.
+ * It reads a JSON object using the provided JsonParser and delegates the
+ * deserialization process to the `deserializeNode` method. The resulting User
+ * instance is returned.
  * </p>
  *
  * @since 2.0.0
@@ -30,35 +30,34 @@ public class UserDeserializer extends JsonDeserializer<User> {
   /**
    * Local WorkoutDeserializer variable, used to deserialize workoutNode.
    */
-  private final WorkoutDeserializer workoutDeserializer =
-          new WorkoutDeserializer();
+  private final WorkoutDeserializer workoutDeserializer = new WorkoutDeserializer();
 
   /**
    * Deserializes a JSON object into a User instance.
    *
    * <p>
-   *   This method is responsible for deserializing a JSON object into a User
-   *   instance. It reads a JSON object using the provided JsonParser and
-   *   delegates the deserialization process to the `deserializeNode` method.
-   *   The resulting User instance is returned.
+   * This method is responsible for deserializing a JSON object into a User
+   * instance. It reads a JSON object using the provided JsonParser and
+   * delegates the deserialization process to the `deserializeNode` method.
+   * The resulting User instance is returned.
    * </p>
    *
-   * @param jsonParser The JsonParser for reading the JSON object to be
-   *                   deserialized.
+   * @param jsonParser             The JsonParser for reading the JSON object to
+   *                               be
+   *                               deserialized.
    * @param deserializationContext The DeserializationContext for additional
    *                               deserialization options (not used in this
    *                               method).
    * @return A deserialized User instance.
-   * @throws IOException If an I/O error occurs during JSON parsing or
-   *                    deserialization.
+   * @throws IOException      If an I/O error occurs during JSON parsing or
+   *                          deserialization.
    * @throws JacksonException If there is an issue with Jackson's JSON
    *                          processing.
    */
   @Override
   public User deserialize(final JsonParser jsonParser,
-                          final DeserializationContext
-                                  deserializationContext)
-          throws IOException, JacksonException {
+      final DeserializationContext deserializationContext)
+      throws IOException, JacksonException {
     // creates JsonNode to delegate further
     JsonNode userNode = jsonParser.getCodec().readTree(jsonParser);
     // delegates the deserialization to the deserializeNode method
@@ -69,10 +68,10 @@ public class UserDeserializer extends JsonDeserializer<User> {
    * Deserializes a JsonNode into a User object.
    *
    * <p>
-   *   This method deserializes a JsonNode into a User object based on the
-   *   specified format. The input JsonNode is expected to represent a User and
-   *   contain a list of workouts. The method checks for valid node types,
-   *   deserializes the workouts, and appends them to the User object.
+   * This method deserializes a JsonNode into a User object based on the
+   * specified format. The input JsonNode is expected to represent a User and
+   * contain a list of workouts. The method checks for valid node types,
+   * deserializes the workouts, and appends them to the User object.
    * </p>
    *
    * @param userNode The JsonNode representing the User to be deserialized.
@@ -94,7 +93,7 @@ public class UserDeserializer extends JsonDeserializer<User> {
           // checks that there is a workout
           if (workout != null) {
             // appends the workout to the user
-            user.addWorkoutFromFile(workout);
+            // user.addWorkoutFromFile(workout);
           }
         }
       }

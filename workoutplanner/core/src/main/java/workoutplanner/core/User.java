@@ -1,5 +1,6 @@
 package workoutplanner.core;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -150,5 +151,14 @@ public class User {
     workout.setName(name);
     workout.setDate(date);
     workout.setSaved(true);
+  }
+
+  public List<String> getExerciseList() {
+    try {
+      return ExerciseListLoader.loadExerciseListFromJson();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return null;
   }
 }

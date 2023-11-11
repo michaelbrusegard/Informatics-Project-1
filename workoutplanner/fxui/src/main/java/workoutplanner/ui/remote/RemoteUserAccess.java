@@ -68,6 +68,18 @@ public class RemoteUserAccess implements UserAccess {
   }
 
   @Override
+  public List<String> getExerciseList() {
+    try {
+      Reader reader = httpGetRequest("/exercise-list");
+      List<String> exercises = objectMapper.readValue(reader, new TypeReference<List<String>>() {
+      });
+      return exercises;
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  @Override
   public Workout getCurrentWorkout() {
     Reader reader = null;
     try {
