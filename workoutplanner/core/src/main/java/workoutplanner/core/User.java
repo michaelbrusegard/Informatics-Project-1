@@ -25,7 +25,7 @@ public class User {
   /**
    * Local int variable, used to find the current workout that will be edited.
    */
-  private int currentWorkoutIndex;
+  private int currentWorkoutIndex = -1;
 
   /**
    * Constructs a new User instance.

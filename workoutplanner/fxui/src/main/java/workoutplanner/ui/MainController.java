@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
+import workoutplanner.ui.remote.RemoteUserAccess;
 
 /**
  * <h1>MainController</h1>
@@ -106,7 +107,7 @@ public class MainController {
    * </p>
    */
   public MainController() throws MalformedURLException {
-    user = new RemoteUserAccess(URI.create("http://localhost:8080/user/"));
+    user = new RemoteUserAccess(URI.create("http://localhost:8080/"));
   }
 
   @FXML

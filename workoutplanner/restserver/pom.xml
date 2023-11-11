@@ -10,7 +10,7 @@
         <relativePath /> <!-- lookup parent from repository -->
     </parent>
 
-    <artifactId>springboot.restserver</artifactId>
+    <artifactId>restserver</artifactId>
 
     <dependencies>
         <!-- Springboot -->

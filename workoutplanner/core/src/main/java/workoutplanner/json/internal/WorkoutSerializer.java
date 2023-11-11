@@ -12,9 +12,9 @@ import workoutplanner.core.Workout;
  * Serializes a Workout object to JSON format.
  *
  * <p>
- *   This class extends the JsonSerializer class to provide functionality for
- *   serializing Workout objects into a JSON representation. The resulting JSON
- *   object contains the workout's name, date, and a list of exercises.
+ * This class extends the JsonSerializer class to provide functionality for
+ * serializing Workout objects into a JSON representation. The resulting JSON
+ * object contains the workout's name, date, and a list of exercises.
  * </p>
  *
  * @since 2.0.0
@@ -27,13 +27,13 @@ public class WorkoutSerializer extends JsonSerializer<Workout> {
    * Serializes a Workout object to JSON format.
    *
    * <p>
-   *   This method converts a Workout object into a JSON representation based on
-   *   the specified format. The resulting JSON object contains the workout's
-   *   name, date, and a list of exercises.
+   * This method converts a Workout object into a JSON representation based on
+   * the specified format. The resulting JSON object contains the workout's
+   * name, date, and a list of exercises.
    * </p>
    *
-   * @param workout The Workout object to be serialized to JSON.
-   * @param jsonGenerator The JsonGenerator to write the JSON output.
+   * @param workout            The Workout object to be serialized to JSON.
+   * @param jsonGenerator      The JsonGenerator to write the JSON output.
    * @param serializerProvider The SerializerProvider for additional
    *                           serialization options.
    * @throws IOException If an I/O error occurs during JSON serialization.
@@ -43,9 +43,9 @@ public class WorkoutSerializer extends JsonSerializer<Workout> {
    */
   @Override
   public void serialize(final Workout workout,
-                        final JsonGenerator jsonGenerator,
-                        final SerializerProvider serializerProvider)
-          throws IOException {
+      final JsonGenerator jsonGenerator,
+      final SerializerProvider serializerProvider)
+      throws IOException {
     jsonGenerator.writeStartObject();
     // check if the workout has a name
     if (workout.getName() != null) {
@@ -53,19 +53,19 @@ public class WorkoutSerializer extends JsonSerializer<Workout> {
       jsonGenerator.writeStringField("name", workout.getName());
     }
     // check if the workout has a date
-    if (workout.getDateAsString() != null) {
-      // writes the date of the workout to Json format as shown above
-      jsonGenerator.writeStringField("date", workout.getDateAsString());
-    }
+    // if (workout.getDateAsString() != null) {
+    // // writes the date of the workout to Json format as shown above
+    // jsonGenerator.writeStringField("date", workout.getDateAsString());
+    // }
     // check if the workout contains exercises
-    if (workout.getExerciseCount() != 0) {
-      // writes the exercises of the workout to Json format as shown above
-      jsonGenerator.writeArrayFieldStart("exercises");
-      for (Exercise exercise : workout.getExercises()) {
-        jsonGenerator.writeObject(exercise);
-      }
-      jsonGenerator.writeEndArray();
-    }
+    // if (workout.getExerciseCount() != 0) {
+    // // writes the exercises of the workout to Json format as shown above
+    // jsonGenerator.writeArrayFieldStart("exercises");
+    // for (Exercise exercise : workout.getExercises()) {
+    // jsonGenerator.writeObject(exercise);
+    // }
+    // jsonGenerator.writeEndArray();
+    // }
     jsonGenerator.writeEndObject();
   }
 }

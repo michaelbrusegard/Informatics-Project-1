@@ -1,4 +1,4 @@
-package workoutplanner.ui;
+package workoutplanner.ui.remote;
 
 import java.io.IOException;
 import java.util.List;
@@ -22,7 +22,7 @@ public interface UserAccess {
 
   public void moveExerciseInCurrentWorkout(final int exerciseIndex, final boolean left) throws IOException;
 
-  public void saveCurrentWorkout(final String name) throws IOException;
+  public void saveCurrentWorkout(final String name, final String date) throws IOException;
 
   public void removeWorkout(final int workoutIndex) throws IOException;
 

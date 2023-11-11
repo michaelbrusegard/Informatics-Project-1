@@ -1,6 +1,8 @@
 package workoutplanner.ui;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -116,8 +118,10 @@ public class OverviewController extends BaseController {
   @FXML
   public void save() {
     if (Overview.validateOverview(true, false, this.inputName)) {
+      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy HH:mm");
+      String formattedDate = LocalDateTime.now().format(formatter);
       try {
-        getMainController().getUser().saveCurrentWorkout(inputName.getText());
+        getMainController().getUser().saveCurrentWorkout(inputName.getText(), formattedDate);
       } catch (Exception e) {
         UiUtils.showAlert("Error",
             e.getMessage(),
@@ -156,7 +160,7 @@ public class OverviewController extends BaseController {
     inputName.clear();
     scrollPane.setContent(new VBox());
 
-    if (getMainController().getUser().getCurrentWorkout().isSaved()) {
+    if (getMainController().getUser().getCurrentWorkout().getSaved()) {
       saveWorkoutNameBox.setVisible(false);
       workoutInfoBox.setVisible(true);
       name.setText(getMainController().getUser().getCurrentWorkout().getName());
@@ -272,7 +276,7 @@ public class OverviewController extends BaseController {
 
   private void delete(final int exerciseIndex) {
     if (getMainController().getUser().getCurrentWorkout()
-        .getExerciseCount() == 1) {
+        .getExercises().size() == 1) {
       UiUtils.showAlert("Error",
           "Cannot delete the last exercise in a workout.",
           AlertType.ERROR);

@@ -103,7 +103,7 @@ public class WorkoutViewController extends BaseController {
         .get(workoutIndex).getName());
     name.setFont(new Font(FONT_FAMILY, FONTSIZE));
     Text date = new Text(getMainController().getUser().getWorkouts()
-        .get(workoutIndex).getDateAsString());
+        .get(workoutIndex).getDate());
     date.setLayoutY(LAYOUTY);
     // Define buttons
     Button viewButton = new Button("View");

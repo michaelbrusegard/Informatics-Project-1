@@ -1,4 +1,4 @@
-package workoutplanner.ui;
+package workoutplanner.ui.remote;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -32,7 +32,7 @@ public class RemoteUserAccess implements UserAccess {
   }
 
   private Reader httpGetRequest(final String path) throws IOException {
-    URI url = baseUrl.resolve(path);
+    URI url = baseUrl.resolve("/user" + path);
     HttpURLConnection connection = (HttpURLConnection) url.toURL().openConnection();
     connection.setRequestProperty("Accept", "application/json");
 
@@ -42,9 +42,8 @@ public class RemoteUserAccess implements UserAccess {
 
   private HttpURLConnection httpPutRequest(final String path)
       throws IOException {
-    URI url = baseUrl.resolve(path);
+    URI url = baseUrl.resolve("/user" + path);
     HttpURLConnection connection = (HttpURLConnection) url.toURL().openConnection();
-    connection.connect();
     connection.setDoOutput(true);
     connection.setRequestProperty("Content-Type", "application/json");
     connection.setRequestMethod("PUT");
@@ -53,9 +52,8 @@ public class RemoteUserAccess implements UserAccess {
 
   private HttpURLConnection httpDeleteRequest(final String path)
       throws IOException {
-    URI url = baseUrl.resolve(path);
+    URI url = baseUrl.resolve("/user" + path);
     HttpURLConnection connection = (HttpURLConnection) url.toURL().openConnection();
-    connection.connect();
     connection.setDoOutput(true);
     connection.setRequestProperty("Content-Type", "application/json");
     connection.setRequestMethod("DELETE");
@@ -124,9 +122,9 @@ public class RemoteUserAccess implements UserAccess {
   }
 
   @Override
-  public void saveCurrentWorkout(final String name) throws IOException {
+  public void saveCurrentWorkout(final String name, final String date) throws IOException {
     HttpURLConnection connection = httpPutRequest("/current-workout/save?name="
-        + URLEncoder.encode(name, StandardCharsets.UTF_8));
+        + URLEncoder.encode(name, StandardCharsets.UTF_8) + "&date=" + URLEncoder.encode(date, StandardCharsets.UTF_8));
     checkResponseCode(connection);
   }
 

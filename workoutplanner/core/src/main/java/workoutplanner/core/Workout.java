@@ -1,6 +1,5 @@
 package workoutplanner.core;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,12 +27,12 @@ public class Workout {
   /**
    * Local Date variable, used to set the date of when the workout was created.
    */
-  private LocalDate date;
+  private String date;
 
   /**
    * Local boolean variable, used to check if the workout is saved.
    */
-  private boolean isSaved = false;
+  private boolean saved = false;
   /**
    * Local List variable, used to have a list of all the
    * exercises in the workout.
@@ -76,7 +75,7 @@ public class Workout {
    *
    * @param inputDate The new date to set for the workout.
    */
-  public void setDate(final LocalDate inputDate) {
+  public void setDate(final String inputDate) {
     this.date = inputDate;
   }
 
@@ -173,34 +172,16 @@ public class Workout {
   }
 
   /**
-   * Retrieves the formatted date of the workout as a String.
+   * Retrieves the date of the workout as a String.
    *
    * <p>
-   * This method returns the date of the workout formatted as a String
-   * in the pattern "MMMM dd, yyyy HH:mm". It provides external code
-   * with access to the date of the workout in a human-readable format.
+   * This method returns the date of the workout.
    * </p>
    *
-   * @return A String representing the formatted date of the workout.
+   * @return A string representing the date of the workout.
    */
-  public String getDateAsString() {
-    SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM dd, yyyy HH:mm");
-    return dateFormat.format(this.date);
-  }
-
-  /**
-   * Retrieves the count of exercises in the workout.
-   *
-   * <p>
-   * This method returns the number of exercises in the workout.
-   * It provides external code with access to the total count of exercises
-   * within the workout object.
-   * </p>
-   *
-   * @return An integer representing the count of exercises in the workout.
-   */
-  public int getExerciseCount() {
-    return this.exercises.size();
+  public String getDate() {
+    return this.date;
   }
 
   /**
@@ -213,20 +194,20 @@ public class Workout {
    *
    * @return {@code true} if the object has been saved; {@code false} otherwise.
    */
-  public boolean isSaved() {
-    return this.isSaved;
+  public boolean getSaved() {
+    return this.saved;
   }
 
   /**
    * Marks the workout as saved.
    *
    * <p>
-   * This method sets the saved status of the workout to {@code true},
+   * This method sets the saved status of the workout,
    * indicating that the object has been saved.
    * </p>
    */
-  public void save() {
-    this.isSaved = true;
+  public void setSaved(boolean inputSaved) {
+    this.saved = inputSaved;
   }
 
   /**
