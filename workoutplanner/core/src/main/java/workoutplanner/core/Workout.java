@@ -94,8 +94,12 @@ public class Workout {
    * @param repMax    The maximum number of reps for the exercise.
    * @param weight    The weight for the exercise.
    */
-  public void addExercise(final Exercise exercise) {
-    this.exercises.add(exercise);
+  public void addExercise(final String inputName,
+      final int sets,
+      final int repMin,
+      final int repMax,
+      final int weight) {
+    this.exercises.add(new Exercise(inputName, sets, repMin, repMax, weight));
   }
 
   /**

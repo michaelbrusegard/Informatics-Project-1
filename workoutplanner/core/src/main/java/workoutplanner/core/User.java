@@ -134,7 +134,7 @@ public class User {
       final int repMin,
       final int repMax,
       final int weight) {
-    workouts.get(currentWorkoutIndex).addExercise(new Exercise(inputName, sets, repMin, repMax, weight));
+    workouts.get(currentWorkoutIndex).addExercise(inputName, sets, repMin, repMax, weight);
   }
 
   public void removeExerciseFromCurrentWorkout(final int exerciseIndex) {
