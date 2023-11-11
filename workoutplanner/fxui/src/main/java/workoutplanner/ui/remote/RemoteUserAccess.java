@@ -33,7 +33,7 @@ public class RemoteUserAccess implements UserAccess {
 
   private Reader httpGetRequest(final String path) throws IOException {
     URI uri = baseUri.resolve("/user" + path);
-    HttpURLConnection connection = (HttpURLConnection) url.toURL().openConnection();
+    HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection();
     connection.setRequestProperty("Accept", "application/json");
 
     InputStream responseStream = connection.getInputStream();
@@ -53,7 +53,7 @@ public class RemoteUserAccess implements UserAccess {
   private HttpURLConnection httpDeleteRequest(final String path)
       throws IOException {
     URI uri = baseUri.resolve("/user" + path);
-    HttpURLConnection connection = (HttpURLConnection) url.toURL().openConnection();
+    HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection();
     connection.setDoOutput(true);
     connection.setRequestProperty("Content-Type", "application/json");
     connection.setRequestMethod("DELETE");
