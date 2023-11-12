@@ -32,6 +32,8 @@ public class UserController {
 
   protected static final String WORKOUTPLANNER_SERVICE_PATH = "user/";
 
+  private final boolean logObjects = false;
+
   public UserController() {
     user = new User();
   }
@@ -156,6 +158,10 @@ public class UserController {
   }
 
   private void logEndpoint(String endpoint, Object content) {
+    if (!logObjects) {
+      logEndpoint(endpoint);
+      return;
+    }
     try {
       String contentString = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(content);
       logger.log(Level.INFO, endpoint + "\n" + contentString);
