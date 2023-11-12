@@ -19,7 +19,7 @@ import java.util.List;
  * @author Michael Brusegard
  * @version 2.0.0
  */
-public class User {
+public class User implements UserAccess {
   /**
    * Local List variable, used to have a list of all workouts for the user.
    */

@@ -122,16 +122,9 @@ public class ExerciseViewController extends BaseController {
       int exerciseWeight = Integer.parseInt(weightText);
 
       // Add the exercise to the new workout
-      try {
-        getMainController().getUser().addExerciseToCurrentWorkout(
-            exerciseName, exerciseSets, exerciseRepMin,
-            exerciseRepMax, exerciseWeight);
-      } catch (IOException e) {
-        UiUtils.showAlert("Error",
-            e.getMessage(),
-            AlertType.ERROR);
-        return;
-      }
+      getMainController().getUser().addExerciseToCurrentWorkout(
+          exerciseName, exerciseSets, exerciseRepMin,
+          exerciseRepMax, exerciseWeight);
 
       ExerciseView.displayExerciseAddedPrompt(exerciseName, exerciseSets,
           exerciseRepMin, exerciseRepMax, exerciseWeight);
@@ -148,14 +141,7 @@ public class ExerciseViewController extends BaseController {
         "Are you sure you want to cancel the workout? "
             + "All progress will be lost.")) {
       clearInputFields();
-      try {
-        getMainController().getUser().removeCurrentWorkout();
-      } catch (IOException e) {
-        UiUtils.showAlert("Error",
-            e.getMessage(),
-            AlertType.ERROR);
-        return;
-      }
+      getMainController().getUser().removeCurrentWorkout();
       getMainController().showFxml("Home");
     }
   }
