@@ -2,7 +2,6 @@ package workoutplanner.ui;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -96,10 +95,11 @@ public class OverviewController extends BaseController {
       if (Overview.checkIfCancel()) {
         try {
           getMainController().getUser().removeCurrentWorkout();
-        } catch (Exception e) {
-          UiUtils.showAlert("Error",
+        } catch (RuntimeException e) {
+          UiUtils.showAlert("Server Error",
               e.getMessage(),
               AlertType.ERROR);
+          return;
         }
         getMainController().showFxml("Home");
       }
@@ -118,12 +118,14 @@ public class OverviewController extends BaseController {
   @FXML
   public void save() {
     if (Overview.validateOverview(true, false, this.inputName)) {
-      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy HH:mm");
+      DateTimeFormatter formatter =
+              DateTimeFormatter.ofPattern("MMMM dd, yyyy HH:mm");
       String formattedDate = LocalDateTime.now().format(formatter);
       try {
-        getMainController().getUser().saveCurrentWorkout(inputName.getText(), formattedDate);
-      } catch (Exception e) {
-        UiUtils.showAlert("Error",
+        getMainController().getUser().saveCurrentWorkout(inputName.getText(),
+                formattedDate);
+      } catch (RuntimeException e) {
+        UiUtils.showAlert("Server Error",
             e.getMessage(),
             AlertType.ERROR);
         return;
@@ -158,8 +160,7 @@ public class OverviewController extends BaseController {
   public void init() {
     // Clear name and scrollPane
     inputName.clear();
-    scrollPane.setContent(new VBox());
-
+    buildGrid();
     if (getMainController().getUser().getCurrentWorkout().getSaved()) {
       saveWorkoutNameBox.setVisible(false);
       workoutInfoBox.setVisible(true);
@@ -172,6 +173,10 @@ public class OverviewController extends BaseController {
         .bind(saveWorkoutNameBox.visibleProperty());
     workoutInfoBox.managedProperty().bind(workoutInfoBox.visibleProperty());
 
+  }
+
+  private void buildGrid() {
+    scrollPane.setContent(new VBox());
     // Create grid
     new GridBuilder(scrollPane,
         getMainController().getUser().getCurrentWorkout().getExercises(),
@@ -263,15 +268,16 @@ public class OverviewController extends BaseController {
   private void move(final int exerciseIndex, final boolean left) {
     // Move the exercise
     try {
-      getMainController().getUser().moveExerciseInCurrentWorkout(exerciseIndex, left);
-    } catch (Exception e) {
-      UiUtils.showAlert("Error",
+      getMainController().getUser().moveExerciseInCurrentWorkout(exerciseIndex,
+              left);
+    } catch (RuntimeException e) {
+      UiUtils.showAlert("Server Error",
           e.getMessage(),
           AlertType.ERROR);
       return;
     }
-    // Reload the overview with the new order
-    init();
+    // Reload the gird with the new order
+    buildGrid();
   }
 
   private void delete(final int exerciseIndex) {
@@ -289,16 +295,17 @@ public class OverviewController extends BaseController {
                 .get(exerciseIndex).name()
             + "? ")) {
       try {
-        getMainController().getUser().removeExerciseFromCurrentWorkout(exerciseIndex);
-      } catch (Exception e) {
-        UiUtils.showAlert("Error",
+        getMainController().getUser()
+                .removeExerciseFromCurrentWorkout(exerciseIndex);
+      } catch (RuntimeException e) {
+        UiUtils.showAlert("Server Error",
             e.getMessage(),
             AlertType.ERROR);
         return;
       }
 
-      // Reload the overview now that an exercise has been deleted
-      init();
+      // Reload the grid now that an exercise has been deleted
+      buildGrid();
     }
   }
 }

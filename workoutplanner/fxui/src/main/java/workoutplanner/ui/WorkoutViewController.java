@@ -3,9 +3,9 @@ package workoutplanner.ui;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -124,8 +124,9 @@ public class WorkoutViewController extends BaseController {
   private void view(final int workoutIndex) {
     try {
       getMainController().getUser().setCurrentWorkout(workoutIndex);
-    } catch (Exception e) {
-      UiUtils.showAlert("Error", e.getMessage(), AlertType.ERROR);
+    } catch (RuntimeException e) {
+      UiUtils.showAlert("Server Error", e.getMessage(), AlertType.ERROR);
+      return;
     }
     getMainController().showFxml("Overview");
   }
@@ -139,8 +140,9 @@ public class WorkoutViewController extends BaseController {
             + "All workout data will be lost.")) {
       try {
         getMainController().getUser().removeWorkout(workoutIndex);
-      } catch (Exception e) {
-        UiUtils.showAlert("Error", e.getMessage(), AlertType.ERROR);
+      } catch (RuntimeException e) {
+        UiUtils.showAlert("Server Error", e.getMessage(), AlertType.ERROR);
+        return;
       }
       init();
     }

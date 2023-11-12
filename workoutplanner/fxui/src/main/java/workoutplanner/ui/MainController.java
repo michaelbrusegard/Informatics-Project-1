@@ -6,7 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
-import workoutplanner.ui.remote.RemoteUserAccess;
+import workoutplanner.core.User;
+import workoutplanner.core.UserAccess;
 
 /**
  * <h1>MainController</h1>
@@ -82,10 +83,10 @@ public class MainController {
   private WorkoutViewController workoutViewController;
 
   /**
-   * Remote User object, is the current user object that is used to encapsulate
+   * User object, is the current user object that is used to encapsulate
    * the workouts.
    */
-  private final RemoteUserAccess user;
+  private final UserAccess user;
 
   /**
    * Local Map variable, used to register the different controllers.
@@ -97,6 +98,9 @@ public class MainController {
    */
   private String currentFxmlName = "Home";
 
+  private final boolean useRemote = true;
+  private final String remoteUrl = "http://localhost:8080/";
+
   /**
    * Constructs a new MainController instance.
    *
@@ -106,8 +110,13 @@ public class MainController {
    * manages user interactions and the application's main functionality.
    * </p>
    */
+
   public MainController() throws MalformedURLException {
-    user = new RemoteUserAccess(URI.create("http://localhost:8080/"));
+    if (useRemote) {
+      user = new RemoteUserAccess(URI.create(remoteUrl));
+    } else {
+      user = new User();
+    }
   }
 
   @FXML
@@ -154,7 +163,7 @@ public class MainController {
    *
    * @return The User object representing the user of the application.
    */
-  public RemoteUserAccess getUser() {
+  public UserAccess getUser() {
     return user;
   }
 }

@@ -1,7 +1,7 @@
 package workoutplanner.ui;
 
-import java.io.IOException;
 import java.util.List;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,7 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import workoutplanner.fxutil.ExerciseLoader;
 import workoutplanner.fxutil.ExerciseView;
 import workoutplanner.fxutil.UiUtils;
 
@@ -76,31 +75,39 @@ public class ExerciseViewController extends BaseController {
    * <p>
    * This method is called when the controller is initialized
    * and is responsible for performing the following tasks:
-   * 1. Load a list of exercises from a JSON file using ExerciseLoader.
+   * 1. Load a list of exercises from the Server.
    * 2. Converts the loaded exercise names to an ObservableList.
    * 3. Sets the loaded exercises to the ListView.
    * 4. Binds the text property of the 'name' Text element
    * to the selected item in the ListView.
    * </p>
-   *
-   * @throws IOException If an I/O error occurs while loading exercises
-   *                     from the JSON file.
    */
   @FXML
-  public void initialize() throws IOException {
+  public void initialize() {
     // Update the list view with the exercises
-    // Use ExerciseLoader to load exercises from the JSON file
-    List<String> exercisesList = ExerciseLoader.loadExercisesFromJson();
+    // Wait for the UI to be initialized
+    Platform.runLater(() -> {
+      try {
+        // Load the list of exercises from the server
+        List<String> exercisesList = getMainController().getUser()
+            .getExerciseList();
 
-    // Convert the List to an ObservableList
-    ObservableList<String> exercises = FXCollections
-        .observableArrayList(exercisesList);
+        // Convert the List to an ObservableList
+        ObservableList<String> exercises = FXCollections
+            .observableArrayList(exercisesList);
 
-    // Set the loaded exercises to the ListView
-    list.setItems(exercises);
+        // Set the loaded exercises to the ListView
+        list.setItems(exercises);
 
-    // Update the name text when an exercise is selected in the list view
-    name.textProperty().bind(list.getSelectionModel().selectedItemProperty());
+        // Update the name text when an exercise is selected in the list view
+        name.textProperty().bind(
+            list.getSelectionModel().selectedItemProperty());
+      } catch (RuntimeException e) {
+        UiUtils.showAlert("Server Error",
+            e.getMessage(),
+            AlertType.ERROR);
+      }
+    });
   }
 
   // When the user clicks the add Exercise button
@@ -124,16 +131,15 @@ public class ExerciseViewController extends BaseController {
         getMainController().getUser().addExerciseToCurrentWorkout(
             exerciseName, exerciseSets, exerciseRepMin,
             exerciseRepMax, exerciseWeight);
-      } catch (IOException e) {
-        UiUtils.showAlert("Error",
+
+        ExerciseView.displayExerciseAddedPrompt(exerciseName, exerciseSets,
+            exerciseRepMin, exerciseRepMax, exerciseWeight);
+      } catch (RuntimeException e) {
+        UiUtils.showAlert("Server Error",
             e.getMessage(),
             AlertType.ERROR);
         return;
       }
-
-      ExerciseView.displayExerciseAddedPrompt(exerciseName, exerciseSets,
-          exerciseRepMin, exerciseRepMax, exerciseWeight);
-
       // Clear the input fields so a new exercise can be added
       clearInputFields();
     }
@@ -148,8 +154,8 @@ public class ExerciseViewController extends BaseController {
       clearInputFields();
       try {
         getMainController().getUser().removeCurrentWorkout();
-      } catch (IOException e) {
-        UiUtils.showAlert("Error",
+      } catch (RuntimeException e) {
+        UiUtils.showAlert("Server Error",
             e.getMessage(),
             AlertType.ERROR);
         return;
@@ -160,11 +166,19 @@ public class ExerciseViewController extends BaseController {
 
   // When the user clicks the finish button
   @FXML
-  private void finish() throws IOException {
-    // Check if the workout object is not null
-    if (getMainController().getUser().getCurrentWorkout().getExercises().size() == 0) {
-      UiUtils.showAlert("Error",
-          "No exercises added to the workout.",
+  private void finish() {
+    try {
+      // Check if the workout object is not null
+      if (getMainController().getUser().getCurrentWorkout()
+          .getExercises().isEmpty()) {
+        UiUtils.showAlert("Error",
+            "No exercises added to the workout.",
+            AlertType.ERROR);
+        return;
+      }
+    } catch (RuntimeException e) {
+      UiUtils.showAlert("Server Error",
+          e.getMessage(),
           AlertType.ERROR);
       return;
     }
@@ -187,8 +201,15 @@ public class ExerciseViewController extends BaseController {
    */
   @Override
   public void init() {
-    cancelButton.setVisible(
-        !getMainController().getUser().getCurrentWorkout().getSaved());
+    try {
+      // Hide the cancel button if the workout is saved
+      cancelButton.setVisible(
+          !getMainController().getUser().getCurrentWorkout().getSaved());
+    } catch (RuntimeException e) {
+      UiUtils.showAlert("Server Error",
+          e.getMessage(),
+          AlertType.ERROR);
+    }
   }
 
   // Clear the input fields

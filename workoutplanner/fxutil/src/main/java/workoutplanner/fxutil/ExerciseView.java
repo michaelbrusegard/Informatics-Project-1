@@ -36,17 +36,17 @@ public class ExerciseView {
    * </p>
    *
    * @param exerciseName The name of the selected exercise.
-   * @param setsText The user input for the number of sets.
-   * @param repMinText The user input for the minimum number of reps.
-   * @param repMaxText The user input for the maximum number of reps.
-   * @param weightText The user input for the weight.
+   * @param setsText     The user input for the number of sets.
+   * @param repMinText   The user input for the minimum number of reps.
+   * @param repMaxText   The user input for the maximum number of reps.
+   * @param weightText   The user input for the weight.
    * @return True if the input is valid, false otherwise.
    */
-  public static boolean validateExerciseInput( final String exerciseName,
-                                               final String setsText,
-                                               final String repMinText,
-                                               final String repMaxText,
-                                               final String weightText) {
+  public static boolean validateExerciseInput(final String exerciseName,
+      final String setsText,
+      final String repMinText,
+      final String repMaxText,
+      final String weightText) {
     // Validate the input for creating an exercise
     // Check if the user has selected an exercise
     if (exerciseName == null) {
@@ -54,9 +54,9 @@ public class ExerciseView {
       return false;
       // Check if the user has filled in all fields
     } else if (setsText.isEmpty()
-            || repMinText.isEmpty()
-            || repMaxText.isEmpty()
-            || weightText.isEmpty()) {
+        || repMinText.isEmpty()
+        || repMaxText.isEmpty()
+        || weightText.isEmpty()) {
       UiUtils.showAlert("Error", "Please fill in all fields.", AlertType.ERROR);
       return false;
     }
@@ -71,30 +71,30 @@ public class ExerciseView {
       // Check if the user has entered valid values for all fields
       if (exerciseRepMin > exerciseRepMax) {
         UiUtils.showAlert("Error", "The minimum amount of reps "
-                        + "cannot be greater than the maximum amount of reps.",
-                AlertType.ERROR);
+            + "cannot be greater than the maximum amount of reps.",
+            AlertType.ERROR);
         return false;
       } else if (exerciseRepMin < 0
-              || exerciseRepMax == 0
-              || exerciseSets <= 0
-              || exerciseWeight < 0) {
+          || exerciseRepMax == 0
+          || exerciseSets <= 0
+          || exerciseWeight < 0) {
         UiUtils.showAlert("Error",
-                "You can't do negative reps or weight. "
-                        + "Also, you need to have at least one set "
-                        + "and at least one max repetition in the rep-range.",
-                AlertType.ERROR);
+            "You can't do negative reps or weight. "
+                + "Also, you need to have at least one set "
+                + "and at least one max repetition in the rep-range.",
+            AlertType.ERROR);
         return false;
       } else if (exerciseRepMin > LIMIT
-              || exerciseRepMax > LIMIT
-              || exerciseSets > LIMIT
-              || exerciseWeight > LIMIT) {
+          || exerciseRepMax > LIMIT
+          || exerciseSets > LIMIT
+          || exerciseWeight > LIMIT) {
         UiUtils.showAlert("Error", "Please enter a number less "
-                + "than 5000. You are not that strong.", AlertType.ERROR);
+            + "than 5000. You are not that strong.", AlertType.ERROR);
         return false;
       }
     } catch (NumberFormatException e) {
       UiUtils.showAlert("Error", "Please enter a number for "
-              + "sets, rep-range, and weight.", AlertType.ERROR);
+          + "sets, rep-range, and weight.", AlertType.ERROR);
       return false;
     }
 
@@ -110,8 +110,8 @@ public class ExerciseView {
    * range of repetitions, and the weight.
    * </p>
    *
-   * @param exerciseName The name of the added exercise.
-   * @param exerciseSets The number of sets for the added exercise.
+   * @param exerciseName   The name of the added exercise.
+   * @param exerciseSets   The number of sets for the added exercise.
    * @param exerciseRepMin The minimum number of repetitions for the added
    *                       exercise.
    * @param exerciseRepMax The maximum number of repetitions for the added
@@ -119,18 +119,18 @@ public class ExerciseView {
    * @param exerciseWeight The weight for the added exercise in kilograms.
    */
   public static void displayExerciseAddedPrompt(final String exerciseName,
-                                                final int exerciseSets,
-                                                final int exerciseRepMin,
-                                                final int exerciseRepMax,
-                                                final int exerciseWeight) {
+      final int exerciseSets,
+      final int exerciseRepMin,
+      final int exerciseRepMax,
+      final int exerciseWeight) {
     // Display a prompt that the exercise has been added with information about
     // the exercise
     String alertContent = "Exercise has been added to the workout "
-            + "with the following details:\n\n"
-            + "Name: " + exerciseName + "\n"
-            + "Sets: " + exerciseSets + "\n"
-            + "Rep-range: " + exerciseRepMin + "-" + exerciseRepMax + "\n"
-            + "Weight: " + exerciseWeight + "kg";
+        + "with the following details:\n\n"
+        + "Name: " + exerciseName + "\n"
+        + "Sets: " + exerciseSets + "\n"
+        + "Rep-range: " + exerciseRepMin + "-" + exerciseRepMax + "\n"
+        + "Weight: " + exerciseWeight + "kg";
 
     UiUtils.showAlert("Exercise Added", alertContent, AlertType.INFORMATION);
   }

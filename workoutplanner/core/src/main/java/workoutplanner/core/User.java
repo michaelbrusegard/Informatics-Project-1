@@ -1,5 +1,6 @@
 package workoutplanner.core;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +10,8 @@ import java.util.List;
  *
  * <p>
  * A User object represents a user of the workout planner application,
- * including a list of workouts associated with the user. It allows you to
+ * including a list of workouts and the current workout used by the user. It
+ * allows you to
  * manage and interact with user data and their workouts.
  * </p>
  *
@@ -17,7 +19,7 @@ import java.util.List;
  * @author Michael Brusegard
  * @version 2.0.0
  */
-public class User {
+public class User implements UserAccess {
   /**
    * Local List variable, used to have a list of all workouts for the user.
    */
@@ -39,7 +41,7 @@ public class User {
    */
   public User() {
     // Constructor with a new list of workouts
-    this.workouts = new ArrayList<>();
+    workouts = new ArrayList<>();
   }
 
   /**
@@ -128,18 +130,35 @@ public class User {
     return workouts;
   }
 
-  /**
-   * Adds a workout to the list of workouts from a file.
-   *
-   * <p>
-   * This method adds a provided workout to the list of workouts. It is
-   * typically used to populate the list of workouts by loading them from a
-   * file.
-   * </p>
-   *
-   * @param workout The workout to be added to the list of workouts.
-   */
-  public void addWorkoutFromFile(final Workout workout) {
-    workouts.add(workout);
+  public void addExerciseToCurrentWorkout(final String inputName,
+      final int sets,
+      final int repMin,
+      final int repMax,
+      final int weight) {
+    workouts.get(currentWorkoutIndex).addExercise(inputName, sets, repMin, repMax, weight);
+  }
+
+  public void removeExerciseFromCurrentWorkout(final int exerciseIndex) {
+    workouts.get(currentWorkoutIndex).removeExercise(exerciseIndex);
+  }
+
+  public void moveExerciseInCurrentWorkout(final int exerciseIndex, final boolean left) {
+    workouts.get(currentWorkoutIndex).moveExercise(exerciseIndex, left);
+  }
+
+  public void saveCurrentWorkout(final String name, final String date) {
+    Workout workout = workouts.get(currentWorkoutIndex);
+    workout.setName(name);
+    workout.setDate(date);
+    workout.setSaved(true);
+  }
+
+  public List<String> getExerciseList() {
+    try {
+      return ExerciseListLoader.loadExerciseListFromJson();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return null;
   }
 }
