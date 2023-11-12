@@ -75,7 +75,7 @@ public class ExerciseView {
             AlertType.ERROR);
         return false;
       } else if (exerciseRepMin < 0
-          || exerciseRepMax <= 0
+          || exerciseRepMax == 0
           || exerciseSets <= 0
           || exerciseWeight < 0) {
         UiUtils.showAlert("Error",

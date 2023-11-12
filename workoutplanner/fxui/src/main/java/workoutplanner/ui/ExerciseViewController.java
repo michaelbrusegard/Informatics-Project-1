@@ -1,7 +1,6 @@
 package workoutplanner.ui;
 
 import java.util.List;
-
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -101,7 +100,8 @@ public class ExerciseViewController extends BaseController {
         list.setItems(exercises);
 
         // Update the name text when an exercise is selected in the list view
-        name.textProperty().bind(list.getSelectionModel().selectedItemProperty());
+        name.textProperty().bind(
+                list.getSelectionModel().selectedItemProperty());
       } catch (RuntimeException e) {
         UiUtils.showAlert("Server Error",
             e.getMessage(),
@@ -169,7 +169,8 @@ public class ExerciseViewController extends BaseController {
   private void finish() {
     try {
       // Check if the workout object is not null
-      if (getMainController().getUser().getCurrentWorkout().getExercises().size() == 0) {
+      if (getMainController().getUser().getCurrentWorkout()
+              .getExercises().isEmpty()) {
         UiUtils.showAlert("Error",
             "No exercises added to the workout.",
             AlertType.ERROR);

@@ -2,7 +2,6 @@ package workoutplanner.ui;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -36,7 +35,8 @@ public class RemoteUserAccess implements UserAccess {
 
   private Reader httpGetRequest(final String path) throws IOException {
     URI uri = baseUri.resolve("/user" + path);
-    HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection();
+    HttpURLConnection connection =
+            (HttpURLConnection) uri.toURL().openConnection();
     connection.setRequestProperty("Accept", "application/json");
 
     InputStream responseStream = connection.getInputStream();
@@ -46,7 +46,8 @@ public class RemoteUserAccess implements UserAccess {
   private HttpURLConnection httpPutRequest(final String path)
       throws IOException {
     URI uri = baseUri.resolve("/user" + path);
-    HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection();
+    HttpURLConnection connection =
+            (HttpURLConnection) uri.toURL().openConnection();
     connection.setDoOutput(true);
     connection.setRequestProperty("Content-Type", "application/json");
     connection.setRequestMethod("PUT");
@@ -56,23 +57,25 @@ public class RemoteUserAccess implements UserAccess {
   private HttpURLConnection httpDeleteRequest(final String path)
       throws IOException {
     URI uri = baseUri.resolve("/user" + path);
-    HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection();
+    HttpURLConnection connection =
+            (HttpURLConnection) uri.toURL().openConnection();
     connection.setDoOutput(true);
     connection.setRequestProperty("Content-Type", "application/json");
     connection.setRequestMethod("DELETE");
     return connection;
   }
 
-  private void handleError(final HttpURLConnection connection) throws IOException {
+  private void handleError(final HttpURLConnection connection)
+          throws IOException {
     int responseCode = connection.getResponseCode();
 
-    if (responseCode == OK_RESPONSE_CODE)
+    if (responseCode == OK_RESPONSE_CODE) {
       return;
-
+    }
     InputStream errorStream = connection.getErrorStream();
-
     if (errorStream != null) {
-      try (BufferedReader reader = new BufferedReader(new InputStreamReader(errorStream, StandardCharsets.UTF_8))) {
+      try (BufferedReader reader = new BufferedReader(
+              new InputStreamReader(errorStream, StandardCharsets.UTF_8))) {
         StringBuilder responseBody = new StringBuilder();
         String line;
         while ((line = reader.readLine()) != null) {
@@ -80,10 +83,12 @@ public class RemoteUserAccess implements UserAccess {
         }
 
         throw new RuntimeException(
-            responseCode + " " + connection.getResponseMessage() + ": " + responseBody.toString());
+            responseCode + " " + connection.getResponseMessage() + ": "
+                    + responseBody);
       }
     } else {
-      throw new RuntimeException(responseCode + " " + connection.getResponseMessage());
+      throw new RuntimeException(responseCode + " "
+              + connection.getResponseMessage());
     }
   }
 
@@ -91,9 +96,8 @@ public class RemoteUserAccess implements UserAccess {
   public List<String> getExerciseList() {
     try {
       Reader reader = httpGetRequest("/exercise-list");
-      List<String> exercises = objectMapper.readValue(reader, new TypeReference<List<String>>() {
+      return objectMapper.readValue(reader, new TypeReference<>() {
       });
-      return exercises;
     } catch (IOException e) {
       throw new RuntimeException("Error getting exercise list.", e);
     }
@@ -101,7 +105,7 @@ public class RemoteUserAccess implements UserAccess {
 
   @Override
   public Workout getCurrentWorkout() {
-    Reader reader = null;
+    Reader reader;
     try {
       reader = httpGetRequest("/current-workout");
       return objectMapper.readValue(reader, Workout.class);
@@ -114,9 +118,8 @@ public class RemoteUserAccess implements UserAccess {
   public List<Workout> getWorkouts() {
     try {
       Reader reader = httpGetRequest("/workouts");
-      List<Workout> workouts = objectMapper.readValue(reader, new TypeReference<List<Workout>>() {
+      return objectMapper.readValue(reader, new TypeReference<>() {
       });
-      return workouts;
     } catch (IOException e) {
       throw new RuntimeException("Error getting workouts.", e);
     }
@@ -140,15 +143,20 @@ public class RemoteUserAccess implements UserAccess {
       final int repMax,
       final int weight) {
     try {
-      HttpURLConnection connection = httpPutRequest("/current-workout/exercise");
-      String json = objectMapper.writeValueAsString(new Exercise(inputName, sets, repMin, repMax, weight));
-      OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream(), "UTF-8");
+      HttpURLConnection connection = httpPutRequest(
+              "/current-workout/exercise");
+      String json = objectMapper.writeValueAsString(
+              new Exercise(inputName, sets, repMin, repMax, weight));
+      OutputStreamWriter writer =
+              new OutputStreamWriter(connection.getOutputStream(),
+                      StandardCharsets.UTF_8);
       writer.write(json);
       writer.flush();
       writer.close();
       handleError(connection);
     } catch (IOException e) {
-      throw new RuntimeException("Error adding exercise to current workout.", e);
+      throw new RuntimeException("Error adding exercise to current workout.",
+              e);
     }
   }
 
@@ -160,14 +168,16 @@ public class RemoteUserAccess implements UserAccess {
           + exerciseIndex + "?left=" + left);
       handleError(connection);
     } catch (IOException e) {
-      throw new RuntimeException("Error moving exercise in current workout.", e);
+      throw new RuntimeException("Error moving exercise in current workout.",
+              e);
     }
   }
 
   @Override
   public void saveCurrentWorkout(final String name, final String date) {
     try {
-      HttpURLConnection connection = httpPutRequest("/current-workout/save?name="
+      HttpURLConnection connection = httpPutRequest(
+              "/current-workout/save?name="
           + URLEncoder.encode(name, StandardCharsets.UTF_8) + "&date="
           + URLEncoder.encode(date, StandardCharsets.UTF_8));
       handleError(connection);
@@ -200,10 +210,12 @@ public class RemoteUserAccess implements UserAccess {
   @Override
   public void removeExerciseFromCurrentWorkout(final int exerciseIndex) {
     try {
-      HttpURLConnection connection = httpDeleteRequest("/current-workout/exercise/" + exerciseIndex);
+      HttpURLConnection connection = httpDeleteRequest(
+              "/current-workout/exercise/" + exerciseIndex);
       handleError(connection);
     } catch (IOException e) {
-      throw new RuntimeException("Error removing exercise from current workout.", e);
+      throw new RuntimeException(
+              "Error removing exercise from current workout.", e);
     }
   }
 }

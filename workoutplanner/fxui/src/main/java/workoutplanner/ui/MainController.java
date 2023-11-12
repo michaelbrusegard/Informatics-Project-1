@@ -1,12 +1,10 @@
 package workoutplanner.ui;
 
-import java.net.MalformedURLException;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
-import workoutplanner.core.User;
 import workoutplanner.core.UserAccess;
 
 /**
@@ -91,15 +89,13 @@ public class MainController {
   /**
    * Local Map variable, used to register the different controllers.
    */
-  private final Map<String, FxmlControllerPair> fxmlControllerMap = new HashMap<>();
+  private final Map<String, FxmlControllerPair> fxmlControllerMap =
+          new HashMap<>();
 
   /**
    * Local String variable, used to define which controller should be used.
    */
   private String currentFxmlName = "Home";
-
-  private final boolean useRemote = true;
-  private final String remoteUrl = "http://localhost:8080/";
 
   /**
    * Constructs a new MainController instance.
@@ -110,12 +106,9 @@ public class MainController {
    * manages user interactions and the application's main functionality.
    * </p>
    */
-  public MainController() throws MalformedURLException {
-    if (useRemote) {
-      user = new RemoteUserAccess(URI.create(remoteUrl));
-    } else {
-      user = new User();
-    }
+  public MainController() {
+    String remoteUrl = "http://localhost:8080/";
+    user = new RemoteUserAccess(URI.create(remoteUrl));
   }
 
   @FXML
