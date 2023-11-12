@@ -19,6 +19,7 @@ import workoutplanner.fxutil.UiUtils;
 
 /**
  * <h1>OverviewController</h1>
+ * Manages the user interface and user interactions for the workout overview.
  *
  * <p>
  * The OverviewController class is responsible for managing the user

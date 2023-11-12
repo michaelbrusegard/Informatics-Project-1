@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 
 /**
  * <h1>WorkoutPlannerApp</h1>
+ * Represents the main application class for the Workout Planner.
  *
  * <p>
  * This class extends the JavaFX Application class

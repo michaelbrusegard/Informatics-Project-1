@@ -37,6 +37,10 @@ public class WorkoutTest {
   }
   @Test
   public void testGetExercises() {
+    workout.addExercise(
+            "Squats", SETS_TEST, REPMIN_TEST, REPMAX_TEST, WEIGHT_TEST);
+    workout.addExercise(
+            "Bench Press", SETS_TEST, REPMIN_TEST, REPMAX_TEST, WEIGHT_TEST);
     List<Exercise> exercises = workout.getExercises();
     assertEquals(2, exercises.size());
     assertEquals("Squats", exercises.get(0).name());

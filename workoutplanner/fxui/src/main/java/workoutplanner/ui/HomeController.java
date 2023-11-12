@@ -6,6 +6,7 @@ import workoutplanner.fxutil.UiUtils;
 
 /**
  * <h1>HomeController</h1>
+ * Manages the user interface and user interactions for the home screen.
  *
  * <p>
  * The HomeController class is responsible for managing
