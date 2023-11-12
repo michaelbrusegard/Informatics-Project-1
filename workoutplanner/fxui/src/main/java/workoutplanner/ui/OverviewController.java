@@ -158,8 +158,7 @@ public class OverviewController extends BaseController {
   public void init() {
     // Clear name and scrollPane
     inputName.clear();
-    scrollPane.setContent(new VBox());
-
+    buildGrid();
     if (getMainController().getUser().getCurrentWorkout().getSaved()) {
       saveWorkoutNameBox.setVisible(false);
       workoutInfoBox.setVisible(true);
@@ -172,6 +171,10 @@ public class OverviewController extends BaseController {
         .bind(saveWorkoutNameBox.visibleProperty());
     workoutInfoBox.managedProperty().bind(workoutInfoBox.visibleProperty());
 
+  }
+
+  private void buildGrid() {
+    scrollPane.setContent(new VBox());
     // Create grid
     new GridBuilder(scrollPane,
         getMainController().getUser().getCurrentWorkout().getExercises(),
@@ -270,8 +273,8 @@ public class OverviewController extends BaseController {
           AlertType.ERROR);
       return;
     }
-    // Reload the overview with the new order
-    init();
+    // Reload the gird with the new order
+    buildGrid();
   }
 
   private void delete(final int exerciseIndex) {
@@ -297,8 +300,8 @@ public class OverviewController extends BaseController {
         return;
       }
 
-      // Reload the overview now that an exercise has been deleted
-      init();
+      // Reload the grid now that an exercise has been deleted
+      buildGrid();
     }
   }
 }
