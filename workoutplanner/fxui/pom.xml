@@ -102,8 +102,45 @@
                 <configuration>
                     <!-- syntax: module-name/full-app-class-name -->
                     <mainClass>workoutplanner.ui/workoutplanner.ui.WorkoutPlannerApp</mainClass>
+                     <!-- rest of options are for jlink -->
+                    <compress>2</compress>
+                    <noHeaderFiles>true</noHeaderFiles>
+                    <stripDebug>true</stripDebug>
+                    <noManPages>true</noManPages>
+                    <launcher>workoutplannerfx</launcher>
+                    <jlinkImageName>workoutplannerfx</jlinkImageName>
+                    <jlinkZipName>workoutplannerfx</jlinkZipName>
+
                 </configuration>
             </plugin>
+
+            <!-- config above and below taken from https://dev.to/cherrychain/javafx-jlink-and-jpackage-h9 -->
+            <plugin>
+                <groupId>org.panteleyev</groupId>
+                <artifactId>jpackage-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <configuration>
+                    <name>WorkoutplannerFX</name>
+                    <appVersion>1.0.0</appVersion>
+                    <vendor>gr2307</vendor>
+                    <destination>target/dist</destination>
+                    <module>workoutplanner.ui/workoutplanner.ui.WorkoutPlannerApp</module>
+                    <runtimeImage>target/workoutplannerfx</runtimeImage>
+                    <javaOptions>
+                        <option>-Dfile.encoding=UTF-8</option>
+                    </javaOptions>
+                    <!-- linux options --> 
+                    <linuxShortcut>true</linuxShortcut>
+                    <linuxMenuGroup>WorkoutplannerFX</linuxMenuGroup>
+
+                    <!-- windows options --> 
+                    <winDirChooser>true</winDirChooser>
+                    <winShortcut>true</winShortcut>
+                    <winMenu>true</winMenu>
+                    <winMenuGroup>WorkoutplannerFX</winMenuGroup>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
