@@ -44,8 +44,8 @@ public class HomeController extends BaseController {
   public void init() {
     try {
       getMainController().getUser().setCurrentWorkout(-1);
-    } catch (Exception e) {
-      UiUtils.showAlert("Error", e.getMessage(), AlertType.ERROR);
+    } catch (RuntimeException e) {
+      UiUtils.showAlert("Server Error", e.getMessage(), AlertType.ERROR);
     }
   }
 }

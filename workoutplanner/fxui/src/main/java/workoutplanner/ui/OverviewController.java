@@ -96,10 +96,11 @@ public class OverviewController extends BaseController {
       if (Overview.checkIfCancel()) {
         try {
           getMainController().getUser().removeCurrentWorkout();
-        } catch (Exception e) {
-          UiUtils.showAlert("Error",
+        } catch (RuntimeException e) {
+          UiUtils.showAlert("Server Error",
               e.getMessage(),
               AlertType.ERROR);
+          return;
         }
         getMainController().showFxml("Home");
       }
@@ -122,8 +123,8 @@ public class OverviewController extends BaseController {
       String formattedDate = LocalDateTime.now().format(formatter);
       try {
         getMainController().getUser().saveCurrentWorkout(inputName.getText(), formattedDate);
-      } catch (Exception e) {
-        UiUtils.showAlert("Error",
+      } catch (RuntimeException e) {
+        UiUtils.showAlert("Server Error",
             e.getMessage(),
             AlertType.ERROR);
         return;
@@ -267,8 +268,8 @@ public class OverviewController extends BaseController {
     // Move the exercise
     try {
       getMainController().getUser().moveExerciseInCurrentWorkout(exerciseIndex, left);
-    } catch (Exception e) {
-      UiUtils.showAlert("Error",
+    } catch (RuntimeException e) {
+      UiUtils.showAlert("Server Error",
           e.getMessage(),
           AlertType.ERROR);
       return;
@@ -293,8 +294,8 @@ public class OverviewController extends BaseController {
             + "? ")) {
       try {
         getMainController().getUser().removeExerciseFromCurrentWorkout(exerciseIndex);
-      } catch (Exception e) {
-        UiUtils.showAlert("Error",
+      } catch (RuntimeException e) {
+        UiUtils.showAlert("Server Error",
             e.getMessage(),
             AlertType.ERROR);
         return;

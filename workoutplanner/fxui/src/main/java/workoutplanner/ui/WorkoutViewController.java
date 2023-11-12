@@ -124,8 +124,9 @@ public class WorkoutViewController extends BaseController {
   private void view(final int workoutIndex) {
     try {
       getMainController().getUser().setCurrentWorkout(workoutIndex);
-    } catch (Exception e) {
-      UiUtils.showAlert("Error", e.getMessage(), AlertType.ERROR);
+    } catch (RuntimeException e) {
+      UiUtils.showAlert("Server Error", e.getMessage(), AlertType.ERROR);
+      return;
     }
     getMainController().showFxml("Overview");
   }
@@ -139,8 +140,9 @@ public class WorkoutViewController extends BaseController {
             + "All workout data will be lost.")) {
       try {
         getMainController().getUser().removeWorkout(workoutIndex);
-      } catch (Exception e) {
-        UiUtils.showAlert("Error", e.getMessage(), AlertType.ERROR);
+      } catch (RuntimeException e) {
+        UiUtils.showAlert("Server Error", e.getMessage(), AlertType.ERROR);
+        return;
       }
       init();
     }

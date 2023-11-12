@@ -9,7 +9,7 @@
         <version>3.0.0</version>
     </parent>
 
-    <artifactId>restserver</artifactId>
+    <artifactId>rest</artifactId>
 
     <dependencies>
         <!-- Springboot -->
