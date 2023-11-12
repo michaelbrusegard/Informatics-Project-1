@@ -1,3 +1,26 @@
+# [1.1.0](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.0.0...v1.1.0) (2023-11-12)
+
+
+### Bug Fixes
+
+* :ambulance: Fixed semantic release infinite loop ([6893549](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/68935496e2396fa362f329fe772ebcf80fc3dfd0))
+* :tada: Fixed indentation in .gitlab-rc.yml ([3ca0187](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/3ca018749f6e92d7aeff786d8d797f5c0d17df82))
+* changed last uri ([b4f7edb](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/b4f7edbd123da4573dcbfeed77eeb9614db035cc))
+* **clean install:** fixed try-catch issues ([e87fad4](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/e87fad48abd0c2cf67d827a4c5f07db3a635816f))
+* **Filehandling:** WorkoutDeserializer, DateSerializer and deserializer ([7d452e0](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/7d452e07215403eab970e41d0590e1c96ed8688a))
+* **JacksonModule:** module info not found error ([5f5edb7](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/5f5edb7a808cea4306ea18992c409d65ea6b93e9))
+* Removed relativePath, and changed uri-name ([5770711](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/5770711987b59c00c7f22eb32a7bdc407409cae2))
+
+
+### Features
+
+* Added jlink and jpackage again ([fc097ca](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/fc097cae9a675aa54b34aa53dcba552c54d5e85f))
+* Added pom and scripts ([6a5d066](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/6a5d0667eafeec4c8dad55b7f164b67f6232e4ca))
+* **Rest API:** :construction: Fixed all endpoints and json serializing, added backend server logging ([ed48797](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/ed48797af02168483e8c07d33a316edfc01b18c5))
+* **Rest API:** :money_with_wings: added springboot and all user api endpoints ([e3b9b39](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/e3b9b399f55c2fbdc4d97005ba35afc4eb5b94b6))
+* **Rest API:** :sparkles: added UserAccess interface and RemoteUserAccess to access the user object on the server ([1394eba](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/1394ebaa39ec08f2c631ebe0606d89b7279749f5))
+* **Rest API:** :white_check_mark: updated updated controllers to utilise new endpoint requests from RemoteUserAccess ([22724f1](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/22724f1000f64f0713a52766c0d373f156f67bd3))
+
 # [1.1.0](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.0.0...v1.1.0) (2023-11-11)
 
 
