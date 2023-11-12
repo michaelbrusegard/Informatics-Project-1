@@ -1,4 +1,4 @@
-package workoutplanner.ui.remote;
+package workoutplanner.ui;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,6 +13,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import workoutplanner.core.Exercise;
+import workoutplanner.core.UserAccess;
 import workoutplanner.core.Workout;
 
 /**
@@ -103,10 +104,14 @@ public class RemoteUserAccess implements UserAccess {
   }
 
   @Override
-  public void setCurrentWorkout(final int workoutIndex) throws IOException {
-    HttpURLConnection connection = httpPutRequest("/current-workout/"
-        + workoutIndex);
-    checkResponseCode(connection);
+  public void setCurrentWorkout(final int workoutIndex) {
+    try {
+      HttpURLConnection connection = httpPutRequest("/current-workout/"
+          + workoutIndex);
+      checkResponseCode(connection);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   @Override
@@ -114,49 +119,72 @@ public class RemoteUserAccess implements UserAccess {
       final int sets,
       final int repMin,
       final int repMax,
-      final int weight) throws IOException {
-    HttpURLConnection connection = httpPutRequest("/current-workout/exercise");
-    String json = objectMapper.writeValueAsString(new Exercise(inputName, sets, repMin, repMax, weight));
-    OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream(), "UTF-8");
-    writer.write(json);
-    writer.flush();
-    writer.close();
-    checkResponseCode(connection);
+      final int weight) {
+    try {
+      HttpURLConnection connection = httpPutRequest("/current-workout/exercise");
+      String json = objectMapper.writeValueAsString(new Exercise(inputName, sets, repMin, repMax, weight));
+      OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream(), "UTF-8");
+      writer.write(json);
+      writer.flush();
+      writer.close();
+      checkResponseCode(connection);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   @Override
   public void moveExerciseInCurrentWorkout(final int exerciseIndex,
-      final boolean left)
-      throws IOException {
-    HttpURLConnection connection = httpPutRequest("/current-workout/exercise/"
-        + exerciseIndex + "?left=" + left);
-    checkResponseCode(connection);
+      final boolean left) {
+    try {
+      HttpURLConnection connection = httpPutRequest("/current-workout/exercise/"
+          + exerciseIndex + "?left=" + left);
+      checkResponseCode(connection);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   @Override
-  public void saveCurrentWorkout(final String name, final String date) throws IOException {
-    HttpURLConnection connection = httpPutRequest("/current-workout/save?name="
-        + URLEncoder.encode(name, StandardCharsets.UTF_8) + "&date=" + URLEncoder.encode(date, StandardCharsets.UTF_8));
-    checkResponseCode(connection);
+  public void saveCurrentWorkout(final String name, final String date) {
+    try {
+      HttpURLConnection connection = httpPutRequest("/current-workout/save?name="
+          + URLEncoder.encode(name, StandardCharsets.UTF_8) + "&date="
+          + URLEncoder.encode(date, StandardCharsets.UTF_8));
+      checkResponseCode(connection);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   @Override
-  public void removeWorkout(final int workoutIndex) throws IOException {
-    HttpURLConnection connection = httpDeleteRequest("/workout/"
-        + workoutIndex);
-    checkResponseCode(connection);
+  public void removeWorkout(final int workoutIndex) {
+    try {
+      HttpURLConnection connection = httpDeleteRequest("/workout/"
+          + workoutIndex);
+      checkResponseCode(connection);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   @Override
-  public void removeCurrentWorkout() throws IOException {
-    HttpURLConnection connection = httpDeleteRequest("/current-workout");
-    checkResponseCode(connection);
+  public void removeCurrentWorkout() {
+    try {
+      HttpURLConnection connection = httpDeleteRequest("/current-workout");
+      checkResponseCode(connection);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   @Override
-  public void removeExerciseFromCurrentWorkout(final int exerciseIndex)
-      throws IOException {
-    HttpURLConnection connection = httpDeleteRequest("/current-workout/exercise/" + exerciseIndex);
-    checkResponseCode(connection);
+  public void removeExerciseFromCurrentWorkout(final int exerciseIndex) {
+    try {
+      HttpURLConnection connection = httpDeleteRequest("/current-workout/exercise/" + exerciseIndex);
+      checkResponseCode(connection);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 }

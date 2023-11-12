@@ -80,7 +80,7 @@ public class UserController {
           exercise.weight());
     }
 
-    logEndpoint("PUT /current-workout/exercise" + " | " + response + " -" + response.getBody(),
+    logEndpoint("PUT /current-workout/exercise" + " | " + response.getStatusCode() + " -" + response.getBody(),
         exercise);
     return response;
   }
