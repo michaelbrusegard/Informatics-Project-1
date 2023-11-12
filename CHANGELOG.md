@@ -1,3 +1,10 @@
+## [1.1.1](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.1.0...v1.1.1) (2023-11-12)
+
+
+### Bug Fixes
+
+* Changed it so we don't show the scrollbar for overview and workoutview ([d915361](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/d9153617dc0c84f76e7fe942005b737f27071b5f))
+
 # [1.1.0](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.0.0...v1.1.0) (2023-11-12)
 
 
