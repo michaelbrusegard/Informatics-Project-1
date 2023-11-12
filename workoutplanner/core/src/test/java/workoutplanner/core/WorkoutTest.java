@@ -1,55 +1,45 @@
 package workoutplanner.core;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.time.LocalDate;
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
-import static org.junit.jupiter.api.Assertions.*;
-
 public class WorkoutTest {
+  private Workout workout;
+  private String name;
+  private static final int SETS_TEST = 3;
+  private static final int REPMIN_TEST = 8;
+  private static final int REPMAX_TEST = 12;
+  private static final int WEIGHT_TEST = 100;
 
-    private Workout workout;
-    private LocalDate date;
-    private String name;
-
-    @BeforeEach
-    public void setUp() {
-        date = LocalDate.now();
-        name = "My Workout";
-        workout = new Workout();
-        // workout.setDate(date);
-        workout.setName(name);
-    }
-
-    @Test
-    public void testGetDateAsString() {
-        // SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM dd, yyyy HH:mm");
-        // String expectedFormattedDate = dateFormat.format(date);
-        // assertEquals(expectedFormattedDate, workout.getDateAsString());
-    }
-
-    @Test
-    public void testGetName() {
-        assertEquals(name, workout.getName());
-    }
-
-    // @Test
-    // public void testAddExercise() {
-    // // workout.addExercise(new Exercise("Squats", 3, 8, 12, 100));
-    // // workout.addExercise(new Exercise("Bench Press", 4, 6, 10, 135));
-    // assertEquals(2, workout.getExerciseCount());
-    // }
-
-    @Test
-    public void testGetExercises() {
-        // workout.addExercise(new Exercise("Squats", 3, 8, 12, 100));
-        // workout.addExercise(new Exercise("Bench Press", 4, 6, 10, 135));
-        List<Exercise> exercises = workout.getExercises();
-        assertEquals(2, exercises.size());
-        assertEquals("Squats", exercises.get(0).name());
-        assertEquals("Bench Press", exercises.get(1).name());
-    }
+  @BeforeEach
+  public void setUp() {
+    name = "My Workout";
+    workout = new Workout();
+    workout.setName(name);
+    LocalDate date = LocalDate.now();
+    workout.setDate(date.toString());
+  }
+  @Test
+  public void testGetName() {
+    assertEquals(name, workout.getName());
+  }
+  @Test
+  public void testAddExercise() {
+    workout.addExercise(
+            "Squats", SETS_TEST, REPMIN_TEST, REPMAX_TEST, WEIGHT_TEST);
+    workout.addExercise(
+            "Bench Press", SETS_TEST, REPMIN_TEST, REPMAX_TEST, WEIGHT_TEST);
+    assertEquals(2, workout.getExercises().size());
+  }
+  @Test
+  public void testGetExercises() {
+    List<Exercise> exercises = workout.getExercises();
+    assertEquals(2, exercises.size());
+    assertEquals("Squats", exercises.get(0).name());
+    assertEquals("Bench Press", exercises.get(1).name());
+  }
 }
