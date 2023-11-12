@@ -7,7 +7,6 @@
         <groupId>gr2307.workoutplanner</groupId>
         <artifactId>parent</artifactId>
         <version>3.0.0</version>
-        <relativePath /> <!-- lookup parent from repository -->
     </parent>
 
     <artifactId>restserver</artifactId>
