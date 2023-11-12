@@ -1,3 +1,26 @@
+# [1.2.0](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.1.0...v1.2.0) (2023-11-12)
+
+
+### Bug Fixes
+
+* :recycle: updated workout tonot take in an exercise object ([3093489](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/3093489766fdc4f1761eb5b73ccfa2268ad26fe0))
+* :recycle: updated workout tonot take in an exercise object ([007fe8c](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/007fe8c1acc173509da616181999e7f1524546e4))
+* Changed it so we don't show the scrollbar for overview and workoutview ([d915361](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/d9153617dc0c84f76e7fe942005b737f27071b5f))
+* **ExerciseView:** :bug: load the ExerciseList only after the UI has been initialized ([7d72bfd](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/7d72bfd05c2b0dfc7a8dfc9f85a902ad16dfb3ff))
+* **ExerciseView:** :bug: load the ExerciseList only after the UI has been initialized ([53b66c2](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/53b66c224517e2d9f8852b9b67c89afa1c27a75a))
+
+
+### Features
+
+* **Rest API:** :goal_net: Updated frontend to display errors from server responses ([24fa154](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/24fa1549949d05abd0c2adf6c693f04dd0964ce1))
+* **Rest API:** :goal_net: Updated frontend to display errors from server responses ([0f108f5](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/0f108f50d65296c4008f4637d3c73a9221498da4))
+* **Rest API:** :rocket: added the exercisesList to the backend ([5c6768f](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/5c6768f6636d185dafae5bda172929891e60f83a))
+* **Rest API:** :rocket: added the exercisesList to the backend ([b4067be](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/b4067bee6fc6446c40433fcbcabf155b58e331bf))
+* **Rest API:** added validation to all backend endpoints ([fd46550](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/fd46550732bf83bb62c85d9e325b4b8ae4248eb7))
+* **Rest API:** added validation to all backend endpoints ([ffd5683](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/ffd5683aa697cebedeef8ff4a8e78404db9191ed))
+* **User:** :recycle: User implements UserAccess so it is possible to run the app fully local ([92066be](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/92066be88c98699a94ddb5c9865eb544c8b3e66f))
+* **User:** :recycle: User implements UserAccess so it is possible to run the app fully local ([ff95d73](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/ff95d73330a225a3cabef19e39e47a3bbe39277b))
+
 ## [1.1.1](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.1.0...v1.1.1) (2023-11-12)
 
 
