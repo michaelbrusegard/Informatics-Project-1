@@ -10,7 +10,7 @@ public class ValidateEndpoints {
     boolean validName = exercise.name() != null && exercise.name().length() > 0 && validNames.contains(exercise.name());
 
     // Validate sets (between 1 and 5000)
-    boolean validSets = exercise.sets() > 0 && exercise.sets() <= 2000;
+    boolean validSets = exercise.sets() > 0 && exercise.sets() <= 5000;
 
     // Validate weight (between 0 and 5000)
     boolean validWeight = exercise.weight() >= 0 && exercise.weight() <= 5000;
