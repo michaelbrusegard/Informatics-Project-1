@@ -99,6 +99,7 @@ public class MainController {
   private String currentFxmlName = "Home";
 
   private final boolean useRemote = true;
+  private final String remoteUrl = "http://localhost:8080/";
 
   /**
    * Constructs a new MainController instance.
@@ -111,7 +112,7 @@ public class MainController {
    */
   public MainController() throws MalformedURLException {
     if (useRemote) {
-      user = new RemoteUserAccess(URI.create("http://localhost:8080/"));
+      user = new RemoteUserAccess(URI.create(remoteUrl));
     } else {
       user = new User();
     }
