@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -57,47 +58,80 @@ public class UserController {
   }
 
   @PutMapping("/current-workout/{workoutIndex}")
-  public void setCurrentWorkout(@PathVariable int workoutIndex) {
+  public ResponseEntity<String> setCurrentWorkout(@PathVariable int workoutIndex) {
     logEndpoint("PUT /current-workout/" + workoutIndex);
+    // Validate
+    if (!ValidateEndpoints.validateWorkoutIndex(workoutIndex, user.getWorkouts().size()))
+      return ResponseEntity.badRequest().body("Invalid workout index");
+
     user.setCurrentWorkout(workoutIndex);
+    return ResponseEntity.ok("Current workout set  to " + workoutIndex + " successfully");
   }
 
   @PutMapping("/current-workout/exercise")
-  public void addExerciseToCurrentWorkout(@RequestBody Exercise exercise) {
+  public ResponseEntity<String> addExerciseToCurrentWorkout(@RequestBody Exercise exercise) {
     logEndpoint("PUT /current-workout/exercise", exercise);
+    // Validate
+    if (!ValidateEndpoints.validateExerciseInput(exercise, user.getExerciseList()))
+      return ResponseEntity.badRequest().body("Invalid exercise input");
+
     user.addExerciseToCurrentWorkout(exercise.name(), exercise.sets(), exercise.repMin(), exercise.repMax(),
         exercise.weight());
+    return ResponseEntity.ok("Exercise added successfully");
   }
 
   @PutMapping("/current-workout/exercise/{exerciseIndex}")
-  public void moveExerciseInCurrentWorkout(@PathVariable int exerciseIndex, @RequestParam boolean left) {
+  public ResponseEntity<String> moveExerciseInCurrentWorkout(@PathVariable int exerciseIndex,
+      @RequestParam boolean left) {
     logEndpoint(
         "PUT /current-workout/exercise/" + exerciseIndex + "?left=" + left);
+    // Validate
+    if (!ValidateEndpoints.validateExerciseIndex(exerciseIndex, user.getCurrentWorkout().getExercises().size()))
+      return ResponseEntity.badRequest().body("Invalid exercise index");
+
     user.moveExerciseInCurrentWorkout(exerciseIndex, left);
+    return ResponseEntity.ok("Exercise moved successfully");
   }
 
   @PutMapping("/current-workout/save")
-  public void saveCurrentWorkout(@RequestParam String name, @RequestParam String date) {
+  public ResponseEntity<String> saveCurrentWorkout(@RequestParam String name, @RequestParam String date) {
     logEndpoint("PUT /current-workout/save" + "?name=" + name);
+    // Validate
+    if (!ValidateEndpoints.validateSaveWorkoutInput(name, date))
+      return ResponseEntity.badRequest().body("Invalid name or date");
+
     user.saveCurrentWorkout(name, date);
+    return ResponseEntity.ok("Current workout saved successfully");
   }
 
   @DeleteMapping("/workout/{workoutIndex}")
-  public void removeWorkout(@PathVariable int workoutIndex) {
+  public ResponseEntity<String> removeWorkout(@PathVariable int workoutIndex) {
     logEndpoint("DELETE /workout/" + workoutIndex);
+    // Validate
+    if (!ValidateEndpoints.validateWorkoutIndex(workoutIndex, user.getWorkouts().size()))
+      return ResponseEntity.badRequest().body("Invalid workout index");
+
     user.removeWorkout(workoutIndex);
+    return ResponseEntity.ok("Workout removed successfully");
   }
 
   @DeleteMapping("/current-workout")
-  public void removeCurrentWorkout() {
+  public ResponseEntity<String> removeCurrentWorkout() {
     logEndpoint("DELETE /current-workout");
+
     user.removeCurrentWorkout();
+    return ResponseEntity.ok("Current workout removed successfully");
   }
 
   @DeleteMapping("/current-workout/exercise/{exerciseIndex}")
-  public void removeExerciseFromCurrentWorkout(@PathVariable int exerciseIndex) {
+  public ResponseEntity<String> removeExerciseFromCurrentWorkout(@PathVariable int exerciseIndex) {
     logEndpoint("DELETE /current-workout/exercise/" + exerciseIndex);
+    // Validate
+    if (!ValidateEndpoints.validateExerciseIndex(exerciseIndex, user.getCurrentWorkout().getExercises().size()))
+      return ResponseEntity.badRequest().body("Invalid exercise index");
+
     user.removeExerciseFromCurrentWorkout(exerciseIndex);
+    return ResponseEntity.ok("Exercise removed successfully");
   }
 
   private void logEndpoint(String endpoint) {
