@@ -2,6 +2,8 @@ package workoutplanner.ui;
 
 import java.io.IOException;
 import java.util.List;
+
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -75,32 +77,32 @@ public class ExerciseViewController extends BaseController {
    * <p>
    * This method is called when the controller is initialized
    * and is responsible for performing the following tasks:
-   * 1. Load a list of exercises from a JSON file using ExerciseLoader.
+   * 1. Load a list of exercises from the Server.
    * 2. Converts the loaded exercise names to an ObservableList.
    * 3. Sets the loaded exercises to the ListView.
    * 4. Binds the text property of the 'name' Text element
    * to the selected item in the ListView.
    * </p>
-   *
-   * @throws IOException If an I/O error occurs while loading exercises
-   *                     from the JSON file.
    */
   @FXML
-  public void initialize() throws IOException {
+  public void initialize() {
     // Update the list view with the exercises
-    // Use ExerciseLoader to load exercises from the JSON file
-    List<String> exercisesList = getMainController().getUser()
-        .getExerciseList();
+    // Wait for the UI to be initialized
+    Platform.runLater(() -> {
+      // Load the list of exercises from the server
+      List<String> exercisesList = getMainController().getUser()
+          .getExerciseList();
 
-    // Convert the List to an ObservableList
-    ObservableList<String> exercises = FXCollections
-        .observableArrayList(exercisesList);
+      // Convert the List to an ObservableList
+      ObservableList<String> exercises = FXCollections
+          .observableArrayList(exercisesList);
 
-    // Set the loaded exercises to the ListView
-    list.setItems(exercises);
+      // Set the loaded exercises to the ListView
+      list.setItems(exercises);
 
-    // Update the name text when an exercise is selected in the list view
-    name.textProperty().bind(list.getSelectionModel().selectedItemProperty());
+      // Update the name text when an exercise is selected in the list view
+      name.textProperty().bind(list.getSelectionModel().selectedItemProperty());
+    });
   }
 
   // When the user clicks the add Exercise button
