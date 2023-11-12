@@ -24,5 +24,5 @@ package workoutplanner.core;
  * @param weight The weight used for the exercise.
  */
 public record Exercise(String name, int sets, int repMin,
-                int repMax, int weight) {
+    int repMax, int weight) {
 }
