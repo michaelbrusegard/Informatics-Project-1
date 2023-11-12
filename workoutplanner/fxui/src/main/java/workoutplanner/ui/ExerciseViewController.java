@@ -101,7 +101,7 @@ public class ExerciseViewController extends BaseController {
 
         // Update the name text when an exercise is selected in the list view
         name.textProperty().bind(
-                list.getSelectionModel().selectedItemProperty());
+            list.getSelectionModel().selectedItemProperty());
       } catch (RuntimeException e) {
         UiUtils.showAlert("Server Error",
             e.getMessage(),
@@ -170,7 +170,7 @@ public class ExerciseViewController extends BaseController {
     try {
       // Check if the workout object is not null
       if (getMainController().getUser().getCurrentWorkout()
-              .getExercises().isEmpty()) {
+          .getExercises().isEmpty()) {
         UiUtils.showAlert("Error",
             "No exercises added to the workout.",
             AlertType.ERROR);
