@@ -30,8 +30,8 @@ public class RemoteUserAccess implements UserAccess {
 
   private static final int OK_RESPONSE_CODE = 200;
 
-  public RemoteUserAccess(final URI inputUrl) {
-    baseUri = inputUrl;
+  public RemoteUserAccess(final URI inputUri) {
+    baseUri = inputUri;
   }
 
   private Reader httpGetRequest(final String path) throws IOException {
