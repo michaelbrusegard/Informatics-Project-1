@@ -27,7 +27,7 @@ public class ExerciseListLoader {
   /**
    * Local objectmapper variable, used to map from the json file.
    */
-  private static final ObjectMapper objectMapper = new ObjectMapper();
+  private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
   /**
    * Loads exercises from a JSON file as a list of strings.
@@ -54,7 +54,7 @@ public class ExerciseListLoader {
     }
     // Open an InputStream from the URL
     try (InputStream inputStream = resourceUrl) {
-      return objectMapper.readValue(inputStream, new TypeReference<>() {
+      return OBJECT_MAPPER.readValue(inputStream, new TypeReference<>() {
       });
     }
   }

@@ -36,7 +36,7 @@ The newWorkout-button sends you to exerciseview, while the allWorkouts-button se
 - handleNewWorkout()
 - handleAllWorkout()
 
-`handleNewWorkout()` does the code for the noewWorkout-button (sends you to exerciseview), while `handleAllWorkout()` sends you to the grid of workouts.
+`handleNewWorkout()` does the code for the newWorkout-button (sends you to exerciseview), while `handleAllWorkout()` sends you to the grid of workouts.
 
 ## ExerciseViewController
 
@@ -182,7 +182,7 @@ The list is a list of each workoutcell. The scrollpane is the container for the 
 - addWorkoutCell()
 - createGrid()
 
-`configureGrid()` sets up the base grid for the planview. `clickNode` makes it so you can return to overview from planview. `addRow` and `addColumn` adds rows and columns.
+`configureGrid()` sets up the base grid for the planview. `clickNode` makes it, so you can return to overview from planview. `addRow` and `addColumn` adds rows and columns.
 `addWorkoutCell` adds a new workoutCell.
 `createGrid` sets up the grid properly, and adds the cells to the grid.
 

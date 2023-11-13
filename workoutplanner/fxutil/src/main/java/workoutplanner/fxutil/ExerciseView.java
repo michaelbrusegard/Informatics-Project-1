@@ -4,6 +4,8 @@ import javafx.scene.control.Alert.AlertType;
 
 /**
  * <h1>ExerciseView</h1>
+ * Helper class for validating and displaying prompts related to adding
+ * exercises.
  *
  * <p>
  * The ExerciseView class is a helper class used

@@ -5,6 +5,7 @@ import javafx.scene.control.TextField;
 
 /**
  * <h1>OverviewController</h1>
+ * Handles error validation and user interaction for the workout overview.
  *
  * <p>
  * The Overview class is responsible for error handling for the overview class.

@@ -208,8 +208,10 @@ public class Workout {
    * This method sets the saved status of the workout,
    * indicating that the object has been saved.
    * </p>
+   *
+   * @param inputSaved used to set the saved state.
    */
-  public void setSaved(boolean inputSaved) {
+  public void setSaved(final boolean inputSaved) {
     this.saved = inputSaved;
   }
 

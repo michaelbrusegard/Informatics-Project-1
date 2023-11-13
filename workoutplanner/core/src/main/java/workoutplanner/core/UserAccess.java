@@ -3,27 +3,27 @@ package workoutplanner.core;
 import java.util.List;
 
 public interface UserAccess {
-  public Workout getCurrentWorkout();
+  Workout getCurrentWorkout();
 
-  public List<Workout> getWorkouts();
+  List<Workout> getWorkouts();
 
-  public void setCurrentWorkout(final int workoutIndex);
+  void setCurrentWorkout(int workoutIndex);
 
-  public void addExerciseToCurrentWorkout(final String inputName,
-      final int sets,
-      final int repMin,
-      final int repMax,
-      final int weight);
+  void addExerciseToCurrentWorkout(String inputName,
+      int sets,
+      int repMin,
+      int repMax,
+      int weight);
 
-  public void removeExerciseFromCurrentWorkout(final int exerciseIndex);
+  void removeExerciseFromCurrentWorkout(int exerciseIndex);
 
-  public void moveExerciseInCurrentWorkout(final int exerciseIndex, final boolean left);
+  void moveExerciseInCurrentWorkout(int exerciseIndex, boolean left);
 
-  public void saveCurrentWorkout(final String name, final String date);
+  void saveCurrentWorkout(String name, String date);
 
-  public void removeWorkout(final int workoutIndex);
+  void removeWorkout(int workoutIndex);
 
-  public void removeCurrentWorkout();
+  void removeCurrentWorkout();
 
-  public List<String> getExerciseList();
+  List<String> getExerciseList();
 }

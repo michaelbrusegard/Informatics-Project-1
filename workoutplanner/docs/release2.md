@@ -13,13 +13,13 @@ When you delete the workout you get brought back to the home page, whereas if yo
 In this release we have proper modularity with a core, fxui and fxutil module, where each module is made according to maven.
 We have customized the module-info and pom-files such that the entire project is working together
 
-### Architecure
+### Architecture
 
 As mentioned above, we have split the classes into three different modules, where the core only consists of the classes `Exercise` and `Workout`.
 
 ### Code quality
 
-We have tests for the different modules, including TestFX in the fxui module. We have added codecoverage via jacoco, where you can see how much of the testing is done.
+We have tests for the different modules, including TestFX in the fxui module. We have added code-coverage via jacoco, where you can see how much of the testing is done.
 
 ### Documentation
 

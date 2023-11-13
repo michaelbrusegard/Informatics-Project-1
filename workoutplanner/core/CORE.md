@@ -4,7 +4,7 @@ In the core module there are two classes: Exercise and Workout.
 
 ## Exercise
 
-The Exercise object is the object that contains the core fields of what an exercise should be. These values are the ones desplayed in `Overview`.
+The Exercise object is the object that contains the core fields of what an exercise should be. These values are the ones displayed in `Overview`.
 
 ### Exercise-Fields
 
@@ -25,7 +25,7 @@ All fields except from `name` are ints, because it is more intuitive than String
 - getRepMax()
 - getWeight()
 
-The only methods in the Exercise class are getters. Setters are unneccesary because the values of the exercises gets set in the constructor.
+The only methods in the Exercise class are getters. Setters are unnecessary because the values of the exercises gets set in the constructor.
 
 ## Workout
 

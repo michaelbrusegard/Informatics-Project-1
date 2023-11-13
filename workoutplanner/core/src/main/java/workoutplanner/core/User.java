@@ -135,14 +135,16 @@ public class User implements UserAccess {
       final int repMin,
       final int repMax,
       final int weight) {
-    workouts.get(currentWorkoutIndex).addExercise(inputName, sets, repMin, repMax, weight);
+    workouts.get(currentWorkoutIndex)
+            .addExercise(inputName, sets, repMin, repMax, weight);
   }
 
   public void removeExerciseFromCurrentWorkout(final int exerciseIndex) {
     workouts.get(currentWorkoutIndex).removeExercise(exerciseIndex);
   }
 
-  public void moveExerciseInCurrentWorkout(final int exerciseIndex, final boolean left) {
+  public void moveExerciseInCurrentWorkout(final int exerciseIndex,
+                                           final boolean left) {
     workouts.get(currentWorkoutIndex).moveExercise(exerciseIndex, left);
   }
 

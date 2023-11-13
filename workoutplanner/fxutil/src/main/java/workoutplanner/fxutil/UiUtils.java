@@ -7,6 +7,7 @@ import javafx.scene.control.ButtonType;
 
 /**
  * <h1>UIUtils</h1>
+ * Provides utility methods for managing the user interface across all views.
  *
  * <p>
  * The UIUtils class is responsible for providing

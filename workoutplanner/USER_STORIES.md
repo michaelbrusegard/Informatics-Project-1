@@ -12,10 +12,10 @@ Links:
 
 ## Making a workout
 
-As an individual, I want to make my own workout, but I can't find any programs or apps that specify the sets and reps that i want for my workouts.
+As an individual, I want to make my own workout, but I can't find any programs or apps that specify the sets and reps that I want for my workouts.
 
 The user needs to make a workout where they can specify what and how much they are training, this includes `sets`, `reps` and `weight`.
-Therefore it needs to be an inputfield for the user to write the desired amount for any exercise, for example editing the sets.
+Therefore, it needs to be an inputfield for the user to write the desired amount for any exercise, for example editing the sets.
 
 ### Important visuals
 
@@ -32,7 +32,7 @@ Therefore it needs to be an inputfield for the user to write the desired amount 
 ## Overview of exercises - 1
 
 I am a person that easily forgets what exercises I have planned when I reach the training center.
-Therefore I need an overview where I can look up what I decided when I was at home, when I'm at the training center.
+Therefore, I need an overview where I can look up what I decided when I was at home, when I'm at the training center.
 
 The user needs to have an overview of the exercises they have chosen already.
 The overview should include the same values that they have entered before, as well as the name of the exercises, in a structured manner.
@@ -62,8 +62,8 @@ Visuals and traits are the same as in [previous user story](#overview-of-exercis
 ## Swap order of exercises
 
 I am someone who thinks the order of the exercises in a workout is important to how the workout is.
-Therefore i wish that i can change the order of the exercises in my workout myself.
-This makes it so I can compare my strength more easily to previous attempts.
+Therefore, I wish that I can change the order of the exercises in my workout myself.
+This makes it, so I can compare my strength more easily to previous attempts.
 
 It has to be possible for the user to swap places between the exercises so that the preferred exercise is at the start of the grid.
 This means that the user needs an overview where the exercises are presented clearly.
@@ -82,12 +82,12 @@ This means that the user needs an overview where the exercises are presented cle
 
 As a regular person that goes to the gym, I want to make a workout to later revisit.
 I want this to do the same workout again at a different date.
-I also want to track the progress i have done on a muscle group,
+I also want to track the progress I have done on a muscle group,
 and it is therefore necessary to watch what I trained, when. F.ex: I want to name a workout "core",
-and when I visit the workout, i can see the core-exercises i've added earlier.
+and when I visit the workout, I can see the core-exercises I've added earlier.
 
 For reviewing previous workouts, it has to be possible to get an overview over which workouts have been registered, and when.
-It also have to be possible to enter the workouts without adding a new workout, and to visit the specific workout by the press of a button.
+It also has to be possible to enter the workouts without adding a new workout, and to visit the specific workout by the press of a button.
 
 ### Important visuals
 
