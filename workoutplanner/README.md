@@ -7,7 +7,7 @@ The goal for the app is to be able to have a list of your personal workouts base
 ## Screenshots
 
 ![home](../concepts/home.png)
-![exercises](../concepts/exercices.png)
-![exercises 2](../concepts/exercices-2.png)
+![exercices](../concepts/exercices.png)
+![exercices 2](../concepts/exercices-2.png)
 ![overview](../concepts/overview.png)
 ![plans](../concepts/workouts.png)
