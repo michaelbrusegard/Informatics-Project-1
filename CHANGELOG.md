@@ -1,3 +1,18 @@
+# [1.3.0](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.2.0...v1.3.0) (2023-11-14)
+
+
+### Bug Fixes
+
+* **Rest API:** :bug: fixed the new Rest API methods ([39706f8](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/39706f8af71a7f04b9144350a82b48c414545c77))
+
+
+### Features
+
+* **Rest API:** :sparkles: added a new endpoint to send Exercise attribuites instead of sending the whole exercise object ([c5dc404](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/c5dc40473ffda9363cf34b8a6fd8cd727301d27b))
+* **Rest API:** :zap: added validation to new endpoints ([d79d318](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/d79d318324d6100324f8daa80ebf9e4516acd32d))
+* **Rest API:** added new endpoints for current workout ([c8d3958](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/c8d39582c17e7b926aef9214bc8effbf6175c74a))
+* **WorkoutView:** :art: seperated getWorkouts into smaller get requests ([f453fa4](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/f453fa4c8b87ecdca84133df14434938fb8d0ffc))
+
 # [1.2.0](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.1.0...v1.2.0) (2023-11-13)
 
 
