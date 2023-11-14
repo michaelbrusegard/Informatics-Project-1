@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This release implements REST-api, and has therefor a proper backend that communicates to the frontend. It also comes with some new features, specifically that you can now edit a workout, as well as added styling for the entire app. This means moving the order of the exercises, adding and deleting an exercise. It is also possible to view and delete a workout. The workouts gets saved in the server, and displayed in workoutview.
+This release implements REST-api, and has therefore a proper backend that communicates to the frontend. It also comes with some new features, specifically that you can now edit a workout, as well as added styling for the entire app. This means moving the order of the exercises, adding and deleting an exercise. It is also possible to view and delete a workout. The workouts gets saved in the server, and displayed in workoutview.
 This release includes more functionality to the app, and makes it better to use.
 
 ## Key Features/Changes
@@ -20,7 +20,7 @@ This release includes more functionality to the app, and makes it better to use.
   - This made us able to store data persistently and centralized easily, making the user experience reliable. We have now separated the frontend from the backend, which have a lot of benefits such as easier testing and a possibility for maintaining and developing the frontend and backend independently.
   - We have added this with editing the POM as well as created a rest-folder that includes mainly the class UserController. This is where the put-requests are received and data is sendt to the userclass. We also have added `RemoteUserAccess` in fxui, where the required data gets sendt to the backend.
 - Added JLink/JPackage
-  - We have added JLink/JPackage that makes it possible for the user to run the app locally in their own system. The app is running without backend, but it won’t be possible to save workouts, unless if you run the server simultaneously, where everything works.
+  - We have added JLink/JPackage that makes it possible for the user to download the app to their own system and run it from there. It is also possible to run the app locally by changing the boolean useRemote from true to false. Otherwise it is possible to run the REST server and then the app.
 
 ## Bug Fixes
 
@@ -41,7 +41,7 @@ This release includes more functionality to the app, and makes it better to use.
 
 ## Testing
 
-- We have expanded the tests we have to include all modules as well as persistence. We have added tests for everything in both frontend and backend, using JaCoCo for showing test coverage.
+- We have expanded the tests we have to include all modules as well as persistence. We have added tests for everything in both frontend and backend, using Jacoco for showing test coverage.
 
 ## Documentation Updates
 
