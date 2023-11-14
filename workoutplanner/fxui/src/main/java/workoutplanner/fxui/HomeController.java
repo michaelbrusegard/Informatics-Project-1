@@ -45,6 +45,7 @@ public class HomeController extends BaseController {
   public void init() {
     try {
       getMainController().getUser().setCurrentWorkout(-1);
+      getMainController().getUser().deleteUnsavedWorkouts();
     } catch (RuntimeException e) {
       UiUtils.showAlert("Server Error", e.getMessage(), AlertType.ERROR);
     }

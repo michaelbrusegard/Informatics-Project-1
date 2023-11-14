@@ -121,8 +121,15 @@ public class OverviewController extends BaseController {
     if (Overview.validateOverview(true, false, this.inputName)) {
       DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy HH:mm");
       String formattedDate = LocalDateTime.now().format(formatter);
+      String name = inputName.getText();
+      if (getMainController().getUser().getWorkoutNames().contains(name)) {
+        UiUtils.showAlert("Error",
+            "Workout name already exists.",
+            AlertType.ERROR);
+        return;
+      }
       try {
-        getMainController().getUser().saveCurrentWorkout(inputName.getText(),
+        getMainController().getUser().saveCurrentWorkout(name,
             formattedDate);
       } catch (RuntimeException e) {
         UiUtils.showAlert("Server Error",
@@ -198,8 +205,28 @@ public class OverviewController extends BaseController {
    */
   private VBox createCell(final int exerciseIndex) {
     // Create text elements
-    Text exerciseName = new Text(
-        getMainController().getUser().getCurrentWorkoutExerciseAttribute(exerciseIndex, "name") + ":");
+    Text exerciseName;
+    Text sets;
+    Text reps;
+    Text weight;
+    try {
+      exerciseName = new Text(
+          getMainController().getUser().getCurrentWorkoutExerciseAttribute(exerciseIndex, "name") + ":");
+      sets = new Text(
+          "Sets: " + getMainController().getUser().getCurrentWorkoutExerciseAttribute(exerciseIndex, "sets"));
+      reps = new Text(
+          "Reps: " + getMainController().getUser().getCurrentWorkoutExerciseAttribute(exerciseIndex, "repMin")
+              + " - " + getMainController().getUser().getCurrentWorkoutExerciseAttribute(exerciseIndex, "repMax"));
+      weight = new Text(
+          "Weight: " + getMainController().getUser().getCurrentWorkoutExerciseAttribute(exerciseIndex, "weight")
+              + "kg");
+    } catch (RuntimeException e) {
+      UiUtils.showAlert("Server Error",
+          e.getMessage(),
+          AlertType.ERROR);
+      return null;
+    }
+
     exerciseName.setFont(new Font(FONT_FAMILY, FONTSIZE));
 
     // Move buttons
@@ -230,14 +257,6 @@ public class OverviewController extends BaseController {
     deleteButton.setStyle(deleteButtonStyle);
 
     // VBox for the content of the cell
-    Text sets = new Text(
-        "Sets: " + getMainController().getUser().getCurrentWorkoutExerciseAttribute(exerciseIndex, "sets"));
-    Text reps = new Text(
-        "Reps: " + getMainController().getUser().getCurrentWorkoutExerciseAttribute(exerciseIndex, "repMin")
-            + " - " + getMainController().getUser().getCurrentWorkoutExerciseAttribute(exerciseIndex, "repMax"));
-    Text weight = new Text(
-        "Weight: " + getMainController().getUser().getCurrentWorkoutExerciseAttribute(exerciseIndex, "weight")
-            + "kg");
     VBox cell = new VBox();
     VBox contentBox = new VBox();
     contentBox.getChildren().addAll(sets, reps, weight, deleteButton);

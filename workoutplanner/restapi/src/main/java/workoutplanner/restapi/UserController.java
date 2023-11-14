@@ -3,8 +3,6 @@ package workoutplanner.restapi;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.IOException;
-import java.io.Reader;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,11 +11,9 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import workoutplanner.core.Exercise;
 import workoutplanner.core.User;
 
 @RestController
@@ -27,7 +23,7 @@ public class UserController {
         private static final Logger LOGGER = Logger.getLogger(UserController.class.getName());
         private final ObjectMapper objectMapper = new ObjectMapper();
         protected static final String WORKOUTPLANNER_SERVICE_PATH = "user/";
-        private final boolean logObjects = true;
+        private final boolean logObjects = false;
 
         public UserController() {
                 user = new User();
@@ -57,11 +53,18 @@ public class UserController {
         @GetMapping("/current-workout/exercise/{exerciseIndex}")
         public String getCurrentWorkoutExercise(@PathVariable final int exerciseIndex,
                         @RequestParam final String attribute) {
-                String currentWorkoutExerciseAttribute = user.getCurrentWorkoutExerciseAttribute(exerciseIndex,
-                                attribute);
+                String currentWorkoutExerciseAttribute = ResponseEntity.badRequest()
+                                .body("Invalid exercise index or attribute").toString();
+                // Validate
+                if (ValidateEndpoints.validateExerciseIndex(exerciseIndex, user.getCurrentWorkoutExerciseCount())
+                                && ValidateEndpoints.validateExerciseAttribute(attribute)) {
+                        currentWorkoutExerciseAttribute = "\"" + user.getCurrentWorkoutExerciseAttribute(exerciseIndex,
+                                        attribute) + "\"";
+                }
+
                 logEndpoint("GET /current-workout/exercise/" + exerciseIndex + "/?attribute=" + attribute,
                                 currentWorkoutExerciseAttribute);
-                return "\"" + currentWorkoutExerciseAttribute + "\"";
+                return currentWorkoutExerciseAttribute;
         }
 
         @GetMapping("/workout/names")
@@ -102,18 +105,17 @@ public class UserController {
 
         @PutMapping("/current-workout/exercise")
         public ResponseEntity<String> addExerciseToCurrentWorkout(
-                        @RequestBody final Exercise exercise) {
+                        @RequestParam final String name, @RequestParam final int sets, @RequestParam final int repMin,
+                        @RequestParam final int repMax, @RequestParam final int weight) {
                 ResponseEntity<String> response = ResponseEntity.badRequest().body("Invalid exercise input.");
                 // Validate
-                if (ValidateEndpoints.validateExerciseInput(exercise,
+                if (ValidateEndpoints.validateExerciseInput(name, sets, repMin, repMax, weight,
                                 user.getExerciseList())) {
                         response = ResponseEntity.ok("Exercise added successfully.");
-                        user.addExerciseToCurrentWorkout(exercise.name(), exercise.sets(),
-                                        exercise.repMin(), exercise.repMax(), exercise.weight());
+                        user.addExerciseToCurrentWorkout(name, sets, repMin, repMax, weight);
                 }
                 logEndpoint("PUT /current-workout/exercise" + " | "
-                                + response.getStatusCode() + " -" + response.getBody(),
-                                exercise);
+                                + response.getStatusCode() + " -" + response.getBody());
                 return response;
         }
 
@@ -139,7 +141,7 @@ public class UserController {
                         @RequestParam final String name, @RequestParam final String date) {
                 ResponseEntity<String> response = ResponseEntity.badRequest().body("Invalid name or date.");
                 // Validate
-                if (ValidateEndpoints.validateSaveWorkoutInput(name, date)) {
+                if (ValidateEndpoints.validateSaveWorkoutInput(name, date, user.getWorkoutNames())) {
                         response = ResponseEntity.ok("Current workout saved successfully.");
                         user.saveCurrentWorkout(name, date);
                 }
@@ -184,6 +186,14 @@ public class UserController {
                 }
                 logEndpoint("DELETE /current-workout/exercise/" + exerciseIndex + " | "
                                 + response.getStatusCode() + " -" + response.getBody());
+                return response;
+        }
+
+        @DeleteMapping("/workouts/delete-unsaved")
+        public ResponseEntity<String> deleteUnsavedWorkouts() {
+                ResponseEntity<String> response = ResponseEntity.ok("Unsaved workouts deleted sucessfully.");
+                user.deleteUnsavedWorkouts();
+                logEndpoint("DELETE /workouts/delete-unsaved");
                 return response;
         }
 

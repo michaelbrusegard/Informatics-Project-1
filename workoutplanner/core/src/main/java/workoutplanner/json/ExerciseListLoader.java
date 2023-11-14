@@ -50,7 +50,7 @@ public class ExerciseListLoader {
     InputStream resourceUrl = ExerciseListLoader.class
         .getResourceAsStream(resourcePath);
     if (resourceUrl == null) {
-      throw new IOException("Resource not found: exercises.json");
+      throw new IOException("Resource not found: ExerciseList.json");
     }
     // Open an InputStream from the URL
     try (InputStream inputStream = resourceUrl) {

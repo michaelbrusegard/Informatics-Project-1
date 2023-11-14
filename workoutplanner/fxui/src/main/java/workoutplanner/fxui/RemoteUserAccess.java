@@ -6,14 +6,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
-import workoutplanner.core.Exercise;
 import workoutplanner.core.UserAccess;
 
 /**
@@ -193,14 +191,10 @@ public class RemoteUserAccess implements UserAccess {
       final int weight) {
     try {
       HttpURLConnection connection = httpPutRequest(
-          "/current-workout/exercise");
-      String json = objectMapper.writeValueAsString(
-          new Exercise(inputName, sets, repMin, repMax, weight));
-      OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream(),
-          StandardCharsets.UTF_8);
-      writer.write(json);
-      writer.flush();
-      writer.close();
+          "/current-workout/exercise" + "?name="
+              + URLEncoder.encode(inputName, StandardCharsets.UTF_8)
+              + "&sets=" + sets + "&repMin=" + repMin + "&repMax=" + repMax
+              + "&weight=" + weight);
       handleError(connection);
     } catch (IOException e) {
       e.printStackTrace();
@@ -270,6 +264,17 @@ public class RemoteUserAccess implements UserAccess {
       e.printStackTrace();
       throw new RuntimeException(
           "Error removing exercise from current workout.", e);
+    }
+  }
+
+  @Override
+  public void deleteUnsavedWorkouts() {
+    try {
+      HttpURLConnection connection = httpDeleteRequest("/workouts/delete-unsaved");
+      handleError(connection);
+    } catch (IOException e) {
+      e.printStackTrace();
+      throw new RuntimeException("Error deleting unsaved workouts.", e);
     }
   }
 }

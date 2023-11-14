@@ -1,7 +1,6 @@
 package workoutplanner.core;
 
 import java.io.IOException;
-import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -191,6 +190,16 @@ public class User implements UserAccess {
     workout.setName(name);
     workout.setDate(date);
     workout.setSaved(true);
+  }
+
+  @Override
+  public void deleteUnsavedWorkouts() {
+    for (int i = 0; i < workouts.size(); i++) {
+      if (!workouts.get(i).getSaved()) {
+        workouts.remove(i);
+        i--;
+      }
+    }
   }
 
   @Override

@@ -33,5 +33,7 @@ public interface UserAccess {
 
   void removeCurrentWorkout();
 
+  void deleteUnsavedWorkouts();
+
   List<String> getExerciseList();
 }
