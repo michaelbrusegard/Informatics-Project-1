@@ -2,6 +2,9 @@ package workoutplanner.restapi;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.IOException;
+import java.io.Reader;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,11 +40,11 @@ public class UserController {
                 return currentWorkoutSaved;
         }
 
-        @GetMapping("/current-workout/empty")
-        public boolean getCurrentWorkoutEmpty() {
-                boolean currentWorkoutEmpty = user.getCurrentWorkoutEmpty();
-                logEndpoint("GET /current-workout/empty", currentWorkoutEmpty);
-                return currentWorkoutEmpty;
+        @GetMapping("/current-workout/exercise-count")
+        public int getCurrentWorkoutExerciseCount() {
+                int currentWorkoutExerciseCount = user.getCurrentWorkoutExerciseCount();
+                logEndpoint("GET /current-workout/exercise-count", currentWorkoutExerciseCount);
+                return currentWorkoutExerciseCount;
         }
 
         @GetMapping("/current-workout/name")
@@ -51,11 +54,14 @@ public class UserController {
                 return "\"" + currentWorkoutName + "\"";
         }
 
-        @GetMapping("/current-workout/exercises")
-        public List<Exercise> getCurrentWorkoutExercises() {
-                List<Exercise> currentWorkoutExercises = user.getCurrentWorkoutExercises();
-                logEndpoint("GET /current-workout/exercises", currentWorkoutExercises);
-                return currentWorkoutExercises;
+        @GetMapping("/current-workout/exercise/{exerciseIndex}")
+        public String getCurrentWorkoutExercise(@PathVariable final int exerciseIndex,
+                        @RequestParam final String attribute) {
+                String currentWorkoutExerciseAttribute = user.getCurrentWorkoutExerciseAttribute(exerciseIndex,
+                                attribute);
+                logEndpoint("GET /current-workout/exercise/" + exerciseIndex + "/?attribute=" + attribute,
+                                currentWorkoutExerciseAttribute);
+                return "\"" + currentWorkoutExerciseAttribute + "\"";
         }
 
         @GetMapping("/workout/names")
@@ -118,7 +124,7 @@ public class UserController {
                 ResponseEntity<String> response = ResponseEntity.badRequest().body("Invalid exercise index.");
                 // Validate
                 if (ValidateEndpoints.validateExerciseIndex(exerciseIndex,
-                                user.getCurrentWorkoutExercises().size())) {
+                                user.getCurrentWorkoutExerciseCount())) {
                         response = ResponseEntity.ok("Exercise moved successfully.");
                         user.moveExerciseInCurrentWorkout(exerciseIndex, left);
                 }
@@ -172,7 +178,7 @@ public class UserController {
                 ResponseEntity<String> response = ResponseEntity.badRequest().body("Invalid exercise index.");
                 // Validate
                 if (ValidateEndpoints.validateExerciseIndex(exerciseIndex,
-                                user.getCurrentWorkoutExercises().size())) {
+                                user.getCurrentWorkoutExerciseCount())) {
                         response = ResponseEntity.ok("Exercise removed successfully");
                         user.removeExerciseFromCurrentWorkout(exerciseIndex);
                 }

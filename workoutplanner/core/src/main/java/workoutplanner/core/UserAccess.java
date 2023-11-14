@@ -5,11 +5,11 @@ import java.util.List;
 public interface UserAccess {
   boolean getCurrentWorkoutSaved();
 
-  boolean getCurrentWorkoutEmpty();
+  int getCurrentWorkoutExerciseCount();
 
   String getCurrentWorkoutName();
 
-  List<Exercise> getCurrentWorkoutExercises();
+  String getCurrentWorkoutExerciseAttribute(int exerciseIndex, String attribute);
 
   List<String> getWorkoutNames();
 

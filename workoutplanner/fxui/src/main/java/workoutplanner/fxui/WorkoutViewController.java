@@ -92,7 +92,7 @@ public class WorkoutViewController extends BaseController {
     // Create grid if there are workouts
     if (!workoutNames.isEmpty()) {
       new GridBuilder(scrollPane,
-          workoutNames, this::createCell);
+          workoutNames.size(), this::createCell);
     } else {
       VBox container = new VBox();
       Text noWorkouts = new Text("You don't have any workouts.");

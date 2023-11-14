@@ -113,14 +113,14 @@ public class RemoteUserAccess implements UserAccess {
   }
 
   @Override
-  public boolean getCurrentWorkoutEmpty() {
+  public int getCurrentWorkoutExerciseCount() {
     Reader reader;
     try {
-      reader = httpGetRequest("/current-workout/empty");
-      return objectMapper.readValue(reader, Boolean.class);
+      reader = httpGetRequest("/current-workout/exercise-count");
+      return objectMapper.readValue(reader, int.class);
     } catch (IOException e) {
       e.printStackTrace();
-      throw new RuntimeException("Error getting current workout is empty state.", e);
+      throw new RuntimeException("Error getting current workout exercise count.", e);
     }
   }
 
@@ -137,15 +137,15 @@ public class RemoteUserAccess implements UserAccess {
   }
 
   @Override
-  public List<Exercise> getCurrentWorkoutExercises() {
+  public String getCurrentWorkoutExerciseAttribute(final int exerciseIndex, final String attribute) {
     Reader reader;
     try {
-      reader = httpGetRequest("/current-workout/exercises");
-      return objectMapper.readValue(reader, new TypeReference<List<Exercise>>() {
-      });
+      reader = httpGetRequest("/current-workout/exercise/" + exerciseIndex + "/?attribute=" + attribute);
+
+      return objectMapper.readValue(reader, String.class);
     } catch (IOException e) {
       e.printStackTrace();
-      throw new RuntimeException("Error getting current workout exercices.", e);
+      throw new RuntimeException("Error getting current workout exercise " + attribute + ".", e);
     }
   }
 

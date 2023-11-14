@@ -101,7 +101,7 @@ public class MainController {
    * Local boolean variable, used to choose between running with rest server or
    * not.
    */
-  private final boolean useRemote = true;
+  private final boolean useRemote = false;
 
   /**
    * Local String variable, used for referring to server port.

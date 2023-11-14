@@ -168,7 +168,7 @@ public class ExerciseViewController extends BaseController {
   @FXML
   private void finish() {
     try {
-      if (getMainController().getUser().getCurrentWorkoutEmpty()) {
+      if (getMainController().getUser().getCurrentWorkoutExerciseCount() == 0) {
         UiUtils.showAlert("Error",
             "No exercises added to the workout.",
             AlertType.ERROR);

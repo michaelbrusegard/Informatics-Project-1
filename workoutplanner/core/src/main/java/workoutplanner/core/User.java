@@ -1,6 +1,7 @@
 package workoutplanner.core;
 
 import java.io.IOException;
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,8 +92,8 @@ public class User implements UserAccess {
   }
 
   @Override
-  public boolean getCurrentWorkoutEmpty() {
-    return workouts.get(currentWorkoutIndex).getExercises().isEmpty();
+  public int getCurrentWorkoutExerciseCount() {
+    return workouts.get(currentWorkoutIndex).getExercises().size();
   }
 
   @Override
@@ -101,8 +102,26 @@ public class User implements UserAccess {
   }
 
   @Override
-  public List<Exercise> getCurrentWorkoutExercises() {
-    return workouts.get(currentWorkoutIndex).getExercises();
+  public String getCurrentWorkoutExerciseAttribute(int exerciseIndex, String attribute) {
+    switch (attribute) {
+      case "name":
+        return workouts.get(currentWorkoutIndex).getExercises()
+            .get(exerciseIndex).name();
+      case "sets":
+        return String.valueOf(workouts.get(currentWorkoutIndex).getExercises()
+            .get(exerciseIndex).sets());
+      case "repMin":
+        return String.valueOf(workouts.get(currentWorkoutIndex).getExercises()
+            .get(exerciseIndex).repMin());
+      case "repMax":
+        return String.valueOf(workouts.get(currentWorkoutIndex).getExercises()
+            .get(exerciseIndex).repMax());
+      case "weight":
+        return String.valueOf(workouts.get(currentWorkoutIndex).getExercises()
+            .get(exerciseIndex).weight());
+      default:
+        throw new IllegalArgumentException("Unknown attribute: " + attribute);
+    }
   }
 
   /**
