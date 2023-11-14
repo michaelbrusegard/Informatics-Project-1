@@ -3,9 +3,17 @@ package workoutplanner.core;
 import java.util.List;
 
 public interface UserAccess {
-  Workout getCurrentWorkout();
+  boolean getCurrentWorkoutSaved();
 
-  List<Workout> getWorkouts();
+  int getCurrentWorkoutExerciseCount();
+
+  String getCurrentWorkoutName();
+
+  String getCurrentWorkoutExerciseAttribute(int exerciseIndex, String attribute);
+
+  List<String> getWorkoutNames();
+
+  List<String> getWorkoutDates();
 
   void setCurrentWorkout(int workoutIndex);
 
@@ -24,6 +32,8 @@ public interface UserAccess {
   void removeWorkout(int workoutIndex);
 
   void removeCurrentWorkout();
+
+  void deleteUnsavedWorkouts();
 
   List<String> getExerciseList();
 }

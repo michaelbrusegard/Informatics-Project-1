@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import workoutplanner.json.ExerciseListLoader;
+
 /**
  * <h1>User</h1>
  * Represents a user in the workoutplanner program.
@@ -56,6 +58,7 @@ public class User implements UserAccess {
    * @param workoutIndex The index of the workout to be removed from the list of
    *                     workouts.
    */
+  @Override
   public void removeWorkout(final int workoutIndex) {
     // Remove a workout from the list of workouts
     workouts.remove(workoutIndex);
@@ -70,31 +73,54 @@ public class User implements UserAccess {
    * It removes the current workout and resets the current workout index to -1.
    * </p>
    */
+  @Override
   public void removeCurrentWorkout() {
     // Remove the current workout from the list of workouts
     workouts.remove(currentWorkoutIndex);
     currentWorkoutIndex = -1;
   }
 
-  /**
-   * Returns the current workout or creates a new one if it doesn't exist.
-   *
-   * <p>
-   * This method retrieves the workout that is currently selected as the
-   * "current" workout from the list of workouts associated with the user.
-   * If no current workout exists, it creates a new workout, makes it the
-   * current one, and adds it to the list of workouts.
-   * </p>
-   *
-   * @return The current Workout object or a new one if it doesn't exist.
-   */
-  public Workout getCurrentWorkout() {
+  @Override
+  public boolean getCurrentWorkoutSaved() {
     // Return the current workout or create a new one if it doesn't exist
     if (currentWorkoutIndex == -1) {
       currentWorkoutIndex = workouts.size();
       workouts.add(new Workout());
     }
-    return workouts.get(currentWorkoutIndex);
+    return workouts.get(currentWorkoutIndex).getSaved();
+  }
+
+  @Override
+  public int getCurrentWorkoutExerciseCount() {
+    return workouts.get(currentWorkoutIndex).getExercises().size();
+  }
+
+  @Override
+  public String getCurrentWorkoutName() {
+    return workouts.get(currentWorkoutIndex).getName();
+  }
+
+  @Override
+  public String getCurrentWorkoutExerciseAttribute(int exerciseIndex, String attribute) {
+    switch (attribute) {
+      case "name":
+        return workouts.get(currentWorkoutIndex).getExercises()
+            .get(exerciseIndex).name();
+      case "sets":
+        return String.valueOf(workouts.get(currentWorkoutIndex).getExercises()
+            .get(exerciseIndex).sets());
+      case "repMin":
+        return String.valueOf(workouts.get(currentWorkoutIndex).getExercises()
+            .get(exerciseIndex).repMin());
+      case "repMax":
+        return String.valueOf(workouts.get(currentWorkoutIndex).getExercises()
+            .get(exerciseIndex).repMax());
+      case "weight":
+        return String.valueOf(workouts.get(currentWorkoutIndex).getExercises()
+            .get(exerciseIndex).weight());
+      default:
+        throw new IllegalArgumentException("Unknown attribute: " + attribute);
+    }
   }
 
   /**
@@ -109,45 +135,56 @@ public class User implements UserAccess {
    *
    * @param workoutIndex The index of the workout to set as the current workout.
    */
+  @Override
   public void setCurrentWorkout(final int workoutIndex) {
     // Set the current workout
     currentWorkoutIndex = workoutIndex;
   }
 
-  /**
-   * Returns the list of workouts associated with the user.
-   *
-   * <p>
-   * This method provides access to the list of workouts associated with the
-   * user. The workouts are returned as a List, enabling external code to work
-   * with and iterate through the workouts.
-   * </p>
-   *
-   * @return A List of Workout objects representing the user's workouts.
-   */
-  public List<Workout> getWorkouts() {
-    // Return the list of workouts
-    return workouts;
+  @Override
+  public List<String> getWorkoutNames() {
+    List<String> workoutNames = new ArrayList<>();
+
+    for (Workout workout : workouts) {
+      workoutNames.add(workout.getName());
+    }
+
+    return workoutNames;
   }
 
+  @Override
+  public List<String> getWorkoutDates() {
+    List<String> workoutDates = new ArrayList<>();
+
+    for (Workout workout : workouts) {
+      workoutDates.add(workout.getDate());
+    }
+
+    return workoutDates;
+  }
+
+  @Override
   public void addExerciseToCurrentWorkout(final String inputName,
       final int sets,
       final int repMin,
       final int repMax,
       final int weight) {
     workouts.get(currentWorkoutIndex)
-            .addExercise(inputName, sets, repMin, repMax, weight);
+        .addExercise(inputName, sets, repMin, repMax, weight);
   }
 
+  @Override
   public void removeExerciseFromCurrentWorkout(final int exerciseIndex) {
     workouts.get(currentWorkoutIndex).removeExercise(exerciseIndex);
   }
 
+  @Override
   public void moveExerciseInCurrentWorkout(final int exerciseIndex,
-                                           final boolean left) {
+      final boolean left) {
     workouts.get(currentWorkoutIndex).moveExercise(exerciseIndex, left);
   }
 
+  @Override
   public void saveCurrentWorkout(final String name, final String date) {
     Workout workout = workouts.get(currentWorkoutIndex);
     workout.setName(name);
@@ -155,6 +192,17 @@ public class User implements UserAccess {
     workout.setSaved(true);
   }
 
+  @Override
+  public void deleteUnsavedWorkouts() {
+    for (int i = 0; i < workouts.size(); i++) {
+      if (!workouts.get(i).getSaved()) {
+        workouts.remove(i);
+        i--;
+      }
+    }
+  }
+
+  @Override
   public List<String> getExerciseList() {
     try {
       return ExerciseListLoader.loadExerciseListFromJson();

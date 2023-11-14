@@ -101,7 +101,7 @@
                 <version>0.0.8</version>
                 <configuration>
                     <!-- syntax: module-name/full-app-class-name -->
-                    <mainClass>workoutplanner.ui/workoutplanner.ui.WorkoutPlannerApp</mainClass>
+                    <mainClass>fxui/workoutplanner.fxui.WorkoutPlannerApp</mainClass>
                      <!-- rest of options are for jlink -->
                     <compress>2</compress>
                     <noHeaderFiles>true</noHeaderFiles>
@@ -124,7 +124,7 @@
                     <appVersion>1.0.0</appVersion>
                     <vendor>gr2307</vendor>
                     <destination>target/dist</destination>
-                    <module>workoutplanner.ui/workoutplanner.ui.WorkoutPlannerApp</module>
+                    <module>fxui/workoutplanner.fxui.WorkoutPlannerApp</module>
                     <runtimeImage>target/workoutplannerfx</runtimeImage>
                     <javaOptions>
                         <option>-Dfile.encoding=UTF-8</option>
@@ -156,7 +156,7 @@
                 <configuration>
                     <argLine>
                     @{jaCoCoArgLine} -Dtestfx.robot=awt
-                    --add-opens workoutplanner.ui/ui=ALL-UNNAMED --add-exports javafx.graphics/com.sun.javafx.application=ALL-UNNAMED
+                    --add-opens workoutplanner.fxui/fxui=ALL-UNNAMED --add-exports javafx.graphics/com.sun.javafx.application=ALL-UNNAMED
                     --add-opens javafx.graphics/com.sun.glass.ui=ALL-UNNAMED --add-exports javafx.graphics/com.sun.glass.ui=ALL-UNNAMED
                     --add-exports javafx.graphics/com.sun.glass.ui.delegate=ALL-UNNAMED
                     </argLine>
@@ -184,7 +184,7 @@
                             <version>0.0.8</version>
                             <configuration>
                                 <!-- syntax: module-name/full-app-class-name -->
-                                <mainClass>workoutplanner.ui/workoutplanner.ui.WorkoutPlannerApp</mainClass>
+                                <mainClass>fxui/workoutplanner.fxui.WorkoutPlannerApp</mainClass>
                             </configuration>
                         </plugin>
                     </plugins>

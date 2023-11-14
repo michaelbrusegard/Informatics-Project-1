@@ -142,7 +142,7 @@
         <module>core</module>
         <module>fxutil</module>
         <module>fxui</module>
-        <module>rest</module>
+        <module>restapi</module>
     </modules>
 
 </project>
