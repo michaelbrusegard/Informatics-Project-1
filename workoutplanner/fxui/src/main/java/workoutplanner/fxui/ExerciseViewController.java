@@ -168,9 +168,7 @@ public class ExerciseViewController extends BaseController {
   @FXML
   private void finish() {
     try {
-      // Check if the workout object is not null
-      if (getMainController().getUser().getCurrentWorkout()
-          .getExercises().isEmpty()) {
+      if (getMainController().getUser().getCurrentWorkoutEmpty()) {
         UiUtils.showAlert("Error",
             "No exercises added to the workout.",
             AlertType.ERROR);
@@ -204,7 +202,7 @@ public class ExerciseViewController extends BaseController {
     try {
       // Hide the cancel button if the workout is saved
       cancelButton.setVisible(
-          !getMainController().getUser().getCurrentWorkout().getSaved());
+          !getMainController().getUser().getCurrentWorkoutSaved());
     } catch (RuntimeException e) {
       UiUtils.showAlert("Server Error",
           e.getMessage(),

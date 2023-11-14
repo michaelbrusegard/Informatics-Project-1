@@ -15,7 +15,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 import workoutplanner.core.Exercise;
 import workoutplanner.core.UserAccess;
-import workoutplanner.core.Workout;
 
 /**
  * Uses REST API to access and manipulate the user object.
@@ -102,13 +101,51 @@ public class RemoteUserAccess implements UserAccess {
   }
 
   @Override
-  public Workout getCurrentWorkout() {
+  public boolean getCurrentWorkoutSaved() {
     Reader reader;
     try {
-      reader = httpGetRequest("/current-workout");
-      return objectMapper.readValue(reader, Workout.class);
+      reader = httpGetRequest("/current-workout/saved");
+      return objectMapper.readValue(reader, Boolean.class);
     } catch (IOException e) {
-      throw new RuntimeException("Error getting current workout.", e);
+      e.printStackTrace();
+      throw new RuntimeException("Error getting current workout saved state.", e);
+    }
+  }
+
+  @Override
+  public boolean getCurrentWorkoutEmpty() {
+    Reader reader;
+    try {
+      reader = httpGetRequest("/current-workout/empty");
+      return objectMapper.readValue(reader, Boolean.class);
+    } catch (IOException e) {
+      e.printStackTrace();
+      throw new RuntimeException("Error getting current workout is empty state.", e);
+    }
+  }
+
+  @Override
+  public String getCurrentWorkoutName() {
+    Reader reader;
+    try {
+      reader = httpGetRequest("/current-workout/name");
+      return objectMapper.readValue(reader, String.class);
+    } catch (IOException e) {
+      e.printStackTrace();
+      throw new RuntimeException("Error getting current workout name.", e);
+    }
+  }
+
+  @Override
+  public List<Exercise> getCurrentWorkoutExercises() {
+    Reader reader;
+    try {
+      reader = httpGetRequest("/current-workout/exercices");
+      return objectMapper.readValue(reader, new TypeReference<List<Exercise>>() {
+      });
+    } catch (IOException e) {
+      e.printStackTrace();
+      throw new RuntimeException("Error getting current workout exercices.", e);
     }
   }
 

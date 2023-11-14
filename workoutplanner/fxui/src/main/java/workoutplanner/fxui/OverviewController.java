@@ -161,10 +161,10 @@ public class OverviewController extends BaseController {
     // Clear name and scrollPane
     inputName.clear();
     buildGrid();
-    if (getMainController().getUser().getCurrentWorkout().getSaved()) {
+    if (getMainController().getUser().getCurrentWorkoutSaved()) {
       saveWorkoutNameBox.setVisible(false);
       workoutInfoBox.setVisible(true);
-      name.setText(getMainController().getUser().getCurrentWorkout().getName());
+      name.setText(getMainController().getUser().getCurrentWorkoutName());
     } else {
       workoutInfoBox.setVisible(false);
       saveWorkoutNameBox.setVisible(true);
@@ -179,7 +179,7 @@ public class OverviewController extends BaseController {
     scrollPane.setContent(new VBox());
     // Create grid
     new GridBuilder(scrollPane,
-        getMainController().getUser().getCurrentWorkout().getExercises(),
+        getMainController().getUser().getCurrentWorkoutExercises(),
         this::createCell);
   }
 
@@ -199,7 +199,7 @@ public class OverviewController extends BaseController {
   private VBox createCell(final int exerciseIndex) {
     // Create text elements
     Text exerciseName = new Text(
-        getMainController().getUser().getCurrentWorkout().getExercises()
+        getMainController().getUser().getCurrentWorkoutExercises()
             .get(exerciseIndex).name() + ":");
     exerciseName.setFont(new Font(FONT_FAMILY, FONTSIZE));
 
@@ -232,16 +232,12 @@ public class OverviewController extends BaseController {
 
     // VBox for the content of the cell
     Text sets = new Text(
-        "Sets: " + getMainController().getUser().getCurrentWorkout()
-            .getExercises().get(exerciseIndex).sets());
+        "Sets: " + getMainController().getUser().getCurrentWorkoutExercises().get(exerciseIndex).sets());
     Text reps = new Text(
-        "Reps: " + getMainController().getUser().getCurrentWorkout()
-            .getExercises().get(exerciseIndex).repMin()
-            + " - " + getMainController().getUser().getCurrentWorkout()
-                .getExercises().get(exerciseIndex).repMax());
+        "Reps: " + getMainController().getUser().getCurrentWorkoutExercises().get(exerciseIndex).repMin()
+            + " - " + getMainController().getUser().getCurrentWorkoutExercises().get(exerciseIndex).repMax());
     Text weight = new Text(
-        "Weight: " + getMainController().getUser().getCurrentWorkout()
-            .getExercises().get(exerciseIndex).weight()
+        "Weight: " + getMainController().getUser().getCurrentWorkoutExercises().get(exerciseIndex).weight()
             + "kg");
     VBox cell = new VBox();
     VBox contentBox = new VBox();
@@ -281,8 +277,7 @@ public class OverviewController extends BaseController {
   }
 
   private void delete(final int exerciseIndex) {
-    if (getMainController().getUser().getCurrentWorkout()
-        .getExercises().size() == 1) {
+    if (getMainController().getUser().getCurrentWorkoutExercises().size() == 1) {
       UiUtils.showAlert("Error",
           "Cannot delete the last exercise in a workout.",
           AlertType.ERROR);
@@ -291,8 +286,7 @@ public class OverviewController extends BaseController {
 
     if (UiUtils.showConfirmation("Delete Exercise",
         "Are you sure you want to delete "
-            + getMainController().getUser().getCurrentWorkout().getExercises()
-                .get(exerciseIndex).name()
+            + getMainController().getUser().getCurrentWorkoutExercises().get(exerciseIndex).name()
             + "? ")) {
       try {
         getMainController().getUser()

@@ -3,7 +3,13 @@ package workoutplanner.core;
 import java.util.List;
 
 public interface UserAccess {
-  Workout getCurrentWorkout();
+  boolean getCurrentWorkoutSaved();
+
+  boolean getCurrentWorkoutEmpty();
+
+  String getCurrentWorkoutName();
+
+  List<Exercise> getCurrentWorkoutExercises();
 
   List<String> getWorkoutNames();
 
