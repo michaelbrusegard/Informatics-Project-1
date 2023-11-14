@@ -96,6 +96,7 @@ public class RemoteUserAccess implements UserAccess {
       return objectMapper.readValue(reader, new TypeReference<>() {
       });
     } catch (IOException e) {
+      e.printStackTrace();
       throw new RuntimeException("Error getting exercise list.", e);
     }
   }
@@ -112,13 +113,26 @@ public class RemoteUserAccess implements UserAccess {
   }
 
   @Override
-  public List<Workout> getWorkouts() {
+  public List<String> getWorkoutNames() {
     try {
-      Reader reader = httpGetRequest("/workouts");
+      Reader reader = httpGetRequest("/workout/names");
       return objectMapper.readValue(reader, new TypeReference<>() {
       });
     } catch (IOException e) {
-      throw new RuntimeException("Error getting workouts.", e);
+      e.printStackTrace();
+      throw new RuntimeException("Error getting workout names.", e);
+    }
+  }
+
+  @Override
+  public List<String> getWorkoutDates() {
+    try {
+      Reader reader = httpGetRequest("/workout/dates");
+      return objectMapper.readValue(reader, new TypeReference<>() {
+      });
+    } catch (IOException e) {
+      e.printStackTrace();
+      throw new RuntimeException("Error getting workouts dates.", e);
     }
   }
 
@@ -129,6 +143,7 @@ public class RemoteUserAccess implements UserAccess {
           + workoutIndex);
       handleError(connection);
     } catch (IOException e) {
+      e.printStackTrace();
       throw new RuntimeException("Error setting current workout.", e);
     }
   }
@@ -151,6 +166,7 @@ public class RemoteUserAccess implements UserAccess {
       writer.close();
       handleError(connection);
     } catch (IOException e) {
+      e.printStackTrace();
       throw new RuntimeException("Error adding exercise to current workout.",
           e);
     }
@@ -164,6 +180,7 @@ public class RemoteUserAccess implements UserAccess {
           + exerciseIndex + "?left=" + left);
       handleError(connection);
     } catch (IOException e) {
+      e.printStackTrace();
       throw new RuntimeException("Error moving exercise in current workout.",
           e);
     }
@@ -178,6 +195,7 @@ public class RemoteUserAccess implements UserAccess {
               + URLEncoder.encode(date, StandardCharsets.UTF_8));
       handleError(connection);
     } catch (IOException e) {
+      e.printStackTrace();
       throw new RuntimeException("Error saving current workout.", e);
     }
   }
@@ -189,6 +207,7 @@ public class RemoteUserAccess implements UserAccess {
           + workoutIndex);
       handleError(connection);
     } catch (IOException e) {
+      e.printStackTrace();
       throw new RuntimeException("Error removing workout.", e);
     }
   }
@@ -199,6 +218,7 @@ public class RemoteUserAccess implements UserAccess {
       HttpURLConnection connection = httpDeleteRequest("/current-workout");
       handleError(connection);
     } catch (IOException e) {
+      e.printStackTrace();
       throw new RuntimeException("Error removing current workout.", e);
     }
   }
@@ -210,6 +230,7 @@ public class RemoteUserAccess implements UserAccess {
           "/current-workout/exercise/" + exerciseIndex);
       handleError(connection);
     } catch (IOException e) {
+      e.printStackTrace();
       throw new RuntimeException(
           "Error removing exercise from current workout.", e);
     }

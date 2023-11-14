@@ -1,5 +1,7 @@
 package workoutplanner.fxui;
 
+import java.util.List;
+
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
@@ -58,6 +60,9 @@ public class WorkoutViewController extends BaseController {
    */
   private static final double BUTTONLAYOUTY = 1.5 * LAYOUTY;
 
+  private List<String> workoutNames;
+  private List<String> workoutDates;
+
   @FXML
   private void returnHome() {
     getMainController().showFxml("Home");
@@ -76,10 +81,18 @@ public class WorkoutViewController extends BaseController {
   public void init() {
     // Clear scrollPane
     scrollPane.setContent(new Group());
+    // Get workout info
+    try {
+      workoutNames = getMainController().getUser().getWorkoutNames();
+      workoutDates = getMainController().getUser().getWorkoutDates();
+    } catch (RuntimeException e) {
+      UiUtils.showAlert("Server Error", e.getMessage(), AlertType.ERROR);
+      return;
+    }
     // Create grid if there are workouts
-    if (!getMainController().getUser().getWorkouts().isEmpty()) {
+    if (!workoutNames.isEmpty()) {
       new GridBuilder(scrollPane,
-          getMainController().getUser().getWorkouts(), this::createCell);
+          workoutNames, this::createCell);
     } else {
       VBox container = new VBox();
       Text noWorkouts = new Text("You don't have any workouts.");
@@ -99,11 +112,9 @@ public class WorkoutViewController extends BaseController {
         + "-fx-border-width: 2;"
         + "-fx-background-radius: 20;"
         + "-fx-border-radius: 10;";
-    Text name = new Text(getMainController().getUser().getWorkouts()
-        .get(workoutIndex).getName());
+    Text name = new Text(workoutNames.get(workoutIndex));
     name.setFont(new Font(FONT_FAMILY, FONTSIZE));
-    Text date = new Text(getMainController().getUser().getWorkouts()
-        .get(workoutIndex).getDate());
+    Text date = new Text(workoutDates.get(workoutIndex));
     date.setLayoutY(LAYOUTY);
     // Define buttons
     Button viewButton = new Button("View");
@@ -134,8 +145,7 @@ public class WorkoutViewController extends BaseController {
   private void delete(final int workoutIndex) {
     if (UiUtils.showConfirmation("Delete Workout",
         "Are you sure you want to delete "
-            + getMainController().getUser().getWorkouts()
-                .get(workoutIndex).getName()
+            + workoutNames.get(workoutIndex)
             + "? "
             + "All workout data will be lost.")) {
       try {

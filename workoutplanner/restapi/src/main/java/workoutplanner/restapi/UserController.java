@@ -36,12 +36,21 @@ public class UserController {
     logEndpoint("GET /current-workout", currentWorkout);
     return currentWorkout;
   }
-  @GetMapping("/workouts")
-  public List<Workout> getWorkouts() {
-    List<Workout> workouts = user.getWorkouts();
-    logEndpoint("GET /workouts", workouts);
-    return workouts;
+
+  @GetMapping("/workout/names")
+  public List<String> getWorkouts() {
+    List<String> workoutNames = user.getWorkoutNames();
+    logEndpoint("GET /workout/names", workoutNames);
+    return workoutNames;
   }
+
+  @GetMapping("/workout/dates")
+  public List<String> getWorkouts() {
+    List<String> workoutDates = user.getWorkoutDates();
+    logEndpoint("GET /workout/dates", workoutDates);
+    return workoutDates;
+  }
+
   @GetMapping("/exercise-list")
   public List<String> getExerciseList() {
     List<String> exerciseList = user.getExerciseList();

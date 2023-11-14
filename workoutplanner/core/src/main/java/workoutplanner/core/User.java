@@ -116,20 +116,24 @@ public class User implements UserAccess {
     currentWorkoutIndex = workoutIndex;
   }
 
-  /**
-   * Returns the list of workouts associated with the user.
-   *
-   * <p>
-   * This method provides access to the list of workouts associated with the
-   * user. The workouts are returned as a List, enabling external code to work
-   * with and iterate through the workouts.
-   * </p>
-   *
-   * @return A List of Workout objects representing the user's workouts.
-   */
-  public List<Workout> getWorkouts() {
-    // Return the list of workouts
-    return workouts;
+  public List<String> getWorkoutNames() {
+    List<String> workoutNames = new ArrayList<>();
+
+    for (Workout workout : workouts) {
+      workoutNames.add(workout.getName());
+    }
+
+    return workoutNames;
+  }
+
+  public List<String> getWorkoutDates() {
+    List<String> workoutDates = new ArrayList<>();
+
+    for (Workout workout : workouts) {
+      workoutDates.add(workout.getDate());
+    }
+
+    return workoutDates;
   }
 
   public void addExerciseToCurrentWorkout(final String inputName,

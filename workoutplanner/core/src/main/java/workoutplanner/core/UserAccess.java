@@ -5,7 +5,9 @@ import java.util.List;
 public interface UserAccess {
   Workout getCurrentWorkout();
 
-  List<Workout> getWorkouts();
+  List<String> getWorkoutNames();
+
+  List<String> getWorkoutDates();
 
   void setCurrentWorkout(int workoutIndex);
 
