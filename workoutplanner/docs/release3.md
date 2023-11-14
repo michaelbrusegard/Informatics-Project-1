@@ -41,7 +41,7 @@ This release includes more functionality to the app, and makes it better to use.
 
 ## Testing
 
-- We have expanded the tests we have to include all modules as well as persistence. We have added tests for everything in both frontend and backend, using Jacoco for showing test coverage.
+- We have expanded the tests we have to include all modules as well as persistence. We don't have test coverage for fxutil specifically, because the methods are tested when we run the tests for fxui. We have added tests for everything in both frontend and backend, using JaCoCo for showing test coverage.
 
 ## Documentation Updates
 
