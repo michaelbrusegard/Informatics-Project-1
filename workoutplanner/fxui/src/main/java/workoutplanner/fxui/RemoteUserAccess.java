@@ -140,7 +140,7 @@ public class RemoteUserAccess implements UserAccess {
   public List<Exercise> getCurrentWorkoutExercises() {
     Reader reader;
     try {
-      reader = httpGetRequest("/current-workout/exercices");
+      reader = httpGetRequest("/current-workout/exercises");
       return objectMapper.readValue(reader, new TypeReference<List<Exercise>>() {
       });
     } catch (IOException e) {

@@ -48,7 +48,14 @@ public class UserController {
         public String getCurrentWorkoutName() {
                 String currentWorkoutName = user.getCurrentWorkoutName();
                 logEndpoint("GET /current-workout/name", currentWorkoutName);
-                return currentWorkoutName;
+                return "\"" + currentWorkoutName + "\"";
+        }
+
+        @GetMapping("/current-workout/exercises")
+        public List<Exercise> getCurrentWorkoutExercises() {
+                List<Exercise> currentWorkoutExercises = user.getCurrentWorkoutExercises();
+                logEndpoint("GET /current-workout/exercises", currentWorkoutExercises);
+                return currentWorkoutExercises;
         }
 
         @GetMapping("/workout/names")

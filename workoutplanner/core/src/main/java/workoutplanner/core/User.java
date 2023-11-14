@@ -86,13 +86,6 @@ public class User implements UserAccess {
     if (currentWorkoutIndex == -1) {
       currentWorkoutIndex = workouts.size();
       workouts.add(new Workout());
-
-      // Delete unsaved workouts
-      for (int i = 0; i < workouts.size(); i++) {
-        if (!workouts.get(i).getSaved()) {
-          workouts.remove(i);
-        }
-      }
     }
     return workouts.get(currentWorkoutIndex).getSaved();
   }

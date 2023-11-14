@@ -13,6 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import workoutplanner.core.Exercise;
 import workoutplanner.fxutil.GridBuilder;
 import workoutplanner.fxutil.Overview;
 import workoutplanner.fxutil.UiUtils;
