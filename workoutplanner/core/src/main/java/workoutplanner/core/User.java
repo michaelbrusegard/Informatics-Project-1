@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import workoutplanner.json.ExerciseListLoader;
+
 /**
  * <h1>User</h1>
  * Represents a user in the workoutplanner program.
@@ -136,7 +138,7 @@ public class User implements UserAccess {
       final int repMax,
       final int weight) {
     workouts.get(currentWorkoutIndex)
-            .addExercise(inputName, sets, repMin, repMax, weight);
+        .addExercise(inputName, sets, repMin, repMax, weight);
   }
 
   public void removeExerciseFromCurrentWorkout(final int exerciseIndex) {
@@ -144,7 +146,7 @@ public class User implements UserAccess {
   }
 
   public void moveExerciseInCurrentWorkout(final int exerciseIndex,
-                                           final boolean left) {
+      final boolean left) {
     workouts.get(currentWorkoutIndex).moveExercise(exerciseIndex, left);
   }
 
