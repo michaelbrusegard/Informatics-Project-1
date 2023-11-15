@@ -44,8 +44,8 @@ public class User implements UserAccess {
    * ArrayList.
    * </p>
    */
-  public User(final boolean inputPersistance) {
-    persistence = inputPersistance;
+  public User(final boolean inputPersistence) {
+    persistence = inputPersistence;
 
     if (persistence) {
       workouts = WorkoutPersistence.loadWorkoutsFromJson();
