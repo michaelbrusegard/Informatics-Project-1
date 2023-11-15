@@ -1,3 +1,15 @@
+# [1.4.0](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.3.1...v1.4.0) (2023-11-15)
+
+
+### Bug Fixes
+
+* **Persistence:** :package: fixed persistence loading over multiple instances ([d74977f](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/d74977fa9227f662fca62d08fef71a6ce781919c))
+
+
+### Features
+
+* **Persistence:** :construction: worked on adding persistence ([571a160](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/571a1608aff1bb520722149a0a03f335fd38c281))
+
 ## [1.3.1](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.3.0...v1.3.1) (2023-11-15)
 
 
