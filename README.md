@@ -40,9 +40,7 @@ mvn spring-boot:run
 
 to run the server.
 
-### run app from code editor
-
-from the `workoutplanner` folder, navigate to `fxui`:
+From the `workoutplanner` folder, navigate to `fxui`:
 
 ```bash
 cd fxui
@@ -95,7 +93,7 @@ mvn javafx:run
 
 The app should now be up and running.
 
-### run app with jlink/jpackage
+### run app with jlink and jpackage
 
 To do this, you also need to navigate to the `fxui` folder in `workoutplanner`. Then you need two commands:
 
@@ -111,7 +109,9 @@ you should get the installer for the app.
 Then download the app to your desired destination, and run the program.
 
 In Eclipse Che, you can go to the 'Endpoints' window and copy the link from port 6080. This will take you to the virtual machine, where you can view the app.
-mvn javafx:jlink 
+
+```bash
+mvn javafx:jlink
 mvn jpackage:jpackage
 ```
 
