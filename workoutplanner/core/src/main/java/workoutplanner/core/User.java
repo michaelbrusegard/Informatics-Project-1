@@ -32,7 +32,7 @@ public class User implements UserAccess {
    */
   private int currentWorkoutIndex = -1;
 
-  private boolean persistance;
+  private final boolean persistence;
 
   /**
    * Constructs a new User instance.
@@ -45,9 +45,9 @@ public class User implements UserAccess {
    * </p>
    */
   public User(final boolean inputPersistance) {
-    persistance = inputPersistance;
+    persistence = inputPersistance;
 
-    if (persistance) {
+    if (persistence) {
       workouts = WorkoutPersistence.loadWorkoutsFromJson();
     } else {
       workouts = new ArrayList<>();
@@ -71,7 +71,7 @@ public class User implements UserAccess {
     // Remove a workout from the list of workouts
     workouts.remove(workoutIndex);
 
-    if (persistance) {
+    if (persistence) {
       WorkoutPersistence.saveWorkoutsToJson(workouts);
     }
   }
@@ -203,7 +203,7 @@ public class User implements UserAccess {
     workout.setDate(date);
     workout.setSaved(true);
 
-    if (persistance) {
+    if (persistence) {
       WorkoutPersistence.saveWorkoutsToJson(workouts);
     }
   }
