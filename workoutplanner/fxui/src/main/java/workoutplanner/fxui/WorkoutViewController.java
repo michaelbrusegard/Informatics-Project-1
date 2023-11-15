@@ -1,7 +1,6 @@
 package workoutplanner.fxui;
 
 import java.util.List;
-
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
@@ -60,7 +59,15 @@ public class WorkoutViewController extends BaseController {
    */
   private static final double BUTTONLAYOUTY = 1.5 * LAYOUTY;
 
+  /**
+   * Local List variable, used for containing the names of workouts.
+   */
   private List<String> workoutNames;
+
+  /**
+   * Local List variable, used for containing the dates of when workouts were
+   * created.
+   */
   private List<String> workoutDates;
 
   @FXML
@@ -89,7 +96,7 @@ public class WorkoutViewController extends BaseController {
       UiUtils.showAlert("Server Error", e.getMessage(), AlertType.ERROR);
       return;
     }
-    // Create grid if there are workouts
+    // Create a grid if there are workouts
     if (!workoutNames.isEmpty()) {
       new GridBuilder(scrollPane,
           workoutNames.size(), this::createCell);

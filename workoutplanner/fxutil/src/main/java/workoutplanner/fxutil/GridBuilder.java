@@ -1,6 +1,5 @@
 package workoutplanner.fxutil;
 
-import java.util.List;
 import java.util.function.Function;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
@@ -61,10 +60,10 @@ public class GridBuilder {
    * Constructor for GridBuilder.
    *
    * @param inputScrollPane ScrollPane to add GridPane to add cells to.
-   * @param itemCount       Count of items to add to the grid
+   * @param inputItemCount       Count of items to add to the grid
    * @param inputCreateCell Function to create a cell for the grid.
    */
-  public GridBuilder(final ScrollPane inputScrollPane, int inputItemCount,
+  public GridBuilder(final ScrollPane inputScrollPane, final int inputItemCount,
       final Function<Integer, VBox> inputCreateCell) {
     this.itemCount = inputItemCount;
     this.scrollPane = inputScrollPane;
@@ -85,7 +84,7 @@ public class GridBuilder {
   }
 
   private void initializeGrid(final GridPane gridPane) {
-    // Calculate number of rows
+    // Calculate the number of rows
     int rows = (itemCount + COLUMNS - 1) / COLUMNS;
 
     // Set column constraints

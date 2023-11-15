@@ -1,6 +1,5 @@
 module fxutil {
     requires transitive javafx.controls;
-    requires javafx.fxml;
 
     exports workoutplanner.fxutil;
 

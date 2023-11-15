@@ -15,11 +15,17 @@ import javafx.scene.control.TextField;
  * @author Erlend Løken Sæveraas
  * @version 2.0.0
  */
-public class Overview {
+public final class Overview {
   /**
    * Local int variable, used to limit characters in Input-field.
    */
   private static final int CHARLIMIT = 20;
+
+  private Overview() {
+    // Private constructor to prevent instantiation
+    throw new UnsupportedOperationException(
+            "Utility class should not be instantiated.");
+  }
 
   /**
    * Validates the overview of a workout, including saving and closing actions.

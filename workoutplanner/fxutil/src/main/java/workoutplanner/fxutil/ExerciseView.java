@@ -17,13 +17,19 @@ import javafx.scene.control.Alert.AlertType;
  * @author Michael Brusegard
  * @version 2.0.0
  */
-public class ExerciseView {
+public final class ExerciseView {
 
   /**
    * Local int variable, used for defining a numerical limit for reps,
    * sets and weight.
    */
   private static final int LIMIT = 5000;
+
+  private ExerciseView() {
+    // Private constructor to prevent instantiation
+    throw new UnsupportedOperationException(
+            "Utility class should not be instantiated.");
+  }
 
   /**
    * Validates user input for creating an exercise.
