@@ -20,6 +20,6 @@ This file goes over how we developed the application, specifically work habits, 
 
 - We look at code quality as code which is reliable, easy to read and maintain. Achieving this makes it easier to edit and improve further on the project, as well as reduces the chance of bugs.
 - SpotBugs is a dependency we implemented from the start to prevent bugs. This has helped us several times, and we made it so the program wouldn’t run unless all spotbugs bugs had been solved. This forced us to deal with the bugs then and there and therefore preemptively improve the code quality.
-- Checkstyle was another dependency we implemented in our project. This changed how we wrote our code, and gave us code conventions to improve the quality. Because of this, each of the classes have a java-doc and proper comments.
+- Checkstyle was another dependency we implemented in our project. This changed how we wrote our code, and gave us code conventions to improve the quality. Because of this, each of the classes have a java-doc explaining the code. Checkstyle also improves readability, because it forces you to have a specific length for each line (80 characters). It also improves stability with final variables both local and as inputs.
 - We also wrote a lot of inline comments, to make it easier to understand what specific lines of code would do.
   
