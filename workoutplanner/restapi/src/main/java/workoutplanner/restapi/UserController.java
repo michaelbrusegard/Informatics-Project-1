@@ -26,7 +26,7 @@ public class UserController {
         private final boolean logObjects = false;
 
         public UserController() {
-                user = new User();
+                user = new User(true);
         }
 
         @GetMapping("/current-workout/saved")

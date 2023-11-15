@@ -47,15 +47,12 @@ public class ExerciseListLoader {
     // Method to load exercises from a JSON file as a URL
     // Get the URL of the resource
     String resourcePath = "/workoutplanner/json/ExerciseList.json";
-    InputStream resourceUrl = ExerciseListLoader.class
+    InputStream resourceStream = ExerciseListLoader.class
         .getResourceAsStream(resourcePath);
-    if (resourceUrl == null) {
+    if (resourceStream == null) {
       throw new IOException("Resource not found: ExerciseList.json");
     }
-    // Open an InputStream from the URL
-    try (InputStream inputStream = resourceUrl) {
-      return OBJECT_MAPPER.readValue(inputStream, new TypeReference<>() {
-      });
-    }
+    return OBJECT_MAPPER.readValue(resourceStream, new TypeReference<>() {
+    });
   }
 }

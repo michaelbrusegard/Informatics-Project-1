@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import workoutplanner.json.ExerciseListLoader;
+import workoutplanner.json.WorkoutPersistence;
 
 /**
  * <h1>User</h1>
@@ -31,6 +32,8 @@ public class User implements UserAccess {
    */
   private int currentWorkoutIndex = -1;
 
+  private boolean persistance;
+
   /**
    * Constructs a new User instance.
    *
@@ -41,9 +44,14 @@ public class User implements UserAccess {
    * ArrayList.
    * </p>
    */
-  public User() {
-    // Constructor with a new list of workouts
-    workouts = new ArrayList<>();
+  public User(final boolean inputPersistance) {
+    persistance = inputPersistance;
+
+    if (persistance) {
+      workouts = WorkoutPersistence.loadWorkoutsFromJson();
+    } else {
+      workouts = new ArrayList<>();
+    }
   }
 
   /**
@@ -62,6 +70,10 @@ public class User implements UserAccess {
   public void removeWorkout(final int workoutIndex) {
     // Remove a workout from the list of workouts
     workouts.remove(workoutIndex);
+
+    if (persistance) {
+      WorkoutPersistence.saveWorkoutsToJson(workouts);
+    }
   }
 
   /**
@@ -190,6 +202,10 @@ public class User implements UserAccess {
     workout.setName(name);
     workout.setDate(date);
     workout.setSaved(true);
+
+    if (persistance) {
+      WorkoutPersistence.saveWorkoutsToJson(workouts);
+    }
   }
 
   @Override
