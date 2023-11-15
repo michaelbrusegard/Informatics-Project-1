@@ -1,1 +1,77 @@
-[]
+[ {
+  "name" : "Leg Destroyer 2.1",
+  "date" : "November 15, 2023 12:12",
+  "saved" : true,
+  "exercises" : [ {
+    "name" : "Barbell Deadlift",
+    "sets" : 5,
+    "repMin" : 5,
+    "repMax" : 5,
+    "weight" : 145
+  }, {
+    "name" : "Barbell Squat",
+    "sets" : 4,
+    "repMin" : 8,
+    "repMax" : 12,
+    "weight" : 105
+  }, {
+    "name" : "Glute Bridges",
+    "sets" : 4,
+    "repMin" : 8,
+    "repMax" : 12,
+    "weight" : 150
+  }, {
+    "name" : "Leg Press",
+    "sets" : 3,
+    "repMin" : 6,
+    "repMax" : 10,
+    "weight" : 180
+  }, {
+    "name" : "Romanian Deadlift",
+    "sets" : 2,
+    "repMin" : 12,
+    "repMax" : 14,
+    "weight" : 120
+  } ]
+}, {
+  "name" : "Iskrem",
+  "date" : "November 15, 2023 12:16",
+  "saved" : true,
+  "exercises" : [ {
+    "name" : "Barbell Bench Press",
+    "sets" : 4,
+    "repMin" : 8,
+    "repMax" : 12,
+    "weight" : 75
+  }, {
+    "name" : "Cable Curls",
+    "sets" : 4,
+    "repMin" : 10,
+    "repMax" : 12,
+    "weight" : 25
+  }, {
+    "name" : "Bent Over Rows",
+    "sets" : 4,
+    "repMin" : 8,
+    "repMax" : 12,
+    "weight" : 70
+  }, {
+    "name" : "Military Press",
+    "sets" : 5,
+    "repMin" : 6,
+    "repMax" : 8,
+    "weight" : 50
+  }, {
+    "name" : "Skull Crushers",
+    "sets" : 4,
+    "repMin" : 8,
+    "repMax" : 10,
+    "weight" : 16
+  }, {
+    "name" : "Calf Raises",
+    "sets" : 2,
+    "repMin" : 12,
+    "repMax" : 13,
+    "weight" : 90
+  } ]
+} ]
