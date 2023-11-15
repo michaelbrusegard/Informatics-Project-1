@@ -1,3 +1,10 @@
+## [1.3.1](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.3.0...v1.3.1) (2023-11-15)
+
+
+### Bug Fixes
+
+* fixed merge conflict ([05c0c7b](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/05c0c7b29980e10bad52fe4abc2cf199d949ffe4))
+
 # [1.3.0](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.2.0...v1.3.0) (2023-11-14)
 
 
