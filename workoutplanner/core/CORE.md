@@ -48,6 +48,7 @@ The user class represents a user in the application. It has a list of workouts a
 
 - (`int`) currentWorkoutIndex - gets the index of the current workout
 - (`List<Workout>`) workouts - A list of all workouts for the user
+- (`boolean`) persistence - indicates whether workouts should be loaded or not
 
 #### User-Methods
 
@@ -73,6 +74,30 @@ This is an interface that is implemented by `User` and `RemoteUserAccess`.
 
 ## JSON
 
-The `json` folder contains a class `ExerciseListLoader`, which loads exercises from a JSON file as a list of string. It has one static method
+The `json` folder contains the classes `ExerciseListLoader` and `WorkoutPersistence`. These classes are used for file-handling and are used to read the required data from json files.
+
+
+### ExerciseListLoader
+
+`ExerciseListLoader` loads exercises from a JSON file as a list of string and has one static method.
+
+#### ExerciseListLoader-Fields
+- (`ObjectMapper`) OBJECT_MAPPER - a static objectmapper for reading from a json file.
+
+#### ExerciseListLoader-Methods
 
 - loadExerciseListFromJson(): Loads the names of the exercises to a list, and returns a list of strings.
+
+### WorkoutPersistence
+
+`WorkoutPersistence` saves the workout for the current session.
+
+#### WorkoutPersistence-Fields
+
+- (`ObjectMapper`) OBJECT_MAPPER - a static objectmapper for reading and writing to a json file.
+- (`String`) resourcePath - the defined path for where everything should be saved to
+
+#### WorkoutPersistence-Methods
+
+- loadWorkoutFromJson(): Returns a list of workouts from the designated file if possible.
+- saveWorkoutsToJson(): Saves a list of workouts to the designated file.
