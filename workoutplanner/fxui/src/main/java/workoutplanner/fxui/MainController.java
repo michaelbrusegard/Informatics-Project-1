@@ -122,7 +122,7 @@ public class MainController {
     if (useRemote) {
       user = new RemoteUserAccess(URI.create(remoteUrl));
     } else {
-      user = new User();
+      user = new User(true);
     }
   }
 
