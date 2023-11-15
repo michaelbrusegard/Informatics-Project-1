@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>gr2307.workoutplanner</groupId>
+        <artifactId>parent</artifactId>
+        <version>3.0.0</version>
+    </parent>
+
+    <artifactId>aggregate</artifactId>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>gr2307.workoutplanner</groupId>
+            <artifactId>core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>gr2307.workoutplanner</groupId>
+            <artifactId>fxui</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>gr2307.workoutplanner</groupId>
+            <artifactId>fxutil</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M5</version>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.10</version>
+                <executions>
+                    <execution>
+                        <id>report-aggregate</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>report-aggregate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Should create an aggregate spotbugs report, but I couldn't get it working -->
+<!--            <plugin>-->
+<!--                <groupId>com.github.spotbugs</groupId>-->
+<!--                <artifactId>spotbugs-maven-plugin</artifactId>-->
+<!--                <version>4.7.3.2</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>spotbugs</id>-->
+<!--                        <phase>verify</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>check</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
+        </plugins>
+    </build>
+
+</project>

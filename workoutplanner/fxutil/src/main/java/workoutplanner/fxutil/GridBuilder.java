@@ -3,6 +3,7 @@ package workoutplanner.fxutil;
 import java.util.function.Function;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;

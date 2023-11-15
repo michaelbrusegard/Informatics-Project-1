@@ -73,6 +73,12 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>5.3.1</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
 <!--    <profiles>-->
@@ -101,46 +107,9 @@
                 <version>0.0.8</version>
                 <configuration>
                     <!-- syntax: module-name/full-app-class-name -->
-                    <mainClass>fxui/workoutplanner.fxui.WorkoutPlannerApp</mainClass>
-                     <!-- rest of options are for jlink -->
-                    <compress>2</compress>
-                    <noHeaderFiles>true</noHeaderFiles>
-                    <stripDebug>true</stripDebug>
-                    <noManPages>true</noManPages>
-                    <launcher>workoutplannerfx</launcher>
-                    <jlinkImageName>workoutplannerfx</jlinkImageName>
-                    <jlinkZipName>workoutplannerfx</jlinkZipName>
-
+                    <mainClass>workoutplanner.ui/workoutplanner.ui.WorkoutPlannerApp</mainClass>
                 </configuration>
             </plugin>
-
-            <!-- config above and below taken from https://dev.to/cherrychain/javafx-jlink-and-jpackage-h9 -->
-            <plugin>
-                <groupId>org.panteleyev</groupId>
-                <artifactId>jpackage-maven-plugin</artifactId>
-                <version>1.6.0</version>
-                <configuration>
-                    <name>WorkoutplannerFX</name>
-                    <appVersion>1.0.0</appVersion>
-                    <vendor>gr2307</vendor>
-                    <destination>target/dist</destination>
-                    <module>fxui/workoutplanner.fxui.WorkoutPlannerApp</module>
-                    <runtimeImage>target/workoutplannerfx</runtimeImage>
-                    <javaOptions>
-                        <option>-Dfile.encoding=UTF-8</option>
-                    </javaOptions>
-                    <!-- linux options --> 
-                    <linuxShortcut>true</linuxShortcut>
-                    <linuxMenuGroup>WorkoutplannerFX</linuxMenuGroup>
-
-                    <!-- windows options --> 
-                    <winDirChooser>true</winDirChooser>
-                    <winShortcut>true</winShortcut>
-                    <winMenu>true</winMenu>
-                    <winMenuGroup>WorkoutplannerFX</winMenuGroup>
-                </configuration>
-            </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -152,21 +121,30 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-        		<artifactId>maven-surefire-plugin</artifactId>
+                <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
                     <argLine>
-                    @{jaCoCoArgLine} -Dtestfx.robot=awt
-                    --add-opens workoutplanner.fxui/fxui=ALL-UNNAMED --add-exports javafx.graphics/com.sun.javafx.application=ALL-UNNAMED
-                    --add-opens javafx.graphics/com.sun.glass.ui=ALL-UNNAMED --add-exports javafx.graphics/com.sun.glass.ui=ALL-UNNAMED
-                    --add-exports javafx.graphics/com.sun.glass.ui.delegate=ALL-UNNAMED
+                        @{jaCoCoArgLine}
+                        --add-opens barker.ui/barker.ui=ALL-UNNAMED
+                        --add-exports javafx.graphics/com.sun.javafx.application=ALL-UNNAMED
                     </argLine>
                 </configuration>
-	        </plugin>
+            </plugin>
 
             <!-- Configure jacoco code coverage -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.10</version>
+                <executions>
+                    <execution>
+                        <id>jacoco-prepare-agent-fxui</id>
+                        <phase>process-test-classes</phase>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
                     <propertyName>jaCoCoArgLine</propertyName>
                 </configuration>
@@ -184,7 +162,7 @@
                             <version>0.0.8</version>
                             <configuration>
                                 <!-- syntax: module-name/full-app-class-name -->
-                                <mainClass>fxui/workoutplanner.fxui.WorkoutPlannerApp</mainClass>
+                                <mainClass>workoutplanner.ui/workoutplanner.ui.WorkoutPlannerApp</mainClass>
                             </configuration>
                         </plugin>
                     </plugins>

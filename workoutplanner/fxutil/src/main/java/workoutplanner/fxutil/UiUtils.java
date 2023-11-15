@@ -27,6 +27,8 @@ public final class UiUtils {
             "Utility class should not be instantiated.");
   }
 
+  private static Alert alert;
+
   /**
    * Shows an alert dialog with the specified title, message, and alert type.
    *
@@ -44,14 +46,23 @@ public final class UiUtils {
   public static void showAlert(final String title, final String message,
                                final AlertType alertType) {
     // Show an alert with the given title, message, and alert type
-    Alert alert = new Alert(alertType);
+    alert = new Alert(alertType);
     alert.setTitle(title);
     alert.setHeaderText(null);
     alert.setContentText(message);
     Button errorButton = (Button) alert.getDialogPane()
             .lookupButton(ButtonType.OK);
     errorButton.setId("alertButton");
+    setAlert(alert);
     alert.showAndWait();
+  }
+
+  private static void setAlert(Alert newAlert) {
+    alert = newAlert;
+  }
+
+  public static Alert getAlert(){
+    return alert;
   }
 
   /**
@@ -72,7 +83,7 @@ public final class UiUtils {
   public static boolean showConfirmation(final String title,
                                          final String message) {
     // Show a confirmation dialog with the given title and message
-    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+    alert = new Alert(Alert.AlertType.CONFIRMATION);
     alert.setTitle(title);
     alert.setHeaderText(null);
     alert.setContentText(message);
@@ -82,6 +93,7 @@ public final class UiUtils {
             .getButtonData());
 
     alert.getButtonTypes().setAll(okButton, cancelButton);
+    setAlert(alert);
 
     // Show and wait for the user's response
     ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);

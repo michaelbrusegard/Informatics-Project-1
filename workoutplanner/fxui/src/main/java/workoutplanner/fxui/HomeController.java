@@ -2,6 +2,7 @@ package workoutplanner.fxui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import workoutplanner.fxutil.UiUtils;
 
 /**
@@ -20,6 +21,11 @@ import workoutplanner.fxutil.UiUtils;
  */
 
 public class HomeController extends BaseController {
+
+  @FXML
+  private Button createNewWorkout;
+  @FXML
+  private Button showAllWorkouts;
   @FXML
   // Button for creating a new workout
   private void createNewWorkout() {

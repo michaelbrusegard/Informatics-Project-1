@@ -1,6 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    
     <modelVersion>4.0.0</modelVersion>
     <groupId>gr2307.workoutplanner</groupId>
     <artifactId>parent</artifactId>
@@ -94,6 +93,7 @@
                         </dependency>
                     </dependencies>
                     <configuration>
+                        <encoding>UTF-8</encoding>
                         <configLocation>google_checks.xml</configLocation>
                         <consoleOutput>true</consoleOutput>
                         <failsOnError>true</failsOnError>
@@ -113,36 +113,77 @@
                     </configuration>
                 </plugin>
 
-                <!-- Configure jacoco code coverage -->
-                <plugin>
-                    <groupId>org.jacoco</groupId>
-                    <artifactId>jacoco-maven-plugin</artifactId>
-                    <version>0.8.8</version>
-                    <executions>
-                        <execution>
-                            <id>jacoco-prepare-agent</id>
-                            <phase>process-test-classes</phase>
-                            <goals>
-                                <goal>prepare-agent</goal>
-                            </goals>
-                        </execution>
-                        <execution>
-                            <id>jacoco-report</id>
-                            <phase>verify</phase>
-                            <goals>
-                                <goal>report</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
+<!--                &lt;!&ndash; Configure jacoco code coverage &ndash;&gt;-->
+<!--                <plugin>-->
+<!--                    <groupId>org.jacoco</groupId>-->
+<!--                    <artifactId>jacoco-maven-plugin</artifactId>-->
+<!--                    <version>0.8.10</version>-->
+<!--                </plugin>-->
             </plugins>
         </pluginManagement>
     </build>
+<!--    <profiles>-->
+<!--        <profile>-->
+<!--            <id>runTestWithJacoco</id>-->
+<!--            <activation>-->
+<!--                <property>-->
+<!--                    <name>runTestWithJacoco</name>-->
+<!--                    <value>true</value>-->
+<!--                </property>-->
+<!--            </activation>-->
+<!--            <build>-->
+<!--                <plugins>-->
+<!--                    <plugin>-->
+<!--                        <groupId>org.jacoco</groupId>-->
+<!--                        <artifactId>jacoco-maven-plugin</artifactId>-->
+<!--                        <executions>-->
+<!--                            <execution>-->
+<!--                                <id>default-prepare-agent</id>-->
+<!--                                <goals>-->
+<!--                                    <goal>prepare-agent</goal>-->
+<!--                                </goals>-->
+<!--                                <configuration>-->
+<!--                                    <append>true</append>-->
+<!--                                </configuration>-->
+<!--                            </execution>-->
+<!--                        </executions>-->
+<!--                    </plugin>-->
+<!--                </plugins>-->
+<!--            </build>-->
+<!--        </profile>-->
+<!--        <profile>-->
+<!--            <id>createJacocoReport</id>-->
+<!--            <activation>-->
+<!--                <property>-->
+<!--                    <name>createJacocoReport</name>-->
+<!--                    <value>true</value>-->
+<!--                </property>-->
+<!--            </activation>-->
+<!--            <build>-->
+<!--                <plugins>-->
+<!--                    <plugin>-->
+<!--                        <groupId>org.jacoco</groupId>-->
+<!--                        <artifactId>jacoco-maven-plugin</artifactId>-->
+<!--                        <executions>-->
+<!--                            <execution>-->
+<!--                                <id>default-report</id>-->
+<!--                                <phase>validate</phase>-->
+<!--                                <goals>-->
+<!--                                    <goal>report</goal>-->
+<!--                                </goals>-->
+<!--                            </execution>-->
+<!--                        </executions>-->
+<!--                    </plugin>-->
+<!--                </plugins>-->
+<!--            </build>-->
+<!--        </profile>-->
+<!--    </profiles>-->
     <modules>
         <module>core</module>
         <module>fxutil</module>
         <module>fxui</module>
-        <module>restapi</module>
+        <module>restserver</module>
+        <module>aggregate</module>
     </modules>
 
 </project>

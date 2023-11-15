@@ -149,7 +149,7 @@ public class WorkoutViewController extends BaseController {
     getMainController().showFxml("Overview");
   }
 
-  private void delete(final int workoutIndex) {
+  public void delete(final int workoutIndex) {
     if (UiUtils.showConfirmation("Delete Workout",
         "Are you sure you want to delete "
             + workoutNames.get(workoutIndex)
