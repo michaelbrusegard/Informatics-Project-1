@@ -61,7 +61,7 @@ This runs all the tests for the different modules and makes sure that the build 
 
 You can either run the app locally or with the REST-server.
 
-To run it locally, you can change the value of `useRemote` in `MainController`from true to false. This makes it so no progress is saved when you close the app, but it can run without backend.
+To run it locally, you can change the value of `useRemote` in `MainController`from true to false. This makes it so the progress is saved through persitence, and you don't communicate with the backend.
 
 Alternatively you can from the `workoutplanner` folder navigate to `restapi` by running:
 
@@ -130,12 +130,10 @@ In Eclipse Che, you can go to the 'Endpoints' window and copy the link from port
   - ./fxui - [javafx user interface](./workoutplanner/fxui)
   - ./fxutil - [javafx utility classes](./workoutplanner/fxutil)
   - ./restapi - [rest api server](./workoutplanner/restapi)
-  - ./restapi - [rest api server](./workoutplanner/restapi)
 - ./docs - [assignment documentation](./docs)
 - ./CHANGELOG.md - [changelog](./changelog)
 
-In the root directory, you can find the documentation for the assignments in the `docs` folder and the CHANGELOG.md file. The app is located in the `workoutplanner` folder, where you can find the source code for the app. This src-directory also contains a markdown for userstories, diagrams and a readme about the app. The `core` folder contains the core logic for the app, the `fxui` folder contains the javafx user interface and the `fxutil` folder contains utility classes for the javafx user interface. The `restapi` folder contains the backend of the app, this is where the REST-api is.
-In the root directory, you can find the documentation for the assignments in the `docs` folder and the CHANGELOG.md file. The app is located in the `workoutplanner` folder, where you can find the source code for the app. This src-directory also contains a markdown for userstories, diagrams and a readme about the app. The `core` folder contains the core logic for the app, the `fxui` folder contains the javafx user interface and the `fxutil` folder contains utility classes for the javafx user interface. The `restapi` folder contains the backend of the app, this is where the REST-api is.
+In the root directory, you can find the documentation for the assignments in the `docs` folder and the CHANGELOG.md file. The app is located in the `workoutplanner` folder, where you can find the source code for the app. This src-directory also contains a markdown for userstories, diagrams and a readme about the app. The `core` folder contains the core logic for the app, as well as persistence. The `fxui` folder contains the javafx user interface and the `fxutil` folder contains utility classes for the javafx user interface. The `restapi` folder contains the backend of the app, this is where the REST-api is.
 
 ### Link to about the project
 
