@@ -107,7 +107,7 @@
                 <version>0.0.8</version>
                 <configuration>
                     <!-- syntax: module-name/full-app-class-name -->
-                    <mainClass>workoutplanner.ui/workoutplanner.ui.WorkoutPlannerApp</mainClass>
+                    <mainClass>fxui/workoutplanner.fxui.WorkoutPlannerApp</mainClass>
                 </configuration>
             </plugin>
             <plugin>
@@ -125,7 +125,6 @@
                 <configuration>
                     <argLine>
                         @{jaCoCoArgLine}
-                        --add-opens barker.ui/barker.ui=ALL-UNNAMED
                         --add-exports javafx.graphics/com.sun.javafx.application=ALL-UNNAMED
                     </argLine>
                 </configuration>

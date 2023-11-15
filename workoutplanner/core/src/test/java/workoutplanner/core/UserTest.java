@@ -1,70 +1,75 @@
 package workoutplanner.core;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.List;
 
-public class UserTest {
-
+class UserTest {
     private User user;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         user = new User();
+        user.getCurrentWorkoutSaved();
     }
 
     @Test
-    public void testAddWorkout() {
-        Workout workout = new Workout();
-        user.addWorkoutFromFile(workout);
+    void testAddAndRemoveWorkout() {
+        user.addExerciseToCurrentWorkout("Exercise1", 3, 8, 12, 50);
 
-        List<Workout> workouts = user.getWorkouts();
-        assertEquals(1, workouts.size());
-        assertTrue(workouts.contains(workout));
-    }
+        // Ensure that there is one workout in the list
+        assertEquals(1, user.getWorkoutNames().size());
 
-    @Test
-    public void testRemoveWorkout() {
-        Workout workout = new Workout();
-        user.addWorkoutFromFile(workout);
-
-        user.removeWorkout(0);
-
-        List<Workout> workouts = user.getWorkouts();
-        assertEquals(0, workouts.size());
-    }
-
-    @Test
-    public void testRemoveCurrentWorkout() {
-        Workout workout = new Workout();
-        user.addWorkoutFromFile(workout);
-        user.setCurrentWorkout(0);
+        // Remove the workout
         user.removeCurrentWorkout();
 
-        List<Workout> workouts = user.getWorkouts();
-        assertTrue(workouts.isEmpty());
+        // Ensure that the list is empty after removing the workout
+        assertTrue(user.getWorkoutNames().isEmpty());
     }
 
     @Test
-    public void testGetCurrentWorkout() {
-        Workout currentWorkout = user.getCurrentWorkout();
+    void testMoveExercise() {
+        user.addExerciseToCurrentWorkout("Exercise1", 3, 8, 12, 50);
+        user.addExerciseToCurrentWorkout("Exercise2", 4, 10, 15, 60);
 
-        assertNotNull(currentWorkout);
-        assertTrue(user.getWorkouts().contains(currentWorkout));
+        // Move the first exercise to the right
+        user.moveExerciseInCurrentWorkout(0, false);
+
+        // Check if the order is correct
+        assertEquals("Exercise2", user.getCurrentWorkoutExerciseAttribute(0, "name"));
+        assertEquals("Exercise1", user.getCurrentWorkoutExerciseAttribute(1, "name"));
     }
 
     @Test
-    public void testSetCurrentWorkout() {
-        Workout workout1 = new Workout();
-        Workout workout2 = new Workout();
+    void testSaveCurrentWorkout() {
+        user.addExerciseToCurrentWorkout("Exercise1", 3, 8, 12, 50);
+        user.saveCurrentWorkout("Workout1", "2023-01-01");
 
-        user.addWorkoutFromFile(workout1);
-        user.addWorkoutFromFile(workout2);
+        // Ensure that the current workout is saved
+        assertTrue(user.getCurrentWorkoutSaved());
 
-        user.setCurrentWorkout(1);
-
-        assertSame(workout2, user.getCurrentWorkout());
+        // Ensure the workout has the correct name and date
+        assertEquals("Workout1", user.getCurrentWorkoutName());
+        assertEquals("2023-01-01", user.getWorkoutDates().get(0));
     }
+
+    @Test
+    void testDeleteUnsavedWorkouts() {
+        user.addExerciseToCurrentWorkout("Exercise1", 3, 8, 12, 50);
+        user.saveCurrentWorkout("Workout1", "2023-01-01");
+
+        // Add another unsaved workout
+        user.addExerciseToCurrentWorkout("Exercise2", 4, 10, 15, 60);
+
+        // Delete unsaved workouts
+        user.deleteUnsavedWorkouts();
+
+        // Ensure there is only one saved workout remaining
+        assertEquals(1, user.getWorkoutNames().size());
+        assertTrue(user.getWorkoutNames().contains("Workout1"));
+    }
+
+    // Add more tests for other methods as needed
+
 }
-

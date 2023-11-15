@@ -61,7 +61,7 @@ public class GridBuilder {
    * Constructor for GridBuilder.
    *
    * @param inputScrollPane ScrollPane to add GridPane to add cells to.
-   * @param inputItemCount       Count of items to add to the grid
+   * @param inputItemCount  Count of items to add to the grid
    * @param inputCreateCell Function to create a cell for the grid.
    */
   public GridBuilder(final ScrollPane inputScrollPane, final int inputItemCount,

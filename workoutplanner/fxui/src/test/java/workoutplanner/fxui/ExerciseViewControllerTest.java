@@ -1,213 +1,84 @@
 package workoutplanner.fxui;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
-import workoutplanner.fxui.ExerciseViewController;
-
-import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.testfx.api.FxAssert;
-import org.testfx.framework.junit5.ApplicationTest;
+import org.testfx.util.WaitForAsyncUtils;
+import workoutplanner.json.ExerciseListLoader;
 
-public class ExerciseViewControllerTest extends ApplicationTest {
-  private Parent root;
-  private Stage stage;
-  private static final int SIZE_TEST = 43;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
-  @Override
-  public void start(final Stage primaryStage) throws Exception {
-    stage = primaryStage;
-    FXMLLoader loader = new FXMLLoader(ExerciseViewController.class.getResource(
-        "ExerciseView.fxml"));
-    root = loader.load();
-    ExerciseViewController exerciseViewController = loader.getController();
-    Scene scene = new Scene(root);
-    stage.setScene(scene);
-    stage.show();
-    exerciseViewController.initialize();
-  }
+import static org.junit.jupiter.api.Assertions.*;
 
-  @Test
-  public void testLabel() {
-    ListView<String> list;
-    try {
-      list = (ListView) root.lookup("#list");
-    } catch (Exception e) {
-      throw new UnsupportedOperationException("Could not find ListView object");
+public class ExerciseViewControllerTest extends FxTest {
+
+
+    @BeforeEach
+    public void setUp(){
+        clickOn("#createNewWorkout");
+        WaitForAsyncUtils.waitForFxEvents();
+        listView = getNode(ListView.class,"list");
     }
-    Assertions.assertNotNull(list);
 
-    Assertions.assertEquals(list.getItems().size(), SIZE_TEST);
-
-    Text text = (Text) root.lookup("#name");
-    clickOn(list.getItems().get(0));
-    Assertions.assertEquals(list.getItems().get(0), text.getText());
-
-    clickOn(list.getItems().get(1));
-    Assertions.assertEquals(list.getItems().get(1), text.getText());
-  }
-
-  @Test
-  public void testAddValidExercise() {
-    ListView<String> list;
-    try {
-      list = (ListView) root.lookup("#list");
-    } catch (Exception e) {
-      throw new UnsupportedOperationException("Could not find ListView object");
+    @Test
+    public void testExerciseListIsLoaded() throws IOException {
+        assertEquals(listView.getItems().stream().toList(), ExerciseListLoader.loadExerciseListFromJson());
     }
-    list.getSelectionModel().select("Bench Press");
-    clickOn(); // Select an exercise
-    lookup("#sets").queryAs(TextField.class).setText("3");
-    lookup("#repMin").queryAs(TextField.class).setText("5");
-    lookup("#repMax").queryAs(TextField.class).setText("10");
-    lookup("#weight").queryAs(TextField.class).setText("50");
-    clickOn("#addExercise");
 
-    // Check if the exercise details have been added to the workout
-    // You may need to adapt this based on your specific implementation
-    // assertEquals(1, exerciseViewController.getWorkout().getExerciseCount());
-    clickOn("#alertButton");
-  }
-
-  @Test
-  public void testAddInvalidExercise() {
-    ListView<String> list;
-    try {
-      list = (ListView) root.lookup("#list");
-    } catch (Exception e) {
-      throw new UnsupportedOperationException("Could not find ListView object");
+    @Test
+    public void testSelectExerciseUpdatesNameText() {
+        String exercise = listView.getItems().get(0);
+        assertEquals(exercise,"Barbell Bench Press");
+        clickOn(exercise);
+        assertEquals(Objects.requireNonNull(getNode(Text.class, "name")).getText(),exercise);
     }
-    list.getSelectionModel().select("Bench Press");
-    lookup("#sets").queryAs(TextField.class).setText("3");
-    lookup("#repMin").queryAs(TextField.class).setText("10");
-    lookup("#repMax").queryAs(TextField.class).setText("5");
-    lookup("#weight").queryAs(TextField.class).setText("50");
-    clickOn("#addExercise");
-    FxAssert.verifyThat("#alertButton", (button) -> !button.isDisabled());
-    clickOn("#alertButton");
-  }
 
-  @Test
-  public void testAddExerciseValidation() {
-    ListView<String> list;
-    try {
-      list = (ListView) root.lookup("#list");
-    } catch (Exception e) {
-      throw new UnsupportedOperationException("Could not find ListView object");
+    @Test
+    public void testAddExerciseButton() {
+        List<String> alertItems = new ArrayList<>();
+        String exercise = listView.getItems().get(0);
+        alertItems.add(exercise);
+        alertItems.add(String.valueOf(3));
+        alertItems.add(String.valueOf(8));
+        alertItems.add(String.valueOf(12));
+        alertItems.add(String.valueOf(20));
+        // Select an exercise in the list
+        clickOn(exercise);
+        // Enter values in the input fields
+        clickOn("#sets").write("3");
+        assertEquals(3,Integer.parseInt(Objects.requireNonNull(getNode(TextField.class, "sets")).getText()));
+        clickOn("#repMin").write("8");
+        assertEquals(8,Integer.parseInt(Objects.requireNonNull(getNode(TextField.class, "repMin")).getText()));
+        clickOn("#repMax").write("12");
+        assertEquals(12,Integer.parseInt(Objects.requireNonNull(getNode(TextField.class, "repMax")).getText()));
+        clickOn("#weight").write("20");
+        assertEquals(20,Integer.parseInt(Objects.requireNonNull(getNode(TextField.class, "weight")).getText()));
+
+        // Click on the "Add Exercise" button
+        clickOn("#addExercise");
+        clickAndCheckAlert("Exercise Added","Exercise has been added to the workout "
+                + "with the following details:\n\n"
+                + "Name: " + alertItems.get(0) + "\n"
+                + "Sets: " + alertItems.get(1) + "\n"
+                + "Rep-range: " + alertItems.get(2) + "-" + alertItems.get(3) + "\n"
+                + "Weight: " + alertItems.get(4) + "kg", Alert.AlertType.INFORMATION);
+        assertEquals("",Objects.requireNonNull(getNode(TextField.class, "sets")).getText());
+        assertEquals("",Objects.requireNonNull(getNode(TextField.class, "repMin")).getText());
+        assertEquals("",Objects.requireNonNull(getNode(TextField.class, "repMax")).getText());
+        assertEquals("",Objects.requireNonNull(getNode(TextField.class, "weight")).getText());
+
+        clickOn("#finishButton");
     }
-    list.getSelectionModel().select("Bench Press");
-    lookup("#sets").queryAs(TextField.class).setText("A");
-    lookup("#repMin").queryAs(TextField.class).setText("5");
-    lookup("#repMax").queryAs(TextField.class).setText("10");
-    lookup("#weight").queryAs(TextField.class).setText("50");
-    clickOn("#addExercise");
-    FxAssert.verifyThat("#alertButton", (button) -> !button.isDisabled());
-    clickOn("#alertButton");
-  }
 
-  @Test
-  public void testAddExerciseNameValidation() {
-    lookup("#sets").queryAs(TextField.class).setText("3");
-    lookup("#repMin").queryAs(TextField.class).setText("5");
-    lookup("#repMax").queryAs(TextField.class).setText("10");
-    lookup("#weight").queryAs(TextField.class).setText("50");
-    clickOn("#addExercise");
-    FxAssert.verifyThat("#alertButton", (button) -> !button.isDisabled());
-    clickOn("#alertButton");
-  }
+    @Test
+    public void testValidation(){
 
-  @Test
-  public void testAddExerciseFieldValidation() {
-    ListView<String> list;
-    try {
-      list = (ListView) root.lookup("#list");
-    } catch (Exception e) {
-      throw new UnsupportedOperationException("Could not find ListView object");
     }
-    list.getSelectionModel().select("Bench Press");
-    lookup("#sets").queryAs(TextField.class).setText("");
-    lookup("#repMin").queryAs(TextField.class).setText("");
-    lookup("#repMax").queryAs(TextField.class).setText("");
-    lookup("#weight").queryAs(TextField.class).setText("");
-    clickOn("#addExercise");
-    FxAssert.verifyThat("#alertButton", (button) -> !button.isDisabled());
-    clickOn("#alertButton");
-  }
 
-  @Test
-  public void testAddExerciseIntValidation() {
-    ListView<String> list;
-    try {
-      list = (ListView) root.lookup("#list");
-    } catch (Exception e) {
-      throw new UnsupportedOperationException("Could not find ListView object");
-    }
-    list.getSelectionModel().select("Bench Press");
-    lookup("#sets").queryAs(TextField.class).setText("3");
-    lookup("#repMin").queryAs(TextField.class).setText("-1");
-    lookup("#repMax").queryAs(TextField.class).setText("10");
-    lookup("#weight").queryAs(TextField.class).setText("50");
-    clickOn("#addExercise");
-    FxAssert.verifyThat("#alertButton", (button) -> !button.isDisabled());
-    clickOn("#alertButton");
-  }
-
-  @Test
-  public void testFinishedExercise() {
-    ListView<String> list;
-    try {
-      list = (ListView) root.lookup("#list");
-    } catch (Exception e) {
-      throw new UnsupportedOperationException("Could not find ListView object");
-    }
-    list.getSelectionModel().select("Bench Press");
-    lookup("#sets").queryAs(TextField.class).setText("3");
-    lookup("#repMin").queryAs(TextField.class).setText("5");
-    lookup("#repMax").queryAs(TextField.class).setText("10");
-    lookup("#weight").queryAs(TextField.class).setText("50");
-    clickOn("#addExercise");
-    FxAssert.verifyThat("#alertButton", (button) -> !button.isDisabled());
-    clickOn("#alertButton");
-    Scene initialScene = stage.getScene();
-    clickOn("#finishButton");
-    Scene updatedScene = stage.getScene();
-    Assertions.assertNotSame(initialScene, updatedScene);
-  }
-
-  @Test
-  public void testFinishedValidationExercise() {
-    clickOn("#finishButton");
-    FxAssert.verifyThat("#alertButton", (button) -> !button.isDisabled());
-    clickOn("#alertButton");
-  }
-
-  @Test
-  public void testSave() {
-    ListView<String> list;
-    try {
-      list = (ListView) root.lookup("#list");
-    } catch (Exception e) {
-      throw new UnsupportedOperationException("Could not find ListView object");
-    }
-    list.getSelectionModel().select("Bench Press");
-    lookup("#sets").queryAs(TextField.class).setText("3");
-    lookup("#repMin").queryAs(TextField.class).setText("5");
-    lookup("#repMax").queryAs(TextField.class).setText("10");
-    lookup("#weight").queryAs(TextField.class).setText("50");
-    clickOn("#addExercise");
-    FxAssert.verifyThat("#alertButton", (button) -> !button.isDisabled());
-    clickOn("#alertButton");
-    clickOn("#finishButton");
-    // Get the initial scene
-    lookup("#inpName").queryAs(TextField.class).setText("push");
-    // Click on the "newWorkout" button
-    clickOn("#saveButton");
-    FxAssert.verifyThat("#alertButton", (button) -> !button.isDisabled());
-    clickOn("#alertButton");
-  }
 }

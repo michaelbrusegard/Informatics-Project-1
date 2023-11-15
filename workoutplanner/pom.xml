@@ -182,7 +182,7 @@
         <module>core</module>
         <module>fxutil</module>
         <module>fxui</module>
-        <module>restserver</module>
+        <module>restapi</module>
         <module>aggregate</module>
     </modules>
 

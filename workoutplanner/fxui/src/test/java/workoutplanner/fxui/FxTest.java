@@ -1,4 +1,4 @@
-package workoutplanner.ui;
+package workoutplanner.fxui;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
