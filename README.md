@@ -90,3 +90,4 @@ In the root directory, you can find the documentation for the assignments in the
 - [README](workoutplanner/README.md) - Contains information about the project and concept photos of the app.
 - [USER_STORIES](./docs/USER_STORIES.md) - Contains the user stories for the project
 - [DIAGRAMS](./docs/DIAGRAMS.md) - contains class-diagram, sequence-diagram and package-diagram
+- [DIAGRAMS](./docs/releases) - contains the different releases for each milestone/assignment.
