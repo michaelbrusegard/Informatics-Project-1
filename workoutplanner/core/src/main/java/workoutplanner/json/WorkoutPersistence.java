@@ -3,13 +3,13 @@ package workoutplanner.json;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.exc.MismatchedInputException;
 
 import workoutplanner.core.Workout;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,11 +23,11 @@ public class WorkoutPersistence {
   private static final String resourcePath = "/workoutplanner/json/Workouts.json";
 
   public static List<Workout> loadWorkoutsFromJson() {
-    InputStream resourceStream = WorkoutPersistence.class
-        .getResourceAsStream(resourcePath);
-    try {
-      return OBJECT_MAPPER.readValue(resourceStream, new TypeReference<List<Workout>>() {
+    try (FileInputStream fileInputStream = new FileInputStream("../core/src/main/resources" + resourcePath)) {
+      return OBJECT_MAPPER.readValue(fileInputStream, new TypeReference<List<Workout>>() {
       });
+    } catch (MismatchedInputException e) {
+      return new ArrayList<>();
     } catch (IOException e) {
       e.printStackTrace();
       return new ArrayList<>();
@@ -36,9 +36,7 @@ public class WorkoutPersistence {
 
   public static void saveWorkoutsToJson(List<Workout> workouts) {
     try {
-      Path path = Path.of("../core/src/main/resources" + resourcePath);
-
-      try (FileOutputStream fileOutputStream = new FileOutputStream(path.toFile())) {
+      try (FileOutputStream fileOutputStream = new FileOutputStream("../core/src/main/resources" + resourcePath)) {
         OBJECT_MAPPER.writeValue(fileOutputStream, workouts);
       }
     } catch (IOException e) {
