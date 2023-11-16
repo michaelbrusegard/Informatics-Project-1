@@ -2,7 +2,16 @@
 
 In this module all the ui gets handled. This means most of the frontend, meaning the app and controllers. It has a resources folder containing all the fxml files, where the `Main.fxml` contains the other fxml-views.
 
-## links
+## Links
+
+[BaseController](#basecontroller)
+[ExerciseViewController](#exerciseviewcontroller)
+[FxmlControllerPair](#fxmlcontrollerpair)
+[HomeController](#homecontroller)
+[MainController](#maincontroller)
+[OverviewController](#overviewcontroller)
+[RemoteUserAccess](#remoteuseraccess)
+[WorkoutViewController](#workoutviewcontroller)
 
 ## BaseController
 

@@ -2,6 +2,21 @@
 
 Core consists of two parts, which are `core` and `json`.
 
+## Links
+
+### Core
+
+[Exercise](#exercise)
+[User](#user)
+[UserAccess](#useraccess)
+[Workout](#workout)
+
+### Json
+
+[ExerciseListLoader](#exercise)
+[WorkoutPresistence](#workoutpersistence)
+
+
 ## Core
 
 The `core` contains the inner layer. This is where the essential and fundamental functionality of the app is. It contains two classes and a record, `Workout`, `User` and `Exercise`. It also contains an interface for `User`, and the `RemoteUserAccess` which is in `fxui`.

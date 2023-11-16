@@ -2,7 +2,14 @@
 
 Fxutil consists only of one part which is `fxutil`. The modules main task is to help the `fxui` module to load everything properly.
 
-## fxutil
+## Links
+
+[ExerciseView](#exerciseview)
+[GridBuilder](#gridbuilder)
+[Overview](#overview)
+[UiUtils](#uiutils)
+
+## Fxutil
 
 The `fxutil` package contains four classes, `ExerciseView`, `GridBuilder`, `Overview` and `UiUtils`.
 
@@ -55,7 +62,7 @@ The `Overview` class handles error validation and user interaction for the worko
 
 The `UiUtils` class provides utility methods for managing the user interface across all pages.
 
-#### UiUtils-Methods 
+#### UiUtils-Methods
 
 - showAlert(): a static method that shows an alert dialog with the specified title, message and alert type.
 - showConfirmation(): a static method that shows a confirmation dialog with the specified title and message.
