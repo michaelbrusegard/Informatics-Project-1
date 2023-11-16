@@ -1,191 +1,159 @@
 # About this module
 
-In this module all the fx-objects gets handled. This means the app, controllers, cells and handlers.
+In this module all the ui gets handled. This means most of the frontend, meaning the app and controllers. It has a resources folder containing all the fxml files, where the `Main.fxml` contains the other fxml-views.
 
-## links
+## Links
 
-[WorkoutPlannerApp](#workoutplannerapp)
-[HomeController](#homecontroller)
-[ExerciseCell](#exercisecell)
-[ExerciseViewController](#exerciseviewcontroller)
-[HomeController](#homecontroller)
-[OverviewGridHandler](#overviewgridhandler)
-[PlanController](#plancontroller)
-[PlanGridHandler](#plangridhandler)
-[WorkoutCell](#workoutcell)
-[WorkoutPlannerApp](#workoutplannerapp)
-[UIUtils](#uiutils)
+- [BaseController](#basecontroller)
+- [ExerciseViewController](#exerciseviewcontroller)
+- [FxmlControllerPair](#fxmlcontrollerpair)
+- [HomeController](#homecontroller)
+- [MainController](#maincontroller)
+- [OverviewController](#overviewcontroller)
+- [RemoteUserAccess](#remoteuseraccess)
+- [WorkoutViewController](#workoutviewcontroller)
 
-## WorkoutPlannerApp
+## BaseController
 
-This is the App that runs the code. It has the start and main method, and runs with maven.
+The BaseController class is a superclass of the other controller classes
+and determines the base functionality of all controller classes.
 
-## HomeController
+### BaseController-Fields
 
-This is the code for the controller to the App.
+- (`MainController`) mainController - Holds the instance of the MainController for program-wide access.
 
-### HomeController-Fields
+### BaseController-Methods
 
-- (`Button`) newWorkout
-- (`Button`) allWorkouts
-  
-The newWorkout-button sends you to exerciseview, while the allWorkouts-button sends you to a grid of all the workouts.
+- getMainController(): returns the MainController
+- setMainController(): sets the MainController for a sub-controller
+- init(): base initialization method to be overwritten by sub-controllers.
 
-### HomeController-Methods
-
-- handleNewWorkout()
-- handleAllWorkout()
-
-`handleNewWorkout()` does the code for the newWorkout-button (sends you to exerciseview), while `handleAllWorkout()` sends you to the grid of workouts.
+`init()` is a function used in a lot of controllers in this app. The reason we have this method instead of `initialize()` is because the initialize function runs at the moment you start the app, resluting in a grid made before any workoutobjects or exerciseobjects are added. What we instead want is for the controllers to initialize when we f.ex. press a save button.
 
 ## ExerciseViewController
 
-The ExerciseViewController class is a controller for the `Exerciseview.fxml`, where you can select exercise and different parameters to then add them to your workout.
+The ExerciseViewController class operates the ExerciseView page.
 
 ### ExerciseViewController-Fields
 
-- (`TextField`) sets
-- (`TextField`) repMin
-- (`TextField`) repMax
-- (`TextField`) weight
-- (`Text`) name
-- (`ListView<String>`) list
-- (`Button`) finishButton
-- (`Workout`) workout
+- (`TextField`) sets, repMin, repMax, weight and (`Text`) name - The different input variables for an `Exercise` object.
+- (`ListView<String>`) list - a list of exercises.
+- (`Button`) cancelButton - a button to cancel the creation of a workout.
 
-The TextFields are fields that gets added to a new exercise when you finish. The name field gets added from the predefined exercise-names, that we get from the ListView. The finishButton sends you to Overview. The workout object is the workout created and passed on.
+#### ExerciseViewController-Methods
 
-### ExerciseViewController-Methods
+- initialize(): initializes the controller and set up the user interface
+- addExercises(): adds an exercise to the list of exercises
+- cancel(): cancels the creation of a workout
+- finish(): finishes the creation of a workout
+- init(): initializes the controller's state and UI elements
+- clearInputFields(): clears the input-fields.
 
-- initialize()
-- addExercise()
-- finishAddingExercise()
+### FxmlControllerPair
 
-The initialize function adds the names to the list, and changes the name field to the appropriate name.
-The `addExercise()` adds an exercise to the workout and checks for different errors.
-The `finishAddingExercise()` method sends the workout to `OverviewController`.
+The FxmlControllerPair class maintains the association between an FXML file and its Controller. This is a delegate that shows and hides fxml-views based on input.
 
-## OverviewController
+#### FxmlControllerPair-Fields
 
-This class is the controller for `Overview.fxml`, where its displayed the different exercises added.
+- (`VBox`) fxml - the fxml being displayed
+- (`BaseController`) baseController - the baseController connected to fxml
 
-### OverviewController-Fields
+#### FxmlControllerPair-Constructor
 
-- (`Workout`) workout
-- (`ScrollPane`) scrollPane
-- (`Button`) cancelButton
-- (`Button`) saveButton
-- (`TextField`) inpName
+Creates a new `FxmlControllerPair` object, which associates an FXML view with its respective controller and the MainController. It then sets the proper visibility of the different fxml-views.
 
-The workout field is the workout that has the exercises required to create the grid. ScrollPane is the pane where the grid is added.
-The buttons save and cancel the overview respectfully.
-The field inpName is a value to save Name of the workout.
+#### FxmlControllerPair-Methods
 
-### OverviewController-Methods
+- show(): Shows the new fxml and calls its init function
+- hide(): sets visiblity false for the fxml.
 
-- cancel()
-- save()
-- validateOverview()
-- init()
-- loadOverviewFromPlan()
+### HomeController
 
-The cancel method cancels the workout, while the save method saves the method. `validateOverview()` does the validating for save and cancel. The `init()` function gets called in exerciseViewController to run `OverviewController()`. `loadOverviewFromPlan()` loads an overview from `PlanGridHandler`, where the name and date is set at the top.
+The HomeController class operates the Home page and delegates all the tasks related to that page. It has two buttons, one for showing all workouts and the other for creating a new workout.
 
-## ExerciseCell
+#### HomeController-Methods
 
-The ExerciseCell object is an object that contains the Text-Nodes that shows up in the overviewGridHandler class. It contains four Text-Nodes, one for each field in Exercise, except reps, that is combines max and min reps.
+- createNewWorkout(): Takes you to the `ExerciseView`
+- showAllWorkouts(): Takes you to `WorkoutView`
+- init(): initializes the controller by setting the current workout to 0 and deleting unsaved workouts.
 
-### ExerciseCell-Fields
+### MainController
 
-- (`Excercise`) exercise
-- (`Group`) group
+The MainController class delegates the different pages of the application to the different controllers. This acts as a hub for the controllers, where it has a method for which view to show.
+It has a constructor that initialises the remote URL if backend is activated, otherwise it initializes a new `User` object.
 
-The exercise field is the exercise that is going provide the inputs for the Text-Nodes. The group is what is returned after the cell is created.
+#### MainController-Fields
 
-### ExerciseCell-Methods
+- All the different controllers as separate variables
+- All the fxml files connected to each controller as separate variables
+- (`UserAccess`) user - the `User` object
+- (`Map<String, FxmlControllerPair>`) fxmlControllerMap - maps the specific controller based on the string
 
-- createFXCell()
-- getGroup()
+#### MainController-Methods
 
-The `createFXCell()` method creates the group containing the information from the exercise. `getGroup()` returns the group.
+- initialize(): runs as soon as the program is started, it adds all the overviews to the map, and runs showFxml
+- showFxml(): takes the given controller-name and shows it. It also hides the previous fxml.
 
-## OverviewGridHandler
+### OverviewController
 
-This class creates the grid based on exerciseCells.
+The OverviewController class operates the overview page and shows a grid of selected exercises for the current workout.
 
-### OverviewGridHandler-Fields
+#### OverviewController-Fields
 
-- (`ScrollPane`) scrollPane
-- (`Workout`) workout
-- (`List<Exercises>`) exercises
+- (`VBox`) saveWorkoutNameBox - Box for when you are creating a workout
+- (`HBox`) workoutInfoBox - Box for when you are editing a workout
+- (`ScrollPane`) scrollPane - pane where the grid is added
+- (`TextField`) inputName - Where you add the name of your workout
+- (`Text`) name - The name of your workout
 
-The scrollPane and workout is the scrollPane-Node and workout-Node from `OverviewController`, while the list of exercises are the exercises that get created as exerciseCells and added to the grid.
+#### OverviewController-Methods
 
-### OverviewGridHandler-Methods
+- cancel(): Cancels the creation of a workout and returns you to `Home`
+- save(): Saves the workout and shows the `WorkoutView`
+- returnWorkoutView(): Action for button that takes you to `WorkoutView`
+- addExercise(): Action for button that takes you to `ExerciseView` to add exercises
+- init(): Initializes the overview and starts the grid
+- buildGrid(): Creates the grid using the `GridBuilder` class in fxutil
+- createCell(): Creates a cell based on index consisting of each value of the `Exercise`
+- move(): Moves an `Exercise` left or right
 
-- createGrid()
+### RemoteUserAccess
 
-this method creates the grid with the given fields.
+This is a `UserAccess` object that handles the communication with the backend. It is through this the backend receives requests.
+It takes a URI as an input and saves it as the baseUri.
 
-## PlanController
+#### RemoteUserAccess-Fields
 
-This class is the controller for the `PlanView.fxml` where you get a view over the different workouts
+- (`URI`) baseUri - Local URI variable used for pathing
+- (`ObjectMapper`) objectMapper - A class from the jacksonlibrary used for persistence
+- (`Logger`) LOGGER - used for logging exceptions
 
-### PlanController-Fields
+#### RemoteUserAccess-Methods
 
-- (`ScrollPane`) scrollPane
-- (`PlanGridHandler`) planGrid
+- httpGetRequest(): sends a get request made with the specified path and `"/user"`.
+- httpPutRequest() and httpDeleteRequest() are similar methods as httpGetRequest()
+- handleError(): handles the connection and checks if it is valid
+- getters and setters for most of the values of a workout using requests.
 
-The scrollPane is where the grid is going to be, while the planGrid is the class for making the grid.
+### WorkoutPlannerApp
 
-### PlanController-Methods
+The WorkoutPlannerApp class runs the application with the `Application` start method. Here we define the size of the stage, and run the main function to launch the app.
 
-- init()
-- clickNode()
+### WorkoutViewController
 
-Where the init function is run in `OverviewController` to initialize the grid, while `clickNode()` runs the `clickNode()` function for planGridHandler.
+The WorkoutViewController class operates the WorkoutView page and delegates the tasks related to that page. This shows a grid of all workouts. You have the option of viewing or deleting a `Workout` from the grid.
 
-## WorkoutCell
+#### WorkoutViewController-Fields
 
-The `WorkoutCell` object is an object that contains the Text-Nodes that shows up in the `PlanGridHandler` class. It contains four a workout.
+- (`ScrollPane`) scrollPane - Pane where the grid is added
+- (`List<String>`) workoutNames - List of all the workouts names
+- (`List<String>`) workoutDates - List of all the workouts dates
 
-### WorkoutCell-Fields
+#### WorkoutViewController-Methods
 
-- (`Workout`) workout
-
-This field is where the values for the cell comes from.
-
-### WorkoutCell-Methods
-
-- getText()
-- getWorkout()
-
-the `getText()` method is creates and returns the values for the cell. `getWorkout()` returns the workout.
-
-## PlanGridHandler
-
-The class that creates a grid of workoutcells.
-
-### PlanGridHandler-Fields
-
-- (`List<WorkoutCell> workouts`) workoutCellList
-- (`ScrollPane`) scrollPane
-
-The list is a list of each workoutcell. The scrollpane is the container for the grid.
-
-### PlanGridHandler-Methods
-
-- configureGrid()
-- clickNode()
-- addRow()
-- addColumn()
-- addWorkoutCell()
-- createGrid()
-
-`configureGrid()` sets up the base grid for the planview. `clickNode` makes it, so you can return to overview from planview. `addRow` and `addColumn` adds rows and columns.
-`addWorkoutCell` adds a new workoutCell.
-`createGrid` sets up the grid properly, and adds the cells to the grid.
-
-## UIUtils
-
-Has one method where it creates an alert. We use this to create alerts in different classes.
+- returnHome(): Action whyen clicking button, that moves you to `Home`
+- init(): Initializes the `WorkoutView` and starts the grid
+- buildGrid(): Creates the grid using the `GridBuilder` class in fxutil
+- createCell(): Creates a cell based on index consisting of the `date` and `name` of the `Workout`
+- view(): Action when clicking "view" button. Takes you to the specific workout
+  
