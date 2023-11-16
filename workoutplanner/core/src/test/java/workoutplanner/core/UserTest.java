@@ -10,7 +10,7 @@ class UserTest {
 
     @BeforeEach
     void setUp() {
-        user = new User(true);
+        user = new User(false);
         user.getCurrentWorkoutSaved();
     }
 
