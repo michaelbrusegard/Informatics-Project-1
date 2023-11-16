@@ -50,7 +50,8 @@ public class RemoteUserAccess implements UserAccess {
   /**
    * Local Logger variable, used to log exceptions.
    */
-  private static final Logger LOGGER = Logger.getLogger(RemoteUserAccess.class.getName());
+  private static final Logger LOGGER =
+          Logger.getLogger(RemoteUserAccess.class.getName());
 
   /**
    * Constructs a new instance of the RemoteUserAccess class.
@@ -70,7 +71,8 @@ public class RemoteUserAccess implements UserAccess {
 
   private Reader httpGetRequest(final String path) throws IOException {
     URI uri = baseUri.resolve("/user" + path);
-    HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection();
+    HttpURLConnection connection =
+            (HttpURLConnection) uri.toURL().openConnection();
     connection.setRequestProperty("Accept", "application/json");
 
     InputStream responseStream = connection.getInputStream();
@@ -80,7 +82,8 @@ public class RemoteUserAccess implements UserAccess {
   private HttpURLConnection httpPutRequest(final String path)
       throws IOException {
     URI uri = baseUri.resolve("/user" + path);
-    HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection();
+    HttpURLConnection connection =
+            (HttpURLConnection) uri.toURL().openConnection();
     connection.setDoOutput(true);
     connection.setRequestProperty("Content-Type", "application/json");
     connection.setRequestMethod("PUT");
@@ -90,7 +93,8 @@ public class RemoteUserAccess implements UserAccess {
   private HttpURLConnection httpDeleteRequest(final String path)
       throws IOException {
     URI uri = baseUri.resolve("/user" + path);
-    HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection();
+    HttpURLConnection connection =
+            (HttpURLConnection) uri.toURL().openConnection();
     connection.setDoOutput(true);
     connection.setRequestProperty("Content-Type", "application/json");
     connection.setRequestMethod("DELETE");
@@ -531,7 +535,8 @@ public class RemoteUserAccess implements UserAccess {
   @Override
   public void deleteUnsavedWorkouts() {
     try {
-      HttpURLConnection connection = httpDeleteRequest("/workouts/delete-unsaved");
+      HttpURLConnection connection =
+              httpDeleteRequest("/workouts/delete-unsaved");
       handleError(connection);
     } catch (IOException e) {
       LOGGER.log(Level.SEVERE, "Error deleting unsaved workouts.", e);
