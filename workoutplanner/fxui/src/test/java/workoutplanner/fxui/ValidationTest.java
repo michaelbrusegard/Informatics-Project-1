@@ -40,10 +40,10 @@ public class ValidationTest extends FxTest {
     clickAndCheckAlert("Error", "Please select an exercise.",
             Alert.AlertType.ERROR);
     listView = getNode(ListView.class, "list");
-    String exercise = listView.getItems().get(0);
+    String exercise = (String) listView.getItems().get(0);
     List<Integer> list = new ArrayList<>(List.of(3, 4, 5, 6));
     clickOn(exercise);
-    clickOn("#sets").write(String.valueOf(""));
+    clickOn("#sets").write("");
     clickOn("#repMin").write(String.valueOf(list.get(1)));
     clickOn("#repMax").write(String.valueOf(list.get(2)));
     clickOn("#weight").write(String.valueOf(list.get(3)));
@@ -75,7 +75,7 @@ public class ValidationTest extends FxTest {
     clickAndCheckAlert("Error", "Please fill in all fields.",
             Alert.AlertType.ERROR);
     clickOn(exercise);
-    clickOn("#sets").write(String.valueOf("sets"));
+    clickOn("#sets").write("sets");
     clickOn("#repMin").write(String.valueOf(list.get(1)));
     clickOn("#repMax").write(String.valueOf(list.get(2)));
     clickOn("#weight").write(String.valueOf(list.get(3)));
@@ -84,7 +84,7 @@ public class ValidationTest extends FxTest {
             + "sets, rep-range, and weight.", Alert.AlertType.ERROR);
     clickOn(exercise);
     clickOn("#sets").write(String.valueOf(list.get(0)));
-    clickOn("#repMin").write(String.valueOf("repMin"));
+    clickOn("#repMin").write("repMin");
     clickOn("#repMax").write(String.valueOf(list.get(2)));
     clickOn("#weight").write(String.valueOf(list.get(3)));
     clickOn("#addExercise");
@@ -93,7 +93,7 @@ public class ValidationTest extends FxTest {
     clickOn(exercise);
     clickOn("#sets").write(String.valueOf(list.get(0)));
     clickOn("#repMin").write(String.valueOf(list.get(1)));
-    clickOn("#repMax").write(String.valueOf("repMax"));
+    clickOn("#repMax").write("repMax");
     clickOn("#weight").write(String.valueOf(list.get(3)));
     clickOn("#addExercise");
     clickAndCheckAlert("Error", "Please enter a number for "
@@ -102,7 +102,7 @@ public class ValidationTest extends FxTest {
     clickOn("#sets").write(String.valueOf(list.get(0)));
     clickOn("#repMin").write(String.valueOf(list.get(1)));
     clickOn("#repMax").write(String.valueOf(list.get(2)));
-    clickOn("#weight").write(String.valueOf("weight"));
+    clickOn("#weight").write("weight");
     clickOn("#addExercise");
     clickAndCheckAlert("Error", "Please enter a number for "
             + "sets, rep-range, and weight.", Alert.AlertType.ERROR);
@@ -110,7 +110,7 @@ public class ValidationTest extends FxTest {
       int index = list.indexOf(value);
       list.set(index, invalidUnder);
       createWrongExercise(
-              0, list.get(0), list.get(1), list.get(2), list.get(3));
+              list.get(0), list.get(1), list.get(2), list.get(3));
       clickAndCheckAlert("Error",
               "You can't do negative reps or weight. "
                       + "Also, you need to have at least one set "
@@ -119,12 +119,12 @@ public class ValidationTest extends FxTest {
       list.set(index, invalidOver);
       if (index == 1) {
         list.set(index + 1, 5010);
-        createWrongExercise(0, list.get(0), list.get(1), list.get(2), list.get(3));
+        createWrongExercise(list.get(0), list.get(1), list.get(2), list.get(3));
         clickAndCheckAlert("Error", "Please enter a number less "
                 + "than 5000. You are not that strong.", Alert.AlertType.ERROR);
         list.set(index + 1, 5);
       } else {
-        createWrongExercise(0, list.get(0), list.get(1), list.get(2), list.get(3));
+        createWrongExercise(list.get(0), list.get(1), list.get(2), list.get(3));
         clickAndCheckAlert("Error", "Please enter a number less "
                 + "than 5000. You are not that strong.", Alert.AlertType.ERROR);
       }
@@ -139,7 +139,7 @@ public class ValidationTest extends FxTest {
 
   private void validationInExerciseView() {
     List<String> alertItems = new ArrayList<>();
-    String exercise = listView.getItems().get(0);
+    String exercise = (String) listView.getItems().get(0);
     alertItems.add(exercise);
     alertItems.add(String.valueOf(3));
     alertItems.add(String.valueOf(8));
@@ -186,11 +186,11 @@ public class ValidationTest extends FxTest {
     clickOn("#finishButton");
   }
 
-  private void createWrongExercise(final Integer listIndex, final Integer sets,
+  private void createWrongExercise(final Integer sets,
                                    final Integer repMin, final Integer repMax,
                                    final int weight) {
     listView = getNode(ListView.class, "list");
-    String exercise = listView.getItems().get(listIndex);
+    String exercise = (String) listView.getItems().get(0);
     clickOn(exercise);
     clickOn("#sets").write(String.valueOf(sets));
     clickOn("#repMin").write(String.valueOf(repMin));
@@ -199,25 +199,4 @@ public class ValidationTest extends FxTest {
     clickOn("#addExercise");
   }
 
-  //create exercise
-  private void createExercises() {
-    listView = getNode(ListView.class, "list");
-    String exercise = listView.getItems().get(7);
-    clickOn(exercise);
-    clickOn("#sets").write("5");
-    clickOn("#repMin").write("16");
-    clickOn("#repMax").write("20");
-    clickOn("#weight").write("60");
-    clickOn("#addExercise");
-    clickOn("#alertButton");
-    exercise = listView.getItems().get(3);
-    clickOn(exercise);
-    clickOn("#sets").write("3");
-    clickOn("#repMin").write("4");
-    clickOn("#repMax").write("6");
-    clickOn("#weight").write("90");
-    clickOn("#addExercise");
-    clickOn("#alertButton");
-    clickOn("#finishButton");
-  }
 }

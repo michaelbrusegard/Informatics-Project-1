@@ -30,26 +30,24 @@ public abstract class FxTest extends ApplicationTest {
    */
   private static final int MINHEIGHT = 428;
 
-  private Stage testStage;
-  protected ListView<String> listView;
+  protected ListView listView;
 
   @Override
   public void start(final Stage primaryStage) throws IOException {
     // Set the app title
-    testStage = primaryStage;
-    testStage.setTitle("Workout Planner");
+    primaryStage.setTitle("Workout Planner");
     // Set the application icon
     InputStream inputStream = this.getClass().getResourceAsStream("/icon.png");
     assert inputStream != null;
     Image icon = new Image(inputStream);
-    testStage.getIcons().add(icon);
+    primaryStage.getIcons().add(icon);
     // Set the minimum width and height for the stage
-    testStage.setMinWidth(MINWIDTH); // Set the minimum width
-    testStage.setMinHeight(MINHEIGHT); // Set the minimum height
+    primaryStage.setMinWidth(MINWIDTH); // Set the minimum width
+    primaryStage.setMinHeight(MINHEIGHT); // Set the minimum height
     FXMLLoader fxmlLoader = new FXMLLoader(this.getClass()
             .getResource("Main.fxml"));
-    testStage.setScene(new Scene(fxmlLoader.load()));
-    testStage.show();
+    primaryStage.setScene(new Scene(fxmlLoader.load()));
+    primaryStage.show();
   }
 
   public void clickAndCheckAlert(final String title, final String message,

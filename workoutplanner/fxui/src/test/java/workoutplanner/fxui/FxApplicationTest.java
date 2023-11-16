@@ -2,6 +2,7 @@ package workoutplanner.fxui;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.util.Objects;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -12,6 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import org.junit.jupiter.api.Test;
+
 
 public class FxApplicationTest extends FxTest {
 
@@ -71,11 +73,11 @@ public class FxApplicationTest extends FxTest {
   }
 
   //get workout cell from workoutview
-  private ObservableList<Node> getWorkoutcell(final int index) {
+  private ObservableList<Node> getWorkoutcell() {
     try {
       return ((VBox) ((GridPane) ((ScrollPane)
               lookup("#workoutViewScrollPane").query()).getContent())
-              .getChildren().get(index)).getChildren();
+              .getChildren().get(1)).getChildren();
     } catch (ClassCastException e) {
       return null;
     }
@@ -91,7 +93,7 @@ public class FxApplicationTest extends FxTest {
   private void createExercises() {
     clickOn("#createNewWorkout");
     listView = getNode(ListView.class, "list");
-    String exercise = listView.getItems().get(7);
+    String exercise = (String) listView.getItems().get(7);
     clickOn(exercise);
     clickOn("#sets").write("5");
     clickOn("#repMin").write("16");
@@ -99,7 +101,7 @@ public class FxApplicationTest extends FxTest {
     clickOn("#weight").write("60");
     clickOn("#addExercise");
     clickOn("#alertButton");
-    exercise = listView.getItems().get(3);
+    exercise = (String) listView.getItems().get(3);
     clickOn(exercise);
     clickOn("#sets").write("3");
     clickOn("#repMin").write("4");
@@ -117,7 +119,7 @@ public class FxApplicationTest extends FxTest {
     clickOn(editButton);
     clickOn("#addExercises");
     listView = getNode(ListView.class, "list");
-    String exercise = listView.getItems().get(1);
+    String exercise = (String) listView.getItems().get(1);
     clickOn(exercise);
     clickOn("#sets").write("2");
     clickOn("#repMin").write("3");
@@ -131,7 +133,8 @@ public class FxApplicationTest extends FxTest {
 
   private void deleteWorkout() {
     Button deleteButton = (Button) ((HBox)
-            (getWorkoutcell(1)).get(2)).getChildren().get(1);
+            (Objects.requireNonNull(getWorkoutcell())).get(2))
+            .getChildren().get(1);
     clickOn(deleteButton);
     Text text = (Text) ((VBox) ((GridPane) ((ScrollPane)
             lookup("#workoutViewScrollPane").query()).getContent())
@@ -143,7 +146,7 @@ public class FxApplicationTest extends FxTest {
 
   private void checkExistingWorkouts() {
     clickOn("#showAllWorkouts");
-    boolean vbox = false;
+    boolean vbox;
     boolean empty = true;
     while (empty) {
       try {
@@ -156,10 +159,6 @@ public class FxApplicationTest extends FxTest {
         Text text = (Text) ((VBox) ((GridPane) ((ScrollPane)
                 lookup("#workoutViewScrollPane").query()).getContent())
                 .getChildren().get(1)).getChildren().get(0);
-        Button deleteButton = (Button) ((HBox) ((VBox) ((GridPane) ((ScrollPane)
-                lookup("#workoutViewScrollPane").query()).getContent())
-                .getChildren().get(1)).getChildren().get(2)).getChildren()
-                .get(1);
         clickOn("#DeleteWorkout");
         clickAndCheckConfirmation("Delete Workout",
                 "Are you sure you want to delete " + text.getText()

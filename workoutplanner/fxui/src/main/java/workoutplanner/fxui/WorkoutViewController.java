@@ -124,6 +124,13 @@ public class WorkoutViewController extends BaseController {
     Text date = new Text(workoutDates.get(workoutIndex));
     date.setLayoutY(LAYOUTY);
     // Define buttons
+    HBox buttonBox = getHbox(workoutIndex, defaultButton);
+    VBox cell = new VBox();
+    cell.getChildren().addAll(name, date, buttonBox);
+    return cell;
+  }
+
+  private HBox getHbox(final int workoutIndex, final String defaultButton) {
     Button viewButton = new Button("View");
     viewButton.setStyle(defaultButton);
     Button deleteButton = new Button("Delete");
@@ -135,9 +142,7 @@ public class WorkoutViewController extends BaseController {
     buttonBox.setAlignment(Pos.CENTER);
     buttonBox.setSpacing(SPACING);
     buttonBox.setLayoutY(BUTTONLAYOUTY);
-    VBox cell = new VBox();
-    cell.getChildren().addAll(name, date, buttonBox);
-    return cell;
+    return buttonBox;
   }
 
   private void view(final int workoutIndex) {
