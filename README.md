@@ -142,6 +142,7 @@ In the root directory, you can find the documentation for the assignments in the
 - [DIAGRAMS](./docs/UML) - Contains class-diagram, sequence-diagram and package-diagram
 - [work flow, work habits and code quality](./docs/DEVELOPMENT_PROCESS.md) - Contains documentation for the persistence of the program.
 - [releases](./docs/releases) - Contains the different releases for each milestone/assignment.
+- [challennge](./docs/CHALLENGE) - Contains a challenge we had with eclipse.
 
 - [core documentation](workoutplanner/core/CORE.md)
 - [persistence](workoutplanner/core/CORE.md#persistence)
