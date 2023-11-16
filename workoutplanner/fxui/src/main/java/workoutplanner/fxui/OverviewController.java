@@ -119,17 +119,19 @@ public class OverviewController extends BaseController {
   @FXML
   public void save() {
     if (Overview.validateOverview(true, false, this.inputName)) {
-      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy HH:mm");
+      DateTimeFormatter formatter =
+              DateTimeFormatter.ofPattern("MMMM dd, yyyy HH:mm");
       String formattedDate = LocalDateTime.now().format(formatter);
-      String name = inputName.getText();
-      if (getMainController().getUser().getWorkoutNames().contains(name)) {
+      String inputNameText = this.inputName.getText();
+      if (getMainController().getUser().getWorkoutNames()
+              .contains(inputNameText)) {
         UiUtils.showAlert("Error",
             "Workout name already exists.",
             AlertType.ERROR);
         return;
       }
       try {
-        getMainController().getUser().saveCurrentWorkout(name,
+        getMainController().getUser().saveCurrentWorkout(inputNameText,
             formattedDate);
       } catch (RuntimeException e) {
         UiUtils.showAlert("Server Error",
@@ -210,15 +212,16 @@ public class OverviewController extends BaseController {
     Text reps;
     Text weight;
     try {
-      exerciseName = new Text(
-          getMainController().getUser().getCurrentWorkoutExerciseAttribute(exerciseIndex, "name") + ":");
-      sets = new Text(
-          "Sets: " + getMainController().getUser().getCurrentWorkoutExerciseAttribute(exerciseIndex, "sets"));
-      reps = new Text(
-          "Reps: " + getMainController().getUser().getCurrentWorkoutExerciseAttribute(exerciseIndex, "repMin")
-              + " - " + getMainController().getUser().getCurrentWorkoutExerciseAttribute(exerciseIndex, "repMax"));
-      weight = new Text(
-          "Weight: " + getMainController().getUser().getCurrentWorkoutExerciseAttribute(exerciseIndex, "weight")
+      exerciseName = new Text(getMainController().getUser()
+              .getCurrentWorkoutExerciseAttribute(exerciseIndex, "name") + ":");
+      sets = new Text("Sets: " + getMainController().getUser()
+              .getCurrentWorkoutExerciseAttribute(exerciseIndex, "sets"));
+      reps = new Text("Reps: " + getMainController().getUser()
+              .getCurrentWorkoutExerciseAttribute(exerciseIndex, "repMin")
+              + " - " + getMainController().getUser()
+              .getCurrentWorkoutExerciseAttribute(exerciseIndex, "repMax"));
+      weight = new Text("Weight: " + getMainController().getUser()
+              .getCurrentWorkoutExerciseAttribute(exerciseIndex, "weight")
               + "kg");
     } catch (RuntimeException e) {
       UiUtils.showAlert("Server Error",
@@ -274,7 +277,7 @@ public class OverviewController extends BaseController {
 
     cell.getChildren().addAll(exerciseName, contentBox, moveContentBox);
 
-    // Add all elements to the cell with correct layout
+    // Add all elements to the cell with the correct layout
 
     return cell;
   }
@@ -304,8 +307,9 @@ public class OverviewController extends BaseController {
 
     if (UiUtils.showConfirmation("Delete Exercise",
         "Are you sure you want to delete "
-            + getMainController().getUser().getCurrentWorkoutExerciseAttribute(exerciseIndex, "name")
-            + "? ")) {
+                + getMainController().getUser()
+                .getCurrentWorkoutExerciseAttribute(exerciseIndex,
+                        "name") + "? ")) {
       try {
         getMainController().getUser()
             .removeExerciseFromCurrentWorkout(exerciseIndex);

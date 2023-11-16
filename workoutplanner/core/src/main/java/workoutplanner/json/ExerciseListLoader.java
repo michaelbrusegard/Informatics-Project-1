@@ -22,12 +22,19 @@ import java.util.List;
  * @version 1.4.0
  */
 
-public class ExerciseListLoader {
+public final class ExerciseListLoader {
 
   /**
    * Local objectmapper variable, used to map from the json file.
    */
   private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+
+
+  private ExerciseListLoader() {
+    // Private constructor to prevent instantiation
+    throw new UnsupportedOperationException(
+            "Utility class should not be instantiated.");
+  }
 
   /**
    * Loads exercises from a JSON file as a list of strings.

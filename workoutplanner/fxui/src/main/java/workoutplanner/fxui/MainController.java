@@ -82,15 +82,15 @@ public class MainController {
   private WorkoutViewController workoutViewController;
 
   /**
-   * User object, is the current user object that is used to encapsulate
-   * the workouts.
+   * User object is the current user object used to encapsulate the workouts.
    */
   private final UserAccess user;
 
   /**
    * Local Map variable, used to register the different controllers.
    */
-  private final Map<String, FxmlControllerPair> fxmlControllerMap = new HashMap<>();
+  private final Map<String, FxmlControllerPair> fxmlControllerMap =
+          new HashMap<>();
 
   /**
    * Local String variable, used to define which controller should be used.
@@ -104,11 +104,6 @@ public class MainController {
   private final boolean useRemote = true;
 
   /**
-   * Local String variable, used for referring to server port.
-   */
-  private final String remoteUrl = "http://localhost:8080/";
-
-  /**
    * Constructs a new MainController instance.
    *
    * <p>
@@ -120,6 +115,7 @@ public class MainController {
 
   public MainController() {
     if (useRemote) {
+      String remoteUrl = "http://localhost:8080/";
       user = new RemoteUserAccess(URI.create(remoteUrl));
     } else {
       user = new User(true);

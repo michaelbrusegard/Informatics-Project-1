@@ -4,7 +4,8 @@ import javafx.scene.layout.VBox;
 
 /**
  * <h1>FXMLControllerPair</h1>
- * Keeps track of a pair of FXML and Controller.
+ * Maintains the association between an FXML file and its corresponding
+ * Controller.
  *
  * <p>
  * The FxmlControllerPair class maintains information about an FXML view

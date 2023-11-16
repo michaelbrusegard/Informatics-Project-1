@@ -19,7 +19,13 @@ import javafx.scene.control.ButtonType;
  * @author Michael Brusegard
  * @version 2.0.0
  */
-public class UiUtils {
+public final class UiUtils {
+
+  private UiUtils() {
+    // Private constructor to prevent instantiation
+    throw new UnsupportedOperationException(
+            "Utility class should not be instantiated.");
+  }
 
   /**
    * Shows an alert dialog with the specified title, message, and alert type.
