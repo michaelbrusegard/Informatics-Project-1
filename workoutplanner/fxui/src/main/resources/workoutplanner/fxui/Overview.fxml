@@ -40,7 +40,7 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <Button mnemonicParsing="false" fx:id="returnWorkoutView" onAction="#returnWorkoutView" style="-fx-pref-width: 120;-fx-pref-height: 40; -fx-border-radius:20;" -fx-border-radius:20;" styleClass="inverseButton" stylesheets="@style.css" text="All Workouts">
+            <Button mnemonicParsing="false" fx:id="returnWorkoutView" onAction="#returnWorkoutView" style="-fx-pref-width: 120;-fx-pref-height: 40; -fx-border-radius:20; -fx-border-radius:20;" styleClass="inverseButton" stylesheets="@style.css" text="All Workouts">
                <HBox.margin>
                   <Insets left="20.0" right="40.0" />
                </HBox.margin>
