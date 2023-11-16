@@ -1,0 +1,274 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class BaseController {
+  + BaseController():
+  - mainController: MainController
+  + init(): void
+   mainController: MainController
+}
+entity Exercise << record >> {
+  + Exercise(String, int, int, int, int):
+  + repMax(): int
+  + weight(): int
+  + repMin(): int
+  + name(): String
+  + sets(): int
+}
+class ExerciseListLoader {
+  - ExerciseListLoader():
+  + loadExerciseListFromJson(): List<String>
+}
+class ExerciseTest {
+  + ExerciseTest():
+  + testGetName(): void
+  + setUp(): void
+  + testExerciseConstructor(): void
+  + testGetRepMax(): void
+  + testGetWeight(): void
+  + testGetSets(): void
+  + testGetRepMin(): void
+}
+class ExerciseView {
+  - ExerciseView():
+  + validateExerciseInput(String, String, String, String, String): boolean
+  + displayExerciseAddedPrompt(String, int, int, int, int): void
+}
+class ExerciseViewController {
+  + ExerciseViewController():
+  - cancel(): void
+  + init(): void
+  - finish(): void
+  - addExercise(): void
+  + initialize(): void
+  - clearInputFields(): void
+}
+class ExerciseViewControllerTest {
+  + ExerciseViewControllerTest():
+  + testAddExerciseFieldValidation(): void
+  + testLabel(): void
+  + start(Stage): void
+  + testFinishedExercise(): void
+  + testAddExerciseIntValidation(): void
+  + testFinishedValidationExercise(): void
+  + testAddValidExercise(): void
+  + testAddExerciseValidation(): void
+  + testAddExerciseNameValidation(): void
+  + testAddInvalidExercise(): void
+  + testSave(): void
+}
+class FxmlControllerPair {
+  + FxmlControllerPair(MainController, VBox, BaseController):
+  + hide(): void
+  + show(): void
+}
+class GridBuilder {
+  + GridBuilder(ScrollPane, int, Function<Integer, VBox>):
+  - initializeGrid(GridPane): void
+  - createGrid(): void
+}
+class HomeController {
+  + HomeController():
+  - createNewWorkout(): void
+  - showAllWorkouts(): void
+  + init(): void
+}
+class HomeControllerTest {
+  + HomeControllerTest():
+  + testNewWorkoutButton(): void
+  + start(Stage): void
+  + testAllWorkoutsButton(): void
+}
+class MainController {
+  + MainController():
+  - user: UserAccess
+  + showFxml(String): void
+  - initialize(): void
+   user: UserAccess
+}
+class Overview {
+  - Overview():
+  + validateOverview(boolean, boolean, TextField): boolean
+  + checkIfCancel(): boolean
+}
+class OverviewController {
+  + OverviewController():
+  + init(): void
+  - buildGrid(): void
+  + cancel(): void
+  - addExercises(): void
+  - delete(int): void
+  - createCell(int): VBox
+  - returnWorkoutView(): void
+  - move(int, boolean): void
+  + save(): void
+}
+class OverviewControllerTest {
+  + OverviewControllerTest():
+  + start(Stage): void
+  + testSaveOver20charValidation(): void
+  + testCancel(): void
+  + testSavedValidation(): void
+}
+class RemoteUserAccess {
+  + RemoteUserAccess(URI):
+  - httpPutRequest(String): HttpURLConnection
+  - handleError(HttpURLConnection): void
+  + saveCurrentWorkout(String, String): void
+  + removeExerciseFromCurrentWorkout(int): void
+  + deleteUnsavedWorkouts(): void
+  + moveExerciseInCurrentWorkout(int, boolean): void
+  + removeWorkout(int): void
+  - httpGetRequest(String): Reader
+  - httpDeleteRequest(String): HttpURLConnection
+  + removeCurrentWorkout(): void
+  + getCurrentWorkoutExerciseAttribute(int, String): String
+  + addExerciseToCurrentWorkout(String, int, int, int, int): void
+   currentWorkoutExerciseCount: int
+   currentWorkoutSaved: boolean
+   exerciseList: List<String>
+   workoutNames: List<String>
+   currentWorkout: int
+   currentWorkoutName: String
+   workoutDates: List<String>
+}
+class UiUtils {
+  - UiUtils():
+  + showAlert(String, String, AlertType): void
+  + showConfirmation(String, String): boolean
+}
+class User {
+  + User(boolean):
+  + removeCurrentWorkout(): void
+  + deleteUnsavedWorkouts(): void
+  + getCurrentWorkoutExerciseAttribute(int, String): String
+  + removeExerciseFromCurrentWorkout(int): void
+  + moveExerciseInCurrentWorkout(int, boolean): void
+  + saveCurrentWorkout(String, String): void
+  + addExerciseToCurrentWorkout(String, int, int, int, int): void
+  + removeWorkout(int): void
+   currentWorkoutExerciseCount: int
+   currentWorkoutSaved: boolean
+   exerciseList: List<String>
+   workoutNames: List<String>
+   currentWorkout: int
+   currentWorkoutName: String
+   workoutDates: List<String>
+}
+interface UserAccess << interface >> {
+  + moveExerciseInCurrentWorkout(int, boolean): void
+  + deleteUnsavedWorkouts(): void
+  + addExerciseToCurrentWorkout(String, int, int, int, int): void
+  + removeCurrentWorkout(): void
+  + removeExerciseFromCurrentWorkout(int): void
+  + removeWorkout(int): void
+  + saveCurrentWorkout(String, String): void
+  + getCurrentWorkoutExerciseAttribute(int, String): String
+   currentWorkoutExerciseCount: int
+   currentWorkoutSaved: boolean
+   exerciseList: List<String>
+   workoutNames: List<String>
+   currentWorkout: int
+   currentWorkoutName: String
+   workoutDates: List<String>
+}
+class UserController {
+  + UserController():
+  + deleteUnsavedWorkouts(): ResponseEntity<String>
+  + getCurrentWorkoutExercise(int, String): String
+  + setCurrentWorkout(int): ResponseEntity<String>
+  + addExerciseToCurrentWorkout(String, int, int, int, int): ResponseEntity<String>
+  - logEndpoint(String, Object): void
+  + removeExerciseFromCurrentWorkout(int): ResponseEntity<String>
+  + removeCurrentWorkout(): ResponseEntity<String>
+  + moveExerciseInCurrentWorkout(int, boolean): ResponseEntity<String>
+  + removeWorkout(int): ResponseEntity<String>
+  + saveCurrentWorkout(String, String): ResponseEntity<String>
+  - logEndpoint(String): void
+   exerciseList: List<String>
+   workoutNames: List<String>
+   currentWorkoutName: String
+   workoutDates: List<String>
+   currentWorkoutExerciseCount: int
+   currentWorkoutSaved: boolean
+}
+class ValidateEndpoints {
+  - ValidateEndpoints():
+  + validateExerciseIndex(int, int): boolean
+  + validateSaveWorkoutInput(String, String, List<String>): boolean
+  + validateExerciseInput(String, int, int, int, int, List<String>): boolean
+  + validateExerciseAttribute(String): boolean
+  + validateWorkoutIndex(int, int): boolean
+}
+class Workout {
+  + Workout():
+  - name: String
+  - saved: boolean
+  - exercises: List<Exercise>
+  - date: String
+  + moveExercise(int, boolean): void
+  + removeExercise(int): void
+  + addExercise(String, int, int, int, int): void
+   name: String
+   date: String
+   saved: boolean
+   exercises: List<Exercise>
+}
+class WorkoutPersistence {
+  - WorkoutPersistence():
+  + loadWorkoutsFromJson(): List<Workout>
+  + saveWorkoutsToJson(List<Workout>): void
+}
+class WorkoutPlannerApp {
+  + WorkoutPlannerApp():
+  + start(Stage): void
+  + main(String[]): void
+}
+class WorkoutPlannerServerApp {
+  + WorkoutPlannerServerApp():
+  + main(String[]): void
+}
+class WorkoutTest {
+  + WorkoutTest():
+  + testAddExercise(): void
+  + setUp(): void
+  + testGetName(): void
+  + testGetExercises(): void
+}
+class WorkoutViewController {
+  + WorkoutViewController():
+  - createCell(int): VBox
+  - view(int): void
+  - delete(int): void
+  - returnHome(): void
+  + init(): void
+}
+interface node3 as "package-info" << interface >>
+interface node5 as "package-info" << interface >>
+interface node11 as "package-info" << interface >>
+interface node22 as "package-info" << interface >>
+interface node27 as "package-info" << interface >>
+
+BaseController             "1" *-[#595959,plain]-> "mainController\n1" MainController
+ExerciseTest               "1" *-[#595959,plain]-> "exercise\n1" Exercise
+ExerciseViewController      -[#000082,plain]-^  BaseController
+FxmlControllerPair         "1" *-[#595959,plain]-> "baseController\n1" BaseController
+HomeController              -[#000082,plain]-^  BaseController
+MainController             "1" *-[#595959,plain]-> "exerciseViewController\n1" ExerciseViewController
+MainController             "1" *-[#595959,plain]-> "fxmlControllerMap\n*" FxmlControllerPair
+MainController             "1" *-[#595959,plain]-> "homeController\n1" HomeController
+MainController             "1" *-[#595959,plain]-> "overviewController\n1" OverviewController
+MainController             "1" *-[#595959,plain]-> "user\n1" UserAccess
+MainController             "1" *-[#595959,plain]-> "workoutViewController\n1" WorkoutViewController
+OverviewController          -[#000082,plain]-^  BaseController
+RemoteUserAccess            -[#008200,dashed]-^  UserAccess
+User                        -[#008200,dashed]-^  UserAccess
+User                       "1" *-[#595959,plain]-> "workouts\n*" Workout
+UserController             "1" *-[#595959,plain]-> "user\n1" User
+Workout                    "1" *-[#595959,plain]-> "exercises\n*" Exercise
+WorkoutTest                "1" *-[#595959,plain]-> "workout\n1" Workout
+WorkoutViewController       -[#000082,plain]-^  BaseController
+@enduml
