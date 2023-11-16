@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatterBuilder;
 import java.util.Date;
 import java.util.List;
@@ -17,7 +18,7 @@ public class WorkoutTest {
 
     @BeforeEach
     public void setUp() {
-        LocalDate date = LocalDate.now();
+        LocalDateTime date = LocalDateTime.now();
         name = "My Workout";
         workout = new Workout();
         workout.setDate(date.toString());
