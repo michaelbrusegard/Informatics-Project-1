@@ -1,3 +1,10 @@
+## [1.4.2](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.4.1...v1.4.2) (2023-11-16)
+
+
+### Bug Fixes
+
+* **ValidateEndpoints:** Fixed missing variable decleration for MAX_NAME_LENGTH ([b563c70](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/b563c70e3bee950720ba3324fe60dd92f2f36499))
+
 ## [1.4.1](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.4.0...v1.4.1) (2023-11-16)
 
 
