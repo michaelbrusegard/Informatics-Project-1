@@ -11,10 +11,23 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 public class FXApplicationTest extends FxTest {
+
+
+    @Test
+    public void createWorkouts(){
+        gotoOverview();
+        clickOn("#save");
+        clickOn("#alertButton");
+
+    }
 
     @Test
     public void testApplication(){
+        clickOn("#showAllWorkouts");
+        assertNotNull((Button) ((HBox)((VBox)((GridPane)((ScrollPane) lookup("#scrollPaneWorkout").query()).getContent()).getChildren().get(1)).getChildren().get(2)).getChildren().get(0));
         checkExistingWorkouts();
         gotoOverview();
         clickOn("#save");
