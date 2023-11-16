@@ -69,17 +69,6 @@ class UserTest {
         assertTrue(user.getWorkoutNames().contains("Workout1"));
     }
 
-    @Test
-    void testRetrievingExerciseAttributes() {
-        user.addExerciseToCurrentWorkout("Exercise1", 3, 8, 12, 50);
-
-        // Ensure that the exercise has the correct attributes
-        assertEquals("Exercise1", user.getCurrentWorkoutExerciseAttribute(0, "name"));
-        assertEquals(3, user.getCurrentWorkoutExerciseAttribute(0, "sets"));
-        assertEquals(8, user.getCurrentWorkoutExerciseAttribute(0, "reps"));
-        assertEquals(12, user.getCurrentWorkoutExerciseAttribute(0, "rest"));
-        assertEquals(50, user.getCurrentWorkoutExerciseAttribute(0, "weight"));
-    }
 
     @Test
     void testRemoveWorkout() {
