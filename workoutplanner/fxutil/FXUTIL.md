@@ -4,10 +4,10 @@ Fxutil consists only of one part which is `fxutil`. The modules main task is to 
 
 ## Links
 
-[ExerciseView](#exerciseview)
-[GridBuilder](#gridbuilder)
-[Overview](#overview)
-[UiUtils](#uiutils)
+- [ExerciseView](#exerciseview)
+- [GridBuilder](#gridbuilder)
+- [Overview](#overview)
+- [UiUtils](#uiutils)
 
 ## Fxutil
 

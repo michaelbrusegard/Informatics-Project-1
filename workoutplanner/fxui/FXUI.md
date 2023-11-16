@@ -4,14 +4,14 @@ In this module all the ui gets handled. This means most of the frontend, meaning
 
 ## Links
 
-[BaseController](#basecontroller)
-[ExerciseViewController](#exerciseviewcontroller)
-[FxmlControllerPair](#fxmlcontrollerpair)
-[HomeController](#homecontroller)
-[MainController](#maincontroller)
-[OverviewController](#overviewcontroller)
-[RemoteUserAccess](#remoteuseraccess)
-[WorkoutViewController](#workoutviewcontroller)
+- [BaseController](#basecontroller)
+- [ExerciseViewController](#exerciseviewcontroller)
+- [FxmlControllerPair](#fxmlcontrollerpair)
+- [HomeController](#homecontroller)
+- [MainController](#maincontroller)
+- [OverviewController](#overviewcontroller)
+- [RemoteUserAccess](#remoteuseraccess)
+- [WorkoutViewController](#workoutviewcontroller)
 
 ## BaseController
 

@@ -6,16 +6,15 @@ Core consists of two parts, which are `core` and `json`.
 
 ### Core
 
-[Exercise](#exercise)
-[User](#user)
-[UserAccess](#useraccess)
-[Workout](#workout)
+- [Exercise](#exercise)
+- [User](#user)
+- [UserAccess](#useraccess)
+- [Workout](#workout)
 
 ### Json
 
-[ExerciseListLoader](#exercise)
-[WorkoutPresistence](#workoutpersistence)
-
+- [ExerciseListLoader](#exercise)
+- [WorkoutPresistence](#workoutpersistence)
 
 ## Core
 
