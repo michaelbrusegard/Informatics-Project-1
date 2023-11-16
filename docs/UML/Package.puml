@@ -1,0 +1,42 @@
+@startuml
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+component core {
+package workoutplanner.core
+package workoutplanner.json
+}
+component fxui {
+package workoutplanner.fxui
+}
+component fxutil {
+package workoutplanner.fxutil
+}
+component restapi {
+package workoutplanner.restapi
+}
+
+component jackson
+component springboot
+component javafx {
+component fxml
+}
+
+
+
+
+
+jackson                 ..>  workoutplanner.json
+jackson                 ..>  workoutplanner.fxui
+jackson                 ..>  workoutplanner.restapi
+workoutplanner.core     ..>  workoutplanner.fxui
+workoutplanner.core     ..>  workoutplanner.restapi
+workoutplanner.core     ..>  workoutplanner.json
+workoutplanner.json     ..>  workoutplanner.core
+workoutplanner.fxutil   ..>  workoutplanner.fxui
+javafx                  ..>  workoutplanner.fxui
+javafx                  ..>  workoutplanner.fxutil
+fxml                    ..>  workoutplanner.fxui
+springboot              ..>  workoutplanner.restapi
+@enduml
