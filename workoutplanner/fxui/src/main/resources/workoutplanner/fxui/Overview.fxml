@@ -48,7 +48,7 @@
             <Font size="24.0"/>
          </font>
       </Text>
-      <Button mnemonicParsing="false" onAction="#returnWorkoutView" style="-fx-pref-width: 120;-fx-pref-height: 40;"
+      <Button mnemonicParsing="false" onAction="#returnWorkoutView" style="-fx-pref-width: 120;-fx-pref-height: 40; -fx-border-radius:20;"
                styleClass="inverseButton" stylesheets="@style.css"
               text="All Workouts">
          <HBox.margin>
