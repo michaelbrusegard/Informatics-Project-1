@@ -1,0 +1,18 @@
+[ {
+  "name" : "Leg Day",
+  "date" : "November 16, 2023 17:33",
+  "saved" : true,
+  "exercises" : [ {
+    "name" : "Calf Raises",
+    "sets" : 5,
+    "repMin" : 16,
+    "repMax" : 20,
+    "weight" : 60
+  }, {
+    "name" : "Barbell Squat",
+    "sets" : 3,
+    "repMin" : 4,
+    "repMax" : 6,
+    "weight" : 90
+  } ]
+} ]

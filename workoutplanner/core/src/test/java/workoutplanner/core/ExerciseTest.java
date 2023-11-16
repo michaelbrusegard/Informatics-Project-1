@@ -1,50 +1,53 @@
 package workoutplanner.core;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
 
 public class ExerciseTest {
 
-    private Exercise exercise;
+  private Exercise exercise;
+  private static final int SETS_TEST = 3;
+  private static final int REPMIN_TEST = 8;
+  private static final int REPMAX_TEST = 12;
+  private static final int WEIGHT_TEST = 100;
 
-    @BeforeEach
-    public void setUp() {
-        exercise = new Exercise("Back Squat", 3, 8, 12, 100);
-    }
+  @BeforeEach
+  public void setUp() {
+    exercise = new Exercise(
+            "Back Squat", SETS_TEST, REPMIN_TEST, REPMAX_TEST, WEIGHT_TEST);
+  }
+  @Test
+  public void testGetName() {
+    assertEquals("Back Squat", exercise.name());
+  }
+  @Test
+  public void testGetSets() {
+    assertEquals(SETS_TEST, exercise.sets());
+  }
+  @Test
+  public void testGetRepMin() {
+    assertEquals(REPMIN_TEST, exercise.repMin());
+  }
+  @Test
+  public void testGetRepMax() {
+    assertEquals(REPMAX_TEST, exercise.repMax());
+  }
+  @Test
+  public void testGetWeight() {
+    assertEquals(WEIGHT_TEST, exercise.weight());
+  }
 
-    @Test
-    public void testGetName() {
-        assertEquals("Back Squat", exercise.getName());
-    }
-
-    @Test
-    public void testGetSets() {
-        assertEquals(3, exercise.getSets());
-    }
-
-    @Test
-    public void testGetRepMin() {
-        assertEquals(8, exercise.getRepMin());
-    }
-
-    @Test
-    public void testGetRepMax() {
-        assertEquals(12, exercise.getRepMax());
-    }
-
-    @Test
-    public void testGetWeight() {
-        assertEquals(100, exercise.getWeight());
-    }
-
-    @Test
-    public void testExerciseConstructor() {
-        Exercise newExercise = new Exercise("Bench Press", 4, 6, 10, 135);
-        assertEquals("Bench Press", newExercise.getName());
-        assertEquals(4, newExercise.getSets());
-        assertEquals(6, newExercise.getRepMin());
-        assertEquals(10, newExercise.getRepMax());
-        assertEquals(135, newExercise.getWeight());
-    }
+  @Test
+  public void testExerciseConstructor() {
+    Exercise newExercise = new Exercise(
+            "Bench Press", SETS_TEST, REPMIN_TEST, REPMAX_TEST, WEIGHT_TEST);
+    assertEquals("Bench Press", newExercise.name());
+    assertEquals(SETS_TEST, newExercise.sets());
+    assertEquals(REPMIN_TEST, newExercise.repMin());
+    assertEquals(REPMAX_TEST, newExercise.repMax());
+    assertEquals(WEIGHT_TEST, newExercise.weight());
+  }
 }

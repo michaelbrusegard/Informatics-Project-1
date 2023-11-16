@@ -1,0 +1,98 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+component jackson {
+component node16 as "annotation"
+component node10 as "core"
+component node15 as "databind"
+}
+component core {
+package workoutplanner.core
+package workoutplanner.json
+}
+component fxui {
+package workoutplanner.fxui
+}
+component fxutil {
+package workoutplanner.fxutil
+}
+component restapi {
+package workoutplanner.restapi
+}
+component java {
+component node18 as "datatransfer"
+component node3 as "desktop"
+component node5 as "logging"
+component node20 as "prefs"
+component node13 as "scripting"
+component node14 as "sql"
+component node12 as "transaction.xa"
+component node1 as "xml"
+}
+
+component javafx {
+component node23 as "base"
+component node6 as "controls"
+component node8 as "fxml"
+component node19 as "graphics"
+}
+
+component jdk {
+component node9 as "jfr"
+component node0 as "unsupported"
+}
+
+component springboot {
+component node2 as "boot" {
+component node21 as "autoconfigure"
+}
+component node4 as "web"
+}
+
+
+node16   -[#595959,plain]->  node15
+node10   -[#595959,plain]->  node15
+node15   -[#595959,plain]->  workoutplanner.json
+node15   -[#595959,plain]->  workoutplanner.fxui
+node15   -[#595959,plain]->  workoutplanner.restapi
+workoutplanner.core     -[#595959,plain]->  workoutplanner.fxui
+workoutplanner.core     -[#595959,plain]->  workoutplanner.restapi
+workoutplanner.fxutil   -[#595959,plain]->  workoutplanner.fxui
+node18   -[#595959,plain]->  node3
+node3    -[#595959,dashed]->  node15
+node3    -[#595959,plain]->  node23
+node3    -[#595959,plain]->  node19
+node5    -[#595959,plain]->  workoutplanner.core
+node5    -[#595959,plain]->  workoutplanner.json
+node5    -[#595959,plain]->  workoutplanner.fxui
+node5    -[#595959,plain]->  node14
+node5    -[#595959,plain]->  workoutplanner.restapi
+node20   -[#595959,plain]->  node3
+node13   -[#595959,plain]->  node8
+node14   -[#595959,dashed]->  node15
+node12   -[#595959,plain]->  node14
+node1    -[#595959,dashed]->  node15
+node1    -[#595959,plain]->  node3
+node1    -[#595959,plain]->  node20
+node1    -[#595959,plain]->  node14
+node1    -[#595959,plain]->  node8
+node1    -[#595959,plain]->  node19
+node23   -[#595959,plain]->  node6
+node23   -[#595959,plain]->  node8
+node23   -[#595959,plain]->  node19
+node6    -[#595959,plain]->  workoutplanner.fxui
+node6    -[#595959,plain]->  workoutplanner.fxutil
+node8    -[#595959,plain]->  workoutplanner.fxui
+node19   -[#595959,plain]->  node6
+node19   -[#595959,plain]->  node8
+node9    -[#595959,dashed]->  node23
+node0    -[#595959,plain]->  node19
+node2    -[#595959,plain]->  workoutplanner.restapi
+node21   -[#595959,plain]->  workoutplanner.restapi
+node4    -[#595959,plain]->  workoutplanner.restapi
+workoutplanner.core -[#595959,plain]-> workoutplanner.json
+workoutplanner.json -[#595959,plain]-> workoutplanner.core
+@enduml

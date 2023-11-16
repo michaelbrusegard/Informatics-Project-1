@@ -1,10 +1,10 @@
-module workoutplanner.ui {
-    requires javafx.base;
+module fxui {
     requires javafx.controls;
     requires javafx.fxml;
-    requires transitive workoutplanner.core;
-    requires fxutil;
-    requires com.fasterxml.jackson.core;
     requires com.fasterxml.jackson.databind;
-    opens workoutplanner.ui to javafx.graphics, javafx.fxml;
+    requires core;
+    requires fxutil;
+  requires java.logging;
+
+  opens workoutplanner.fxui to javafx.graphics, javafx.fxml;
 }
