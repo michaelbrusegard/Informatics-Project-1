@@ -5,6 +5,8 @@ import java.util.List;
 public class ValidateEndpoints {
   private static final int LIMIT = 5000;
 
+  private static final int MAX_NAME_LENGTH = 20;
+
   public static boolean validateExerciseInput(final String name, final int sets, final int repMin, final int repMax,
       final int weight,
       final List<String> validNames) {
@@ -48,6 +50,7 @@ public class ValidateEndpoints {
 
   public static boolean validateSaveWorkoutInput(final String name,
       final String date, final List<String> usedNames) {
-    return name != null && !usedNames.contains(name) && date != null && !date.isEmpty();
+    return name != null && !usedNames.contains(name) && name.length() < MAX_NAME_LENGTH && date != null
+        && !date.isEmpty();
   }
 }
