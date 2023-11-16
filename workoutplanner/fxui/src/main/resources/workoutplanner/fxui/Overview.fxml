@@ -37,7 +37,7 @@
       <padding>
          <Insets bottom="20.0" top="20.0"/>
       </padding>
-      <Button mnemonicParsing="false" onAction="#addExercises" style="-fx-pref-width: 100;"
+      <Button mnemonicParsing="false" onAction="#addExercises" style="-fx-pref-width: 110;-fx-pref-height: 40;"
               styleClass="regularButton" stylesheets="@style.css" text="Add Exercises" textFill="WHITE">
          <HBox.margin>
             <Insets left="20.0" right="20.0"/>
@@ -48,8 +48,8 @@
             <Font size="24.0"/>
          </font>
       </Text>
-      <Button mnemonicParsing="false" onAction="#returnWorkoutView" prefHeight="32.0" prefWidth="100.0"
-              style="-fx-border-radius: 20; -fx-pref-width: 100;" styleClass="inverseButton" stylesheets="@style.css"
+      <Button mnemonicParsing="false" onAction="#returnWorkoutView" style="-fx-pref-width: 120;-fx-pref-height: 40;"
+               styleClass="inverseButton" stylesheets="@style.css"
               text="All Workouts">
          <HBox.margin>
             <Insets left="20.0" right="40.0"/>
