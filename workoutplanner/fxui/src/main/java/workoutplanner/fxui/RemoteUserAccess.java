@@ -50,8 +50,7 @@ public class RemoteUserAccess implements UserAccess {
   /**
    * Local Logger variable, used to log exceptions.
    */
-  private static final Logger LOGGER =
-          Logger.getLogger(RemoteUserAccess.class.getName());
+  private static final Logger LOGGER = Logger.getLogger(RemoteUserAccess.class.getName());
 
   /**
    * Constructs a new instance of the RemoteUserAccess class.
@@ -71,8 +70,7 @@ public class RemoteUserAccess implements UserAccess {
 
   private Reader httpGetRequest(final String path) throws IOException {
     URI uri = baseUri.resolve("/user" + path);
-    HttpURLConnection connection =
-            (HttpURLConnection) uri.toURL().openConnection();
+    HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection();
     connection.setRequestProperty("Accept", "application/json");
 
     InputStream responseStream = connection.getInputStream();
@@ -82,8 +80,7 @@ public class RemoteUserAccess implements UserAccess {
   private HttpURLConnection httpPutRequest(final String path)
       throws IOException {
     URI uri = baseUri.resolve("/user" + path);
-    HttpURLConnection connection =
-            (HttpURLConnection) uri.toURL().openConnection();
+    HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection();
     connection.setDoOutput(true);
     connection.setRequestProperty("Content-Type", "application/json");
     connection.setRequestMethod("PUT");
@@ -93,8 +90,7 @@ public class RemoteUserAccess implements UserAccess {
   private HttpURLConnection httpDeleteRequest(final String path)
       throws IOException {
     URI uri = baseUri.resolve("/user" + path);
-    HttpURLConnection connection =
-            (HttpURLConnection) uri.toURL().openConnection();
+    HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection();
     connection.setDoOutput(true);
     connection.setRequestProperty("Content-Type", "application/json");
     connection.setRequestMethod("DELETE");
@@ -132,7 +128,7 @@ public class RemoteUserAccess implements UserAccess {
    * Retrieves the list of exercises from the remote server.
    *
    * <p>
-   * This method sends an HTTP GET request to the "/exercise-list" endpoint
+   * This method sends a HTTP GET request to the "/exercise-list" endpoint
    * of the remote server to fetch the list of available exercises. It uses the
    * ObjectMapper to deserialize the response content into a List of Strings.
    * </p>
@@ -157,7 +153,7 @@ public class RemoteUserAccess implements UserAccess {
    * Retrieves the saved state of the current workout from the remote server.
    *
    * <p>
-   * This method sends an HTTP GET request to the "/current-workout/saved"
+   * This method sends a HTTP GET request to the "/current-workout/saved"
    * endpoint of the remote server to fetch the saved state of the current
    * workout. It uses the ObjectMapper to deserialize the response content into
    * a Boolean.
@@ -176,7 +172,7 @@ public class RemoteUserAccess implements UserAccess {
     } catch (IOException e) {
       LOGGER.log(Level.SEVERE, "Error getting current workout saved state.", e);
       throw new RuntimeException(
-              "Error getting current workout saved state.", e);
+          "Error getting current workout saved state.", e);
     }
   }
 
@@ -184,7 +180,7 @@ public class RemoteUserAccess implements UserAccess {
    * Retrieves the exercise count of the current workout from the remote server.
    *
    * <p>
-   * This method sends an HTTP GET request to the
+   * This method sends a HTTP GET request to the
    * "/current-workout/exercise-count" endpoint of the remote server to fetch
    * the count of exercises in the current workout. It uses the ObjectMapper to
    * deserialize the response content into an integer.
@@ -202,9 +198,9 @@ public class RemoteUserAccess implements UserAccess {
       return objectMapper.readValue(reader, int.class);
     } catch (IOException e) {
       LOGGER.log(Level.SEVERE,
-              "Error getting current workout exercise count.", e);
+          "Error getting current workout exercise count.", e);
       throw new RuntimeException(
-              "Error getting current workout exercise count.", e);
+          "Error getting current workout exercise count.", e);
     }
   }
 
@@ -212,7 +208,7 @@ public class RemoteUserAccess implements UserAccess {
    * Retrieves the name of the current workout from the remote server.
    *
    * <p>
-   * This method sends an HTTP GET request to the "/current-workout/name"
+   * This method sends a HTTP GET request to the "/current-workout/name"
    * endpoint of the remote server to fetch the name of the current workout.
    * It uses the ObjectMapper to deserialize the response content into a String.
    * </p>
@@ -238,7 +234,7 @@ public class RemoteUserAccess implements UserAccess {
    * the remote server.
    *
    * <p>
-   * This method sends an HTTP GET request to the
+   * This method sends a HTTP GET request to the
    * "/current-workout/exercise/{exerciseIndex}" endpoint of the remote server
    * with the specified attribute to fetch the corresponding attribute value of
    * the exercise in the current workout. It uses the ObjectMapper to
@@ -254,17 +250,17 @@ public class RemoteUserAccess implements UserAccess {
    */
   @Override
   public String getCurrentWorkoutExerciseAttribute(final int exerciseIndex,
-                                                   final String attribute) {
+      final String attribute) {
     Reader reader;
     try {
       reader = httpGetRequest("/current-workout/exercise/"
-              + exerciseIndex + "/?attribute=" + attribute);
+          + exerciseIndex + "/?attribute=" + attribute);
       return objectMapper.readValue(reader, String.class);
     } catch (IOException e) {
       LOGGER.log(Level.SEVERE,
-              "Error getting current workout exercise " + attribute + ".", e);
+          "Error getting current workout exercise " + attribute + ".", e);
       throw new RuntimeException(
-              "Error getting current workout exercise " + attribute + ".", e);
+          "Error getting current workout exercise " + attribute + ".", e);
     }
   }
 
@@ -272,7 +268,7 @@ public class RemoteUserAccess implements UserAccess {
    * Retrieves a list of workout names from the remote server.
    *
    * <p>
-   * This method sends an HTTP GET request to the "/workout/names" endpoint
+   * This method sends a HTTP GET request to the "/workout/names" endpoint
    * of the remote server to fetch the names of all available workouts.
    * It uses the ObjectMapper to deserialize the response content into a List
    * of Strings.
@@ -298,7 +294,7 @@ public class RemoteUserAccess implements UserAccess {
    * Retrieves a list of workout dates from the remote server.
    *
    * <p>
-   * This method sends an HTTP GET request to the "/workout/dates" endpoint
+   * This method sends a HTTP GET request to the "/workout/dates" endpoint
    * of the remote server to fetch the dates of all available workouts.
    * It uses the ObjectMapper to deserialize the response content into a List
    * of Strings.
@@ -324,7 +320,7 @@ public class RemoteUserAccess implements UserAccess {
    * Sets the current workout on the remote server.
    *
    * <p>
-   * This method sends an HTTP PUT request to the
+   * This method sends a HTTP PUT request to the
    * "/current-workout/{workoutIndex}" endpoint of the remote server to set the
    * current workout based on the provided index. It checks for errors in the
    * response using the handleError method.
@@ -350,7 +346,7 @@ public class RemoteUserAccess implements UserAccess {
    * Adds a new exercise to the current workout on the remote server.
    *
    * <p>
-   * This method sends an HTTP PUT request to the "/current-workout/exercise"
+   * This method sends a HTTP PUT request to the "/current-workout/exercise"
    * endpoint of the remote server with the specified parameters to add a new
    * exercise to the current workout. It uses the handleError method to check
    * for errors in the response.
@@ -389,7 +385,7 @@ public class RemoteUserAccess implements UserAccess {
    * Moves an exercise within the current workout on the remote server.
    *
    * <p>
-   * This method sends an HTTP PUT request to the
+   * This method sends a HTTP PUT request to the
    * "/current-workout/exercise/{exerciseIndex}?left={left}" endpoint of the
    * remote server to move the specified exercise either to the left or right
    * within the current workout. It uses the handleError method to check for
@@ -420,7 +416,7 @@ public class RemoteUserAccess implements UserAccess {
    * Saves the current workout on the remote server.
    *
    * <p>
-   * This method sends an HTTP PUT request to the
+   * This method sends a HTTP PUT request to the
    * "/current-workout/save?name={name}&date={date}" endpoint of the remote
    * server to save the current workout with the specified name and date. It
    * uses the handleError method to check for errors in the response.
@@ -449,7 +445,7 @@ public class RemoteUserAccess implements UserAccess {
    * Removes a workout from the remote server.
    *
    * <p>
-   * This method sends an HTTP DELETE request to the "/workout/{workoutIndex}"
+   * This method sends a HTTP DELETE request to the "/workout/{workoutIndex}"
    * endpoint of the remote server to remove the workout at the specified index.
    * It uses the handleError method to check for errors in the response.
    * </p>
@@ -474,7 +470,7 @@ public class RemoteUserAccess implements UserAccess {
    * Removes the current workout from the remote server.
    *
    * <p>
-   * This method sends an HTTP DELETE request to the "/current-workout" endpoint
+   * This method sends a HTTP DELETE request to the "/current-workout" endpoint
    * of the remote server to remove the current workout. It uses the handleError
    * method to check for errors in the response.
    * </p>
@@ -497,7 +493,7 @@ public class RemoteUserAccess implements UserAccess {
    * Removes an exercise from the current workout on the remote server.
    *
    * <p>
-   * This method sends an HTTP DELETE request to the
+   * This method sends a HTTP DELETE request to the
    * "/current-workout/exercise/{exerciseIndex}" endpoint of the remote server
    * to remove the specified exercise from the current workout. It uses the
    * handleError method to check for errors in the response.
@@ -524,7 +520,7 @@ public class RemoteUserAccess implements UserAccess {
    * Deletes unsaved workouts from the remote server.
    *
    * <p>
-   * This method sends an HTTP DELETE request to the "/workouts/delete-unsaved"
+   * This method sends a HTTP DELETE request to the "/workouts/delete-unsaved"
    * endpoint of the remote server to delete any unsaved workouts. It uses the
    * handleError method to check for errors in the response.
    * </p>
@@ -535,8 +531,7 @@ public class RemoteUserAccess implements UserAccess {
   @Override
   public void deleteUnsavedWorkouts() {
     try {
-      HttpURLConnection connection =
-              httpDeleteRequest("/workouts/delete-unsaved");
+      HttpURLConnection connection = httpDeleteRequest("/workouts/delete-unsaved");
       handleError(connection);
     } catch (IOException e) {
       LOGGER.log(Level.SEVERE, "Error deleting unsaved workouts.", e);
