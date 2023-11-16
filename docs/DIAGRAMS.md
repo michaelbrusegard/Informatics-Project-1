@@ -21,3 +21,25 @@ The following package diagram shows a representation of the module and package a
 ![Package Diagram](../concepts/package.png)
 
 The arrows point towards the component which implements it.
+For improved readability and relevance, modules like java,
+jdk and subcomponents of jackson, springboot and javafx, have been removed from the diagram.
+To view a complete version of the diagram, view the PackageDiagramComplete.puml file.
+
+## Class Diagram and Object Diagram
+
+The following object diagram shows the dependencies between the different classes
+that are important for the functionality of the program. 
+![Object Diagram](../concepts/ObjectDiagramNew.png)
+
+
+The following class diagrams shows the two core functionalities of the application.
+![Class Diagram Core](../concepts/ClassDiagramCore.png)
+![Class Diagram Fxui](../concepts/ClassDiagramFxui.png)
+
+The following class diagram is a combination of the three previous diagrams to show a broader view of the application.
+The reason the diagram was split up and shown as three pictures was because of readability.
+![Class Diagram](../concepts/ClassDiagram.png)
+
+For a full diagram including all classes as well as their dependencies, view the ClassDiagramComplete.puml file.
+
+

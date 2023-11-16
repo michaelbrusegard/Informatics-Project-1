@@ -25,4 +25,4 @@ We have tests for the different modules, including TestFX in the fxui module. We
 
 There is an .md file in each of the modules that explains the classes and what they do. We have focused on working in pairs, on different parts of the modules. For example did some of us work on the overview, while others worked at planview. We have done it so that spotbugs must be clean for the program to run.
 We have also created an object diagram for the code:
-![Diagram](../concepts/objectDiagram.png)
+![Diagram](../../concepts/objectDiagram.png)

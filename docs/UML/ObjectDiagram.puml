@@ -1,0 +1,37 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class BaseController
+entity Exercise << record >>
+class ExerciseViewController
+class FxmlControllerPair
+class HomeController
+class MainController
+class OverviewController
+class RemoteUserAccess
+class User
+interface UserAccess << interface >>
+class UserController
+class Workout
+class WorkoutViewController
+BaseController             "1" *-[#595959,plain]-> "mainController\n1" MainController
+ExerciseViewController      -[#000082,plain]-^  BaseController
+FxmlControllerPair         "1" *-[#595959,plain]-> "baseController\n1" BaseController
+HomeController              -[#000082,plain]-^  BaseController
+MainController             "1" *-[#595959,plain]-> "exerciseViewController\n1" ExerciseViewController
+MainController             "1" *-[#595959,plain]-> "fxmlControllerMap\n*" FxmlControllerPair
+MainController             "1" *-[#595959,plain]-> "homeController\n1" HomeController
+MainController             "1" *-[#595959,plain]-> "overviewController\n1" OverviewController
+MainController             "1" *-[#595959,plain]-> "user\n1" UserAccess
+MainController             "1" *-[#595959,plain]-> "workoutViewController\n1" WorkoutViewController
+OverviewController          -[#000082,plain]-^  BaseController
+RemoteUserAccess            -[#008200,dashed]-^  UserAccess
+User                        -[#008200,dashed]-^  UserAccess
+User                       "1" *-[#595959,plain]-> "workouts\n*" Workout
+UserController             "1" *-[#595959,plain]-> "user\n1" User
+Workout                    "1" *-[#595959,plain]-> "exercises\n*" Exercise
+WorkoutViewController       -[#000082,plain]-^  BaseController
+@enduml

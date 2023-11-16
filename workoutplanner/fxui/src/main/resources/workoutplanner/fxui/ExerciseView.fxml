@@ -104,7 +104,7 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <Button mnemonicParsing="false" fx:id="addExercise" onAction="#addExercise" style="-fx-background-color: #FF7B7B; -fx-pref-width: 90;" styleClass="regularButton" stylesheets="@style.css" text="Add Exercise" textFill="WHITE">
+                  <Button mnemonicParsing="false" fx:id="addExercise" onAction="#addExercise" style="-fx-background-color: #FF7B7B; -fx-pref-width: 110;-fx-pref-height: 40;" styleClass="regularButton" stylesheets="@style.css" text="Add Exercise" textFill="WHITE">
                      <VBox.margin>
                         <Insets bottom="30.0" />
                      </VBox.margin>
