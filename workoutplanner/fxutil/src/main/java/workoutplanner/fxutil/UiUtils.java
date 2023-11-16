@@ -27,6 +27,9 @@ public final class UiUtils {
             "Utility class should not be instantiated.");
   }
 
+  /**
+   * Local alert variable, used to display alerts.
+   */
   private static Alert alert;
 
   /**
@@ -57,11 +60,22 @@ public final class UiUtils {
     alert.showAndWait();
   }
 
-  private static void setAlert(Alert newAlert) {
+  private static void setAlert(final Alert newAlert) {
     alert = newAlert;
   }
 
-  public static Alert getAlert(){
+
+  /**
+   * Retrieves the Alert instance.
+   *
+   * <p>
+   * This method returns the singleton instance of the Alert class. The Alert
+   * class is used for handling alert messages in the application.
+   * </p>
+   *
+   * @return The singleton instance of the Alert class.
+   */
+  public static Alert getAlert() {
     return alert;
   }
 

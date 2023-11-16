@@ -141,8 +141,8 @@ public class ExerciseViewController extends BaseController {
         return;
       }
     }
-      // Clear the input fields so a new exercise can be added
-      clearInputFields();
+    // Clear the input fields so a new exercise can be added
+    clearInputFields();
   }
 
   // When the user clicks the cancel button

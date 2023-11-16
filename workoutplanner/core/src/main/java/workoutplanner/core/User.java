@@ -407,9 +407,4 @@ public class User implements UserAccess {
     }
     return null;
   }
-
-  //Needed for testing:)
-  public int getCurrentWorkoutIndex() {
-    return currentWorkoutIndex;
-  }
 }

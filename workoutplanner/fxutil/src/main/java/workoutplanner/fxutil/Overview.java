@@ -69,8 +69,7 @@ public final class Overview {
         return true;
       }
       return true;
-    }
-    catch (IllegalStateException e){
+    } catch (IllegalStateException e) {
       if (inpName.getText().isEmpty() && saved) {
         return false;
       } else if (inpName.getText().length() >= CHARLIMIT) {
