@@ -1,64 +1,148 @@
 # About this module
 
-In this module all the fx-objects gets handled. This means the app, controllers, cells and handlers.
+In this module all the ui gets handled. This means most of the frontend, meaning the app and controllers. It has a resources folder containing all the fxml files, where the `Main.fxml` contains the other fxml-views.
 
 ## links
 
-## fxui
+## BaseController
 
-### BaseController
 The BaseController class is a superclass of the other controller classes
 and determines the base functionality of all controller classes.
 
-#### BaseController-Fields
+### BaseController-Fields
 
-- mainController - Holds the instance of the MainController for program-wide access.
+- (`MainController`) mainController - Holds the instance of the MainController for program-wide access.
 
-#### BaseController-Methods
+### BaseController-Methods
 
 - getMainController(): returns the MainController
 - setMainController(): sets the MainController for a sub-controller
 - init(): base initialization method to be overwritten by sub-controllers.
 
-### ExerciseViewController
-The ExerciseViewController class operates the ExerciseView page and delegates all the tasks related to that page.
+## ExerciseViewController
 
-#### ExerciseViewController-Fields
-- sets, repMin, repMax, weight and name - The different input variables for an Exercise object.
-- list - a list of exercises.
-- cancelButton - a button to cancel the creation of a workout.
+The ExerciseViewController class operates the ExerciseView page.
+
+### ExerciseViewController-Fields
+
+- (`TextField`) sets, repMin, repMax, weight and (`Text`) name - The different input variables for an `Exercise` object.
+- (`ListView<String>`) list - a list of exercises.
+- (`Button`) cancelButton - a button to cancel the creation of a workout.
 
 #### ExerciseViewController-Methods
+
 - initialize(): initializes the controller and set up the user interface
-- addExercises(): adds an exercise
+- addExercises(): adds an exercise to the list of exercises
 - cancel(): cancels the creation of a workout
 - finish(): finishes the creation of a workout
 - init(): initializes the controller's state and UI elements
 - clearInputFields(): clears the input-fields.
 
 ### FxmlControllerPair
-The FxmlControllerPair class maintains the association  
+
+The FxmlControllerPair class maintains the association between an FXML file and its Controller. This is a delegate that shows and hides fxml-views based on input.
+
+#### FxmlControllerPair-Fields
+
+- (`VBox`) fxml - the fxml being displayed
+- (`BaseController`) baseController - the baseController connected to fxml
+
+#### FxmlControllerPair-Constructor
+
+Creates a new `FxmlControllerPair` object, which associates an FXML view with a BaseController and MainController. It then sets the proper visibility of the different fxml-views.
+
+#### FxmlControllerPair-Methods
+
+- show(): shows the baseController and calls its init function
+- hide(): sets the visibility to false for the controller
 
 ### HomeController
-The HomeController class operates the Home page and delegates all the tasks related to that page.
+
+The HomeController class operates the Home page and delegates all the tasks related to that page. It has two buttons, one for showing all workouts and the other for creating a new workout.
+
+#### HomeController-Methods
+
+- createNewWorkout(): Takes you to the `ExerciseView`
+- showAllWorkouts(): Takes you to `WorkoutView`
+- init(): initializes the controller by setting the current workout to 0 and deleting unsaved workouts.
 
 ### MainController
-The MainController class delegates the different pages of the application to the different controllers.
-It contains the controllers in a registry, and switches between them depending on the user input.
+
+The MainController class delegates the different pages of the application to the different controllers. This acts as a hub for the controllers, where it has a method for which view to show.
+It has a constructor that initialises the remote URL if backend is activated, otherwise it initializes a new `User` object.
+
+#### MainController-Fields
+
+- All the different controllers as separate variables
+- All the fxml files connected to each controller as separate variables
+- (`UserAccess`) user - the `User` object
+- (`Map<String, FxmlControllerPair>`) fxmlControllerMap - maps the specific controller based on the string
+
+#### MainController-Methods
+
+- initialize(): runs as soon as the program is started, it adds all the overviews to the map, and runs showFxml
+- showFxml(): takes the given controller-name and shows it. It also hides the previous fxml.
 
 ### OverviewController
-The OverviewController class operates the overview page and delegates all the tasks related to that page.
+
+The OverviewController class operates the overview page and shows a grid of selected exercises for the current workout.
+
+#### OverviewController-Fields
+
+- (`VBox`) saveWorkoutNameBox - Box for when you are creating a workout
+- (`HBox`) workoutInfoBox - Box for when you are editing a workout
+- (`ScrollPane`) scrollPane - pane where the grid is added
+- (`TextField`) inputName - Where you add the name of your workout
+- (`Text`) name - The name of your workout
+
+#### OverviewController-Methods
+
+- cancel(): Cancels the creation of a workout and returns you to `Home`
+- save(): Saves the workout and shows the `WorkoutView`
+- returnWorkoutView(): Action for button that takes you to `WorkoutView`
+- addExercise(): Action for button that takes you to `ExerciseView` to add exercises
+- init(): Initializes the overview and starts the grid
+- buildGrid(): Creates the grid using the `GridBuilder` class in fxutil
+- createCell(): Creates a cell based on index consisting of each value of the `Exercise`
+- move(): Moves an `Exercise` left or right
 
 ### RemoteUserAccess
-The RemoteUserAccess class handles the communication to the backend
-to get the information about the objects needed to run the application.
+
+This is a `UserAccess` object that handles the communication with the backend. It is through this the backend receives requests.
+It takes a URI as an input and saves it as the baseUri.
+
+#### RemoteUserAccess-Fields
+
+- (`URI`) baseUri - Local URI variable used for pathing
+- (`ObjectMapper`) objectMapper - A class from the jacksonlibrary used for persistence
+- (`Logger`) LOGGER - used for logging exceptions
+
+#### RemoteUserAccess-Methods
+
+- httpGetRequest(): sends a get request made with the specified path and `"/user"`.
+- httpPutRequest() and httpDeleteRequest() are similar methods as httpGetRequest()
+- handleError(): handles the connection and checks if it is valid
+- getters and setters for most of the values of a workout using requests.
 
 ### WorkoutPlannerApp
-The WorkoutPlannerApp class runs the application.
+
+The WorkoutPlannerApp class runs the application with the `Application` start method. Here we define the size of the stage, and run the main function to launch the app.
 
 ### WorkoutViewController
-The WorkoutViewController class operates the WorkoutView page and delegates the tasks related to that page.
 
-## Resources
+The WorkoutViewController class operates the WorkoutView page and delegates the tasks related to that page. This shows a grid of all workouts. You have the option of viewing or deleting a `Workout` from the grid.
 
-In resources folder contains all the fxml for all the pages as well as the style sheet for the application.
+#### WorkoutViewController-Fields
+
+- (`ScrollPane`) scrollPane - Pane where the grid is added
+- (`List<String>`) workoutNames - List of all the workouts names
+- (`List<String>`) workoutDates - List of all the workouts dates
+
+#### WorkoutViewController-Methods
+
+- returnHome(): Action whyen clicking button, that moves you to `Home`
+- init(): Initializes the `WorkoutView` and starts the grid
+- buildGrid(): Creates the grid using the `GridBuilder` class in fxutil
+- createCell(): Creates a cell based on index consisting of the `date` and `name` of the `Workout`
+- view(): Action when clicking "view" button. Takes you to the specific workout
+  
