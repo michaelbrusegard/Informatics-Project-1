@@ -68,6 +68,16 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.10</version>
+                <executions>
+                <execution>
+                    <id>jacoco-prepare-agent-core</id>
+                    <phase>process-test-classes</phase>
+                    <goals>
+                        <goal>prepare-agent</goal>
+                    </goals>
+                </execution>
+                </executions>
             </plugin>
         </plugins>
 

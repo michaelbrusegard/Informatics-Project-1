@@ -13,7 +13,7 @@
       fx:controller="workoutplanner.fxui.WorkoutViewController">
    <HBox alignment="CENTER_LEFT" minHeight="-Infinity" prefHeight="80.0" prefWidth="600.0" styleClass="container"
          stylesheets="@style.css">
-      <Button mnemonicParsing="false" onAction="#returnHome" style="-fx-border-radius: 20;"
+      <Button mnemonicParsing="false" fx:id="returnHome" onAction="#returnHome" style="-fx-border-radius: 20;"
               styleClass="inverseButton" stylesheets="@style.css" text="Home">
          <HBox.margin>
             <Insets left="20.0" right="40.0"/>
@@ -28,6 +28,6 @@
          </font>
       </Text>
    </HBox>
-   <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" pannable="true" prefHeight="600.0"
+   <ScrollPane fx:id="workoutViewScrollPane" fitToHeight="true" fitToWidth="true" pannable="true" prefHeight="600.0"
                prefWidth="600.0"/>
 </VBox>

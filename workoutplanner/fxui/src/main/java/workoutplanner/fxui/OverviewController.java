@@ -32,7 +32,7 @@ import workoutplanner.fxutil.UiUtils;
  * @version 2.0.0
  */
 public class OverviewController extends BaseController {
-  /**
+   /**
    * Imported VBox from javaFx, used to contain the viewable page.
    */
   @FXML
@@ -46,7 +46,7 @@ public class OverviewController extends BaseController {
    * Imported GridPane from javaFx, used to make a grid scrollable.
    */
   @FXML
-  private ScrollPane scrollPane;
+  private ScrollPane overviewScrollPane;
   /**
    * Imported TextField from javaFx, used for naming workout.
    */
@@ -185,9 +185,9 @@ public class OverviewController extends BaseController {
   }
 
   private void buildGrid() {
-    scrollPane.setContent(new VBox());
+    overviewScrollPane.setContent(new VBox());
     // Create grid
-    new GridBuilder(scrollPane,
+    new GridBuilder(overviewScrollPane,
         getMainController().getUser().getCurrentWorkoutExerciseCount(),
         this::createCell);
   }
