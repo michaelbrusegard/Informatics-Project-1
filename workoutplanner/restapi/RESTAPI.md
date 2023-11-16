@@ -14,11 +14,12 @@ The main method is what runs springboot using `SpringApplication.run()`, which i
 
 ## ValidateEndpoints
 
-This is a class that provides static methods for validating the endpoints. This is a class used in the `UserController` class for validation.
+This is a class that provides static methods for validating the endpoints. It is used in the `UserController` class for validation.
 
 ### ValidateEndpoints-fields
 
 - (`int`) LIMIT - A limit for what is valid values for the integers in `Exercise` based on endpoint.
+- (`int`) MAX_NAME_LENGTH - A limit for the length of the name of an Exercise.
 
 ### ValidateEndpoints-methods
 
