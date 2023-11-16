@@ -1,6 +1,6 @@
 # About this module
 
-In this module all the ui gets handled. This means most of the frontend, meaning the app and controllers. It has a resources folder containing all the fxml files, where the `Main.fxml` contains the other fxml-views.
+In this module, all the ui gets handled. This means most of the frontend, meaning the app and controllers. It has a resources folder containing all the fxml files, where the `Main.fxml` contains the other fxml-views.
 
 ## Links
 
@@ -28,7 +28,7 @@ and determines the base functionality of all controller classes.
 - setMainController(): sets the MainController for a sub-controller
 - init(): base initialization method to be overwritten by sub-controllers.
 
-`init()` is a function used in a lot of controllers in this app. The reason we have this method instead of `initialize()` is because the initialize function runs at the moment you start the app, resluting in a grid made before any workoutobjects or exerciseobjects are added. What we instead want is for the controllers to initialize when we f.ex. press a save button.
+`init()` is a function used in a lot of controllers in this app. The reason we have this method instead of `initialize()` is because the initialize function runs at the moment you start the app, resulting in a grid made before any workout-objects or exercise-objects are added. What we instead want is for the controllers to initialize when we f.ex. Press a save button.
 
 ## ExerciseViewController
 
@@ -42,7 +42,7 @@ The ExerciseViewController class operates the ExerciseView page.
 
 #### ExerciseViewController-Methods
 
-- initialize(): initializes the controller and set up the user interface
+- initialize(): initializes the controller and sets up the user interface
 - addExercises(): adds an exercise to the list of exercises
 - cancel(): cancels the creation of a workout
 - finish(): finishes the creation of a workout
@@ -65,7 +65,7 @@ Creates a new `FxmlControllerPair` object, which associates an FXML view with it
 #### FxmlControllerPair-Methods
 
 - show(): Shows the new fxml and calls its init function
-- hide(): sets visiblity false for the fxml.
+- hide(): sets visibility false for the fxml.
 
 ### HomeController
 
@@ -80,7 +80,7 @@ The HomeController class operates the Home page and delegates all the tasks rela
 ### MainController
 
 The MainController class delegates the different pages of the application to the different controllers. This acts as a hub for the controllers, where it has a method for which view to show.
-It has a constructor that initialises the remote URL if backend is activated, otherwise it initializes a new `User` object.
+It has a constructor that initializes the remote URL if backend is activated, otherwise it initializes a new `User` object.
 
 #### MainController-Fields
 
@@ -146,12 +146,12 @@ The WorkoutViewController class operates the WorkoutView page and delegates the 
 #### WorkoutViewController-Fields
 
 - (`ScrollPane`) scrollPane - Pane where the grid is added
-- (`List<String>`) workoutNames - List of all the workouts names
-- (`List<String>`) workoutDates - List of all the workouts dates
+- (`List<String>`) workoutNames - List of all the workouts' names
+- (`List<String>`) workoutDates - List of all the workouts' dates
 
 #### WorkoutViewController-Methods
 
-- returnHome(): Action whyen clicking button, that moves you to `Home`
+- returnHome(): Action when clicking button, that moves you to `Home`
 - init(): Initializes the `WorkoutView` and starts the grid
 - buildGrid(): Creates the grid using the `GridBuilder` class in fxutil
 - createCell(): Creates a cell based on index consisting of the `date` and `name` of the `Workout`
