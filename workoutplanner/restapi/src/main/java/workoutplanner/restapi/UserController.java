@@ -17,7 +17,7 @@ import workoutplanner.core.User;
 
 /**
  * <h1>RestController</h1>
- * Controller class for handling HTTP requests related to user workouts.
+ * Controller class for handling HTTP endpoints related to the user.
  *
  * <p>
  * This class defines RESTful endpoints for managing user workouts, including
@@ -44,8 +44,8 @@ public class UserController {
         private static final Logger LOGGER = Logger.getLogger(UserController.class.getName());
 
         /**
-         * Local ObjectMapper variable, used for handling objects that are sent
-         * between front and backend.
+         * Local ObjectMapper variable, used for serialising objects that are sent
+         * from the backend or recieved from the frontend.
          */
         private final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -55,7 +55,8 @@ public class UserController {
         protected static final String WORKOUTPLANNER_SERVICE_PATH = "user/";
 
         /**
-         * Local boolean variable, used for determining whether to log objects or not.
+         * Local boolean variable, used for determining whether to log the objects sent
+         * with each endpoint or not.
          */
         private final boolean logObjects;
 
@@ -65,7 +66,7 @@ public class UserController {
          * <p>
          * This constructor initializes a UserController object with default values.
          * It sets the logObjects flag to false and creates a new User object with
-         * default configurations (e.g., remote access enabled).
+         * default configurations (e.g., persistence enabled).
          * </p>
          */
         public UserController() {
