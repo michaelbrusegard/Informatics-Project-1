@@ -38,3 +38,10 @@ The workout class creates a workout that contains a list of exercises, as well a
 - (`List<Exercise>`) exercises
 
 The date is to see when the workout was created, the name is given in `Overview` to classify, and the list of exercises, are the exercises that shows up in the overview of plans.
+
+# Persistance
+
+Our app has implemented persistence via the library Jackson. This library serializes Java objects to a JSON format, and deserializes JSON back to Java objects. Therefore are additional deserializers and serializers unnecessary for the app.
+
+Because we have direct control over when and how the data is saved, the saving is explicit. Take the case where you save a workout. This runs the saveCurrentWorkout() function in User, which activates the persistence. This is the opposite of implicit saving, where data gets saved automatically.
+The presistence saves a list of workouts, making the document-metaphor work best. This is because you can look at the list of workouts as a document. This document is what gets serialized and deserialized, and makes the persistence simple by having only a list to save to and from.
