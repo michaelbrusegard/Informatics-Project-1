@@ -31,7 +31,7 @@ All the methods are static, and are used to validate the endpoints.
 
 ## UserController
 
-This is where all the endpoints are handled. We use GET, PUT, and DELETE to handle the endpoints.
+This is where all the endpoints are handled. We handle requests by exposing GET, PUT, and DELETE endpoints.
 
 ### UserController-fields
 
@@ -43,13 +43,13 @@ This is where all the endpoints are handled. We use GET, PUT, and DELETE to hand
 
 ### Overview over endpoints
 
-Here is an overview over the most important endpoints. We chose a lot of GET-requests because we only wanted to send the specific values required in a method, rather than an entire object each time.
+Here is an overview over the most important endpoints. We chose a lot of GET-endpoints because we only wanted to send the specific values required in a method, rather than storing a core object in the frontend. In hindsight this is less efficient and not that user-friendly if the client has bad internet. A better solution would be to define Data Transfer Objects.
 
 Instead of writing the methods, we choose to look at what happens at the endpoints at each request.
 
-#### GET-requests
+#### GET-endpoints
 
-Get-requests retrieves information from the specified endpoint.
+Get-endpoints retrieves information from the specified endpoint.
 
 - GET /current-workout/exercise-count: Retrieve the count of exercises in the current workout.
 
@@ -61,7 +61,7 @@ Get-requests retrieves information from the specified endpoint.
 
 #### PUT-requests
 
-PUT-requests updates and modifies the data at the endpoint.
+PUT-requests sends a request to the endpoint to update/modify data.
 
 - PUT /current-workout/{workoutIndex}: Set the current workout based on the provided index.
   
@@ -69,7 +69,7 @@ PUT-requests updates and modifies the data at the endpoint.
   
 #### DELETE-requests
 
-The DELETE-requests delete data at the specified endpoint.
+The DELETE-requests send a request to the delete endpoint to delete data.
 
 - DELETE /workout/{workoutIndex}: Remove a workout based on the provided index.
   
