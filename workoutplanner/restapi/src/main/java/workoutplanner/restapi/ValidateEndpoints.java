@@ -24,6 +24,12 @@ public final class ValidateEndpoints {
    */
   private static final int LIMIT = 5000;
 
+  /**
+   * Local int variable, used to define the maximum number of characters for a
+   * name.
+   */
+  private static final int MAX_NAME_LENGTH = 20;
+
   private ValidateEndpoints() {
     // Private constructor to prevent instantiation
     throw new UnsupportedOperationException(
@@ -146,7 +152,7 @@ public final class ValidateEndpoints {
    */
   public static boolean validateSaveWorkoutInput(final String name,
       final String date, final List<String> usedNames) {
-    return name != null && !usedNames.contains(name) && name.length() < MAX_NAME_LENGTH && date != null
-        && !date.isEmpty();
+    return name != null && !usedNames.contains(name) && name.length()
+            < MAX_NAME_LENGTH && date != null && !date.isEmpty();
   }
 }
