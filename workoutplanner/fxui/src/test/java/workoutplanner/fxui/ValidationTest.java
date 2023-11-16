@@ -26,7 +26,8 @@ public class ValidationTest extends FxTest {
   private void validateOverview() {
     //only static methods are tested here
     assertFalse(Overview.validateOverview(true, false, new TextField()));
-    assertFalse(Overview.validateOverview(true, true, new TextField("abcdefghijklmnopqrstuvwxyz")));
+    assertFalse(Overview.validateOverview(true, true,
+            new TextField("abcdefghijklmnopqrstuvwxyz")));
     assertTrue(Overview.validateOverview(true, false, new TextField("valid")));
     assertTrue(Overview.validateOverview(false, true, new TextField("valid")));
     assertTrue(Overview.validateOverview(false, false, new TextField("valid")));
@@ -36,7 +37,8 @@ public class ValidationTest extends FxTest {
     Integer invalidUnder = -1;
     Integer invalidOver = 5002;
     clickOn("#addExercise");
-    clickAndCheckAlert("Error", "Please select an exercise.", Alert.AlertType.ERROR);
+    clickAndCheckAlert("Error", "Please select an exercise.",
+            Alert.AlertType.ERROR);
     listView = getNode(ListView.class, "list");
     String exercise = listView.getItems().get(0);
     List<Integer> list = new ArrayList<>(List.of(3, 4, 5, 6));
@@ -46,28 +48,32 @@ public class ValidationTest extends FxTest {
     clickOn("#repMax").write(String.valueOf(list.get(2)));
     clickOn("#weight").write(String.valueOf(list.get(3)));
     clickOn("#addExercise");
-    clickAndCheckAlert("Error", "Please fill in all fields.", Alert.AlertType.ERROR);
+    clickAndCheckAlert("Error", "Please fill in all fields.",
+            Alert.AlertType.ERROR);
     clickOn(exercise);
     clickOn("#sets").write(String.valueOf(list.get(0)));
     clickOn("#repMin").write("");
     clickOn("#repMax").write(String.valueOf(list.get(2)));
     clickOn("#weight").write(String.valueOf(list.get(3)));
     clickOn("#addExercise");
-    clickAndCheckAlert("Error", "Please fill in all fields.", Alert.AlertType.ERROR);
+    clickAndCheckAlert("Error", "Please fill in all fields.",
+            Alert.AlertType.ERROR);
     clickOn(exercise);
     clickOn("#sets").write(String.valueOf(list.get(0)));
     clickOn("#repMin").write(String.valueOf(list.get(1)));
     clickOn("#repMax").write("");
     clickOn("#weight").write(String.valueOf(list.get(3)));
     clickOn("#addExercise");
-    clickAndCheckAlert("Error", "Please fill in all fields.", Alert.AlertType.ERROR);
+    clickAndCheckAlert("Error", "Please fill in all fields.",
+            Alert.AlertType.ERROR);
     clickOn(exercise);
     clickOn("#sets").write(String.valueOf(list.get(0)));
     clickOn("#repMin").write(String.valueOf(list.get(1)));
     clickOn("#repMax").write(String.valueOf(list.get(2)));
     clickOn("#weight").write("");
     clickOn("#addExercise");
-    clickAndCheckAlert("Error", "Please fill in all fields.", Alert.AlertType.ERROR);
+    clickAndCheckAlert("Error", "Please fill in all fields.",
+            Alert.AlertType.ERROR);
     clickOn(exercise);
     clickOn("#sets").write(String.valueOf("sets"));
     clickOn("#repMin").write(String.valueOf(list.get(1)));
@@ -103,7 +109,8 @@ public class ValidationTest extends FxTest {
     for (Integer value : list) {
       int index = list.indexOf(value);
       list.set(index, invalidUnder);
-      createWrongExercise(0, list.get(0), list.get(1), list.get(2), list.get(3));
+      createWrongExercise(
+              0, list.get(0), list.get(1), list.get(2), list.get(3));
       clickAndCheckAlert("Error",
               "You can't do negative reps or weight. "
                       + "Also, you need to have at least one set "
@@ -143,30 +150,46 @@ public class ValidationTest extends FxTest {
     assertEquals(exercise, getNode(Text.class, "name").getText());
     // Enter values in the input fields
     clickOn("#sets").write("3");
-    assertEquals(3, Integer.parseInt(Objects.requireNonNull(getNode(TextField.class, "sets")).getText()));
+    assertEquals(3,
+            Integer.parseInt(Objects.requireNonNull(getNode(TextField.class,
+                    "sets")).getText()));
     clickOn("#repMin").write("8");
-    assertEquals(8, Integer.parseInt(Objects.requireNonNull(getNode(TextField.class, "repMin")).getText()));
+    assertEquals(8,
+            Integer.parseInt(Objects.requireNonNull(getNode(TextField.class,
+                    "repMin")).getText()));
     clickOn("#repMax").write("12");
-    assertEquals(12, Integer.parseInt(Objects.requireNonNull(getNode(TextField.class, "repMax")).getText()));
+    assertEquals(12,
+            Integer.parseInt(Objects.requireNonNull(getNode(TextField.class,
+                    "repMax")).getText()));
     clickOn("#weight").write("20");
-    assertEquals(20, Integer.parseInt(Objects.requireNonNull(getNode(TextField.class, "weight")).getText()));
+    assertEquals(20,
+            Integer.parseInt(Objects.requireNonNull(getNode(TextField.class,
+                    "weight")).getText()));
     // Click on the "Add Exercise" button
     clickOn("#addExercise");
-    clickAndCheckAlert("Exercise Added", "Exercise has been added to the workout "
+    clickAndCheckAlert("Exercise Added",
+            "Exercise has been added to the workout "
             + "with the following details:\n\n"
             + "Name: " + alertItems.get(0) + "\n"
             + "Sets: " + alertItems.get(1) + "\n"
             + "Rep-range: " + alertItems.get(2) + "-" + alertItems.get(3) + "\n"
-            + "Weight: " + alertItems.get(4) + "kg", Alert.AlertType.INFORMATION);
-    assertEquals("", Objects.requireNonNull(getNode(TextField.class, "sets")).getText());
-    assertEquals("", Objects.requireNonNull(getNode(TextField.class, "repMin")).getText());
-    assertEquals("", Objects.requireNonNull(getNode(TextField.class, "repMax")).getText());
-    assertEquals("", Objects.requireNonNull(getNode(TextField.class, "weight")).getText());
+            + "Weight: " + alertItems.get(4) + "kg",
+            Alert.AlertType.INFORMATION);
+    assertEquals("", Objects.requireNonNull(getNode(TextField.class,
+            "sets")).getText());
+    assertEquals("", Objects.requireNonNull(getNode(TextField.class,
+            "repMin")).getText());
+    assertEquals("", Objects.requireNonNull(getNode(TextField.class,
+            "repMax")).getText());
+    assertEquals("", Objects.requireNonNull(getNode(TextField.class,
+            "weight")).getText());
     clickOn("#finishButton");
   }
 
-  private void createWrongExercise(final Integer listIndex, final Integer sets, final Integer repMin, final Integer repMax, final int weight) {
-    listView = getNode(ListView.class,"list");
+  private void createWrongExercise(final Integer listIndex, final Integer sets,
+                                   final Integer repMin, final Integer repMax,
+                                   final int weight) {
+    listView = getNode(ListView.class, "list");
     String exercise = listView.getItems().get(listIndex);
     clickOn(exercise);
     clickOn("#sets").write(String.valueOf(sets));
@@ -178,7 +201,7 @@ public class ValidationTest extends FxTest {
 
   //create exercise
   private void createExercises() {
-    listView = getNode(ListView.class,"list");
+    listView = getNode(ListView.class, "list");
     String exercise = listView.getItems().get(7);
     clickOn(exercise);
     clickOn("#sets").write("5");

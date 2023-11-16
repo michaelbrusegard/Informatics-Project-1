@@ -62,7 +62,8 @@ public abstract class FxTest extends ApplicationTest {
     clickOn("#alertButton");
   }
 
-  public void clickAndCheckConfirmation(final String title, final String message) {
+  public void clickAndCheckConfirmation(final String title,
+                                        final String message) {
     Alert.AlertType alertType = Alert.AlertType.CONFIRMATION;
     Alert confirmationAlert = UiUtils.getAlert();
     assertEquals(title, confirmationAlert.getTitle());
@@ -73,7 +74,8 @@ public abstract class FxTest extends ApplicationTest {
             .findFirst();
     if (okButton.isPresent()) {
       ButtonType buttonType = okButton.get();
-      Button okNode = (Button) confirmationAlert.getDialogPane().lookupButton(buttonType);
+      Button okNode = (Button)
+              confirmationAlert.getDialogPane().lookupButton(buttonType);
       if (okNode != null) {
         clickOn(okNode);
       } else {
@@ -84,13 +86,13 @@ public abstract class FxTest extends ApplicationTest {
     }
   }
 
-
   public <T> T getNode(final Class<T> expectedType, final String id) {
     Node node = lookup("#" + id).query();
     if (expectedType.isAssignableFrom(node.getClass())) {
       return expectedType.cast(node);
     } else {
-      fail("Couldn't find node with id: " + id + " of type " + expectedType.getSimpleName());
+      fail("Couldn't find node with id: " + id + " of type "
+              + expectedType.getSimpleName());
       return null;
     }
   }

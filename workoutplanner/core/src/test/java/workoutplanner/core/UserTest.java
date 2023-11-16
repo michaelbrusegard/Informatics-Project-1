@@ -32,8 +32,10 @@ class UserTest {
     // Move the first exercise to the right
     user.moveExerciseInCurrentWorkout(0, false);
     // Check if the order is correct
-    assertEquals("Exercise2", user.getCurrentWorkoutExerciseAttribute(0, "name"));
-    assertEquals("Exercise1", user.getCurrentWorkoutExerciseAttribute(1, "name"));
+    assertEquals("Exercise2",
+            user.getCurrentWorkoutExerciseAttribute(0, "name"));
+    assertEquals("Exercise1",
+            user.getCurrentWorkoutExerciseAttribute(1, "name"));
   }
 
   @Test
