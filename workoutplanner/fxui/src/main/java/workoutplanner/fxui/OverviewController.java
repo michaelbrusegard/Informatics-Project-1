@@ -60,7 +60,7 @@ public class OverviewController extends BaseController {
   /**
    * Local int variable, used to define size of display-font for workout-name.
    */
-  private static final int FONTSIZE = 20;
+  private static final int FONTSIZE = 16;
   /**
    * Local int variable, used to define size of display-font for workout-name.
    */

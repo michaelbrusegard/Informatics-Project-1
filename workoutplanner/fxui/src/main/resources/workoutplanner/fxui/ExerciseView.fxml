@@ -107,7 +107,7 @@
             </HBox>
          </VBox>
          <Button mnemonicParsing="false" onAction="#addExercise"
-                 style="-fx-background-color: #FF7B7B; -fx-pref-width: 90;" styleClass="regularButton"
+                 style="-fx-background-color: #FF7B7B; -fx-pref-width: 110;-fx-pref-height: 40;" styleClass="regularButton"
                  stylesheets="@style.css" text="Add Exercise" textFill="WHITE">
             <VBox.margin>
                <Insets bottom="30.0"/>
