@@ -32,7 +32,7 @@ import workoutplanner.fxutil.UiUtils;
  * @version 2.0.0
  */
 public class OverviewController extends BaseController {
-   /**
+  /**
    * Imported VBox from javaFx, used to contain the viewable page.
    */
   @FXML
