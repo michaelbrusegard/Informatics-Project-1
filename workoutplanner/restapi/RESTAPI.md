@@ -18,7 +18,7 @@ This is a class that provides static methods for validating the endpoints. It is
 
 ### ValidateEndpoints-fields
 
-- (`int`) LIMIT - A limit for what is valid values for the integers in `Exercise` based on endpoint.
+- (`int`) LIMIT - A limit for what is valid values for the integers in `Exercise`.
 - (`int`) MAX_NAME_LENGTH - A limit for the length of the name of an Exercise.
 
 ### ValidateEndpoints-methods
