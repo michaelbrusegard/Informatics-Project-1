@@ -28,6 +28,6 @@
          </font>
       </Text>
    </HBox>
-   <ScrollPane fx:id="scrollPaneWorkout" fitToHeight="true" fitToWidth="true" pannable="true" prefHeight="600.0"
+   <ScrollPane fx:id="workoutViewScrollPane" fitToHeight="true" fitToWidth="true" pannable="true" prefHeight="600.0"
                prefWidth="600.0"/>
 </VBox>

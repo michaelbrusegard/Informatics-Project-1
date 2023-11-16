@@ -27,7 +27,7 @@ public class FXApplicationTest extends FxTest {
     @Test
     public void testApplication(){
         clickOn("#showAllWorkouts");
-        assertNotNull((Button) ((HBox)((VBox)((GridPane)((ScrollPane) lookup("#scrollPaneWorkout").query()).getContent()).getChildren().get(1)).getChildren().get(2)).getChildren().get(0));
+        assertNotNull((Button) ((HBox)((VBox)((GridPane)((ScrollPane) lookup("#workoutViewScrollPane").query()).getContent()).getChildren().get(1)).getChildren().get(2)).getChildren().get(0));
         checkExistingWorkouts();
         gotoOverview();
         clickOn("#save");
@@ -64,13 +64,13 @@ public class FXApplicationTest extends FxTest {
 
     //get exercise cell from overview
     private ObservableList<Node> getExerciseCell(int index){
-        return (((HBox)((VBox)((GridPane)((ScrollPane) lookup("#scrollPane").query()).getContent()).getChildren().get(index)).getChildren().get(2)).getChildren());
+        return (((HBox)((VBox)((GridPane)((ScrollPane) lookup("#overviewScrollPane").query()).getContent()).getChildren().get(index)).getChildren().get(2)).getChildren());
     }
 
     //get workout cell from workoutview
     private ObservableList<Node> getWorkoutcell(int index){
         try {
-            return ((VBox) ((GridPane) ((ScrollPane) lookup("#scrollPaneWorkout").query()).getContent()).getChildren().get(index)).getChildren();
+            return ((VBox) ((GridPane) ((ScrollPane) lookup("#workoutViewScrollPane").query()).getContent()).getChildren().get(index)).getChildren();
         }
         catch (ClassCastException e){
             return null;
@@ -79,7 +79,7 @@ public class FXApplicationTest extends FxTest {
 
 
     private boolean workoutExists(){
-        return !((((ScrollPane) lookup("#scrollPaneWorkout").query()).getContent()) instanceof VBox);
+        return !((((ScrollPane) lookup("#workoutViewScrollPane").query()).getContent()) instanceof VBox);
     }
 
     //create exercise
@@ -113,7 +113,7 @@ public class FXApplicationTest extends FxTest {
     }
 
     private void addExerciseToWorkout(){
-        Button editButton = (Button) ((HBox)((VBox)((GridPane)((ScrollPane) lookup("#scrollPaneWorkout").query()).getContent()).getChildren().get(1)).getChildren().get(2)).getChildren().get(0);
+        Button editButton = (Button) ((HBox)((VBox)((GridPane)((ScrollPane) lookup("#workoutViewScrollPane").query()).getContent()).getChildren().get(1)).getChildren().get(2)).getChildren().get(0);
         clickOn(editButton);
         clickOn("#addExercises");
 
@@ -134,7 +134,7 @@ public class FXApplicationTest extends FxTest {
     private void deleteWorkout(){
         Button deleteButton = (Button) ((HBox) (getWorkoutcell(1)).get(2)).getChildren().get(1);
         clickOn(deleteButton);
-        Text text = (Text)((VBox)((GridPane) ((ScrollPane) lookup("#scrollPaneWorkout").query()).getContent()).getChildren().get(1)).getChildren().get(0);
+        Text text = (Text)((VBox)((GridPane) ((ScrollPane) lookup("#workoutViewScrollPane").query()).getContent()).getChildren().get(1)).getChildren().get(0);
         clickAndCheckConfirmation("Delete Workout","Are you sure you want to delete "+text.getText()+"? All workout data will be lost.");
     }
     private void checkExistingWorkouts(){
@@ -143,14 +143,14 @@ public class FXApplicationTest extends FxTest {
         boolean empty = true;
         while (empty) {
             try {
-                vbox = (((ScrollPane) lookup("#scrollPaneWorkout").query()).getContent()) instanceof VBox;
+                vbox = (((ScrollPane) lookup("#workoutViewScrollPane").query()).getContent()) instanceof VBox;
             }
             catch (ClassCastException e){
                 vbox = false;
             }
             if (!vbox) {
-                Text text = (Text)((VBox)((GridPane) ((ScrollPane) lookup("#scrollPaneWorkout").query()).getContent()).getChildren().get(1)).getChildren().get(0);
-                Button deleteButton = (Button) ((HBox) ((VBox) ((GridPane) ((ScrollPane) lookup("#scrollPaneWorkout").query()).getContent()).getChildren().get(1)).getChildren().get(2)).getChildren().get(1);
+                Text text = (Text)((VBox)((GridPane) ((ScrollPane) lookup("#workoutViewScrollPane").query()).getContent()).getChildren().get(1)).getChildren().get(0);
+                Button deleteButton = (Button) ((HBox) ((VBox) ((GridPane) ((ScrollPane) lookup("#workoutViewScrollPane").query()).getContent()).getChildren().get(1)).getChildren().get(2)).getChildren().get(1);
                 clickOn("#DeleteWorkout");
                 clickAndCheckConfirmation("Delete Workout","Are you sure you want to delete "+ text.getText()+"? All workout data will be lost.");
             } else {

@@ -35,7 +35,7 @@ public class WorkoutViewController extends BaseController {
    * Local ScrollPane variable, used for containing the grid with workouts.
    */
   @FXML
-  private ScrollPane scrollPaneWorkout;
+  private ScrollPane workoutViewScrollPane;
   /**
    * Local int variable, used to define size of display-font for workout-name.
    */
@@ -87,7 +87,7 @@ public class WorkoutViewController extends BaseController {
   @Override
   public void init() {
     // Clear scrollPane
-    scrollPaneWorkout.setContent(new Group());
+    workoutViewScrollPane.setContent(new Group());
     // Get workout info
     try {
       workoutNames = getMainController().getUser().getWorkoutNames();
@@ -98,7 +98,7 @@ public class WorkoutViewController extends BaseController {
     }
     // Create a grid if there are workouts
     if (!workoutNames.isEmpty()) {
-      new GridBuilder(scrollPaneWorkout,
+      new GridBuilder(workoutViewScrollPane,
           workoutNames.size(), this::createCell);
     } else {
       VBox container = new VBox();
@@ -106,7 +106,7 @@ public class WorkoutViewController extends BaseController {
       noWorkouts.setFont(new Font(FONT_FAMILY, FONTSIZE));
       container.getChildren().add(noWorkouts);
       container.setAlignment(Pos.CENTER);
-      scrollPaneWorkout.setContent(container);
+      workoutViewScrollPane.setContent(container);
     }
   }
 
@@ -150,7 +150,7 @@ public class WorkoutViewController extends BaseController {
     getMainController().showFxml("Overview");
   }
 
-  public void delete(final int workoutIndex) {
+  private void delete(final int workoutIndex) {
     if (UiUtils.showConfirmation("Delete Workout",
         "Are you sure you want to delete "
             + workoutNames.get(workoutIndex)

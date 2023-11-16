@@ -50,6 +50,6 @@
             <Insets bottom="20.0" top="20.0" />
          </padding>
       </HBox>
-      <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" pannable="true" prefHeight="600.0" prefWidth="600.0" />
+      <ScrollPane fx:id="overviewScrollPane" fitToHeight="true" fitToWidth="true" pannable="true" prefHeight="600.0" prefWidth="600.0" />
    </children>
 </VBox>
