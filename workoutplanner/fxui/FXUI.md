@@ -146,8 +146,8 @@ The WorkoutViewController class operates the WorkoutView page and delegates the 
 #### WorkoutViewController-Fields
 
 - (`ScrollPane`) scrollPane - Pane where the grid is added
-- (`List<String>`) workoutNames - List of all the workouts' names
-- (`List<String>`) workoutDates - List of all the workouts' dates
+- (`List<String>`) workoutNames - List of all the workout names
+- (`List<String>`) workoutDates - List of all the workout dates
 
 #### WorkoutViewController-Methods
 
