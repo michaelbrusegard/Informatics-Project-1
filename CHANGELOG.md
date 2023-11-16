@@ -1,3 +1,11 @@
+## [1.4.3](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.4.2...v1.4.3) (2023-11-16)
+
+
+### Bug Fixes
+
+* **typo:** fixed typos in markdown files ([35afc6c](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/35afc6c10b218bd94dc41266f95edc9eac67997e))
+* **typo:** fxui ([f4c84bd](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/f4c84bdda241586e130796195cad3862c6b6f3f7))
+
 ## [1.4.2](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.4.1...v1.4.2) (2023-11-16)
 
 
