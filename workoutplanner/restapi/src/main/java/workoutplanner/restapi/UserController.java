@@ -77,9 +77,10 @@ public class UserController {
          * Retrieves the saved state of the current workout.
          *
          * <p>
-         * This method sends a HTTP GET request to the "/current-workout/saved"
-         * endpoint to fetch the saved state of the current workout. It delegates
-         * the request to the user object and logs the endpoint and result.
+         * This method exposes a HTTP GET endpoint at "/current-workout/saved"
+         * endpoint to send the saved state of the current workout. It delegates
+         * the request to the user object and logs the endpoint and optionally the
+         * result.
          * </p>
          *
          * @return True if the current workout is saved, false otherwise.
@@ -95,10 +96,10 @@ public class UserController {
          * Retrieves the exercise count of the current workout.
          *
          * <p>
-         * This method sends a HTTP GET request to the
-         * "/current-workout/exercise-count" endpoint to fetch the count of exercises
+         * This method exposes a HTTP GET endpoint at
+         * "/current-workout/exercise-count" to send the count of exercises
          * in the current workout. It delegates the request to the user object and
-         * logs the endpoint and result.
+         * logs the endpoint and optionally the result.
          * </p>
          *
          * @return The number of exercises in the current workout.
@@ -115,10 +116,10 @@ public class UserController {
          * Retrieves the name of the current workout.
          *
          * <p>
-         * This method sends a HTTP GET request to the "/current-workout/name"
-         * endpoint to fetch the name of the current workout. It delegates the request
-         * to the user object, wraps the result in double quotes, and logs the
-         * endpoint and result.
+         * This method exposes a HTTP GET endpoint at "/current-workout/name"
+         * to send the name of the current workout. It delegates the request
+         * to the user object and returns a string. It logs the
+         * endpoint and optionally the result.
          * </p>
          *
          * @return The name of the current workout.
@@ -134,12 +135,12 @@ public class UserController {
          * Retrieves a specific attribute of an exercise in the current workout.
          *
          * <p>
-         * This method sends a HTTP GET request to the
-         * "/current-workout/exercise/{exerciseIndex}" endpoint with the specified
-         * attribute to fetch the corresponding attribute value of the exercise in the
+         * This method exposes a HTTP GET endpoint at
+         * "/current-workout/exercise/{exerciseIndex}" with the specified
+         * attribute to retrieve the corresponding attribute value of the exercise in
+         * the
          * current workout. It validates the input, delegates the request to the user
-         * object, wraps the result in double quotes, and logs the endpoint and
-         * result.
+         * object, and logs the endpoint and optionally the result.
          * </p>
          *
          * @param exerciseIndex The index of the exercise in the current workout.
@@ -170,9 +171,10 @@ public class UserController {
          * Retrieves the list of workout names.
          *
          * <p>
-         * This method sends a HTTP GET request to the "/workout/names" endpoint
-         * to fetch the names of all available workouts. It delegates the request
-         * to the user object, logs the endpoint and result, and returns the list
+         * This method exposes a HTTP GET endpoint at "/workout/names"
+         * to retrieve the names of all available workouts. It delegates the request
+         * to the user object, logs the endpoint and optionally the result, and returns
+         * the list
          * of workout names.
          * </p>
          *
@@ -189,9 +191,10 @@ public class UserController {
          * Retrieves the list of workout dates.
          *
          * <p>
-         * This method sends a HTTP GET request to the "/workout/dates" endpoint
-         * to fetch the dates of all available workouts. It delegates the request
-         * to the user object, logs the endpoint and result, and returns the list
+         * This method exposes a HTTP GET endpoint at "/workout/dates"
+         * to retrieve the dates of all available workouts. It delegates the request
+         * to the user object, logs the endpoint and optionally the result, and returns
+         * the list
          * of workout dates.
          * </p>
          *
@@ -208,9 +211,10 @@ public class UserController {
          * Retrieves the list of available exercises.
          *
          * <p>
-         * This method sends a HTTP GET request to the "/exercise-list" endpoint
-         * to fetch the list of available exercises. It delegates the request to
-         * the user object, logs the endpoint and result, and returns the list
+         * This method exposes a HTTP GET endpoint at "/exercise-list"
+         * to retrieve the list of available exercises. It delegates the request to
+         * the user object, logs the endpoint and optionally the result, and returns the
+         * list
          * of exercises.
          * </p>
          *
@@ -227,10 +231,10 @@ public class UserController {
          * Sets the current workout on the remote server.
          *
          * <p>
-         * This method sends a HTTP PUT request to the
-         * "/current-workout/{workoutIndex}" endpoint to set the current workout
+         * This method exposes a HTTP PUT endpoint at
+         * "/current-workout/{workoutIndex}" to set the current workout
          * based on the provided index. It validates the input, delegates the
-         * request to the user object, logs the endpoint and result, and returns
+         * request to the user object, logs the endpoint, and returns
          * an appropriate response entity.
          * </p>
          *
@@ -256,10 +260,10 @@ public class UserController {
          * Adds a new exercise to the current workout on the remote server.
          *
          * <p>
-         * This method sends a HTTP PUT request to the "/current-workout/exercise"
-         * endpoint with the specified parameters to add a new exercise to the
+         * This method exposes a HTTP PUT endpoint at "/current-workout/exercise"
+         * with the specified parameters to add a new exercise to the
          * current workout. It validates the input, delegates the request to the
-         * user object, logs the endpoint and result, and returns an appropriate
+         * user object, logs the endpoint, and returns an appropriate
          * response entity.
          * </p>
          *
@@ -291,11 +295,11 @@ public class UserController {
          * Moves an exercise within the current workout on the remote server.
          *
          * <p>
-         * This method sends a HTTP PUT request to the
-         * "/current-workout/exercise/{exerciseIndex}?left={left}" endpoint to move
+         * This method exposes a HTTP PUT endpoint at
+         * "/current-workout/exercise/{exerciseIndex}" to move
          * the specified exercise either to the left or right within the current
          * workout. It validates the input, delegates the request to the user object,
-         * logs the endpoint and result, and returns an appropriate response entity.
+         * logs the endpoint, and returns an appropriate response entity.
          * </p>
          *
          * @param exerciseIndex The index of the exercise to be moved.
@@ -324,10 +328,10 @@ public class UserController {
          * Saves the current workout on the remote server.
          *
          * <p>
-         * This method sends a HTTP PUT request to the
-         * "/current-workout/save?name={name}&date={date}" endpoint to save the
+         * This method exposes a HTTP PUT endpoint at
+         * "/current-workout/save" to save the
          * current workout with the specified name and date. It validates the input,
-         * delegates the request to the user object, logs the endpoint and result,
+         * delegates the request to the user object, logs the endpoint,
          * and returns an appropriate response entity.
          * </p>
          *
@@ -354,10 +358,10 @@ public class UserController {
          * Removes a workout from the remote server.
          *
          * <p>
-         * This method sends a HTTP DELETE request to the "/workout/{workoutIndex}"
-         * endpoint to remove the workout at the specified index. It validates the
-         * input, delegates the request to the user object, logs the endpoint and
-         * result, and returns an appropriate response entity.
+         * This method exposes a HTTP DELETE endpoint at "/workout/{workoutIndex}"
+         * to remove the workout at the specified index. It validates the
+         * input, delegates the request to the user object, logs the endpoint, and
+         * returns an appropriate response entity.
          * </p>
          *
          * @param workoutIndex The index of the workout to be removed.
@@ -383,9 +387,9 @@ public class UserController {
          * Removes the current workout from the remote server.
          *
          * <p>
-         * This method sends a HTTP DELETE request to the "/current-workout" endpoint
+         * This method exposes a HTTP DELETE endpoint at "/current-workout"
          * to remove the current workout. It delegates the request to the user object,
-         * logs the endpoint and result, and returns an appropriate response entity.
+         * logs the endpoint, and returns an appropriate response entity.
          * </p>
          *
          * @return ResponseEntity indicating the success or failure of the operation.
@@ -403,10 +407,10 @@ public class UserController {
          * Removes an exercise from the current workout on the remote server.
          *
          * <p>
-         * This method sends a HTTP DELETE request to the
-         * "/current-workout/exercise/{exerciseIndex}" endpoint to remove the
+         * This method exposes a HTTP DELETE endpoint at
+         * "/current-workout/exercise/{exerciseIndex}" to remove the
          * specified exercise from the current workout. It validates the input,
-         * delegates the request to the user object, logs the endpoint and result,
+         * delegates the request to the user object, logs the endpoint,
          * and returns an appropriate response entity.
          * </p>
          *
@@ -432,8 +436,8 @@ public class UserController {
          * Deletes unsaved workouts from the remote server.
          *
          * <p>
-         * This method sends a HTTP DELETE request to the "/workouts/delete-unsaved"
-         * endpoint to delete any unsaved workouts. It delegates the request to the
+         * This method exposes a HTTP DELETE endpoint at "/workouts/delete-unsaved"
+         * to delete any unsaved workouts. It delegates the request to the
          * user object, logs the endpoint, and returns a ResponseEntity indicating
          * the success of the operation.
          * </p>
