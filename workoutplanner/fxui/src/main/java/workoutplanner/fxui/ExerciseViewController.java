@@ -32,7 +32,7 @@ import workoutplanner.fxutil.UiUtils;
 public class ExerciseViewController extends BaseController {
   /**
    * Imported TextField from javaFx,
-   * used for acquiring amount of sets for an exercise.
+   * used for acquiring number of sets for an exercise.
    */
   @FXML
   private TextField sets;
@@ -110,7 +110,7 @@ public class ExerciseViewController extends BaseController {
     });
   }
 
-  // When the user clicks the add Exercise button
+  // When the user clicks the 'add Exercise' button
   @FXML
   private void addExercise() {
     String exerciseName = name.getText();

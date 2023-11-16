@@ -15,12 +15,12 @@ Links:
 As an individual, I want to make my own workout, but I can't find any programs or apps that specify the sets and reps that I want for my workouts.
 
 The user needs to make a workout where they can specify what and how much they are training, this includes `sets`, `reps` and `weight`.
-Therefore, it needs to be an inputfield for the user to write the desired amount for any exercise, for example editing the sets.
+Therefore, it needs to be an inputfield for the user to write the desired amount for any exercise, for example, editing the sets.
 
 ### Important visuals
 
-- Which exercises pertain to the workout
-- The amount of sets and the rep-range for the exercises
+- The exercises pertain to the workout
+- The number of sets and the rep-range for the exercises
 - The amount of weight required for the exercises
 
 ### Important traits
@@ -52,9 +52,9 @@ The overview should include the same values that they have entered before, as we
 
 ## Overview of exercises - 2
 
-As a personal trainer, I want to design a plan for my client containing specific exercises that fits them. I need to design it so that it is easy for them to understand what to do, and how much they need to do when they are training without me.
+As a personal trainer, I want to design a plan for my client containing specific exercises that fit them. I need to design it so that it is easy for them to understand what to do, and how much they need to do when they are training without me.
 
-The user needs an overview of specific exercises that fit the client, and  manually choose the weight, reps and sets of the exercises.
+The user needs an overview of specific exercises that fit the client, and manually choose the weight, reps and sets of the exercises.
 The overview should include the same values that they have entered before.
 
 Visuals and traits are the same as in [previous user story](#overview-of-exercises---1)
@@ -83,7 +83,7 @@ This means that the user needs an overview where the exercises are presented cle
 As a regular person that goes to the gym, I want to make a workout to later revisit.
 I want this to do the same workout again at a different date.
 I also want to track the progress I have done on a muscle group,
-and it is therefore necessary to watch what I trained, when. F.ex: I want to name a workout "core",
+and it is therefore necessary to watch what I trained, when. F.ex: I want to name a workout "core,"
 and when I visit the workout, I can see the core-exercises I've added earlier.
 
 For reviewing previous workouts, it has to be possible to get an overview over which workouts have been registered, and when.

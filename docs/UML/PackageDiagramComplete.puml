@@ -45,7 +45,7 @@ component node9 as "jfr"
 component node0 as "unsupported"
 }
 
-component springboor {
+component springboot {
 component node2 as "boot" {
 component node21 as "autoconfigure"
 }
