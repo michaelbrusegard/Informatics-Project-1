@@ -28,6 +28,8 @@ and determines the base functionality of all controller classes.
 - setMainController(): sets the MainController for a sub-controller
 - init(): base initialization method to be overwritten by sub-controllers.
 
+`init()` is a function used in a lot of controllers in this app. The reason we have this method instead of `initialize()` is because the initialize function runs at the moment you start the app, resluting in a grid made before any workoutobjects or exerciseobjects are added. What we instead want is for the controllers to initialize when we f.ex. press a save button.
+
 ## ExerciseViewController
 
 The ExerciseViewController class operates the ExerciseView page.
@@ -58,12 +60,12 @@ The FxmlControllerPair class maintains the association between an FXML file and 
 
 #### FxmlControllerPair-Constructor
 
-Creates a new `FxmlControllerPair` object, which associates an FXML view with a BaseController and MainController. It then sets the proper visibility of the different fxml-views.
+Creates a new `FxmlControllerPair` object, which associates an FXML view with its respective controller and the MainController. It then sets the proper visibility of the different fxml-views.
 
 #### FxmlControllerPair-Methods
 
-- show(): shows the baseController and calls its init function
-- hide(): sets the visibility to false for the controller
+- show(): Shows the new fxml and calls its init function
+- hide(): sets visiblity false for the fxml.
 
 ### HomeController
 

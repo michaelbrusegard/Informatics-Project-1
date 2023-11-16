@@ -50,20 +50,19 @@ The workout class creates a workout that contains a list of exercises, as well a
 #### Workout-Methods
 
 - addExercise(): Adds an `Exercise` to `exercises`
-- removeExercise(): Removes an `Exercise` to `exercises`
+- removeExercise(): Removes an `Exercise` from `exercises`
 - moveExercise(): Moves an `Exercise` based on specific position in `exercises` and the direction
 - getters and setters
 
 ### User
 
-<<<<<<< workoutplanner/core/CORE.md
 The user class represents a user in the application. It has a list of workouts and an index of the current workout.
 
 #### User-Fields
 
 - (`int`) currentWorkoutIndex - gets the index of the current workout
 - (`List<Workout>`) workouts - A list of all workouts for the user
-- (`boolean`) persistence - indicates whether workouts should be loaded or not
+- (`boolean`) persistence - indicates whether workouts should be loaded or not from a file
 
 #### User-Methods
 
@@ -91,12 +90,12 @@ This is an interface that is implemented by `User` and `RemoteUserAccess`.
 
 The `json` folder contains the classes `ExerciseListLoader` and `WorkoutPersistence`. These classes are used for file-handling and are used to read the required data from json files.
 
-
 ### ExerciseListLoader
 
 `ExerciseListLoader` loads exercises from a JSON file as a list of string and has one static method.
 
 #### ExerciseListLoader-Fields
+
 - (`ObjectMapper`) OBJECT_MAPPER - a static objectmapper for reading from a json file.
 
 #### ExerciseListLoader-Methods
