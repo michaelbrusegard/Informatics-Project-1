@@ -111,72 +111,9 @@
                         <excludeFilterFile>config/spotbugs/exclude.xml</excludeFilterFile>
                     </configuration>
                 </plugin>
-
-<!--                &lt;!&ndash; Configure jacoco code coverage &ndash;&gt;-->
-<!--                <plugin>-->
-<!--                    <groupId>org.jacoco</groupId>-->
-<!--                    <artifactId>jacoco-maven-plugin</artifactId>-->
-<!--                    <version>0.8.10</version>-->
-<!--                </plugin>-->
             </plugins>
         </pluginManagement>
     </build>
-<!--    <profiles>-->
-<!--        <profile>-->
-<!--            <id>runTestWithJacoco</id>-->
-<!--            <activation>-->
-<!--                <property>-->
-<!--                    <name>runTestWithJacoco</name>-->
-<!--                    <value>true</value>-->
-<!--                </property>-->
-<!--            </activation>-->
-<!--            <build>-->
-<!--                <plugins>-->
-<!--                    <plugin>-->
-<!--                        <groupId>org.jacoco</groupId>-->
-<!--                        <artifactId>jacoco-maven-plugin</artifactId>-->
-<!--                        <executions>-->
-<!--                            <execution>-->
-<!--                                <id>default-prepare-agent</id>-->
-<!--                                <goals>-->
-<!--                                    <goal>prepare-agent</goal>-->
-<!--                                </goals>-->
-<!--                                <configuration>-->
-<!--                                    <append>true</append>-->
-<!--                                </configuration>-->
-<!--                            </execution>-->
-<!--                        </executions>-->
-<!--                    </plugin>-->
-<!--                </plugins>-->
-<!--            </build>-->
-<!--        </profile>-->
-<!--        <profile>-->
-<!--            <id>createJacocoReport</id>-->
-<!--            <activation>-->
-<!--                <property>-->
-<!--                    <name>createJacocoReport</name>-->
-<!--                    <value>true</value>-->
-<!--                </property>-->
-<!--            </activation>-->
-<!--            <build>-->
-<!--                <plugins>-->
-<!--                    <plugin>-->
-<!--                        <groupId>org.jacoco</groupId>-->
-<!--                        <artifactId>jacoco-maven-plugin</artifactId>-->
-<!--                        <executions>-->
-<!--                            <execution>-->
-<!--                                <id>default-report</id>-->
-<!--                                <phase>validate</phase>-->
-<!--                                <goals>-->
-<!--                                    <goal>report</goal>-->
-<!--                                </goals>-->
-<!--                            </execution>-->
-<!--                        </executions>-->
-<!--                    </plugin>-->
-<!--                </plugins>-->
-<!--            </build>-->
-<!--        </profile>-->
-<!--    </profiles>-->
     <modules>
         <module>core</module>
         <module>fxutil</module>
