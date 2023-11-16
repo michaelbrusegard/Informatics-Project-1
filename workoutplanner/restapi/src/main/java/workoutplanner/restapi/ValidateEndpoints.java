@@ -146,7 +146,7 @@ public final class ValidateEndpoints {
    */
   public static boolean validateSaveWorkoutInput(final String name,
       final String date, final List<String> usedNames) {
-    return name != null && !usedNames.contains(name) && date != null
-            && !date.isEmpty();
+    return name != null && !usedNames.contains(name) && name.length() < MAX_NAME_LENGTH && date != null
+        && !date.isEmpty();
   }
 }

@@ -1,3 +1,10 @@
+## [1.4.1](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.4.0...v1.4.1) (2023-11-16)
+
+
+### Bug Fixes
+
+* **Overview:** added backend validation for Workout name. (was already validated in frontend) ([860f106](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/860f106cd1c058f4d4a127623ee231e875452f1d))
+
 # [1.4.0](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.3.1...v1.4.0) (2023-11-15)
 
 
