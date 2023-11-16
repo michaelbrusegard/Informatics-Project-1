@@ -130,6 +130,7 @@ public class WorkoutViewController extends BaseController {
     deleteButton.setStyle(defaultButton);
     viewButton.setOnAction(event -> view(workoutIndex));
     deleteButton.setOnAction(event -> delete(workoutIndex));
+    deleteButton.setId("DeleteWorkout");
     HBox buttonBox = new HBox(viewButton, deleteButton);
     buttonBox.setAlignment(Pos.CENTER);
     buttonBox.setSpacing(SPACING);

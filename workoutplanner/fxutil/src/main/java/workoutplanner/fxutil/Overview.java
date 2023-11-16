@@ -49,25 +49,39 @@ public final class Overview {
   public static boolean validateOverview(final boolean saved,
                                          final boolean close,
                                          final TextField inpName) {
-    if (inpName.getText().isEmpty() && saved) {
-      UiUtils.showAlert("Empty input-field",
-              "Input-field cannot be empty",
-              AlertType.ERROR);
-      return false;
-    } else if (inpName.getText().length() >= CHARLIMIT) {
-      UiUtils.showAlert("Too many characters in input-field",
-              "Name shouldn't be more than 20 characters",
-              AlertType.ERROR);
-      return false;
-    } else if (saved) {
-      UiUtils.showAlert("Save successful",
-              "Workout saved successfully",
-              AlertType.INFORMATION);
-      return true;
-    } else if (close) {
+    try {
+      if (inpName.getText().isEmpty() && saved) {
+        UiUtils.showAlert("Empty input-field",
+                "Input-field cannot be empty",
+                AlertType.ERROR);
+        return false;
+      } else if (inpName.getText().length() >= CHARLIMIT) {
+        UiUtils.showAlert("Too many characters in input-field",
+                "Name shouldn't be more than 20 characters",
+                AlertType.ERROR);
+        return false;
+      } else if (saved) {
+        UiUtils.showAlert("Save successful",
+                "Workout saved successfully",
+                AlertType.INFORMATION);
+        return true;
+      } else if (close) {
+        return true;
+      }
       return true;
     }
-    return true;
+    catch (IllegalStateException e){
+      if (inpName.getText().isEmpty() && saved) {
+        return false;
+      } else if (inpName.getText().length() >= CHARLIMIT) {
+        return false;
+      } else if (saved) {
+        return true;
+      } else if (close) {
+        return true;
+      }
+      return true;
+    }
   }
 
   /**

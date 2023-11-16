@@ -2,7 +2,6 @@ package workoutplanner.fxui;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -11,18 +10,10 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.testfx.framework.junit5.ApplicationTest;
-import org.testfx.matcher.control.LabeledMatchers;
-import org.testfx.service.query.EmptyNodeQueryException;
-import org.testfx.service.query.PointQuery;
-import org.testfx.util.WaitForAsyncUtils;
 import workoutplanner.fxutil.UiUtils;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
-import java.nio.file.Paths;
-import java.util.Objects;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -63,26 +54,6 @@ public abstract class FxTest extends ApplicationTest {
         testStage.show();
     }
 
-    public void clickAlertQuery(String query) {
-        WaitForAsyncUtils.waitForFxEvents();
-        clickOn(query);
-        WaitForAsyncUtils.waitForFxEvents();
-        clickOn(LabeledMatchers.hasText("OK"));
-        WaitForAsyncUtils.waitForFxEvents();
-    }
-
-    public void clickAlertLabel(String label) {
-        WaitForAsyncUtils.waitForFxEvents();
-        clickOn(LabeledMatchers.hasText(label));
-        WaitForAsyncUtils.waitForFxEvents();
-        clickOn(LabeledMatchers.hasText("OK"));
-        WaitForAsyncUtils.waitForFxEvents();
-    }
-
-    public boolean isWindowShowing(Parent window) {
-        return window.isVisible();
-    }
-
     public void clickAndCheckAlert(final String title, final String message,
                                    final Alert.AlertType alertType) {
         Alert alertButton = UiUtils.getAlert();
@@ -115,6 +86,7 @@ public abstract class FxTest extends ApplicationTest {
             fail("OK button not found in the Alert");
         }
     }
+
 
     public <T> T getNode(Class<T> expectedType, String id) {
         Node node = lookup("#" + id).query();

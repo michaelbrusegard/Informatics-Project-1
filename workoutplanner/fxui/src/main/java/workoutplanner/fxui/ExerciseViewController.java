@@ -129,20 +129,20 @@ public class ExerciseViewController extends BaseController {
       // Add the exercise to the new workout
       try {
         getMainController().getUser().addExerciseToCurrentWorkout(
-            exerciseName, exerciseSets, exerciseRepMin,
-            exerciseRepMax, exerciseWeight);
+                exerciseName, exerciseSets, exerciseRepMin,
+                exerciseRepMax, exerciseWeight);
 
         ExerciseView.displayExerciseAddedPrompt(exerciseName, exerciseSets,
-            exerciseRepMin, exerciseRepMax, exerciseWeight);
+                exerciseRepMin, exerciseRepMax, exerciseWeight);
       } catch (RuntimeException e) {
         UiUtils.showAlert("Server Error",
-            e.getMessage(),
-            AlertType.ERROR);
+                e.getMessage(),
+                AlertType.ERROR);
         return;
       }
+    }
       // Clear the input fields so a new exercise can be added
       clearInputFields();
-    }
   }
 
   // When the user clicks the cancel button

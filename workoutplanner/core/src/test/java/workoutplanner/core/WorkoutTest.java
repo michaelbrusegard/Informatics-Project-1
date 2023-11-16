@@ -13,12 +13,11 @@ import static org.junit.jupiter.api.Assertions.*;
 public class WorkoutTest {
 
     private Workout workout;
-    private LocalDate date;
     private String name;
 
     @BeforeEach
     public void setUp() {
-        date = LocalDate.now();
+        LocalDate date = LocalDate.now();
         name = "My Workout";
         workout = new Workout();
         workout.setDate(date.toString());
@@ -43,23 +42,23 @@ public class WorkoutTest {
 
     @Test
     public void testAddExercise() {
-        workout.addExercise(new Exercise("Deadlift", 3, 8, 12, 100));
-        workout.addExercise(new Exercise("Lunges", 4, 6, 10, 135));
+        workout.addExercise("Deadlift", 3, 8, 12, 100);
+        workout.addExercise("Lunges", 4, 6, 10, 135);
         assertEquals(2, workout.getExercises().size());
     }
 
     @Test
     public void testRemoveExercise() {
-        workout.addExercise(new Exercise("Deadlift", 3, 8, 12, 100));
+        workout.addExercise("Deadlift", 3, 8, 12, 100);
         workout.removeExercise(0);
         assertEquals(0, workout.getExercises().size());
     }
 
     @Test
     public void testInvalidInputNumberMoveExercise() {
-        workout.addExercise(new Exercise("Deadlift", 3, 10, 15, 0));
-        workout.addExercise(new Exercise("Lunges", 3, 12, 18, 0));
-        workout.addExercise(new Exercise("Leg Press", 4, 12, 18, 0));
+        workout.addExercise("Deadlift", 3, 10, 15, 0);
+        workout.addExercise("Lunges", 3, 12, 18, 0);
+        workout.addExercise("Leg Press", 4, 12, 18, 0);
 
         workout.moveExercise(-1, false);
         List<Exercise> exercises = workout.getExercises();
@@ -80,9 +79,9 @@ public class WorkoutTest {
 
     @Test
     public void testMoveExerciseToLeft() {
-        workout.addExercise(new Exercise("Deadlift", 3, 10, 15, 0));
-        workout.addExercise(new Exercise("Lunges", 3, 12, 18, 0));
-        workout.addExercise(new Exercise("Leg Press", 4, 12, 18, 0));
+        workout.addExercise("Deadlift", 3, 10, 15, 0);
+        workout.addExercise("Lunges", 3, 12, 18, 0);
+        workout.addExercise("Leg Press", 4, 12, 18, 0);
         workout.moveExercise(1, true);
 
         List<Exercise> exercises = workout.getExercises();
@@ -98,9 +97,9 @@ public class WorkoutTest {
 
     @Test
     public void testMoveExerciseToRight() {
-        workout.addExercise(new Exercise("Deadlift", 3, 10, 15, 0));
-        workout.addExercise(new Exercise("Lunges", 3, 12, 18, 0));
-        workout.addExercise(new Exercise("Leg Press", 4, 12, 18, 0));
+        workout.addExercise("Deadlift", 3, 10, 15, 0);
+        workout.addExercise("Lunges", 3, 12, 18, 0);
+        workout.addExercise("Leg Press", 4, 12, 18, 0);
 
         List<Exercise> exercises = workout.getExercises();
 
@@ -118,10 +117,11 @@ public class WorkoutTest {
 
     @Test
     public void testGetExercises() {
-        workout.addExercise(new Exercise("Squats", 3, 8, 12, 100));
-        workout.addExercise(new Exercise("Bench Press", 4, 6, 10, 135));
+        workout.addExercise("Squats", 3, 10, 15, 0);
+        workout.addExercise("Bench Press", 3, 12, 18, 0);
+        workout.addExercise("Leg Press", 4, 12, 18, 0);
         List<Exercise> exercises = workout.getExercises();
-        assertEquals(2, exercises.size());
+        assertEquals(3, exercises.size());
         assertEquals("Squats", exercises.get(0).name());
         assertEquals("Bench Press", exercises.get(1).name());
     }
