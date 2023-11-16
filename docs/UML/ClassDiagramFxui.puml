@@ -1,0 +1,111 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class BaseController {
+  + BaseController():
+  - mainController: MainController
+  + getMainController(): MainController
+  + init(): void
+  + setMainController(MainController): void
+}
+class ExerciseViewController {
+  + ExerciseViewController():
+  - sets: TextField
+  - list: ListView<String>
+  - repMin: TextField
+  - repMax: TextField
+  - cancelButton: Button
+  - name: Text
+  - weight: TextField
+  - cancel(): void
+  + init(): void
+  - finish(): void
+  - addExercise(): void
+  + initialize(): void
+  - clearInputFields(): void
+}
+class FxmlControllerPair {
+  + FxmlControllerPair(MainController, VBox, BaseController):
+  - baseController: BaseController
+  - fxml: VBox
+  + hide(): void
+  + show(): void
+}
+class HomeController {
+  + HomeController():
+  - createNewWorkout(): void
+  - showAllWorkouts(): void
+  + init(): void
+}
+class MainController {
+  + MainController():
+  - exerciseView: VBox
+  - overviewController: OverviewController
+  - workoutViewController: WorkoutViewController
+  - home: VBox
+  - workoutView: VBox
+  - exerciseViewController: ExerciseViewController
+  - useRemote: boolean
+  - overview: VBox
+  - homeController: HomeController
+  - fxmlControllerMap: Map<String, FxmlControllerPair>
+  - user: UserAccess
+  - currentFxmlName: String
+  + showFxml(String): void
+  - initialize(): void
+  + getUser(): UserAccess
+}
+class OverviewController {
+  + OverviewController():
+  - name: Text
+  - workoutInfoBox: HBox
+  - inputName: TextField
+  - scrollPane: ScrollPane
+  - FONT_FAMILY: String
+  - CONTENTSPACING: int
+  - FONTSIZE: int
+  - saveWorkoutNameBox: VBox
+  - CONTENTMARGINBOTTOM: int
+  - CONTENTMARGINLEFT: int
+  + init(): void
+  - buildGrid(): void
+  + cancel(): void
+  - addExercises(): void
+  - delete(int): void
+  - createCell(int): VBox
+  - returnWorkoutView(): void
+  - move(int, boolean): void
+  + save(): void
+}
+class WorkoutViewController {
+  + WorkoutViewController():
+  - workoutNames: List<String>
+  - LAYOUTY: int
+  - SPACING: int
+  - workoutDates: List<String>
+  - FONT_FAMILY: String
+  - scrollPane: ScrollPane
+  - FONTSIZE: int
+  - BUTTONLAYOUTY: double
+  - createCell(int): VBox
+  - view(int): void
+  - delete(int): void
+  - returnHome(): void
+  + init(): void
+}
+
+BaseController             "1" *-[#595959,plain]-> "mainController\n1" MainController
+ExerciseViewController      -[#000082,plain]-^  BaseController
+FxmlControllerPair         "1" *-[#595959,plain]-> "baseController\n1" BaseController
+HomeController              -[#000082,plain]-^  BaseController
+MainController             "1" *-[#595959,plain]-> "exerciseViewController\n1" ExerciseViewController
+MainController             "1" *-[#595959,plain]-> "fxmlControllerMap\n*" FxmlControllerPair
+MainController             "1" *-[#595959,plain]-> "homeController\n1" HomeController
+MainController             "1" *-[#595959,plain]-> "overviewController\n1" OverviewController
+MainController             "1" *-[#595959,plain]-> "workoutViewController\n1" WorkoutViewController
+OverviewController          -[#000082,plain]-^  BaseController
+WorkoutViewController       -[#000082,plain]-^  BaseController
+@enduml

@@ -1,0 +1,80 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+entity Exercise << record >> {
+  + Exercise(String, int, int, int, int):
+  - sets: int
+  - repMax: int
+  - weight: int
+  - name: String
+  - repMin: int
+  + repMax(): int
+  + weight(): int
+  + repMin(): int
+  + name(): String
+  + sets(): int
+}
+class User {
+  + User(boolean):
+  - currentWorkoutIndex: int
+  - workouts: List<Workout>
+  - LOGGER: Logger
+  - persistence: boolean
+  + getCurrentWorkoutExerciseCount(): int
+  + getCurrentWorkoutSaved(): boolean
+  + removeCurrentWorkout(): void
+  + getWorkoutNames(): List<String>
+  + deleteUnsavedWorkouts(): void
+  + getCurrentWorkoutExerciseAttribute(int, String): String
+  + removeExerciseFromCurrentWorkout(int): void
+  + moveExerciseInCurrentWorkout(int, boolean): void
+  + saveCurrentWorkout(String, String): void
+  + getExerciseList(): List<String>
+  + addExerciseToCurrentWorkout(String, int, int, int, int): void
+  + getCurrentWorkoutName(): String
+  + setCurrentWorkout(int): void
+  + getWorkoutDates(): List<String>
+  + removeWorkout(int): void
+}
+interface UserAccess << interface >> {
+  + moveExerciseInCurrentWorkout(int, boolean): void
+  + deleteUnsavedWorkouts(): void
+  + getCurrentWorkoutName(): String
+  + addExerciseToCurrentWorkout(String, int, int, int, int): void
+  + removeCurrentWorkout(): void
+  + getCurrentWorkoutExerciseCount(): int
+  + getWorkoutDates(): List<String>
+  + removeExerciseFromCurrentWorkout(int): void
+  + getWorkoutNames(): List<String>
+  + removeWorkout(int): void
+  + saveCurrentWorkout(String, String): void
+  + getExerciseList(): List<String>
+  + getCurrentWorkoutSaved(): boolean
+  + setCurrentWorkout(int): void
+  + getCurrentWorkoutExerciseAttribute(int, String): String
+}
+class Workout {
+  + Workout():
+  - name: String
+  - saved: boolean
+  - exercises: List<Exercise>
+  - date: String
+  + moveExercise(int, boolean): void
+  + setSaved(boolean): void
+  + removeExercise(int): void
+  + setName(String): void
+  + getSaved(): boolean
+  + addExercise(String, int, int, int, int): void
+  + getName(): String
+  + setDate(String): void
+  + getDate(): String
+  + getExercises(): List<Exercise>
+}
+
+User                -[#008200,dashed]-^  UserAccess
+User               "1" *-[#595959,plain]-> "workouts\n*" Workout
+Workout            "1" *-[#595959,plain]-> "exercises\n*" Exercise
+@enduml
