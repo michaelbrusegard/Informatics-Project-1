@@ -1,3 +1,10 @@
+## [1.4.4](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.4.3...v1.4.4) (2023-11-16)
+
+
+### Bug Fixes
+
+* fixed overview error ([78c6e3c](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/78c6e3c468aa12cae30472735dcfe3f680e7435d))
+
 ## [1.4.3](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.4.2...v1.4.3) (2023-11-16)
 
 
