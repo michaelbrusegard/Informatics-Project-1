@@ -1,3 +1,10 @@
+# [1.5.0](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.4.4...v1.5.0) (2023-11-16)
+
+
+### Features
+
+* **UserTest:** :beers: added more tests to the core user class ([42fa505](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/commit/42fa50584397932a05457f4287499080d0656866))
+
 ## [1.4.4](https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307/compare/v1.4.3...v1.4.4) (2023-11-16)
 
 
