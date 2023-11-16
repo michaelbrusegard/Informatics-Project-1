@@ -139,5 +139,13 @@ In the root directory, you can find the documentation for the assignments in the
 
 - [README](workoutplanner/README.md) - Contains information about the project and concept photos of the app.
 - [USER_STORIES](./docs/USER_STORIES.md) - Contains the user stories for the project
-- [DIAGRAMS](./docs/DIAGRAMS.md) - contains class-diagram, sequence-diagram and package-diagram
-- [releases](./docs/releases) - contains the different releases for each milestone/assignment.
+- [DIAGRAMS](./docs/UML) - Contains class-diagram, sequence-diagram and package-diagram
+- [persistence](./docs/PERSISTENCE.md) - Contains documentation for the persistence for the program.
+- [work flow, work habits and code quality](./docs/DEVELOPMENT_PROCESS.md) - Contains documentation for the persistence for the program.
+- [releases](./docs/releases) - Contains the different releases for each milestone/assignment.
+
+- [core documentation](workoutplanner/core/CORE.md)
+- [persistence](workoutplanner/core/CORE.md#persistance)
+- [fxui documentation](workoutplanner/fxui/FXUI.md)
+- [fxutil documentation](workoutplanner/fxutil/FXUTIL.md)
+- [rest documentation](workoutplanner/restapi/RESTAPI.md)
