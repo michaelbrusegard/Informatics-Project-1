@@ -3,24 +3,24 @@
 This page displays the different cases for which a user can use the app as well as different functionality and situations.
 
 Links:
-[User story 1](#making-a-workout)
-[User story 2](#overview-of-exercises---1)
-[User story 3](#overview-of-exercises---2)
-[User story 4](#swap-order-of-exercises)
-[User story 5](#open-a-previous-workout-and-track-progress)
-[User story 6](#edit-a-workout)
+[User story 1](#making-a-workout---1)
+[User story 2](#overview-of-exercises---2)
+[User story 3](#overview-of-exercises---3)
+[User story 4](#swap-order-of-exercises---4)
+[User story 5](#open-a-previous-workout-and-track-progress---5)
+[User story 6](#edit-a-workout---6)
 
-## Making a workout
+## Making a workout - 1
 
 As an individual, I want to make my own workout, but I can't find any programs or apps that specify the sets and reps that I want for my workouts.
 
 The user needs to make a workout where they can specify what and how much they are training, this includes `sets`, `reps` and `weight`.
-Therefore, it needs to be an inputfield for the user to write the desired amount for any exercise, for example editing the sets.
+Therefore, it needs to be an inputfield for the user to write the desired amount for any exercise, for example, editing the sets.
 
 ### Important visuals
 
-- Which exercises pertain to the workout
-- The amount of sets and the rep-range for the exercises
+- The exercises pertain to the workout
+- The number of sets and the rep-range for the exercises
 - The amount of weight required for the exercises
 
 ### Important traits
@@ -29,7 +29,7 @@ Therefore, it needs to be an inputfield for the user to write the desired amount
 - To add exercises to a workout
 - Write values for weight, rep-range and sets
 
-## Overview of exercises - 1
+## Overview of exercises - 2
 
 I am a person that easily forgets what exercises I have planned when I reach the training center.
 Therefore, I need an overview where I can look up what I decided when I was at home, when I'm at the training center.
@@ -50,16 +50,16 @@ The overview should include the same values that they have entered before, as we
 - See the exercises
 - Save or cancel the workout
 
-## Overview of exercises - 2
+## Overview of exercises - 3
 
-As a personal trainer, I want to design a plan for my client containing specific exercises that fits them. I need to design it so that it is easy for them to understand what to do, and how much they need to do when they are training without me.
+As a personal trainer, I want to design a plan for my client containing specific exercises that fit them. I need to design it so that it is easy for them to understand what to do, and how much they need to do when they are training without me.
 
-The user needs an overview of specific exercises that fit the client, and  manually choose the weight, reps and sets of the exercises.
+The user needs an overview of specific exercises that fit the client, and manually choose the weight, reps and sets of the exercises.
 The overview should include the same values that they have entered before.
 
-Visuals and traits are the same as in [previous user story](#overview-of-exercises---1)
+Visuals and traits are the same as in [previous user story](#overview-of-exercises---3)
 
-## Swap order of exercises
+## Swap order of exercises - 4
 
 I am someone who thinks the order of the exercises in a workout is important to how the workout is.
 Therefore, I wish that I can change the order of the exercises in my workout myself.
@@ -78,12 +78,12 @@ This means that the user needs an overview where the exercises are presented cle
 - Move a workout backward
 - Move a workout forward
 
-## Open a previous workout and track progress
+## Open a previous workout and track progress - 5
 
 As a regular person that goes to the gym, I want to make a workout to later revisit.
 I want this to do the same workout again at a different date.
 I also want to track the progress I have done on a muscle group,
-and it is therefore necessary to watch what I trained, when. F.ex: I want to name a workout "core",
+and it is therefore necessary to watch what I trained, when. F.ex: I want to name a workout "core,"
 and when I visit the workout, I can see the core-exercises I've added earlier.
 
 For reviewing previous workouts, it has to be possible to get an overview over which workouts have been registered, and when.
@@ -101,7 +101,7 @@ It also has to be possible to enter the workouts without adding a new workout, a
 - view the name of the workout
 - view the date of the workout
 
-## Edit a workout
+## Edit a workout - 6
 
 As an individual who often changes their mind, I want to change almost everything about any workout I have created.
 This includes swapping the order, deleting an exercise, adding exercises and changing the parameters.
