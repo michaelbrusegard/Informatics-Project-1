@@ -138,7 +138,6 @@ public class FXApplicationTest extends FxTest {
             if (!vbox) {
                 Text text = (Text)((VBox)((GridPane) ((ScrollPane) lookup("#scrollPaneWorkout").query()).getContent()).getChildren().get(1)).getChildren().get(0);
                 Button deleteButton = (Button) ((HBox) ((VBox) ((GridPane) ((ScrollPane) lookup("#scrollPaneWorkout").query()).getContent()).getChildren().get(1)).getChildren().get(2)).getChildren().get(1);
-                System.out.println(deleteButton);
                 clickOn("#DeleteWorkout");
                 clickAndCheckConfirmation("Delete Workout","Are you sure you want to delete "+ text.getText()+"? All workout data will be lost.");
             } else {
