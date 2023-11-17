@@ -49,4 +49,4 @@ This release includes more functionality to the app, and makes it better to use.
 - We added a lot of user stories covering most of the app.
 - We added required documentation for assignment 3, meaning diagrams and documentation about REST.
 
-We had a challenge with eclipse: [Challenge](../../docs/CHALLENGE.md)
+We had a challenge with eclipse: [Challenges](../../docs/CHALLENGES.md)
