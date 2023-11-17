@@ -90,6 +90,8 @@ mvn jacoco:report
 
 It creates the site-folder in the target-folder of the corresponding module, where if you open target/site/jacoco/index.html you will get the code coverage report.
 
+Alternatively, you will also find the code coverage report for the whole project in the target folder of the aggregate module if you ran the tests with clean install.
+
 ## Contents
 
 - ./workoutplanner - [source code](./workoutplanner)
