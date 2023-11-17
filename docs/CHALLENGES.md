@@ -4,7 +4,7 @@
 
 ### About the issue
 
-During the third assignment we had some trouble with communication between members. Some parts of the assignment took longer than expecting, resulting in some crunching at the end of the project. This caused tests not being entirely optimal and missing parts in the documentation. This was most apparent in the root-level readme, where there were missing instructions on to run the tests, as well as the rest of the app. The crunching resulted in merge conflicts which when resolved sometime sled to the loss of some code like some of the User tests. This was not discovered until after the deadline, and was therefore not fixed.
+During the third assignment we had some trouble with communication between members. Some parts of the assignment took longer than expecting, resulting in some crunching at the end of the project. This caused tests not being entirely optimal and missing parts in the documentation. This was most apparent in the root-level readme, where there were missing instructions on how to run the tests, as well as the rest of the app. The crunching resulted in merge conflicts which when resolved sometimes led to the loss of code like for example the loss of some of the User tests. This was not discovered until after the deadline, and was therefore not fixed.
 
 ### Measures
 
