@@ -14,6 +14,10 @@ To run the app, first enter the eclipse che workspace with the following link:
 
 [Open in Eclipse Che](https://che.stud.ntnu.no/#https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2307/gr2307.git?new)
 
+You can either run the app locally or with the REST-server.
+
+To run it locally, you can change the value of `useRemote` in `MainController` from true to false. This makes it so that the app runs without the REST-server and accesses the core logic directly.
+
 Then navigate to the source code directory of the project, and clean install without tests:
 
 ```bash
@@ -21,13 +25,15 @@ cd workoutplanner
 mvn clean install -DskipTests
 ```
 
-This installs the necessary dependencies for the app to work.
+This installs the necessary dependencies for the app to work. If you want to run the tests when running clean install, you need to make sure that `useRemote` is set to false. This is because the tests are run with the REST-server when `useRemote` is true, and if you don't have the server running, the tests will fail.
 
-You can either run the app locally or with the REST-server.
+If you have the server running, you can run the tests with the following command:
 
-To run it locally, you can change the value of `useRemote` in `MainController`from true to false. This makes it so no progress is saved to backend when you close the app, but it can run on frontend and persistence.
+```bash
+mvn test
+```
 
-Alternatively you can from the `workoutplanner` folder navigate to `restapi` by running:
+To run the REST-server, from the `workoutplanner` folder navigate to `restapi` by running:
 
 ```bash
 cd restapi
@@ -41,7 +47,7 @@ mvn spring-boot:run
 
 to run the server.
 
-Open a new terminal and navigate to the `workoutplanner` folder, then navigate to `fxui`:
+To then start the javafx app, open a new terminal and navigate to the `workoutplanner` folder, then navigate to `fxui`:
 
 ```bash
 cd fxui
@@ -54,6 +60,7 @@ mvn javafx:run
 ```
 
 The app should now be up and running.
+
 In Eclipse Che, you can go to the 'Endpoints' window and copy the link from port 6080. This will take you to the virtual machine, where you can view the app.
 
 ### Run app with jlink and jpackage
@@ -61,7 +68,7 @@ In Eclipse Che, you can go to the 'Endpoints' window and copy the link from port
 To do this, you also need to navigate to the `fxui` folder in `workoutplanner`. Then you need two commands:
 
 ```bash
-mvn javafx:jlink 
+mvn javafx:jlink
 mvn jpackage:jpackage
 ```
 
@@ -75,7 +82,15 @@ In Eclipse Che, you can go to the 'Endpoints' window and copy the link from port
 
 ## Run JaCoCo
 
-It also creates the site-folder in the target-folders of the different modules, where if you open target/site/jacoco/index.html. You get to see the codecoverage for the module you're in.
+To run JaCoCo, you need to navigate to the corresponding module (core or fxui) and then run the following command in the module directory:
+
+```bash
+mvn jacoco:report
+```
+
+It creates the site-folder in the target-folder of the corresponding module, where if you open target/site/jacoco/index.html you will get the code coverage report.
+
+Alternatively, you will also find the code coverage report for the whole project in the target folder of the aggregate module if you ran the tests with clean install.
 
 ## Contents
 
@@ -96,7 +111,7 @@ In the root directory, you can find the documentation for the assignments in the
 - [DIAGRAMS](./docs/UML) - Contains class-diagram, sequence-diagram and package-diagram
 - [work flow, work habits and code quality](./docs/DEVELOPMENT.md) - Contains documentation for the persistence of the program.
 - [releases](./docs/releases) - Contains the different releases for each milestone/assignment.
-- [challennge](./docs/CHALLENGE) - Contains a challenge we had with eclipse.
+- [challenges](./docs/CHALLENGES) - Contains a challenge we had with eclipse.
 
 - [core documentation](workoutplanner/core/CORE.md)
 - [persistence](workoutplanner/core/CORE.md#persistence)
