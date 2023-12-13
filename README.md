@@ -3,7 +3,8 @@
 This is the repository for group gr2307 in the course IT1901 at NTNU. The project is an app to create workout plans made using maven with a javafx frontend and spring boot rest backend.
 
 ### Video example
-Uploading example.mov…
+
+https://github.com/michaelbrusegard/Informatics-Project-1/assets/56915010/10246231-a0d0-44d8-a367-c1e20b4fbf67
 
 ### Note
 
