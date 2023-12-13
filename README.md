@@ -2,9 +2,12 @@
 
 This is the repository for group gr2307 in the course IT1901 at NTNU. The project is an app to create workout plans made using maven with a javafx frontend and spring boot rest backend.
 
+### Video example
+Uploading example.mov…
+
 ### Note
 
-Ignore any references to eclipse che and the GitLab CI. These were tools only used for the university course, the app can be run without them and the CI does not transfer to GitHub.
+Ignore any references to eclipse che and the GitLab CI. These were tools only used for the university course, the app can run without them. The GitLab CI does not transfer to GitHub.
 
 You can find my personal refleksjonsrapport [here](Refleksjonsrapport.pdf). This is a reflection about code quality in the project, because I was responsible for writing most of the code in the project.
 
