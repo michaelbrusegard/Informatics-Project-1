@@ -1,4 +1,4 @@
-# Group gr2307 repository
+# Workout Planner
 
 This is the repository for group gr2307 in the course IT1901 at NTNU. The project is an app to create workout plans made using maven with a javafx frontend and spring boot rest backend.
 
